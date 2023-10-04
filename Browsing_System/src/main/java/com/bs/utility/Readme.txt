@@ -1,0 +1,1 @@
+Use this class to place common classes
