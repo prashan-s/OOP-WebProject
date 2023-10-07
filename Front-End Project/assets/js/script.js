@@ -1,5 +1,23 @@
 'use strict';
 
+window.onload = function () {
+  setInterval(setDateTimeNow, 1000);
+};
+
+$(document).ready(function(){
+  $('.fade').slick({
+    dots: true,
+    arrows: true,
+    infinite: true,
+    speed: 500,
+    fade: true,
+    cssEase: 'linear',
+    autoplay: true,
+    autoplaySpeed: 2000,
+  });
+});
+
+
 /**
  * navbar variables
  */
@@ -52,32 +70,40 @@ window.addEventListener("scroll", function () {
 });
 
 
-function toggleSignInCardForm() {
+function toggleSignInSignUpCardForm(formHide, formShow, method) {
 
-  const signUpForm = document.getElementById("sign-up-form");
+  const signUpForm = document.getElementById(formHide);
   if (!signUpForm.classList.contains('hide')) {
     signUpForm.classList.add("hide");
   }
-
-  const signInForm = document.getElementById("sign-in-form");
-  if (signInForm.classList.contains('hide')) {
-    signInForm.classList.remove("hide");
-  } else {
-    signInForm.classList.add("hide");
+  
+  if (method === 'toggle') {
+    const signInForm = document.getElementById(formShow);
+    if (signInForm.classList.contains('hide')) {
+      signInForm.classList.remove("hide");
+    } else {
+      signInForm.classList.add("hide");
+    }
   }
+  
 }
 
-function toggleSignUpCardForm() {
-  
-  const signInForm = document.getElementById("sign-in-form");
-  if (!signInForm.classList.contains('hide')) {
-    signInForm.classList.add("hide");
-  }
+function setDateTimeNow() {
+  var dateTime = new Date();
+  var time = dateTime.toLocaleTimeString("en-US", {
+    hour12: false,
+    hour: "numeric",
+    minute: "numeric",
+  });
 
-  const signUpForm = document.getElementById("sign-up-form");
-  if (signUpForm.classList.contains('hide')) {
-    signUpForm.classList.remove("hide");
-  } else {
-    signUpForm.classList.add("hide");
-  }
+  var options = {
+    weekday: "short",
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+  };
+  var formattedDate = dateTime.toLocaleDateString("en-US", options);
+
+  document.getElementById("time").innerText = time;
+  document.getElementById("date").innerText = formattedDate;
 }

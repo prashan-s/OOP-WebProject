@@ -30,13 +30,7 @@
   <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
   <link rel="stylesheet" type="text/css" href="./assets/css/slick-theme.css"/>
 
-  <!-- Materialize Compiled and minified CSS -->
-  <!-- <link rel="stylesheet" href="./assets/packages/materialize/css/materialize.css"> -->
-
-  <!-- Materialize Compiled and minified JavaScript -->
-  <!-- <script src="./assets/packages/materialize/js/materialize.min.js"></script> -->
-
-  <!-- Materialize Compiled and minified CSS -->
+  <!-- Sementic Compiled and minified CSS -->
   <link rel="stylesheet" href="./assets/packages/sementic/semantic.css">
 
 </head>
@@ -47,122 +41,19 @@
     - #HEADER
   -->
 
-  <header class="header" data-header>
-    <div class="container">
+  <div id="header"></div>
 
-      <div class="overlay" data-overlay></div>
+  <script>
 
-      <a href="./index.html" class="logo">
-        <img src="./assets/images/logo.svg" alt="Filmlane logo">
-      </a>
+    // Fetch the HTML content of your component
+    fetch('./components/header.html')
+      .then(response => response.text())
+      .then(html => {
+        // Inject the HTML content into your container
+        document.getElementById('header').innerHTML = html;
+    });
 
-      <div class="header-actions">
-
-        <button class="search-btn">
-          <ion-icon name="search-outline"></ion-icon>
-        </button>
-
-        <div class="lang-wrapper">
-          <label for="language">
-            <ion-icon name="globe-outline"></ion-icon>
-          </label>
-
-          <select name="language" id="language">
-            <option value="en">EN</option>
-            <option value="au">AU</option>
-            <option value="ar">AR</option>
-            <option value="tu">TU</option>
-          </select>
-        </div>
-
-        <button class="btn btn-primary" id="btnSignIn" onclick="toggleSignInCardForm()">Sign in</button>
-
-      </div>
-
-      <button class="menu-open-btn" data-menu-open-btn>
-        <ion-icon name="reorder-two"></ion-icon>
-      </button>
-
-      <nav class="navbar" data-navbar>
-
-        <div class="navbar-top">
-
-          <a href="./index.html" class="logo">
-            <img src="./assets/images/logo.svg" alt="Filmlane logo">
-          </a>
-
-          <button class="menu-close-btn" data-menu-close-btn>
-            <ion-icon name="close-outline"></ion-icon>
-          </button>
-
-        </div>
-
-        <ul class="navbar-list">
-
-          <li>
-            <a href="./index.html" class="navbar-link">Home</a>
-          </li>
-
-          <li>
-            <a href="#" class="navbar-link">Movie</a>
-          </li>
-
-          <li>
-            <a href="#" class="navbar-link">Tv Show</a>
-          </li>
-
-          <li>
-            <a href="#" class="navbar-link">Web Series</a>
-          </li>
-
-          <li>
-            <a href="#" class="navbar-link">Pricing</a>
-          </li>
-
-        </ul>
-
-        <ul class="navbar-social-list">
-
-          <li>
-            <a href="#" class="navbar-social-link">
-              <ion-icon name="logo-twitter"></ion-icon>
-            </a>
-          </li>
-
-          <li>
-            <a href="#" class="navbar-social-link">
-              <ion-icon name="logo-facebook"></ion-icon>
-            </a>
-          </li>
-
-          <li>
-            <a href="#" class="navbar-social-link">
-              <ion-icon name="logo-pinterest"></ion-icon>
-            </a>
-          </li>
-
-          <li>
-            <a href="#" class="navbar-social-link">
-              <ion-icon name="logo-instagram"></ion-icon>
-            </a>
-          </li>
-
-          <li>
-            <a href="#" class="navbar-social-link">
-              <ion-icon name="logo-youtube"></ion-icon>
-            </a>
-          </li>
-
-        </ul>
-
-      </nav>
-
-    </div>
-  </header>
-
-
-
-
+  </script>
 
   <main>
     <article>
@@ -236,10 +127,14 @@
 
         <div class="sign-in card hide" id="sign-in-form">
           <form class="ui form" action="#" method="post">
-            <div class="form-close-icon">
-              <ion-icon name="close-outline" class="close-icon" onclick="toggleSignInCardForm()"></ion-icon>
-            </div>
-            <h1 class="sign-in-heading">Sign In</h1>
+            <div class="sign-card-heading-section">
+              <div class="form-close-icon">
+                <ion-icon name="close-outline" class="close-icon" onclick="toggleSignInSignUpCardForm('sign-in-form', 'sign-up-form', 'close')"></ion-icon>
+              </div>
+              <div class="sign-in-heading">
+                <h1>Sign In</h1>
+              </div>
+            </div>            
             <div class="sign-in-field">
               <div class="field">
                 <label>Username</label>
@@ -254,14 +149,14 @@
           </form>
           <div class="dont-have-an-account">
             <h4>Don't have an account?</h4>
-            <button class="signup-url" onclick="toggleSignUpCardForm()">Sign Up</button>
+            <button class="signup-url" onclick="toggleSignInSignUpCardForm('sign-in-form', 'sign-up-form', 'toggle')">Sign Up</button>
           </div>
         </div>
 
         <div class="sign-up card hide" id="sign-up-form">
           <form class="ui form" action="#" method="post">
             <div class="form-close-icon">
-              <ion-icon name="close-outline" class="close-icon" onclick="toggleSignUpCardForm()"></ion-icon>
+              <ion-icon name="close-outline" class="close-icon" onclick="toggleSignInSignUpCardForm('sign-up-form', 'sign-in-form', 'close')"></ion-icon>
             </div>
             <h1 class="sign-up-heading">Sign Up</h1>
             <div class="sign-up-field">
@@ -290,7 +185,7 @@
           </form>
           <div class="dont-have-an-account">
             <h4>Already have an account?</h4>
-            <button class="signup-url" onclick="toggleSignInCardForm()">Sign In</button>
+            <button class="signup-url" onclick="toggleSignInSignUpCardForm('sign-up-form', 'sign-in-form', 'toggle')">Sign In</button>
           </div>
         </div>
       </section>
@@ -308,7 +203,7 @@
             <div class="title-wrapper">
               <p class="section-subtitle">Online Streaming</p>
 
-              <h2 class="h2 section-title">Trending Movies</h2>
+              <h2 class="h2 section-title">Trending</h2>
             </div>
 
             <ul class="filter-list">
@@ -334,14 +229,14 @@
             <li>
               <div class="movie-card">
 
-                <a href="./movie-details.html">
+                <a href="./pages/movie-details.html">
                   <figure class="card-banner">
                     <img src="./assets/images/upcoming-1.png" alt="The Northman movie poster">
                   </figure>
                 </a>
 
                 <div class="title-wrapper">
-                  <a href="./movie-details.html">
+                  <a href="./pages/movie-details.html">
                     <h3 class="card-title">The Northman</h3>
                   </a>
 
@@ -370,7 +265,7 @@
             <li>
               <div class="movie-card">
 
-                <a href="./movie-details.html">
+                <a href="./pages/movie-details.html">
                   <figure class="card-banner">
                     <img src="./assets/images/upcoming-2.png"
                       alt="Doctor Strange in the Multiverse of Madness movie poster">
@@ -378,7 +273,7 @@
                 </a>
 
                 <div class="title-wrapper">
-                  <a href="./movie-details.html">
+                  <a href="./pages/movie-details.html">
                     <h3 class="card-title">Doctor Strange in the Multiverse of Madness</h3>
                   </a>
 
@@ -407,14 +302,14 @@
             <li>
               <div class="movie-card">
 
-                <a href="./movie-details.html">
+                <a href="./pages/movie-details.html">
                   <figure class="card-banner">
                     <img src="./assets/images/upcoming-3.png" alt="Memory movie poster">
                   </figure>
                 </a>
 
                 <div class="title-wrapper">
-                  <a href="./movie-details.html">
+                  <a href="./pages/movie-details.html">
                     <h3 class="card-title">Memory</h3>
                   </a>
 
@@ -443,7 +338,7 @@
             <li>
               <div class="movie-card">
 
-                <a href="./movie-details.html">
+                <a href="./pages/movie-details.html">
                   <figure class="card-banner">
                     <img src="./assets/images/upcoming-4.png"
                       alt="The Unbearable Weight of Massive Talent movie poster">
@@ -451,7 +346,7 @@
                 </a>
 
                 <div class="title-wrapper">
-                  <a href="./movie-details.html">
+                  <a href="./pages/movie-details.html">
                     <h3 class="card-title">The Unbearable Weight of Massive Talent</h3>
                   </a>
 
@@ -484,7 +379,7 @@
 
 
       <!-- 
-        - #UPCOMING
+        - #UPCOMING MOVIES
       -->
 
       <section class="upcoming">
@@ -521,14 +416,14 @@
             <li>
               <div class="movie-card">
 
-                <a href="./movie-details.html">
+                <a href="./pages/movie-details.html">
                   <figure class="card-banner">
                     <img src="./assets/images/upcoming-1.png" alt="The Northman movie poster">
                   </figure>
                 </a>
 
                 <div class="title-wrapper">
-                  <a href="./movie-details.html">
+                  <a href="./pages/movie-details.html">
                     <h3 class="card-title">The Northman</h3>
                   </a>
 
@@ -557,7 +452,7 @@
             <li>
               <div class="movie-card">
 
-                <a href="./movie-details.html">
+                <a href="./pages/movie-details.html">
                   <figure class="card-banner">
                     <img src="./assets/images/upcoming-2.png"
                       alt="Doctor Strange in the Multiverse of Madness movie poster">
@@ -565,7 +460,7 @@
                 </a>
 
                 <div class="title-wrapper">
-                  <a href="./movie-details.html">
+                  <a href="./pages/movie-details.html">
                     <h3 class="card-title">Doctor Strange in the Multiverse of Madness</h3>
                   </a>
 
@@ -594,14 +489,14 @@
             <li>
               <div class="movie-card">
 
-                <a href="./movie-details.html">
+                <a href="./pages/movie-details.html">
                   <figure class="card-banner">
                     <img src="./assets/images/upcoming-3.png" alt="Memory movie poster">
                   </figure>
                 </a>
 
                 <div class="title-wrapper">
-                  <a href="./movie-details.html">
+                  <a href="./pages/movie-details.html">
                     <h3 class="card-title">Memory</h3>
                   </a>
 
@@ -630,7 +525,7 @@
             <li>
               <div class="movie-card">
 
-                <a href="./movie-details.html">
+                <a href="./pages/movie-details.html">
                   <figure class="card-banner">
                     <img src="./assets/images/upcoming-4.png"
                       alt="The Unbearable Weight of Massive Talent movie poster">
@@ -638,7 +533,7 @@
                 </a>
 
                 <div class="title-wrapper">
-                  <a href="./movie-details.html">
+                  <a href="./pages/movie-details.html">
                     <h3 class="card-title">The Unbearable Weight of Massive Talent</h3>
                   </a>
 
@@ -670,14 +565,198 @@
       </section>
 
 
+      <!-- 
+        - #UPCOMING TV SERIES
+      -->
 
+      <section class="upcoming">
+        <div class="container">
+
+          <div class="flex-wrapper">
+
+            <div class="title-wrapper">
+              <p class="section-subtitle">Online Streaming</p>
+
+              <h2 class="h2 section-title">Upcoming TV Series</h2>
+            </div>
+
+            <ul class="filter-list">
+
+              <li>
+                <button class="filter-btn">Movies</button>
+              </li>
+
+              <li>
+                <button class="filter-btn">TV Shows</button>
+              </li>
+
+              <li>
+                <button class="filter-btn">Anime</button>
+              </li>
+
+            </ul>
+
+          </div>
+
+          <ul class="movies-list  has-scrollbar">
+
+            <li>
+              <div class="movie-card">
+
+                <a href="./pages/movie-details.html">
+                  <figure class="card-banner">
+                    <img src="./assets/images/upcoming-1.png" alt="The Northman movie poster">
+                  </figure>
+                </a>
+
+                <div class="title-wrapper">
+                  <a href="./pages/movie-details.html">
+                    <h3 class="card-title">The Northman</h3>
+                  </a>
+
+                  <time datetime="2022">2022</time>
+                </div>
+
+                <div class="card-meta">
+                  <div class="badge badge-outline">HD</div>
+
+                  <div class="duration">
+                    <ion-icon name="time-outline"></ion-icon>
+
+                    <time datetime="PT137M">137 min</time>
+                  </div>
+
+                  <div class="rating">
+                    <ion-icon name="star"></ion-icon>
+
+                    <data>8.5</data>
+                  </div>
+                </div>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="movie-card">
+
+                <a href="./pages/movie-details.html">
+                  <figure class="card-banner">
+                    <img src="./assets/images/upcoming-2.png"
+                      alt="Doctor Strange in the Multiverse of Madness movie poster">
+                  </figure>
+                </a>
+
+                <div class="title-wrapper">
+                  <a href="./pages/movie-details.html">
+                    <h3 class="card-title">Doctor Strange in the Multiverse of Madness</h3>
+                  </a>
+
+                  <time datetime="2022">2022</time>
+                </div>
+
+                <div class="card-meta">
+                  <div class="badge badge-outline">4K</div>
+
+                  <div class="duration">
+                    <ion-icon name="time-outline"></ion-icon>
+
+                    <time datetime="PT126M">126 min</time>
+                  </div>
+
+                  <div class="rating">
+                    <ion-icon name="star"></ion-icon>
+
+                    <data>NR</data>
+                  </div>
+                </div>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="movie-card">
+
+                <a href="./pages/movie-details.html">
+                  <figure class="card-banner">
+                    <img src="./assets/images/upcoming-3.png" alt="Memory movie poster">
+                  </figure>
+                </a>
+
+                <div class="title-wrapper">
+                  <a href="./pages/movie-details.html">
+                    <h3 class="card-title">Memory</h3>
+                  </a>
+
+                  <time datetime="2022">2022</time>
+                </div>
+
+                <div class="card-meta">
+                  <div class="badge badge-outline">2K</div>
+
+                  <div class="duration">
+                    <ion-icon name="time-outline"></ion-icon>
+
+                    <time datetime="">N/A</time>
+                  </div>
+
+                  <div class="rating">
+                    <ion-icon name="star"></ion-icon>
+
+                    <data>NR</data>
+                  </div>
+                </div>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="movie-card">
+
+                <a href="./pages/movie-details.html">
+                  <figure class="card-banner">
+                    <img src="./assets/images/upcoming-4.png"
+                      alt="The Unbearable Weight of Massive Talent movie poster">
+                  </figure>
+                </a>
+
+                <div class="title-wrapper">
+                  <a href="./pages/movie-details.html">
+                    <h3 class="card-title">The Unbearable Weight of Massive Talent</h3>
+                  </a>
+
+                  <time datetime="2022">2022</time>
+                </div>
+
+                <div class="card-meta">
+                  <div class="badge badge-outline">HD</div>
+
+                  <div class="duration">
+                    <ion-icon name="time-outline"></ion-icon>
+
+                    <time datetime="PT107M">107 min</time>
+                  </div>
+
+                  <div class="rating">
+                    <ion-icon name="star"></ion-icon>
+
+                    <data>NR</data>
+                  </div>
+                </div>
+
+              </div>
+            </li>
+
+          </ul>
+
+        </div>
+      </section>
 
 
       <!-- 
         - #SERVICE
       -->
 
-      <section class="service">
+      <!-- <section class="service">
         <div class="container">
 
           <div class="service-banner">
@@ -747,7 +826,7 @@
           </div>
 
         </div>
-      </section>
+      </section> -->
 
 
 
@@ -757,7 +836,7 @@
         - #TOP RATED
       -->
 
-      <section class="top-rated">
+      <!-- <section class="top-rated">
         <div class="container">
 
           <p class="section-subtitle">Online Streaming</p>
@@ -789,14 +868,14 @@
             <li>
               <div class="movie-card">
 
-                <a href="./movie-details.html">
+                <a href="./pages/movie-details.html">
                   <figure class="card-banner">
                     <img src="./assets/images/movie-1.png" alt="Sonic the Hedgehog 2 movie poster">
                   </figure>
                 </a>
 
                 <div class="title-wrapper">
-                  <a href="./movie-details.html">
+                  <a href="./pages/movie-details.html">
                     <h3 class="card-title">Sonic the Hedgehog 2</h3>
                   </a>
 
@@ -825,14 +904,14 @@
             <li>
               <div class="movie-card">
 
-                <a href="./movie-details.html">
+                <a href="./pages/movie-details.html">
                   <figure class="card-banner">
                     <img src="./assets/images/movie-2.png" alt="Morbius movie poster">
                   </figure>
                 </a>
 
                 <div class="title-wrapper">
-                  <a href="./movie-details.html">
+                  <a href="./pages/movie-details.html">
                     <h3 class="card-title">Morbius</h3>
                   </a>
 
@@ -861,14 +940,14 @@
             <li>
               <div class="movie-card">
 
-                <a href="./movie-details.html">
+                <a href="./pages/movie-details.html">
                   <figure class="card-banner">
                     <img src="./assets/images/movie-3.png" alt="The Adam Project movie poster">
                   </figure>
                 </a>
 
                 <div class="title-wrapper">
-                  <a href="./movie-details.html">
+                  <a href="./pages/movie-details.html">
                     <h3 class="card-title">The Adam Project</h3>
                   </a>
 
@@ -897,14 +976,14 @@
             <li>
               <div class="movie-card">
 
-                <a href="./movie-details.html">
+                <a href="./pages/movie-details.html">
                   <figure class="card-banner">
                     <img src="./assets/images/movie-4.png" alt="Free Guy movie poster">
                   </figure>
                 </a>
 
                 <div class="title-wrapper">
-                  <a href="./movie-details.html">
+                  <a href="./pages/movie-details.html">
                     <h3 class="card-title">Free Guy</h3>
                   </a>
 
@@ -933,14 +1012,14 @@
             <li>
               <div class="movie-card">
 
-                <a href="./movie-details.html">
+                <a href="./pages/movie-details.html">
                   <figure class="card-banner">
                     <img src="./assets/images/movie-5.png" alt="The Batman movie poster">
                   </figure>
                 </a>
 
                 <div class="title-wrapper">
-                  <a href="./movie-details.html">
+                  <a href="./pages/movie-details.html">
                     <h3 class="card-title">The Batman</h3>
                   </a>
 
@@ -969,14 +1048,14 @@
             <li>
               <div class="movie-card">
 
-                <a href="./movie-details.html">
+                <a href="./pages/movie-details.html">
                   <figure class="card-banner">
                     <img src="./assets/images/movie-6.png" alt="Uncharted movie poster">
                   </figure>
                 </a>
 
                 <div class="title-wrapper">
-                  <a href="./movie-details.html">
+                  <a href="./pages/movie-details.html">
                     <h3 class="card-title">Uncharted</h3>
                   </a>
 
@@ -1005,14 +1084,14 @@
             <li>
               <div class="movie-card">
 
-                <a href="./movie-details.html">
+                <a href="./pages/movie-details.html">
                   <figure class="card-banner">
                     <img src="./assets/images/movie-7.png" alt="Death on the Nile movie poster">
                   </figure>
                 </a>
 
                 <div class="title-wrapper">
-                  <a href="./movie-details.html">
+                  <a href="./pages/movie-details.html">
                     <h3 class="card-title">Death on the Nile</h3>
                   </a>
 
@@ -1041,14 +1120,14 @@
             <li>
               <div class="movie-card">
 
-                <a href="./movie-details.html">
+                <a href="./pages/movie-details.html">
                   <figure class="card-banner">
                     <img src="./assets/images/movie-8.png" alt="The King's Man movie poster">
                   </figure>
                 </a>
 
                 <div class="title-wrapper">
-                  <a href="./movie-details.html">
+                  <a href="./pages/movie-details.html">
                     <h3 class="card-title">The King's Man</h3>
                   </a>
 
@@ -1077,7 +1156,7 @@
           </ul>
 
         </div>
-      </section>
+      </section> -->
 
 
 
@@ -1087,7 +1166,7 @@
         - #TV SERIES
       -->
 
-      <section class="tv-series">
+      <!-- <section class="tv-series">
         <div class="container">
 
           <p class="section-subtitle">Best TV Series</p>
@@ -1099,14 +1178,14 @@
             <li>
               <div class="movie-card">
 
-                <a href="./movie-details.html">
+                <a href="./pages/movie-details.html">
                   <figure class="card-banner">
                     <img src="./assets/images/series-1.png" alt="Moon Knight movie poster">
                   </figure>
                 </a>
 
                 <div class="title-wrapper">
-                  <a href="./movie-details.html">
+                  <a href="./pages/movie-details.html">
                     <h3 class="card-title">Moon Knight</h3>
                   </a>
 
@@ -1135,14 +1214,14 @@
             <li>
               <div class="movie-card">
 
-                <a href="./movie-details.html">
+                <a href="./pages/movie-details.html">
                   <figure class="card-banner">
                     <img src="./assets/images/series-2.png" alt="Halo movie poster">
                   </figure>
                 </a>
 
                 <div class="title-wrapper">
-                  <a href="./movie-details.html">
+                  <a href="./pages/movie-details.html">
                     <h3 class="card-title">Halo</h3>
                   </a>
 
@@ -1171,14 +1250,14 @@
             <li>
               <div class="movie-card">
 
-                <a href="./movie-details.html">
+                <a href="./pages/movie-details.html">
                   <figure class="card-banner">
                     <img src="./assets/images/series-3.png" alt="Vikings: Valhalla movie poster">
                   </figure>
                 </a>
 
                 <div class="title-wrapper">
-                  <a href="./movie-details.html">
+                  <a href="./pages/movie-details.html">
                     <h3 class="card-title">Vikings: Valhalla</h3>
                   </a>
 
@@ -1207,14 +1286,14 @@
             <li>
               <div class="movie-card">
 
-                <a href="./movie-details.html">
+                <a href="./pages/movie-details.html">
                   <figure class="card-banner">
                     <img src="./assets/images/series-4.png" alt="Money Heist movie poster">
                   </figure>
                 </a>
 
                 <div class="title-wrapper">
-                  <a href="./movie-details.html">
+                  <a href="./pages/movie-details.html">
                     <h3 class="card-title">Money Heist</h3>
                   </a>
 
@@ -1243,7 +1322,7 @@
           </ul>
 
         </div>
-      </section>
+      </section> -->
 
 
 
@@ -1253,7 +1332,7 @@
         - #CTA
       -->
 
-      <section class="cta">
+      <!-- <section class="cta">
         <div class="container">
 
           <div class="title-wrapper">
@@ -1271,130 +1350,28 @@
           </form>
 
         </div>
-      </section>
+      </section> -->
 
     </article>
   </main>
-
-
-
-
 
   <!-- 
     - #FOOTER
   -->
 
-  <footer class="footer">
+  <div id="footer"></div>
 
-    <div class="footer-top">
-      <div class="container">
+  <script>
 
-        <div class="footer-brand-wrapper">
+    // Fetch the HTML content of your component
+    fetch('./components/footer.html')
+      .then(response => response.text())
+      .then(html => {
+        // Inject the HTML content into your container
+        document.getElementById('footer').innerHTML = html;
+    });
 
-          <a href="./index.html" class="logo">
-            <img src="./assets/images/logo.svg" alt="Filmlane logo">
-          </a>
-
-          <ul class="footer-list">
-
-            <li>
-              <a href="./index.html" class="footer-link">Home</a>
-            </li>
-
-            <li>
-              <a href="#" class="footer-link">Movie</a>
-            </li>
-
-            <li>
-              <a href="#" class="footer-link">TV Show</a>
-            </li>
-
-            <li>
-              <a href="#" class="footer-link">Web Series</a>
-            </li>
-
-            <li>
-              <a href="#" class="footer-link">Pricing</a>
-            </li>
-
-          </ul>
-
-        </div>
-
-        <div class="divider"></div>
-
-        <div class="quicklink-wrapper">
-
-          <ul class="quicklink-list">
-
-            <li>
-              <a href="#" class="quicklink-link">Faq</a>
-            </li>
-
-            <li>
-              <a href="#" class="quicklink-link">Help center</a>
-            </li>
-
-            <li>
-              <a href="#" class="quicklink-link">Terms of use</a>
-            </li>
-
-            <li>
-              <a href="#" class="quicklink-link">Privacy</a>
-            </li>
-
-          </ul>
-
-          <ul class="social-list">
-
-            <li>
-              <a href="#" class="social-link">
-                <ion-icon name="logo-facebook"></ion-icon>
-              </a>
-            </li>
-
-            <li>
-              <a href="#" class="social-link">
-                <ion-icon name="logo-twitter"></ion-icon>
-              </a>
-            </li>
-
-            <li>
-              <a href="#" class="social-link">
-                <ion-icon name="logo-pinterest"></ion-icon>
-              </a>
-            </li>
-
-            <li>
-              <a href="#" class="social-link">
-                <ion-icon name="logo-linkedin"></ion-icon>
-              </a>
-            </li>
-
-          </ul>
-
-        </div>
-
-      </div>
-    </div>
-
-    <div class="footer-bottom">
-      <div class="container">
-
-        <p class="copyright">
-          &copy; 2022 <a href="#">codewithsadee</a>. All Rights Reserved
-        </p>
-
-        <img src="./assets/images/footer-bottom-img.png" alt="Online banking companies logo" class="footer-bottom-img">
-
-      </div>
-    </div>
-
-  </footer>
-
-
-
-
+  </script>
 
   <!-- 
     - #GO TO TOP
@@ -1405,13 +1382,6 @@
   </a>
 
 
-
-
-
-  <!-- 
-    - custom js link
-  -->
-  <script src="./assets/js/script.js"></script>
 
   <!-- 
     - ionicon link
@@ -1428,23 +1398,14 @@
   <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
   <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
-  <!-- Materialize Compiled and minified JavaScript -->
+  <!-- Semantic Compiled and minified JavaScript -->
   <script src="./assets/packages/sementic/semantic.min.js"></script>
 
-  <script type="text/javascript">
-    $(document).ready(function(){
-      $('.fade').slick({
-        dots: true,
-        arrows: true,
-        infinite: true,
-        speed: 500,
-        fade: true,
-        cssEase: 'linear',
-        autoplay: true,
-        autoplaySpeed: 2000,
-      });
-    });
-  </script>
+  <!-- 
+    - custom js link
+  -->
+  <script src="./assets/js/script.js"></script>
+
 </body>
 
 </html>
