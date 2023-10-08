@@ -15,6 +15,10 @@ public class MovieController {
 	HttpServletRequest request;
 	HttpServletResponse response;
 	
+	public MovieController() {
+		
+	}
+	
 	public MovieController(HttpServletRequest request, HttpServletResponse response){
 		this.request = request;
 		this.response = response;
