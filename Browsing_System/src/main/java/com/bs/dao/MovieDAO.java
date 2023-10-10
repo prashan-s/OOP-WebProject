@@ -1,4 +1,4 @@
-
+package com.bs.dao;
 import com.bs.interfaces.IMovieDAO;
 import com.bs.model.Movie;
 import com.bs.utility.DBConnection;
@@ -33,9 +33,6 @@ public class MovieDAO implements IMovieDAO {
     	 
     private static final String DELETE_MOVIE ="UPDATE movie set is_active=0 WHERE movie_id = ?;";
     
-	private static Connection con = null;
-	private static PreparedStatement stmt = null;
-	private static ResultSet rs = null;
 	
 	
 	//select movieDetails
@@ -44,8 +41,9 @@ public class MovieDAO implements IMovieDAO {
 		ArrayList<Movie> movies = new ArrayList<>();
 	
 		try {
-			con = DBConnection.getConnection();	
-			stmt = con.prepareStatement(SELECT_MOVIE_BY_ID);	
+			
+			Connection con = DBConnection.getConnection();	
+			PreparedStatement stmt = con.prepareStatement(SELECT_MOVIE_BY_ID);	
 			stmt.setInt(1, movie_id);
 			ResultSet rs = stmt.executeQuery();
 			
@@ -94,7 +92,7 @@ public class MovieDAO implements IMovieDAO {
 		System.out.println(INSERT_MOVIE);
 		
 		try {
-			con = DBConnection.getConnection();	
+			Connection con = DBConnection.getConnection();	
 			PreparedStatement stmt = con.prepareStatement(INSERT_MOVIE);	
 			
 			stmt.setString(1, movie.getTitle());
@@ -127,9 +125,9 @@ public class MovieDAO implements IMovieDAO {
 	//update movie
 	public boolean updateMovie(Movie movie) {
 		
-		boolean rowUpdate;
+		boolean rowUpdate = false;
 		try {
-			con = DBConnection.getConnection();
+			Connection con = DBConnection.getConnection();
 			PreparedStatement stmt = con.prepareStatement(UPDATE_MOVIE);
 			
 			stmt.setString(1, movie.getTitle());
@@ -166,10 +164,10 @@ public class MovieDAO implements IMovieDAO {
 	//delete movie
 	public boolean deleteMovie(int movie_id) {
 		
-		boolean rowDelete;
+		boolean rowDelete = false;
 
 		try {
-			con = DBConnection.getConnection();
+			Connection con = DBConnection.getConnection();
 			PreparedStatement stmt = con.prepareStatement(DELETE_MOVIE);
 			
 			stmt.setInt(1, movie_id);
@@ -180,30 +178,7 @@ public class MovieDAO implements IMovieDAO {
 			}
 		return rowDelete;
 	}
-}	
-//	
-//	public void insertMovie(String title, String description, int year, int duration, String quality,
-//			int watch_count, String movie_img_url, String movie_stream_url, boolean action_category,
-//			boolean adventure_category, boolean comedy_category, boolean scify_category, boolean horror_category,
-//			boolean romance_category, boolean science_category, boolean crime_category, boolean thriller_category,
-//			String created_admin_name) {
-//	
-//	//boolean isSuccess = false;
-//	
-//	try {
-//	con = DBConnection.getConnection();	
-//	stmt = con.createStatement();
-//	
-//	String sql = "INSERT INTO movie (title, description, year, duration, quality, watch_count, movie_img_url, movie_stream_url, action_category, adventure_category, comedy_category, scify_category, horror_category, romance_category, science_category, crime_category, thriller_category, created_admin_name)"
-//	     + "VALUES('"+title+"', '"+description+"','"+year+"', '"+duration+"', '"+quality+"','"+watch_count+"','"+ movie_img_url+"','"+movie_stream_url+"','"+action_category+"','"+adventure_category+"','"+comedy_category+"','"+scify_category+"','"+horror_category+"','"+romance_category+"','"+science_category+"','"+crime_category+"','"+thriller_category+"','"+created_admin_name +"')";
-//	
-//	rs = stmt.executeQuery(sql);
-//		
-//	}catch(Exception e) {
-//	e.printStackTrace();
-//}
-
-
+}
 
 	
 	
