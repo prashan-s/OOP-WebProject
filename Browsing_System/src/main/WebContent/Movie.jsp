@@ -8,9 +8,9 @@
 </head>
 <body>
 
-	<a href="SelectMovie">SelectMovie HyperLink</a>
+	<a href="MovieServlet">SelectMovie HyperLink</a>
 
-	<form method="post" action="SelectMovie">
+	<form method="post" action="MovieServlet">
 		<label for="movieId" >Movie Id</label>
 		<input type="text" name="movieId"/>
 		<input type="submit" name="submit" value="Click Here" />
