@@ -4,11 +4,10 @@ import com.bs.model.Movie;
 import com.bs.utility.DBConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.Statement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
+import java.sql.Date;
 
 public class MovieDAO implements IMovieDAO {
 	
@@ -16,19 +15,21 @@ public class MovieDAO implements IMovieDAO {
     												+ "watch_count, movie_img_url, movie_stream_url, action_category, "
     												+ "adventure_category, comedy_category, scify_category, horror_category, "
     												+ "romance_category, science_category, crime_category, thriller_category, "
-    												+ "is_active, created_admin_name, row_created_datetime FROM movie;\r\n"
-    												+ "where id =?";
+    												+ "is_active, created_admin_name, row_created_datetime " 
+													+ "FROM movie "
+    												+ "WHERE movie_id =?;";
     
     private static final String INSERT_MOVIE = "INSERT INTO movie (title, description, year, duration,quality, watch_count, "
     															+ "movie_img_url, movie_stream_url, action_category, adventure_category, "
     															+ "comedy_category, scify_category, horror_category, romance_category, "
-    															+ "science_category, crime_category, thriller_category, created_admin_name)"
-    										 + "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
+    															+ "science_category, crime_category, thriller_category, created_admin_name) "
+    										 					+ "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 	
     private static final String UPDATE_MOVIE ="UPDATE movie set title=?, description=?, year=?, duration=?, quality=?, watch_count=?, "
     														+ "movie_img_url=?, movie_stream_url=?, action_category=?, adventure_category=?, "
     														+ "comedy_category=?, scify_category=?, horror_category=?, romance_category=?, "
-    														+ "science_category=?, crime_category=?, thriller_category=?, created_admin_name=?;";
+    														+ "science_category=?, crime_category=?, thriller_category=?, created_admin_name=? "
+															+ "WHERE movie_id = ?;";
     	 
     private static final String DELETE_MOVIE ="UPDATE movie set is_active=0 WHERE movie_id = ?;";
     
@@ -44,9 +45,9 @@ public class MovieDAO implements IMovieDAO {
 	
 		try {
 			con = DBConnection.getConnection();	
-			stmt = con.prepareStatement(null);
-			String sql = "select * from movie where movie_id='"+movie_id+"'";
-			rs = stmt.executeQuery(sql);
+			stmt = con.prepareStatement(SELECT_MOVIE_BY_ID);	
+			stmt.setInt(1, movie_id);
+			ResultSet rs = stmt.executeQuery();
 			
 			while(rs.next()) {
 				int retuernedMovie_id = rs.getInt("movie_id");
@@ -59,7 +60,7 @@ public class MovieDAO implements IMovieDAO {
 				String movie_img_url = rs.getString("movie_img_url");
 				String movie_stream_url = rs.getString("movie_stream_url");
 				boolean action_category= rs.getBoolean("action_category");
-				boolean adventure_category = rs.getBoolean("watch_count");
+				boolean adventure_category = rs.getBoolean("adventure_category");
 				boolean comedy_category = rs.getBoolean("comedy_category");
 				boolean scify_category = rs.getBoolean("scify_category");
 				boolean horror_category = rs.getBoolean("horror_category");
@@ -150,6 +151,8 @@ public class MovieDAO implements IMovieDAO {
 			stmt.setBoolean(17, movie.isThriller_category());
 			stmt.setString(18, movie.getCreated_admin_name());
 			
+			stmt.setInt(19, movie.getMovie_id());
+
 			rowUpdate = stmt.executeUpdate() > 0;
 			
 			
@@ -163,19 +166,21 @@ public class MovieDAO implements IMovieDAO {
 	//delete movie
 	public boolean deleteMovie(int movie_id) {
 		
-		boolean rawDelete;
+		boolean rowDelete;
+
 		try {
 			con = DBConnection.getConnection();
 			PreparedStatement stmt = con.prepareStatement(DELETE_MOVIE);
 			
 			stmt.setInt(1, movie_id);
+			rowDelete = stmt.executeUpdate() > 0;
 			
 		}catch(Exception e) {
 			e.printStackTrace();
 			}
-		
-		}
-	
+		return rowDelete;
+	}
+}	
 //	
 //	public void insertMovie(String title, String description, int year, int duration, String quality,
 //			int watch_count, String movie_img_url, String movie_stream_url, boolean action_category,
@@ -199,7 +204,7 @@ public class MovieDAO implements IMovieDAO {
 //}
 
 
-}
+
 	
 	
 
