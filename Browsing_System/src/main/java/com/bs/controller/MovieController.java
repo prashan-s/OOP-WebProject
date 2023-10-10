@@ -1,8 +1,10 @@
 package com.bs.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -22,23 +24,24 @@ public class MovieController {
 	public MovieController(HttpServletRequest request, HttpServletResponse response){
 		this.request = request;
 		this.response = response;
-		this.dispacther =  request.getRequestDispatcher("useraccount.jsp");
+		this.dispacther =  request.getRequestDispatcher("MovieDetails.jsp");
 		
 	}
 	
-	private void validate() {
-
-		String username = request.getParameter("uid");
-		String password = request.getParameter("pass");
+	public void selectMovie(int movieId) {
 		
 		try {
-		List<Movie> cusDetails = MovieDAO.validate(username, password);
+		List<Movie> cusDetails = new MovieDAO().selectMovie(movieId);
 		request.setAttribute("cusDetails", cusDetails);//attribute name, objectName
 		}catch(Exception e){
 			e.printStackTrace();
 		}
 		
-		dispacther.forward(request, response);
+		try {
+			dispacther.forward(request, response);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	

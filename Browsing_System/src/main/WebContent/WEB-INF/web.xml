@@ -21,6 +21,11 @@
     <param-name>dbPassword</param-name>
     <param-value></param-value>
   </context-param>
+  
+  
+  
+  
+  
   <servlet>
     <description></description>
     <display-name>MovieController</display-name>
@@ -41,4 +46,17 @@
     <servlet-name>MovieDetailsController</servlet-name>
     <url-pattern>/MovieDetailsController</url-pattern>
   </servlet-mapping>
+  
+  
+  
+  <servlet>
+  	<servlet-name>SelectMovieDB</servlet-name>
+    <servlet-class>com.bs.servlet.MovieServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SelectMovieDB</servlet-name>
+    <url-pattern>/SelectMovie</url-pattern>
+  </servlet-mapping>
+  
+  
 </web-app>
