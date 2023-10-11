@@ -31,8 +31,8 @@
             <c:forEach items="${movies}" var="movie">
                 <tr>
                     <td>${movie.title}</td>
-                    <td>${movie.director}</td>
-                    <td>${movie.releaseYear}</td>
+                    <td>${movie.description}</td>
+                    <td>${movie.duration}</td>
                 </tr>
             </c:forEach>
         </tbody>
