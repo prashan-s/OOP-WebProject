@@ -13,9 +13,9 @@ public class DBConnectionMSSQL {
 
 		try {
 			
-			String dbURL = "jdbc:sqlserver://localhost;DatabaseName=OnlineWatchingMoviesandTVSeries;encrypt=true;trustServerCertificate=true;";
+			String dbURL = "jdbc:sqlserver://DESKTOP-8G691HC\\SQLEXPRESS;DatabaseName=OnlineWatchingMoviesandTVSeries;encrypt=true;trustServerCertificate=true;";
 			String userName = "sa";
-			String password = "Pass@1234#";
+			String password = "*272617Ps*";
 			
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 			
