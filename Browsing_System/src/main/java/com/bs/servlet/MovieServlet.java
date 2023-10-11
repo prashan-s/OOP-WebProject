@@ -34,8 +34,11 @@ public class MovieServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("doPost : movieServlet");
+		
+		int movieId = Integer.parseInt(request.getParameter("movieId"));
+		
 		this.controller = new MovieController(request, response);
-		this.controller.selectMovie(1);
+		this.controller.selectMovie(movieId);
 		
 	}
 

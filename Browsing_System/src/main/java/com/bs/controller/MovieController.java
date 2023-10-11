@@ -23,15 +23,16 @@ public class MovieController {
 	public MovieController(HttpServletRequest request, HttpServletResponse response){
 		this.request = request;
 		this.response = response;
-		this.dispacther =  request.getRequestDispatcher("MovieDetails.jsp");
+		this.dispacther =  request.getRequestDispatcher("Movie.jsp");
 		
 	}
 	
 	public void selectMovie(int movieId) {
 		
 		try {
-		List<Movie> cusDetails = new MovieDAO().selectMovie(movieId);
-		request.setAttribute("cusDetails", cusDetails);//attribute name, objectName
+		List<Movie> movies = new MovieDAO().selectMovie(movieId);
+		System.out.println("movies : " + movies.getFirst().getTitle());
+		request.setAttribute("movies", movies);//attribute name, objectName
 		}catch(Exception e){
 			e.printStackTrace();
 		}

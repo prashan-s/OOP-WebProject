@@ -2,6 +2,8 @@ package com.bs.dao;
 import com.bs.interfaces.IMovieDAO;
 import com.bs.model.Movie;
 import com.bs.utility.DBConnection;
+import com.bs.utility.DBConnectionMSSQL;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,13 +13,13 @@ import java.sql.Date;
 
 public class MovieDAO implements IMovieDAO {
 	
-    private static final String SELECT_MOVIE_BY_ID = "SELECT title, description, year, duration, quality, "
+    private static final String SELECT_MOVIE_BY_ID = "SELECT movie_id, title, description, year, duration, quality, "
     												+ "watch_count, movie_img_url, movie_stream_url, action_category, "
     												+ "adventure_category, comedy_category, scify_category, horror_category, "
     												+ "romance_category, science_category, crime_category, thriller_category, "
     												+ "is_active, created_admin_name, row_created_datetime " 
 													+ "FROM movie "
-    												+ "WHERE movie_id =?;";
+    												+ "WHERE movie_id = ?";
     
     private static final String INSERT_MOVIE = "INSERT INTO movie (title, description, year, duration,quality, watch_count, "
     															+ "movie_img_url, movie_stream_url, action_category, adventure_category, "
@@ -42,7 +44,7 @@ public class MovieDAO implements IMovieDAO {
 	
 		try {
 			
-			Connection con = DBConnection.getConnection();	
+			Connection con = DBConnectionMSSQL.getConnection();	
 			PreparedStatement stmt = con.prepareStatement(SELECT_MOVIE_BY_ID);	
 			stmt.setInt(1, movie_id);
 			ResultSet rs = stmt.executeQuery();
