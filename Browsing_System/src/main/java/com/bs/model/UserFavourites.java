@@ -6,12 +6,12 @@ public class UserFavourites {
 
 	 private int favId;
 	    private int userId;
-	    private char type;
+	    private String type;
 	    private int tvsId;
 	    private int movieId;
 	    private Date rowCreatedDatetime;
 
-	    public UserFavourites(int favId, int userId, char type, int tvsId, int movieId,
+	    public UserFavourites(int favId, int userId, String type, int tvsId, int movieId,
 	                         Date rowCreatedDatetime) {
 	        this.favId = favId;
 	        this.userId = userId;
@@ -29,7 +29,7 @@ public class UserFavourites {
 	        return userId;
 	    }
 
-	    public char getType() {
+	    public String getType() {
 	        return type;
 	    }
 

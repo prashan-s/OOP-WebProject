@@ -31,6 +31,7 @@
   </servlet-mapping>
   <servlet>
     <description></description>
+<<<<<<< HEAD
     <display-name>UserServlet</display-name>
     <servlet-name>UserServlet</servlet-name>
     <servlet-class>com.bs.servlet.UserServlet</servlet-class>
@@ -38,5 +39,34 @@
   <servlet-mapping>
     <servlet-name>UserServlet</servlet-name>
     <url-pattern>/UserServlet</url-pattern>
+=======
+    <display-name>TVSeriesDetailsServlet</display-name>
+    <servlet-name>TVSeriesDetailsServlet</servlet-name>
+    <servlet-class>com.bs.servlet.TVSeriesDetailsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TVSeriesDetailsServlet</servlet-name>
+    <url-pattern>/TVSeriesDetailsServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UserFavouritesServlet</display-name>
+    <servlet-name>UserFavouritesServlet</servlet-name>
+    <servlet-class>com.bs.servlet.UserFavouritesServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UserFavouritesServlet</servlet-name>
+    <url-pattern>/UserFavouritesServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UserRatings</display-name>
+    <servlet-name>UserRatings</servlet-name>
+    <servlet-class>com.bs.servlet.UserRatings</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UserRatings</servlet-name>
+    <url-pattern>/UserRatings</url-pattern>
+>>>>>>> db8bf13ca1304b35b3e0771eceffe9cdc524c2c2
   </servlet-mapping>
 </web-app>
