@@ -7,13 +7,13 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.bs.interfaces.IPayment;
+import com.bs.interfaces.IPaymentDAO;
 import com.bs.model.Payment;
 import com.bs.utility.DBConnection;
 import com.bs.utility.DBConnectionMSSQL;
 import com.mysql.jdbc.PreparedStatement;
 
-public class PaymentDAO implements IPayment{
+public class PaymentDAO implements IPaymentDAO{
 	
 	private static final String SELECT_PAYMENT_BY_ID = "SELECT payment_id, user_id, sub_id, amount, row_created_datetime "
 												 		+ "FROM payment "
