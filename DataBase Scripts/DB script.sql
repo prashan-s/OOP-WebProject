@@ -25,7 +25,6 @@ CREATE TABLE movie (
 	created_admin_name		VARCHAR(200)	NOT NULL,
 	row_created_datetime	DATETIME		NOT NULL DEFAULT GETDATE()
 );
-
 CREATE TABLE tv_series (
 	tvs_id					INT				NOT NULL PRIMARY KEY IDENTITY(1, 1),
 	title					VARCHAR(100)	NOT NULL,
@@ -56,7 +55,7 @@ CREATE TABLE tv_series_details (
 	tvs_stream_url			VARCHAR(1000)	NOT NULL,
 	created_admin_name		VARCHAR(200)	NOT NULL,
 	is_active				BIT				NOT NULL DEFAULT(1),
-    row_created_datetime	DATETIME		NOT NULL DEFAULT GETDATE()
+    row_created_datetime	DATETIME		NOT NULL DEFAULT GETDATE(),
 
 	CONSTRAINT	fk_tv_series_tvs_id	FOREIGN KEY(tvs_id) REFERENCES tv_series(tvs_id)
 )
@@ -85,8 +84,10 @@ CREATE TABLE user_rating (
 
 	CONSTRAINT fk1_user_rating_user_id FOREIGN KEY(user_id) REFERENCES users(user_id),
 	CONSTRAINT fk2_user_rating_tvs_id FOREIGN KEY(tvs_id) REFERENCES tv_series(tvs_id),
-	CONSTRAINT fk3_user_rating_movie_Id FOREIGN KEY(movie_Id) REFERENCES movie(movie_Id)
+	CONSTRAINT fk3_user_rating_movie_Id FOREIGN KEY(movie_Id) REFERENCES movie(movie_id)
 ); 
+
+--DROP TABLE user_rating
 
 CREATE TABLE user_favourite (
 	fav_id					INT			NOT NULL	PRIMARY KEY IDENTITY(1, 1),
@@ -98,8 +99,10 @@ CREATE TABLE user_favourite (
 
 	CONSTRAINT fk1_user_favourite_user_id FOREIGN KEY(user_id) REFERENCES users(user_id),
 	CONSTRAINT fk2_user_favourite_tvs_id FOREIGN KEY(tvs_id) REFERENCES tv_series(tvs_id),
-	CONSTRAINT fk3_user_favourite_movie_Id FOREIGN KEY(movie_Id) REFERENCES movie(movie_Id)
+	CONSTRAINT fk3_user_favourite_movie_Id FOREIGN KEY(movie_Id) REFERENCES movie(movie_id)
 ); 
+
+--DROP TABLE user_favourite
 
 CREATE TABLE user_watch_history (
 	watch_id				INT			NOT NULL	PRIMARY KEY IDENTITY(1, 1),
@@ -111,41 +114,21 @@ CREATE TABLE user_watch_history (
 
 	CONSTRAINT fk1_user_watch_history_user_id FOREIGN KEY(user_id) REFERENCES users(user_id),
 	CONSTRAINT fk2_user_watch_history_tvs_id FOREIGN KEY(tvs_id) REFERENCES tv_series(tvs_id),
-	CONSTRAINT fk3_user_watch_history_movie_Id FOREIGN KEY(movie_Id) REFERENCES movie(movie_Id)
+	CONSTRAINT fk3_user_watch_history_movie_Id FOREIGN KEY(movie_Id) REFERENCES movie(movie_id)
 );
 
-CREATE TABLE subscription_plan (
-	 plan_id				INT					NOT NULL	PRIMARY KEY IDENTITY(1, 1),
-	 term					VARCHAR(100)		NOT NULL,
-	 duration				INT					NOT NULL,
-	 amount					FLOAT				NOT NULL,
-	 is_active				BIT					NOT NULL	DEFAULT(1),
-	 row_created_datetime	DATETIME			NOT NULL	DEFAULT GETDATE()
-);
+--DROP TABLE user_watch_history
 
 CREATE TABLE user_subscription (
-	 sub_id				INT				NOT NULL	PRIMARY KEY IDENTITY(1, 1),
-	 user_id			INT				NOT NULL,
-	 subscribe_date		DATE			NOT NULL,
-	 next_renewal_date	DATE			NOT NULL,
-	 plan_id			INT				NOT NULL,
-	 is_active			BIT				NOT NULL	DEFAULT(1),
+	 sub_id				INT			NOT NULL	PRIMARY KEY IDENTITY(1, 1),
+	 user_id			INT			NOT NULL,
+	 recurrence			CHAR(1)		NOT NULL,
+	 subscribe_date		DATE,
+	 next_renewal_date	DATE,
+	 is_active			BIT			NOT NULL	DEFAULT(1),
 	 row_created_datetime	DATETIME	NOT NULL	DEFAULT GETDATE(),
 
-	 CONSTRAINT fk1_user_subscription_user_id FOREIGN KEY(user_id) REFERENCES users(user_id),
-	 CONSTRAINT fk2_user_subscription_plan_id FOREIGN KEY(plan_id) REFERENCES subscription_plan(plan_id)
-);
-
-CREATE TABLE user_payment_method (
-	 payment_method_id				INT				NOT NULL	PRIMARY KEY IDENTITY(1, 1),
-	 card_number					VARCHAR(20)		NOT NULL,
-	 card_expiry_date				DATE			NOT NULL,
-	 cvv							INT				NOT NULL,
-	 user_id						INT				NOT NULL,
-	 is_active						BIT				NOT NULL	DEFAULT(1),
-	 row_created_datetime	DATETIME	NOT NULL	DEFAULT GETDATE(),
-
-	 CONSTRAINT fk1_payment_method_user_id FOREIGN KEY(user_id) REFERENCES users(user_id)
+	 CONSTRAINT fk_subscription_user_id FOREIGN KEY(user_id) REFERENCES users(user_id)
 );
 
 CREATE TABLE payment (
@@ -153,11 +136,8 @@ CREATE TABLE payment (
 	 user_id				INT			NOT NULL,
 	 sub_id					INT			NOT NULL,
 	 amount					FLOAT		NOT NULL,
-	 payment_method_id		INT			NOT NULL,
 	 row_created_datetime	DATETIME	NOT NULL	DEFAULT GETDATE(),
 
 	 CONSTRAINT fk1_payment_user_id FOREIGN KEY(user_id) REFERENCES users(user_id),
-	 CONSTRAINT fk2_payment_sub_id FOREIGN KEY(sub_Id) REFERENCES user_subscription(sub_id),
-	 CONSTRAINT fk3_payment_method_id FOREIGN KEY(payment_method_id) REFERENCES user_payment_method(payment_method_id)
+	 CONSTRAINT fk2_payment_sub_id FOREIGN KEY(sub_Id) REFERENCES user_subscription(sub_id)
 );
-

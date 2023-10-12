@@ -13,19 +13,16 @@ public class DBConnectionMSSQL {
 
 		try {
 			
-<<<<<<< HEAD
-			String dbURL = "jdbc:sqlserver://DESKTOP-8G691HC\\SQLEXPRESS;DatabaseName=OnlineWatchingMoviesandTVSeries;encrypt=true;trustServerCertificate=true;";
-=======
 //			Teran
-			String dbURL = "jdbc:sqlserver://localhost;DatabaseName=OnlineWatchingMoviesandTVSeries;encrypt=true;trustServerCertificate=true;";
->>>>>>> bd3cb908e9caa4c64bec317a90537334436ded26
-			String userName = "sa";
-			String password = "*272617Ps*";
-			
-//			Panchali
-//			String dbURL = "jdbc:sqlserver://DESKTOP-8G691HC\\SQLEXPRESS;DatabaseName=OnlineWatchingMoviesandTVSeries;encrypt=true;trustServerCertificate=true;";
+//			String dbURL = "jdbc:sqlserver://localhost;DatabaseName=OnlineWatchingMoviesandTVSeries;encrypt=true;trustServerCertificate=true;";
+//
 //			String userName = "sa";
 //			String password = "*272617Ps*";
+			
+			//Panchali
+			String dbURL = "jdbc:sqlserver://DESKTOP-8G691HC\\SQLEXPRESS;DatabaseName=OnlineWatchingMoviesandTVSeries;encrypt=true;trustServerCertificate=true;";
+			String userName = "sa";
+			String password = "*272617Ps*";
 			
 //			Yethmi
 //			dbURL = "jdbc:sqlserver://YETHMI-PC\\SQLEXPRESS;DatabaseName=OnlineWatchingMoviesandTVSeries;encrypt=true;trustServerCertificate=true;";
