@@ -19,15 +19,15 @@ public class DBConnectionMSSQL {
 //			String userName = "sa";
 //			String password = "*272617Ps*";
 			
-			//Panchali
-			String dbURL = "jdbc:sqlserver://DESKTOP-8G691HC\\SQLEXPRESS;DatabaseName=OnlineWatchingMoviesandTVSeries;encrypt=true;trustServerCertificate=true;";
-			String userName = "sa";
-			String password = "*272617Ps*";
+//			//Panchali
+//			String dbURL = "jdbc:sqlserver://DESKTOP-8G691HC\\SQLEXPRESS;DatabaseName=OnlineWatchingMoviesandTVSeries;encrypt=true;trustServerCertificate=true;";
+//			String userName = "sa";
+//			String password = "*272617Ps*";
 			
-//			Yethmi
-//			dbURL = "jdbc:sqlserver://YETHMI-PC\\SQLEXPRESS;DatabaseName=OnlineWatchingMoviesandTVSeries;encrypt=true;trustServerCertificate=true;";
-//			userName = "sa";
-//			password = "yethmi";
+			//Yethmi
+			String dbURL = "jdbc:sqlserver://YETHMI-PC\\SQLEXPRESS;DatabaseName=OnlineWatchingMoviesandTVSeries;encrypt=true;trustServerCertificate=true;";
+			String userName = "sa";
+			String password = "yethmi";
 			
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 			

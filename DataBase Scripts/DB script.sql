@@ -68,7 +68,7 @@ CREATE TABLE users (
 	dob						DATE				NULL,
 	premium_user			BIT					NOT NULL DEFAULT(0),
 	password				VARCHAR(200)		NOT NULL,
-	created_admin_name		VARCHAR(200)		NOT NULL,
+	created_admin_name		VARCHAR(200)		NULL,
 	is_active				BIT					NOT NULL DEFAULT(1),
     row_created_datetime	DATETIME			NOT NULL DEFAULT GETDATE()
 );

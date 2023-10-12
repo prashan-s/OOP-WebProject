@@ -1,15 +1,12 @@
 package com.bs.controller;
 
-import java.io.IOException;
 import java.util.List;
-
+import com.bs.dao.MovieDAO;
+import com.bs.model.Movie;
 import jakarta.servlet.RequestDispatcher;
-import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-import com.bs.dao.MovieDAO;
-import com.bs.model.Movie;
 public class MovieController {
 
 	RequestDispatcher dispacther;
