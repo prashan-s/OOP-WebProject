@@ -19,7 +19,7 @@ public class UserController {
 	public UserController(HttpServletRequest request, HttpServletResponse response) {
 		this.request = request;
 		this.response = response;
-		this.dispacther = request.getRequestDispatcher("userProfileEdit");
+		this.dispacther = request.getRequestDispatcher("UserProfileEdit.jsp");
 	}
 	
 	public void selectUser(int userId){
@@ -27,13 +27,14 @@ public class UserController {
 		try {
 			List<User> users = new UserDAO().selectUser(userId);
 			System.out.println("user : " + users.getFirst().getName());
-			request.setAttribute("Users", users);//attribute name, objectName
+			request.setAttribute("users", users);//attribute name, objectName
 			
 		}catch(Exception e1){
 			e1.printStackTrace();
 		}
 		
 		try {
+			
 			dispacther.forward(request, response);
 			
 		} catch (Exception e2){
