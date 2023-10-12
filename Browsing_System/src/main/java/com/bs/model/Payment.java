@@ -8,7 +8,6 @@ public class Payment {
     private int userId;
     private int subId;
     private float amount;
-    private int paymentMethodId;
     private Date rowCreatedDatetime;
 
     public Payment(int paymentId, int userId, int subId, float amount, int paymentMethodId,
@@ -17,7 +16,6 @@ public class Payment {
         this.userId = userId;
         this.subId = subId;
         this.amount = amount;
-        this.paymentMethodId = paymentMethodId;
         this.rowCreatedDatetime = rowCreatedDatetime;
     }
 
@@ -35,10 +33,6 @@ public class Payment {
 
     public float getAmount() {
         return amount;
-    }
-
-    public int getPaymentMethodId() {
-        return paymentMethodId;
     }
 
     public Date getRowCreatedDatetime() {
