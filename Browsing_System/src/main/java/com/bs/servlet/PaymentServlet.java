@@ -12,7 +12,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import com.bs.controller.PaymentController;
 
 
-@WebServlet(name = "PaymetServlet", urlPatterns = {"/PaymentServlet"})
+@WebServlet(name = "PaymentServlet", urlPatterns = {"/PaymentServlet"})
 public class PaymentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
