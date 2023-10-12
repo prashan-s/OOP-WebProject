@@ -6,13 +6,13 @@ public class UserRatings {
 
 	private int rateId;
     private int userId;
-    private char type;
+    private String type;
     private int tvsId;
     private int movieId;
     private int rating;
     private Date rowCreatedDatetime;
 
-    public UserRatings(int rateId, int userId, char type, int tvsId, int movieId,
+    public UserRatings(int rateId, int userId, String type, int tvsId, int movieId,
                       int rating, Date rowCreatedDatetime) {
         this.rateId = rateId;
         this.userId = userId;
@@ -31,7 +31,7 @@ public class UserRatings {
         return userId;
     }
 
-    public char getType() {
+    public String getType() {
         return type;
     }
 
