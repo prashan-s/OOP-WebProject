@@ -19,4 +19,14 @@
     <servlet-name>PaymentServlet</servlet-name>
     <url-pattern>/PaymentServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>TVSeriesServlet</display-name>
+    <servlet-name>TVSeriesServlet</servlet-name>
+    <servlet-class>com.bs.servlet.TVSeriesServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TVSeriesServlet</servlet-name>
+    <url-pattern>/TVSeriesServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
