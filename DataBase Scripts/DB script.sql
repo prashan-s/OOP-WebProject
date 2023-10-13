@@ -1,7 +1,6 @@
 CREATE DATABASE OnlineWatchingMoviesandTVSeries;
 GO
 USE OnlineWatchingMoviesandTVSeries;
-
 CREATE TABLE movie (
 	movie_id				INT				NOT NULL PRIMARY KEY IDENTITY(1, 1),
 	title					VARCHAR(100)	NOT NULL,
@@ -63,7 +62,7 @@ CREATE TABLE tv_series_details (
     row_created_datetime	DATETIME		NOT NULL DEFAULT GETDATE(),
 
 	CONSTRAINT	fk_tv_series_tvs_id	FOREIGN KEY(tvs_id) REFERENCES tv_series(tvs_id)
-)
+);
 
 
 
@@ -139,17 +138,27 @@ CREATE TABLE user_watch_history (
 );
 
 
+CREATE TABLE subscription_plan(
+	plan_id					INT				NOT NULL	PRIMARY KEY IDENTITY(1,1) ,
+	description				VARCHAR(100)	NOT NULL,
+	duration_in_months		INT				NOT NULL,
+	amount					FLOAT			NOT NULL,
+	is_active				BIT				NOT NULL	DEFAULT(1),
+	row_created_datetime	DATETIME		NOT NULL	DEFAULT GETDATE()
+);
 
 CREATE TABLE user_subscription (
 	 sub_id				INT			NOT NULL	PRIMARY KEY IDENTITY(1, 1),
 	 user_id			INT			NOT NULL,
-	 recurrence			CHAR(1)		NOT NULL,
+	 plan_id			INT			NOT NULL,
 	 subscribe_date		DATE,
 	 next_renewal_date	DATE,
 	 is_active			BIT			NOT NULL	DEFAULT(1),
 	 row_created_datetime	DATETIME	NOT NULL	DEFAULT GETDATE(),
 
-	 CONSTRAINT fk_subscription_user_id FOREIGN KEY(user_id) REFERENCES users(user_id)
+	 CONSTRAINT fk1_subscription_user_id FOREIGN KEY(user_id) REFERENCES users(user_id),
+	 CONSTRAINT fk2_subscription_user_id FOREIGN KEY(plan_id) REFERENCES subscription_plan(plan_id),
+
 );
 
 
@@ -177,15 +186,5 @@ CREATE TABLE user_payment_method(
 	row_created_datetime	DATETIME	NOT NULL	DEFAULT GETDATE(),
 
 CONSTRAINT fk_payment_method_user_id FOREIGN KEY(user_id) REFERENCES users (user_id)
-)
+);
 
-
-
-CREATE TABLE subscription_plan(
-	plan_id					INT				NOT NULL	PRIMARY KEY IDENTITY(1,1) ,
-	description				VARCHAR(100)	NOT NULL,
-	duration_in_months		INT				NOT NULL,
-	amount					FLOAT			NOT NULL,
-	is_active				BIT				NOT NULL	DEFAULT(1),
-	row_created_datetime	DATETIME		NOT NULL	DEFAULT GETDATE()
-)

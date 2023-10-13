@@ -29,7 +29,7 @@ public class UserDAO implements IUserDAO{
 	private static final String UPDATE_PASSWORD = "UPDATE users SET password = ? "
 												+ "WHERE user_id = ?";
 	
-	private static final String DELETE_USER = "UPDATE  users SET is_active = 0 , created_admin_name = ? "
+	private static final String DELETE_USER = "DELETE FROM users "
 											+ "WHERE user_id = ? ";	
 
 	public List<User> selectUser(int userId) {

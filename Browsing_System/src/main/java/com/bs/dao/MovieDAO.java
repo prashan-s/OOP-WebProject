@@ -32,7 +32,7 @@ public class MovieDAO implements IMovieDAO {
     														+ "science_category=?, crime_category=?, thriller_category=?, created_admin_name=? "
 															+ "WHERE movie_id = ?;";
     	 
-    private static final String DELETE_MOVIE ="UPDATE movie set is_active=0 WHERE movie_id = ?;";
+    private static final String DELETE_MOVIE ="DELETE FROM movie WHERE movie_id = ?;";
     
 	
 	

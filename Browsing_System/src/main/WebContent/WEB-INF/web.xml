@@ -37,8 +37,8 @@
   <servlet-mapping>
     <servlet-name>UserServlet</servlet-name>
     <url-pattern>/UserServlet</url-pattern>
-   </servlet-mapping>
-     <servlet>
+  </servlet-mapping>
+  <servlet>
     <display-name>TVSeriesDetailsServlet</display-name>
     <servlet-name>TVSeriesDetailsServlet</servlet-name>
     <servlet-class>com.bs.servlet.TVSeriesDetailsServlet</servlet-class>
@@ -66,5 +66,15 @@
   <servlet-mapping>
     <servlet-name>UserRatings</servlet-name>
     <url-pattern>/UserRatings</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UserPaymentMethodServlet</display-name>
+    <servlet-name>UserPaymentMethodServlet</servlet-name>
+    <servlet-class>com.bs.servlet.UserPaymentMethodServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UserPaymentMethodServlet</servlet-name>
+    <url-pattern>/UserPaymentMethodServlet</url-pattern>
   </servlet-mapping>
 </web-app>
