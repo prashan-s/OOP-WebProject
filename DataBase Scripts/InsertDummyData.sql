@@ -47,6 +47,7 @@ VALUES
     (3, 'M', NULL, 4),
     (4, 'T', 1, NULL),
     (5, 'M', NULL, 2);
+	select * from user_watch_history
 INSERT INTO user_watch_history (user_id, type, tvs_id, movie_Id)
 VALUES
     (1, 'M', NULL, 3),

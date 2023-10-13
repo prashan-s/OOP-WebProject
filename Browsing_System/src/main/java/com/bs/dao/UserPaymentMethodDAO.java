@@ -6,9 +6,9 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
 import com.bs.interfaces.IUserPaymentMethodDAO;
 import com.bs.model.UserPaymentMethod;
-import com.bs.utility.DBConnection;
 import com.bs.utility.DBConnectionMSSQL;
 
 public class UserPaymentMethodDAO implements IUserPaymentMethodDAO{
@@ -77,7 +77,7 @@ public class UserPaymentMethodDAO implements IUserPaymentMethodDAO{
 		boolean rowDelete = false;
 
 		try {
-			Connection con = DBConnection.getConnection();
+			Connection con = DBConnectionMSSQL.getConnection();
 			PreparedStatement stmt = con.prepareStatement(DELETE_USER_PAYMENT_METHOD);
 			
 			stmt.setInt(1, paymentMethodId);

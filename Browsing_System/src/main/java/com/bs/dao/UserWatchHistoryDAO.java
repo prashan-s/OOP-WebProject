@@ -1,14 +1,15 @@
 package com.bs.dao;
 
-import com.bs.utility.DBConnection;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-import java.sql.Date;
-import com.bs.model.UserWatchHistory;
+
 import com.bs.interfaces.IUserWatchHistoryDAO;
+import com.bs.model.UserWatchHistory;
+import com.bs.utility.DBConnectionMSSQL;
 
 
 public class UserWatchHistoryDAO implements IUserWatchHistoryDAO{
@@ -28,7 +29,7 @@ public class UserWatchHistoryDAO implements IUserWatchHistoryDAO{
         ArrayList<UserWatchHistory> userWatchHistory = new ArrayList<>();
         
         try {
-            Connection con = DBConnection.getConnection();
+            Connection con = DBConnectionMSSQL.getConnection();
             PreparedStatement stmt = con.prepareStatement(SELECT_HISTORY_BY_USER_ID);
             stmt.setInt(1, userId);
             ResultSet rs = stmt.executeQuery();
@@ -55,7 +56,7 @@ public class UserWatchHistoryDAO implements IUserWatchHistoryDAO{
     public void insertHistory(UserWatchHistory history) {
         
     	try {
-            Connection con = DBConnection.getConnection();
+            Connection con = DBConnectionMSSQL.getConnection();
             PreparedStatement stmt = con.prepareStatement(INSERT_HISTORY);
             
             stmt.setInt(1, history.getUserId());
@@ -73,7 +74,7 @@ public class UserWatchHistoryDAO implements IUserWatchHistoryDAO{
         boolean rowDelete = false;
         
         try {
-            Connection con = DBConnection.getConnection();
+            Connection con = DBConnectionMSSQL.getConnection();
             PreparedStatement stmt = con.prepareStatement(DELETE_HISTORY);
             stmt.setInt(1, watchId);
             rowDelete = stmt.executeUpdate() > 0;

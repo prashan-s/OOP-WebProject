@@ -77,4 +77,14 @@
     <servlet-name>UserPaymentMethodServlet</servlet-name>
     <url-pattern>/UserPaymentMethodServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UserWatchHistoryServlet</display-name>
+    <servlet-name>UserWatchHistoryServlet</servlet-name>
+    <servlet-class>com.bs.servlet.UserWatchHistoryServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UserWatchHistoryServlet</servlet-name>
+    <url-pattern>/UserWatchHistoryServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

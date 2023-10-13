@@ -1,16 +1,16 @@
 package com.bs.dao;
 
-import com.bs.utility.DBConnection;
-import com.bs.model.Movie;
-import com.bs.model.UserSubscription;
-import com.bs.interfaces.IUserSubscriptionDAO;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
-import java.sql.Date;
-import java.sql.Timestamp;
+
+import com.bs.interfaces.IUserSubscriptionDAO;
+import com.bs.model.UserSubscription;
+import com.bs.utility.DBConnectionMSSQL;
 
 public class UserSubscriptionDAO implements IUserSubscriptionDAO {
 	
@@ -33,7 +33,7 @@ public class UserSubscriptionDAO implements IUserSubscriptionDAO {
     public List<UserSubscription> selectSubscription(int sub_id) {
     	ArrayList<UserSubscription> userSubscriptions = new ArrayList<>();
         try {
-            Connection con = DBConnection.getConnection();
+            Connection con = DBConnectionMSSQL.getConnection();
             PreparedStatement stmt = con.prepareStatement(SELECT_SUBSCRIPTION_BY_ID);
             stmt.setInt(1, sub_id);
             ResultSet rs = stmt.executeQuery();
@@ -60,7 +60,7 @@ public class UserSubscriptionDAO implements IUserSubscriptionDAO {
 
     public void insertSubscription(UserSubscription userSubscription) {
         try {
-            Connection con = DBConnection.getConnection();
+            Connection con = DBConnectionMSSQL.getConnection();
             PreparedStatement stmt = con.prepareStatement(INSERT_SUBSCRIPTION);
 
             stmt.setInt(1, userSubscription.getUserId());
@@ -79,7 +79,7 @@ public class UserSubscriptionDAO implements IUserSubscriptionDAO {
        
     	boolean rowUpdate = false;
         try {
-            Connection con = DBConnection.getConnection();
+            Connection con = DBConnectionMSSQL.getConnection();
             PreparedStatement stmt = con.prepareStatement(UPDATE_SUBSCRIPTION);
 
             stmt.setInt(1, userSubscription.getUserId());
@@ -101,7 +101,7 @@ public class UserSubscriptionDAO implements IUserSubscriptionDAO {
         boolean rowDelete = false;
 
         try {
-            Connection con = DBConnection.getConnection();
+            Connection con = DBConnectionMSSQL.getConnection();
             PreparedStatement stmt = con.prepareStatement(DELETE_SUBSCRIPTION);
 
             stmt.setInt(1, sub_id);
