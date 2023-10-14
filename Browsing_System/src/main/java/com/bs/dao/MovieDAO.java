@@ -32,7 +32,7 @@ public class MovieDAO implements IMovieDAO {
     														+ "science_category=?, crime_category=?, thriller_category=?, created_admin_name=? "
 															+ "WHERE movie_id = ?;";
     	 
-    private static final String DELETE_MOVIE ="UPDATE movie set is_active=0 WHERE movie_id = ?;";
+    private static final String DELETE_MOVIE ="DELETE FROM movie WHERE movie_id = ?;";
     
 	
 	
@@ -93,7 +93,7 @@ public class MovieDAO implements IMovieDAO {
 		System.out.println(INSERT_MOVIE);
 		
 		try {
-			Connection con = DBConnection.getConnection();	
+			Connection con = DBConnectionMSSQL.getConnection();	
 			PreparedStatement stmt = con.prepareStatement(INSERT_MOVIE);	
 			
 			stmt.setString(1, movie.getTitle());
@@ -128,7 +128,7 @@ public class MovieDAO implements IMovieDAO {
 		
 		boolean rowUpdate = false;
 		try {
-			Connection con = DBConnection.getConnection();
+			Connection con = DBConnectionMSSQL.getConnection();
 			PreparedStatement stmt = con.prepareStatement(UPDATE_MOVIE);
 			
 			stmt.setString(1, movie.getTitle());
@@ -168,7 +168,7 @@ public class MovieDAO implements IMovieDAO {
 		boolean rowDelete = false;
 
 		try {
-			Connection con = DBConnection.getConnection();
+			Connection con = DBConnectionMSSQL.getConnection();
 			PreparedStatement stmt = con.prepareStatement(DELETE_MOVIE);
 			
 			stmt.setInt(1, movie_id);

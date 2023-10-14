@@ -1,15 +1,14 @@
 package com.bs.dao;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import com.bs.interfaces.IUserDAO;
 import com.bs.model.User;
-import com.bs.utility.DBConnection;
 import com.bs.utility.DBConnectionMSSQL;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 
 public class UserDAO implements IUserDAO{
 	
@@ -21,7 +20,7 @@ public class UserDAO implements IUserDAO{
 	private static final String INSERT_USER = "INSERT INTO users (name, email, mobile_no , dob , password )"
 											+ "VALUES (?, ? , ? , ? , ? )";
 	//when user update details
-	private	static final String UPDATE_USER_BY_USER = "UPDATE users SET name = ? , email =  ? , mobile_no = ? , dob = ?"
+	private	static final String UPDATE_USER_BY_USER = "UPDATE users SET name = ? , email =  ? , mobile_no = ? , dob = ?  "
 													+ "WHERE user_id = ?";
 	//when user upgrade to premium
 	private static final String UPGRADE_TO_PREMIUM = "UPDATE users SET premium_user = 1 "
@@ -30,7 +29,7 @@ public class UserDAO implements IUserDAO{
 	private static final String UPDATE_PASSWORD = "UPDATE users SET password = ? "
 												+ "WHERE user_id = ?";
 	
-	private static final String DELETE_USER = "UPDATE  users SET is_active = 0 , "
+	private static final String DELETE_USER = "DELETE FROM users "
 											+ "WHERE user_id = ? ";	
 
 	public List<User> selectUser(int userId) {
@@ -162,10 +161,10 @@ public class UserDAO implements IUserDAO{
 		boolean rowDelete = false;
 
 		try {
-			Connection con = DBConnection.getConnection();
+			Connection con = DBConnectionMSSQL.getConnection();
 			PreparedStatement stmt = con.prepareStatement(DELETE_USER);
 			
-			stmt.setInt(1, userID);
+			stmt.setInt(2, userID);
 			rowDelete = (stmt.executeUpdate() > 0);
 			
 		}catch(Exception e) {
