@@ -21,7 +21,7 @@ public class PaymentController {
 	public PaymentController(HttpServletRequest request, HttpServletResponse response){
 		this.request = request;
 		this.response = response;
-		this.dispacther =  request.getRequestDispatcher("Movie.jsp");
+		this.dispacther =  request.getRequestDispatcher("Payment.jsp");
 		
 	}
 	
