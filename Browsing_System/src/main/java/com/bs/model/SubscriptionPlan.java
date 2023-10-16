@@ -5,16 +5,16 @@ import java.util.Date;
 public class SubscriptionPlan {
 
 	private int planId;
-    private String term;
+    private String description;
     private int duration;
     private float amount;
     private boolean isActive;
     private Date rowCreatedDatetime;
 
-    public SubscriptionPlan(int planId, String term, int duration, float amount,
+    public SubscriptionPlan(int planId, String description, int duration, float amount,
                             boolean isActive, Date rowCreatedDatetime) {
         this.planId = planId;
-        this.term = term;
+        this.description = description;
         this.duration = duration;
         this.amount = amount;
         this.isActive = isActive;
@@ -26,7 +26,7 @@ public class SubscriptionPlan {
     }
 
     public String getTerm() {
-        return term;
+        return description;
     }
 
     public int getDuration() {

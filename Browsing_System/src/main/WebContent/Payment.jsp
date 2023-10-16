@@ -20,11 +20,20 @@
 	<table>
 		<thead>
 			<tr>
-				<th></th>
-				<th></th>
-				<th></th>
+				<th>User Name</th>
+				<th>Amount</th>
+				<th>Payment Date</th>
 			</tr>
 		</thead>
+		<tbody>
+			<c:foreach items = "${payments} + ${users }" var = "payment + users">
+				<tr>
+					<td>${user. name}</td>
+					<td>${payment.amount}</td>
+					<td>${payment.rowCreatedDatetime}</td>
+				</tr>
+			</c:foreach>
+		</tbody>
 	</table>
 
 </body>
