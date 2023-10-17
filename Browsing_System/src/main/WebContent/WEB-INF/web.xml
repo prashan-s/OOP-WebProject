@@ -87,4 +87,14 @@
     <servlet-name>UserWatchHistoryServlet</servlet-name>
     <url-pattern>/UserWatchHistoryServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>SubscriptionPlanServlet</display-name>
+    <servlet-name>SubscriptionPlanServlet</servlet-name>
+    <servlet-class>com.bs.servlet.SubscriptionPlanServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SubscriptionPlanServlet</servlet-name>
+    <url-pattern>/SubscriptionPlanServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

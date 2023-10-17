@@ -29,7 +29,7 @@ public class PaymentController {
 		
 		try {
 		List<Payment> payments = new PaymentDAO().selectPayment(paymentId);
-		System.out.println("payments : " + payments.getFirst().getUserId());
+		System.out.println("payments : " + ((Payment) payments).getAmount());
 		request.setAttribute("payments", payments);//attribute name, objectName
 		}catch(Exception e){
 			e.printStackTrace();

@@ -29,7 +29,7 @@ public class UserFavouritesController {
 
         try {
             List<UserFavourites> userFavouritesList = new UserFavouritesDAO().selectUserFavourites(userId);
-            System.out.println("User Favourites: " + userFavouritesList.size());
+            System.out.println("User Favourites: " + userFavouritesList.get(1).getUserId() + userFavouritesList.get(2).getType() + userFavouritesList.get(3).getTvsId() + userFavouritesList.get(4).getMovieId());
             request.setAttribute("userFavouritesList", userFavouritesList);
         } catch (Exception e) {
             e.printStackTrace();

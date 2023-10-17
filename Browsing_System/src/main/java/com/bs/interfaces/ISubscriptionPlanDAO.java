@@ -8,6 +8,6 @@ public interface ISubscriptionPlanDAO {
 
 	List<SubscriptionPlan>selectSubscriptionPlan(int subId);
 	public void insertSubscriptionPlan(SubscriptionPlan sub);
-	public void updateSubscriptionPlan(SubscriptionPlan sub);
-	public void deleteSubscriptionPlan(SubscriptionPlan sub);
+	public boolean updateSubscriptionPlan(SubscriptionPlan sub);
+	public boolean deleteSubscriptionPlan(int planId);
 }
