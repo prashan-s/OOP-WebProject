@@ -90,27 +90,26 @@ public class UserController {
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
-			boolean updateStatus = this.updateUserByUser(user);
+			boolean updateStatus = updateUserByUser(user);
 			
 			System.out.println(updateStatus);
 			String message = "Updated Successfully!";
-
-			if (!updateStatus) {
-
+			System.out.println(message);
+			
+			if (updateStatus == false) {
 				message = "Update Failed!, Retry....";
-				this.selectUser(userId);
-				showEditForm = true;
-
+				System.out.println("Edit Form Show:" + showEditForm);
 			}
-			System.out.println("Updated:" + updateStatus);
+			
 			request.setAttribute("xmessage", message);
+			System.out.println("Updated   " + updateStatus);
 
 		}
 
 		System.out.println("Watiting to Dispatch");
 		try {
 
-			System.out.println("showEditForm" + showEditForm);
+			System.out.println("showUpdateStatus" + showUpdateStatus);
 			
 			request.setAttribute("showUserIdForm", showUserIdForm);
 			request.setAttribute("showDetails", showDetails);
