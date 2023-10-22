@@ -69,15 +69,20 @@
 				</c:forEach>
 			</form>
 		</c:when>
+	
 		<c:when test="${showUpdateStatus == true} ">
-			${xmessage}
-	    </c:when>
+			<h1>"${xmessage}"</h1>
+			<c:out value="${xmessage}"/>
+		</c:when>
+		
+		
 		<c:otherwise>
 			<c:if test="${1==1}">
-			<h1>error</h1>
+				<h1>error</h1>
+				
 			</c:if>
-		
 		</c:otherwise>
+	
 	</c:choose>
 </body>
 </html>
