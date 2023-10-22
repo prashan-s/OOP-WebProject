@@ -6,6 +6,7 @@ import java.util.List;
 import com.bs.dao.UserDAO;
 import com.bs.model.User;
 import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
@@ -13,113 +14,182 @@ public class UserController {
 	RequestDispatcher dispacther;
 	HttpServletRequest request;
 	HttpServletResponse response;
-	String jspPage;
-	
+	UserDAO dao;
+
 	public UserController() {
 
 	}
 
 	public UserController(HttpServletRequest request, HttpServletResponse response) {
-		
+
 		this.request = request;
 		this.response = response;
-		
-		
+		this.dao = new UserDAO();
+
 	}
-	
+
 	public void doAction(String action) {
+		
+		String jspPage = "UserProfileEdit.jsp";
 		int userId = -1;
+		boolean showUserIdForm = true;
+		boolean showDetails = false;
+		boolean showEditForm = false;
+		boolean showUpdateStatus = false;
+
+		switch (action) {
+
+		case "submit":
+			showUserIdForm = false;
+			showDetails = true;
+			showEditForm = false;
+			showUpdateStatus = false;
+
+			jspPage = "UserProfileEdit.jsp";
+			userId = Integer.parseInt(this.request.getParameter("userId"));
+			this.selectUser(userId);
+			
+			Cookie cookie = new Cookie("userId",Integer.toString(userId) );
+			this.response.addCookie(cookie);
+			break;
+
+		case "edit":
+			
+			jspPage = "UserProfileEdit.jsp";
+			showUserIdForm = false;
+			showDetails = false;
+			showEditForm = true;
+			showUpdateStatus = false;
+
+			
+			userId = getValueForId("userId");
+			
 		
-		switch(action) {
-		
-			case "submit" :
-		 		jspPage =  "UserProfileEdit.jsp";
-				userId = Integer.parseInt(this.request.getParameter("userId"));
-		 		this.selectUser(userId , jspPage);
-		 		boolean showDetails= true;
-		 		boolean showEditForm= true;
-		 		break;
-		 		
-		 	case "edit" :
-		 		jspPage ="UserProfileEdit.jsp";
-				this.selectUser(userId , jspPage);
-		 		
-				User user = new User();
-				SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-				
-				user.setUserId(Integer.parseInt(this.request.getParameter("userId")));
-				user.setName( request.getParameter("name"));
-				user.setEmail( request.getParameter("email"));
-				user.setMobileNo( request.getParameter("mobileNo"));
-				try {
-				user.setDob(dateFormat.parse( request.getParameter("dob")));
-				} catch (ParseException e) {
-					e.printStackTrace();
+			
+			this.selectUser(userId);
+			
+			break;
+
+		case "update":
+			jspPage = "UserProfileEdit.jsp";
+			showUserIdForm = false;
+			showDetails = false;
+			showEditForm = false;
+			showUpdateStatus = true;
+
+			User user = new User();
+			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+			userId = getValueForId("userId");
+			
+			user.setUserId(userId);
+			user.setName(request.getParameter("name"));
+			user.setEmail(request.getParameter("email"));
+			user.setMobileNo(request.getParameter("mobileNo"));
+			try {
+				user.setDob(dateFormat.parse(request.getParameter("dob")));
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+			boolean updateStatus = this.updateUserByUser(user);
+			
+			System.out.println(updateStatus);
+			String message = "Updated Successfully!";
+
+			if (!updateStatus) {
+
+				message = "Update Failed!, Retry....";
+				this.selectUser(userId);
+				showEditForm = true;
+
+			}
+			System.out.println("Updated:" + updateStatus);
+			request.setAttribute("xmessage", message);
+
+		}
+
+		System.out.println("Watiting to Dispatch");
+		try {
+
+			System.out.println("showEditForm" + showEditForm);
+			
+			request.setAttribute("showUserIdForm", showUserIdForm);
+			request.setAttribute("showDetails", showDetails);
+			request.setAttribute("showEditForm", showEditForm);
+			request.setAttribute("showUpdateStatus", showUpdateStatus);
+			
+			this.dispacther = request.getRequestDispatcher(jspPage);
+			dispacther.forward(request, response);
+
+		} catch (Exception e2) {
+			e2.printStackTrace();
+		}
+
+	}
+
+	private int getValueForId(String key) {
+		Cookie[] cookies = null;
+		cookies = request.getCookies();
+		int userId = -1;
+		if( cookies != null ) {
+		    
+		    for (Cookie ck : cookies) {
+				if (ck.getName().equals(key)) {
+					userId = Integer.parseInt(ck.getValue());
+					System.out.println("Cookie UserID:"+ userId);
+					
+					break;
 				}
-				this.updateUserByUser(user);
-				boolean showUpdateStatus= true;
-		 		break;
-		 
-		 	case "update" :
-		 		jspPage = "UpdateResultPage.jsp";
-		 		
+			}
+		 } else {
+			 System.out.println("No cookies found!");
 		 }
 		
+		if (userId < 0) {
+			try {
+				userId = Integer.parseInt(this.request.getParameter("userId"));
+			}catch( Exception ex){
+				System.out.println("Error with User ID");
+			}
+		}
+		return userId;
 	}
-	
-	public void selectUser(int userId , String jspPage) {
+
+	public void selectUser(int userId) {
 
 		try {
-			List<User> users = new UserDAO().selectUser(userId);
+			List<User> users = dao.selectUser(userId);
 			// System.out.println("user : " + users.getFirst().getName());
 			request.setAttribute("users", users);// attribute name, objectName
 
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
-		try {
-			this.dispacther = request.getRequestDispatcher(jspPage);
-			dispacther.forward(request, response);
 
-		} catch (Exception e2) {
-			e2.printStackTrace();
-		}
 	}
-	
-	
 
-	public void updateUserByUser(User user) {
+	public boolean updateUserByUser(User user) {
+		boolean updateStatus = false;
 		try {
-			boolean successUpdate = new UserDAO().updateUserByUser(user);
-			request.setAttribute("isSuccessUpdate", successUpdate);
-		
+			updateStatus = dao.updateUserByUser(user);
+			request.setAttribute("isSuccessUpdate", updateStatus);
+
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
-		try {
-			this.dispacther = request.getRequestDispatcher(jspPage);
-			dispacther.forward(request, response);
-		} catch (Exception e2) {
-			e2.printStackTrace();
-		}
-		
-	
+
+		return updateStatus;
 
 	}
-	
-	public void insertUser(User user) {
+
+	public boolean insertUser(User user) {
 		try {
-			boolean successInsert = new UserDAO().insertUser(user);
-			request.setAttribute("isSuccessUpdate", successInsert);
-		
+			boolean successInsert = dao.insertUser(user);
+			request.setAttribute("isSuccessInsert", successInsert);
+			return true;
 		} catch (Exception e1) {
 			e1.printStackTrace();
+			return false;
 		}
-		try {
-			this.dispacther = request.getRequestDispatcher(jspPage);
-			dispacther.forward(request, response);
-		} catch (Exception e2) {
-			e2.printStackTrace();
-		}
+
 	}
 }

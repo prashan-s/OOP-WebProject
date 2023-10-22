@@ -3,7 +3,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 
 import com.bs.interfaces.IUserDAO;
@@ -101,12 +101,13 @@ public class UserDAO implements IUserDAO{
 			stmt.setString(1, user.getName());
 			stmt.setString(2, user.getEmail());
 			stmt.setString(3,user.getMobileNo());
-			stmt.setDate(4, (java.sql.Date) user.getDob());
+			Date dob = new Date(user.getDob().getTime());
+			stmt.setDate(4, dob);
 			
 			stmt.setInt(5, user.getUserId());
-				
+//				
 			rowUpdated = (stmt.executeUpdate() > 0);
-				
+//			rowUpdated = true;
 			}catch(Exception e) {
 				e.printStackTrace();
 		}
