@@ -19,8 +19,8 @@ public class TVSeriesDAO implements ITVSeriesDAO {
 
     private static final String INSERT_SERIES = "INSERT INTO tv_series (title, tvs_img_url, action_category, " +
             "adventure_category, comedy_category, scify_category, horror_category, romance_category, " +
-            "science_category, crime_category, thriller_category, is_active, row_created_datetime) " +
-            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            "science_category, crime_category, thriller_category, is_active) " +
+            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
     private static final String UPDATE_SERIES = "UPDATE tv_series SET title=?, tvs_img_url=?, action_category=?, " +
             "adventure_category=?, comedy_category=?, scify_category=?, horror_category=?, romance_category=?, " +
@@ -90,7 +90,6 @@ public class TVSeriesDAO implements ITVSeriesDAO {
             stmt.setBoolean(10, series.isCrime_category());
             stmt.setBoolean(11, series.isThriller_category());
             stmt.setBoolean(12, series.isActive());
-            stmt.setDate(13, new java.sql.Date(series.getRow_created_datetime().getTime()));
 
             stmt.executeUpdate();
 
@@ -101,7 +100,7 @@ public class TVSeriesDAO implements ITVSeriesDAO {
 
     // Update TV series
     public boolean updateTVSeries(TVSeries series) {
-        boolean rowUpdate = false;
+        boolean rowUpdate = true;
         try {
             Connection con = DBConnectionMSSQL.getConnection();
             PreparedStatement stmt = con.prepareStatement(UPDATE_SERIES);

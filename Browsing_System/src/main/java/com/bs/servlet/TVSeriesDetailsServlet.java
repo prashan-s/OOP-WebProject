@@ -10,7 +10,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import com.bs.controller.TVSeriesDetailsController;
 
-@WebServlet(name = "TVSeriesServlet", urlPatterns = {"/TVSeriesDetailsServlet"})
+@WebServlet(name = "TVSeriesDetailsServlet", urlPatterns = {"/TVSeriesDetailsServlet"})
 public class TVSeriesDetailsServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 

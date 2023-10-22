@@ -33,19 +33,22 @@ public class TVSeriesServlet extends HttpServlet {
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("doPost: TVSeriesServlet");
-        System.out.println("Selected ID:" + request.getParameter("tvSeriesId"));
+        System.out.println("Selected ID:" + request.getParameter("tvsId"));
 
-        Integer seriesId = Integer.parseInt(request.getParameter("tvSeriesId"));
+        int seriesId = Integer.parseInt(request.getParameter("tvsId"));
 
         this.controller = new TVSeriesController(request, response);
         this.controller.selectTVSeries(seriesId);
-        
-//        // Check if the "Add TV Series" form was submitted
-//        if (request.getParameter("Add") != null) {
-//            this.controller = new TVSeriesController(request, response);
-//            this.controller.addTVSeries();
-//        } else {
-//            System.out.println("Form sumission failed");
-//        }
+       
+    }
+    
+    protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	System.out.println("doGet: TVSeriesServlet");
+    	System.out.println("selected ID: " + request.getParameter("tvSeriesId"));
+    	
+    	Integer seriesId = Integer.parseInt(request.getParameter("tvSeriesId"));
+    	
+    	this.controller = new TVSeriesController(request, response);
+        this.controller.selectTVSeries(seriesId);
     }
 }

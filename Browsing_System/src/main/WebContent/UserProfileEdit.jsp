@@ -18,7 +18,6 @@
 		<input type="number" name="userId" />
 	    <input type="submit" name= "action" value="submit">
 	</form>
-	<c:if test="${showDetails == true}">
 	<table>
 		<c:forEach items="${users}" var="user">
 			<tr>
@@ -39,14 +38,11 @@
 			</tr>
 		</c:forEach>
 	</table>
-	</c:if>
 	
 	<form method="post" action="UserServlet">
 		 <input type="submit" name = "action" value="edit">
 	</form>
 	
-	
-	<c:if test="${showEditForm == true} " >
 	<form method="put" action="UserServlet">	
 		<c:forEach items="${users}" var="user">
 			<label for="name">Name</label>
@@ -61,8 +57,6 @@
 			<input type="submit" name="action" value="edit">
 		</c:forEach>
 	</form>
-	</c:if>
-	
 
 </body>
 </html>
