@@ -91,7 +91,8 @@ public class UserController {
 				e.printStackTrace();
 			}
 			boolean updateStatus = this.updateUserByUser(user);
-
+			
+			System.out.println(updateStatus);
 			String message = "Updated Successfully!";
 
 			if (!updateStatus) {
@@ -101,20 +102,21 @@ public class UserController {
 				showEditForm = true;
 
 			}
-
-			request.setAttribute("message", message);
+			System.out.println("Updated:" + updateStatus);
+			request.setAttribute("xmessage", message);
 
 		}
 
-		System.out.print("Watiting to Dispatch");
+		System.out.println("Watiting to Dispatch");
 		try {
 
-			System.out.print("showEditForm" + showEditForm);
+			System.out.println("showEditForm" + showEditForm);
+			
 			request.setAttribute("showUserIdForm", showUserIdForm);
 			request.setAttribute("showDetails", showDetails);
 			request.setAttribute("showEditForm", showEditForm);
 			request.setAttribute("showUpdateStatus", showUpdateStatus);
-
+			
 			this.dispacther = request.getRequestDispatcher(jspPage);
 			dispacther.forward(request, response);
 

@@ -105,9 +105,9 @@ public class UserDAO implements IUserDAO{
 			stmt.setDate(4, dob);
 			
 			stmt.setInt(5, user.getUserId());
-				
+//				
 			rowUpdated = (stmt.executeUpdate() > 0);
-				
+//			rowUpdated = true;
 			}catch(Exception e) {
 				e.printStackTrace();
 		}
