@@ -36,10 +36,10 @@ public class MovieServlet extends HttpServlet {
 		System.out.println("doPost : movieServlet");
 		
 		int movieId = Integer.parseInt(request.getParameter("movieId"));
-		
+		String action  = request.getParameter("edit");
 		this.controller = new MovieController(request, response);
 		this.controller.selectMovie(movieId);
-		
+
 	}
 
 }

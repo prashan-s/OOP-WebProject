@@ -14,7 +14,11 @@ public class User {
     private String createdAdminName;
     private boolean isActive;
     private Date rowCreatedDatetime;
-
+   
+    public User() {
+    	
+    }
+    
     public User(int userId, String name, String email, String mobileNo, Date dob,
                 boolean premiumUser, String password, String createdAdminName,
                 boolean isActive, Date rowCreatedDatetime) {
@@ -69,4 +73,45 @@ public class User {
     public Date getRowCreatedDatetime() {
         return rowCreatedDatetime;
     }
+
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public void setMobileNo(String mobileNo) {
+		this.mobileNo = mobileNo;
+	}
+
+	public void setDob(Date dob) {
+		this.dob = dob;
+	}
+
+	public void setPremiumUser(boolean premiumUser) {
+		this.premiumUser = premiumUser;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public void setCreatedAdminName(String createdAdminName) {
+		this.createdAdminName = createdAdminName;
+	}
+
+	public void setActive(boolean isActive) {
+		this.isActive = isActive;
+	}
+
+	public void setRowCreatedDatetime(Date rowCreatedDatetime) {
+		this.rowCreatedDatetime = rowCreatedDatetime;
+	}
+    
 }

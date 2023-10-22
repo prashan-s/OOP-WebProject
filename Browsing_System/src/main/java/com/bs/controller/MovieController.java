@@ -22,6 +22,7 @@ public class MovieController {
 		this.response = response;
 		this.dispacther =  request.getRequestDispatcher("Movie.jsp");
 		
+		
 	}
 	
 	public void selectMovie(int movieId) {
