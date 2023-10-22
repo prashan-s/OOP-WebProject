@@ -3,7 +3,6 @@ package com.bs.dao;
 import com.bs.interfaces.ISubscriptionPlanDAO;
 import com.bs.model.SubscriptionPlan;
 import com.bs.utility.DBConnectionMSSQL;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

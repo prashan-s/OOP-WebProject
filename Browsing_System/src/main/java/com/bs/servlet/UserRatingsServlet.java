@@ -7,7 +7,6 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
 import com.bs.controller.UserRatingsController;
 
 @WebServlet(name = "UserRatingsServlet", urlPatterns = {"/UserRatingsServlet"})
@@ -29,9 +28,10 @@ public class UserRatingsServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("doPost : UserRatingsServlet");
 
-        int userId = Integer.parseInt(request.getParameter("userId"));
+        Integer rateId = Integer.parseInt(request.getParameter("rateId"));
 
         this.controller = new UserRatingsController(request, response);
-        this.controller.selectUserRatings(userId);
+        this.controller.selectUserRatings(rateId);
     }
+    	
 }

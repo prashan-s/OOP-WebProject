@@ -2,8 +2,7 @@ package com.bs.dao;
 
 import com.bs.interfaces.IUserFavouriteDAO;
 import com.bs.model.UserFavourites;
-import com.bs.utility.DBConnection;
-
+import com.bs.utility.DBConnectionMSSQL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -23,24 +22,24 @@ public class UserFavouritesDAO implements IUserFavouriteDAO {
     private static final String DELETE_USER_FAVOURITE = "DELETE FROM user_favourite WHERE fav_id = ?";
 
     @Override
-    public List<UserFavourites> selectUserFavourites(int userId) {
+    public List<UserFavourites> selectUserFavourites(int favId) {
         ArrayList<UserFavourites> userFavouritesList = new ArrayList<>();
 
         try {
-            Connection con = DBConnection.getConnection();
+            Connection con = DBConnectionMSSQL.getConnection();
             PreparedStatement stmt = con.prepareStatement(SELECT_USER_FAVOURITES_BY_USER_ID);
-            stmt.setInt(1, userId);
+            stmt.setInt(1, favId);
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
-                int favId = rs.getInt("fav_id");
+                int returnFavId = rs.getInt("fav_id");
                 int returnedUserId = rs.getInt("user_id");
                 String type = rs.getString("type");
                 int tvsId = rs.getInt("tvs_id");
                 int movieId = rs.getInt("movie_Id");
                 Date rowCreatedDatetime = rs.getDate("row_created_datetime");
 
-                UserFavourites userFavourites = new UserFavourites(favId, returnedUserId, type, tvsId, movieId, rowCreatedDatetime);
+                UserFavourites userFavourites = new UserFavourites(returnFavId, returnedUserId, type, tvsId, movieId, rowCreatedDatetime);
                 userFavouritesList.add(userFavourites);
             }
 
@@ -56,7 +55,7 @@ public class UserFavouritesDAO implements IUserFavouriteDAO {
         System.out.println(INSERT_USER_FAVOURITE);
 
         try {
-            Connection con = DBConnection.getConnection();
+            Connection con = DBConnectionMSSQL.getConnection();
             PreparedStatement stmt = con.prepareStatement(INSERT_USER_FAVOURITE);
 
             stmt.setInt(1, userFavourite.getUserId());
@@ -76,7 +75,7 @@ public class UserFavouritesDAO implements IUserFavouriteDAO {
         boolean rowDelete = false;
 
         try {
-            Connection con = DBConnection.getConnection();
+            Connection con = DBConnectionMSSQL.getConnection();
             PreparedStatement stmt = con.prepareStatement(DELETE_USER_FAVOURITE);
 
             stmt.setInt(1, favId);

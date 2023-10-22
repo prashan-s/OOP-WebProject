@@ -29,9 +29,9 @@ public class UserFavouritesServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("doPost : UserFavouritesServlet");
 
-        int userId = Integer.parseInt(request.getParameter("userId"));
+        Integer favouriteId = Integer.parseInt(request.getParameter("favId"));
 
         this.controller = new UserFavouritesController(request, response);
-        this.controller.selectUserFavourites(userId);
+        this.controller.selectUserFavourites(favouriteId);
     }
 }

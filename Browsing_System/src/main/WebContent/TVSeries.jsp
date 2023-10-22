@@ -12,7 +12,7 @@
     
     <form method="post" action="TVSeriesServlet">
         <label for="tvSeriesId">TV Series Id</label>
-        <input type="text" name="tvSeriesId">
+        <input type="number" name="tvSeriesId">
         <input type="submit" name="submit" value="Click Here">
     </form>
 
@@ -21,14 +21,15 @@
         <thead>
             <tr>
                 <th>Title</th>
-                <th>Director</th>
+                <th>url</th>
             </tr>
         </thead>
         <tbody>
             <c:forEach items="${seriesList}" var="tvSeries">
                 <tr>
                     <td>${tvSeries.title}</td>
-                    <td>${tvSeries.description}</td>
+					<td>${tvSeries.tvs_img_url}</td>
+
                 </tr>
             </c:forEach>
         </tbody>

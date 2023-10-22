@@ -10,7 +10,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import com.bs.controller.TVSeriesDetailsController;
 
-@WebServlet(name = "TVSeriesServlet", urlPatterns = {"/TVSeriesServlet"})
+@WebServlet(name = "TVSeriesServlet", urlPatterns = {"/TVSeriesDetailsServlet"})
 public class TVSeriesDetailsServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
@@ -34,8 +34,9 @@ public class TVSeriesDetailsServlet extends HttpServlet {
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("doPost : TVSeriesServlet");
+        System.out.println("Selected ID:" + request.getParameter("System.out.println(\"Selected ID:\" + request.getParameter(\"paymentId\"));"));
 
-        int tvsDetailId = Integer.parseInt(request.getParameter("tvsDetailId"));
+        Integer tvsDetailId = Integer.parseInt(request.getParameter("tvSeriesDetailsId"));
 
         this.controller = new TVSeriesDetailsController(request, response);
         this.controller.selectTVSeriesDetails(tvsDetailId);

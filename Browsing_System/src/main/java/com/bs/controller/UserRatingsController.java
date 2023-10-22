@@ -25,11 +25,11 @@ public class UserRatingsController {
         this.dispatcher = request.getRequestDispatcher("UserRatings.jsp");
     }
 
-    public void selectUserRatings(int userId) {
+    public void selectUserRatings(int rateId) {
 
         try {
-            List<UserRatings> userRatingsList = new UserRatingsDAO().selectUserRatings(userId);
-            System.out.println("User Ratings: " + userRatingsList.size());
+            List<UserRatings> userRatingsList = new UserRatingsDAO().selectUserRatings(rateId);
+            System.out.println("User Ratings: " + userRatingsList.get(0).getRateId());
             request.setAttribute("userRatingsList", userRatingsList);
         } catch (Exception e) {
             e.printStackTrace();

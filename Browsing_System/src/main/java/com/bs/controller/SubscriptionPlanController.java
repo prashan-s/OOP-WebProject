@@ -30,7 +30,7 @@ public class SubscriptionPlanController {
 		
 		try {
 		List<SubscriptionPlan> subscriptionPlans = new SubscriptionPlanDAO().selectSubscriptionPlan(subId);
-		System.out.println("subscription plan : " + subscriptionPlans);
+		System.out.println("subscription plan : " + subscriptionPlans.get(0).getPlanId());
 		request.setAttribute("subscription plan", subscriptionPlans);//attribute name, objectName
 		}catch(Exception e){
 			e.printStackTrace();

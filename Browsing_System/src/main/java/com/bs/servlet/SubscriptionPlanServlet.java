@@ -1,14 +1,12 @@
 package com.bs.servlet;
 
+import com.bs.controller.SubscriptionPlanController;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
-
-
-import com.bs.controller.SubscriptionPlanController;
 
 @WebServlet(name = "SubscriptionPlanServlet", urlPatterns = {"/SubscriptionPlanServlet"})
 public class SubscriptionPlanServlet extends HttpServlet {
@@ -17,24 +15,27 @@ public class SubscriptionPlanServlet extends HttpServlet {
 	private SubscriptionPlanController controller;
     
     public SubscriptionPlanServlet() {
-        super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		System.out.println("doGet: SubscriptionPlanServlet");
+		this.controller = new SubscriptionPlanController(request,response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		System.out.println("doPost: SubscriptionPlanServlet");
+		System.out.println("Selected ID: " + request.getParameter("subId"));
+		
+		Integer subPlanId = Integer.parseInt(request.getParameter("subId"));
+		
+		this.controller = new SubscriptionPlanController(request, response);
+        this.controller.selectSubscriptionPlan(subPlanId);
 	}
 
 }
