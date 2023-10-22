@@ -1,7 +1,6 @@
 package com.bs.dao;
 import com.bs.interfaces.IMovieDAO;
 import com.bs.model.Movie;
-import com.bs.utility.DBConnection;
 import com.bs.utility.DBConnectionMSSQL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;

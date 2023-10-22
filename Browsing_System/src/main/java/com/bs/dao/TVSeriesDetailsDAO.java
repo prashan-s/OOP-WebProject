@@ -2,8 +2,7 @@ package com.bs.dao;
 
 import com.bs.interfaces.ITVSeriesDetailsDAO;
 import com.bs.model.TVSeriesDetails;
-import com.bs.utility.DBConnection;
-
+import com.bs.utility.DBConnectionMSSQL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -33,7 +32,7 @@ public class TVSeriesDetailsDAO implements ITVSeriesDetailsDAO {
         ArrayList<TVSeriesDetails> seriesDetailsList = new ArrayList<>();
 
         try {
-            Connection con = DBConnection.getConnection();
+            Connection con = DBConnectionMSSQL.getConnection();
             PreparedStatement stmt = con.prepareStatement(SELECT_TV_SERIES_BY_ID);
             stmt.setInt(1, tvsDetailId);
             ResultSet rs = stmt.executeQuery();
@@ -71,7 +70,7 @@ public class TVSeriesDetailsDAO implements ITVSeriesDetailsDAO {
         System.out.println(INSERT_TV_SERIES);
 
         try {
-            Connection con = DBConnection.getConnection();
+            Connection con = DBConnectionMSSQL.getConnection();
             PreparedStatement stmt = con.prepareStatement(INSERT_TV_SERIES);
 
             stmt.setInt(1, seriesDetails.getTvsId());
@@ -97,7 +96,7 @@ public class TVSeriesDetailsDAO implements ITVSeriesDetailsDAO {
 
         boolean rowUpdate = false;
         try {
-            Connection con = DBConnection.getConnection();
+            Connection con = DBConnectionMSSQL.getConnection();
             PreparedStatement stmt = con.prepareStatement(UPDATE_TV_SERIES);
 
             stmt.setInt(1, seriesDetails.getTvsId());
@@ -128,7 +127,7 @@ public class TVSeriesDetailsDAO implements ITVSeriesDetailsDAO {
         boolean rowDelete = false;
 
         try {
-            Connection con = DBConnection.getConnection();
+            Connection con = DBConnectionMSSQL.getConnection();
             PreparedStatement stmt = con.prepareStatement(DELETE_TV_SERIES);
 
             stmt.setInt(1, tvsDetailId);

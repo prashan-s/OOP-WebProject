@@ -13,7 +13,7 @@
 
     <form method="post" action="TVSeriesDetailsServlet">
         <label for="tvSeriesDetailsId">TVSeries Details Id</label>
-        <input type="text" name="tvSeriesDetailsId">
+        <input type="number" name="tvSeriesDetailsId">
         <input type="submit" name="submit" value="Click Here">
     </form>
     

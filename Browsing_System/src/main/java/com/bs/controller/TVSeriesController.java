@@ -28,7 +28,7 @@ public class TVSeriesController {
     public void selectTVSeries(int seriesId) {
         try {
             List<TVSeries> seriesList = new TVSeriesDAO().selectTVSeries(seriesId);
-            System.out.println("TV Series: " + seriesList.get(0).getTitle());
+            System.out.println("TV Series: " + seriesList.getFirst().getTitle());
             request.setAttribute("seriesList", seriesList);
         } catch (Exception e) {
             e.printStackTrace();

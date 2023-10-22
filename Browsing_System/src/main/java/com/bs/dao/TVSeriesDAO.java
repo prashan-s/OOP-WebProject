@@ -2,8 +2,7 @@ package com.bs.dao;
 
 import com.bs.interfaces.ITVSeriesDAO;
 import com.bs.model.TVSeries;
-import com.bs.utility.DBConnection;
-
+import com.bs.utility.DBConnectionMSSQL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -31,13 +30,13 @@ public class TVSeriesDAO implements ITVSeriesDAO {
     private static final String DELETE_SERIES = "UPDATE tv_series SET is_active=0 WHERE tvs_id = ?";
 
     // Select TV series details
-    public List<TVSeries> selectTVSeries(int seriesId) {
+    public List<TVSeries> selectTVSeries(int series_Id) {
         ArrayList<TVSeries> seriesList = new ArrayList<>();
 
         try {
-            Connection con = DBConnection.getConnection();
+            Connection con = DBConnectionMSSQL.getConnection();
             PreparedStatement stmt = con.prepareStatement(SELECT_SERIES_BY_ID);
-            stmt.setInt(1, seriesId);
+            stmt.setInt(1, series_Id);
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
@@ -76,7 +75,7 @@ public class TVSeriesDAO implements ITVSeriesDAO {
         System.out.println(INSERT_SERIES);
 
         try {
-            Connection con = DBConnection.getConnection();
+            Connection con = DBConnectionMSSQL.getConnection();
             PreparedStatement stmt = con.prepareStatement(INSERT_SERIES);
 
             stmt.setString(1, series.getTitle());
@@ -104,7 +103,7 @@ public class TVSeriesDAO implements ITVSeriesDAO {
     public boolean updateTVSeries(TVSeries series) {
         boolean rowUpdate = false;
         try {
-            Connection con = DBConnection.getConnection();
+            Connection con = DBConnectionMSSQL.getConnection();
             PreparedStatement stmt = con.prepareStatement(UPDATE_SERIES);
 
             stmt.setString(1, series.getTitle());
@@ -136,7 +135,7 @@ public class TVSeriesDAO implements ITVSeriesDAO {
         boolean rowDelete = false;
 
         try {
-            Connection con = DBConnection.getConnection();
+            Connection con = DBConnectionMSSQL.getConnection();
             PreparedStatement stmt = con.prepareStatement(DELETE_SERIES);
 
             stmt.setInt(1, seriesId);

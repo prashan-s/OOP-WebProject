@@ -29,7 +29,7 @@ public class TVSeriesDetailsController {
 
         try {
             List<TVSeriesDetails> seriesDetailsList = new TVSeriesDetailsDAO().selectTVSeries(tvsDetailId);
-            System.out.println("TV Series Details: "  + seriesDetailsList.get(1).getSeason() + seriesDetailsList.get(2).getEpisode()+ seriesDetailsList.get(3).getDescription() + seriesDetailsList.get(4).getYear()+ + seriesDetailsList.get(5).getDuration());
+            //System.out.println("TV Series Details: "  + seriesDetailsList.get(1).getSeason() + seriesDetailsList.get(2).getEpisode()+ seriesDetailsList.get(3).getDescription() + seriesDetailsList.get(4).getYear()+ + seriesDetailsList.get(5).getDuration());
             request.setAttribute("seriesDetailsList", seriesDetailsList);
         } catch (Exception e) {
             e.printStackTrace();

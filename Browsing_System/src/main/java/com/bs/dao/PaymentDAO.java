@@ -4,14 +4,13 @@ import java.util.Date;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.bs.interfaces.IPaymentDAO;
 import com.bs.model.Payment;
-import com.bs.utility.DBConnection;
 import com.bs.utility.DBConnectionMSSQL;
-import com.mysql.jdbc.PreparedStatement;
 
 public class PaymentDAO implements IPaymentDAO{
 	
@@ -34,7 +33,7 @@ public class PaymentDAO implements IPaymentDAO{
 
 		try {
 		    con = DBConnectionMSSQL.getConnection();
-		    stmt = (PreparedStatement) con.prepareStatement(SELECT_PAYMENT_BY_ID);
+		    stmt = con.prepareStatement(SELECT_PAYMENT_BY_ID);
 		    stmt.setInt(1, paymentId);
 		    rs = stmt.executeQuery();
 		    
@@ -66,7 +65,7 @@ public class PaymentDAO implements IPaymentDAO{
 		PreparedStatement stmt = null;
 		
 		try {
-			con = DBConnection.getConnection();
+			con = DBConnectionMSSQL.getConnection();
 			stmt = (PreparedStatement) con.prepareStatement(INSERT_PAYMENT);
 			
 			stmt.setInt(1, payment.getUserId());

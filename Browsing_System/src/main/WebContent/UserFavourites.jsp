@@ -12,7 +12,7 @@
 
     <form method="post" action="UserFavouritesServlet">
         <label for="favId">UserFavourite Id</label>
-        <input type="text" name="favId">
+        <input type="number" name="favId">
         <input type="submit" name="submit" value="Click Here">
     </form>
 

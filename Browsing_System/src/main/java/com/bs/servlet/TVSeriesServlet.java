@@ -32,8 +32,9 @@ public class TVSeriesServlet extends HttpServlet {
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("doPost: TVSeriesServlet");
+        System.out.println("Selected ID:" + request.getParameter("tvSeriesId"));
 
-        int seriesId = Integer.parseInt(request.getParameter("seriesId"));
+        Integer seriesId = Integer.parseInt(request.getParameter("tvSeriesId"));
 
         this.controller = new TVSeriesController(request, response);
         this.controller.selectTVSeries(seriesId);

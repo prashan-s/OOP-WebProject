@@ -12,11 +12,32 @@
 	
 	<form method="post" action="UserRatingsServlet">
 		<label for="rateId">User Ratings Id</label>
-		<input type="text" name="rateId">
+		<input type="number" name="rateId">
 		<input type="submit" name="submit" value="Click Here">
 	</form>
 	
-	<h1>List of User Favourite List</h1>
+	<h1>List of User Ratings List</h1>
+	  <table>
+        <thead>
+            <tr>
+              <th>User ID</th>
+                <th>Type</th>
+                <th>TVSeries ID</th>
+                <th>Movie ID</th>
+                <th>Rates</th>
+            </tr>
+        </thead>
+        <tbody>
+            <c:forEach items="${userRatingsList}" var="rate">
+                <tr>
+                    <td>${rate.userId}</td>
+                    <td>${rate.type}</td>
+                    <td>${rate.tvsId }</td>
+					<td>${rate.movieId}</td>
+                    <td>${rate.rating }</td>
+            </c:forEach>
+        </tbody>
+    </table>
 
 </body>
 </html>
