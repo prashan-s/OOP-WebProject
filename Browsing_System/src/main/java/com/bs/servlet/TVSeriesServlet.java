@@ -25,6 +25,7 @@ public class TVSeriesServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("doGet: TVSeriesServlet");
         this.controller = new TVSeriesController(request, response);
+        this.controller.addTVSeries();
     }
 
     /**
@@ -38,5 +39,13 @@ public class TVSeriesServlet extends HttpServlet {
 
         this.controller = new TVSeriesController(request, response);
         this.controller.selectTVSeries(seriesId);
+        
+//        // Check if the "Add TV Series" form was submitted
+//        if (request.getParameter("Add") != null) {
+//            this.controller = new TVSeriesController(request, response);
+//            this.controller.addTVSeries();
+//        } else {
+//            System.out.println("Form sumission failed");
+//        }
     }
 }
