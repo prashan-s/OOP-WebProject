@@ -68,8 +68,9 @@ public class UserDAO implements IUserDAO{
 		return users;
 	}
 
-	public void insertUser(User user) {
+	public boolean insertUser(User user) {
 		
+		boolean rowInserted = false;
 		try {
 		Connection con = DBConnectionMSSQL.getConnection();
 		PreparedStatement stmt = con.prepareStatement(INSERT_USER);
@@ -80,11 +81,13 @@ public class UserDAO implements IUserDAO{
 		stmt.setDate(4, (java.sql.Date) user.getDob());
 		stmt.setString(5, user.getPassword());
 		
-		stmt.executeUpdate();
+		rowInserted = (stmt.executeUpdate() > 0);
+		
 		
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
+		return rowInserted;
 	}
 
 	public boolean updateUserByUser(User user){
