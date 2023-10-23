@@ -23,34 +23,27 @@ public class TVSeriesServlet extends HttpServlet {
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("doGet: TVSeriesServlet");
-        this.controller = new TVSeriesController(request, response);
-        String a = request.getParameter("action");
-        this.controller.doAction(a);
+    	this.controller = new TVSeriesController(request, response);
     }
 
     /**
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("doPost: TVSeriesServlet");
-        System.out.println("Selected ID:" + request.getParameter("tvsId"));
-
-        int seriesId = Integer.parseInt(request.getParameter("tvsId"));
-
-        this.controller = new TVSeriesController(request, response);
-        this.controller.selectTVSeries(seriesId);
+		this.controller = new TVSeriesController(request, response);
+		String a = request.getParameter("action");
+		controller.doAction(a);
        
     }
     
     protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	System.out.println("doGet: TVSeriesServlet");
-    	System.out.println("selected ID: " + request.getParameter("tvSeriesTitle"));
-    	
-    	//String seriesTitle = request.getParameter("tvSeriesTitle");
     	
     	this.controller = new TVSeriesController(request, response);
     	String a = request.getParameter("action");
-        this.controller.doAction(a);
+        controller.doAction(a);
     }
+    
+	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+	}
 }

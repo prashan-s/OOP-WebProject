@@ -125,7 +125,7 @@ public class TVSeriesDAO implements ITVSeriesDAO {
 
             stmt.setInt(14, series.getTvs_id());
 
-            rowUpdate = stmt.executeUpdate() > 0;
+            rowUpdate = (stmt.executeUpdate() > 0);
 
         } catch (Exception e) {
             e.printStackTrace();

@@ -9,58 +9,7 @@
 <title>User Profile Edit</title>
 </head>
 <body>
-<<<<<<< HEAD
-	<h1>H1</h1>
-	<h1>H1</h1>
-	<h1>H1</h1>
-	
-	<form method="post" action="UserServlet">
-		<label for="userId">User Id</label> 
-		<input type="number" name="userId" />
-	    <input type="submit" name= "action" value="submit">
-	</form>
-	<table>
-		<c:forEach items="${users}" var="user">
-			<tr>
-				<td>Name:</td>
-				<td>${user.name}</td>
-			</tr>
-			<tr>
-				<td>Email:</td>
-				<td>${user.email}</td>
-			</tr>
-			<tr>
-				<td>Mobile Number:</td>
-				<td>${user.mobileNo}</td>
-			</tr>
-			<tr>
-				<td>Date of Birth:</td>
-				<td>${user.dob}</td>
-			</tr>
-		</c:forEach>
-	</table>
-	
-	<form method="post" action="UserServlet">
-		 <input type="submit" name = "action" value="edit">
-	</form>
-	
-	<form method="put" action="UserServlet">	
-		<c:forEach items="${users}" var="user">
-			<label for="name">Name</label>
-			<input type="text" name="name" value="${user.name}" /><br>
-			<label for="email">Email</label>
-			<input type="email" name="email" value="${user.email}" /><br>
-			<label for="mobileNo">Mobile No</label>
-			<input type="tel" name="mobileNo" value="${user.mobileNo}" /><br>
-			<label for="dob">DOB</label>
-			<input type="date" name="dob" value="${user.dob}" /><br>
-			
-			<input type="submit" name="action" value="edit">
-		</c:forEach>
-	</form>
-=======
 	<c:set var="showUserIdForm" scope="session" value="true" />
->>>>>>> ce9835ab2d36f364539fd97921c56ed828bebc40
 
 
 	<h1>H1</h1>
