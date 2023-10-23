@@ -1,0 +1,252 @@
+/*-----------------------------------*\
+ * #USER INFO 
+\*-----------------------------------*/
+
+main {
+  min-height: 100vh;
+}
+
+.user-info-container {
+  margin-top: 7em;
+}
+
+.user-info-item-container {
+  padding: 3rem 5rem;
+  display: grid;
+  grid-template-columns: repeat(1, 0.8fr 2fr);
+  gap: 50px;
+  /* column-gap: 50px; */
+}
+
+.card {
+  margin: 0;
+  padding: 1.5rem 5%;
+  width: 100%;
+  background: radial-gradient(
+        178.94% 106.41% at 26.42% 106.41%,
+        #cccccc 0%,
+        rgba(255, 255, 255, 0) 71.88%
+      )
+      /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */,
+    #ffffff !important;
+  box-shadow: 0px 155px 62px rgba(0, 0, 0, 0.01),
+    0px 87px 52px rgba(0, 0, 0, 0.05), 0px 39px 39px rgba(0, 0, 0, 0.09),
+    0px 10px 21px rgba(0, 0, 0, 0.1), 0px 0px 0px rgba(0, 0, 0, 0.1) !important;
+  border-radius: 23px !important;
+  transition: all 0.8s cubic-bezier(0.15, 0.83, 0.66, 1) !important;
+}
+
+.user-info-heading {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.user-info-heading i {
+  font-size: 10rem;
+  color: #e0e0e0;
+}
+
+.user-info-card-btns {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.user-info-card-btns input {
+  width: 100%;
+  margin: 0.5rem 0;
+  padding: 1rem 2rem;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.user-info-card-btns input:hover,
+.btn-container input:hover {
+  background-color: var(--citrine);
+  color: var(--color-white);
+  font-weight: bold;
+  cursor: pointer;
+  opacity: 1;
+}
+
+.component-btn.clicked {
+  background-color: var(--citrine);
+  font-weight: bold;
+}
+
+h1 {
+  font-weight: 300;
+}
+
+h3 {
+  font-weight: 500;
+}
+
+hr {
+  width: 100%;
+}
+
+.contact-grid,
+.tour-history-grid {
+  display: grid;
+  grid-template-columns: repeat(1, 0.8fr 2fr);
+  column-gap: 20px;
+  align-items: center;
+}
+
+.contact-grid .labels > div,
+.contact-grid .data > div {
+  margin: 1.5rem 0;
+}
+
+.btn-container {
+  text-align: end;
+}
+
+.btn-container input {
+  padding: 1rem 2rem;
+  /* border-radius: 10px; */
+  background-color: var(--citrine);
+  opacity: 0.8;
+}
+
+.pass-change-card,
+.add-payment-method-card {
+  margin: 2rem 0 0 0;
+  background-color: var(--color-white);
+}
+
+.pass-change-section,
+.add-card-details-section {
+  margin: 2rem 0;
+}
+
+.pass-change-section,
+.add-card-details-section {
+  width: 60%;
+}
+
+.delete-description {
+  margin: 1rem 0;
+}
+
+.exp-date-cvv,
+.billing-country {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.exp-date-cvv .exp-date,
+.billing-country .country {
+  width: 60%;
+}
+
+.cvv,
+.billing-country .btn-container {
+  width: 25%;
+}
+
+.billing-country .btn-container input {
+  width: 100%;
+  padding: 0.7rem 2rem;
+}
+
+.tour-history-grid > div > div {
+  margin: 2rem 0;
+}
+
+.tour-history-image > div {
+  width: 200px;
+  height: 140px;
+}
+
+.tour-history-image > div > img {
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  border: solid 2px #00000062;
+}
+
+.your-info-card {
+  width: 30%;
+  margin: 0;
+  background-color: var(--color-white);
+  padding: 1.5rem 2%;
+  max-height: 80vh; /* Set maximum height to 90% of the viewport height */
+  overflow-y: auto; /* Enable card content scrolling */
+}
+
+.update-form {
+  width: 30%;
+  margin: 0 0 3rem 0;
+  display: none;
+  transition: display 0.5s ease;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 5;
+  background-color: rgba(0, 0, 0, 0.75);
+  display: none;
+}
+
+.card-heading {
+  margin: 0 0 1rem;
+}
+
+.card-heading p {
+  margin: 0;
+  font-size: 2rem;
+  text-align: center;
+  color: var(--color-green);
+}
+
+.submit-btn {
+  width: 100%;
+  margin: 1rem 0 0 0;
+  padding: 0.5rem 2rem;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-dark);
+  background-color: var(--color-light-green);
+}
+
+.submit-btn:hover {
+  cursor: pointer;
+  background-color: var(--color-green);
+  color: var(--color-light);
+}
+
+.show {
+  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hide {
+  display: none;
+}
+
+.tour-history-details {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(1, 1.8fr 1fr);
+  row-gap: 5px;
+}
+
+.tour-history-item-heading {
+  font-size: 1.5rem;
+}
+
+.welcome-user-heading {
+  color: var(--white);
+}

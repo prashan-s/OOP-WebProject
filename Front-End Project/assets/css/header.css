@@ -1,0 +1,15 @@
+.admin-panel {
+  display: flex;
+  justify-content: flex-start;
+  align-items: baseline;
+  padding: 0 !important;
+  margin-top: 10rem;
+}
+
+.admin-panel ul {
+  padding: 0 1rem;
+}
+
+.admin-drawer-btn {
+  padding: 0 !important;
+}
