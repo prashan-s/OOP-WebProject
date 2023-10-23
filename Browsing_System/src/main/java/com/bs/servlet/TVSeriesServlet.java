@@ -47,9 +47,10 @@ public class TVSeriesServlet extends HttpServlet {
     	System.out.println("doGet: TVSeriesServlet");
     	System.out.println("selected ID: " + request.getParameter("tvSeriesTitle"));
     	
-    	String seriesTitle = request.getParameter("tvSeriesTitle");
+    	//String seriesTitle = request.getParameter("tvSeriesTitle");
     	
     	this.controller = new TVSeriesController(request, response);
-        this.controller.updateTVSeries(seriesTitle);
+    	String a = request.getParameter("action");
+        this.controller.doAction(a);
     }
 }

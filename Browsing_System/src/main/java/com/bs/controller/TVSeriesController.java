@@ -75,9 +75,7 @@ public class TVSeriesController {
 			showTVSeriesIdForm = false;
 			showDetails = false;
 			showEditForm = false;
-			showUpdateStatus = true;
-			
-			
+			showUpdateStatus = true;			
 
 			TVSeries tvs = new TVSeries();
 
@@ -107,8 +105,7 @@ public class TVSeriesController {
 			tvs.setCrime_category(crime);
 			tvs.setThriller_category(thriller);
 			
-			this.dao.insertTVSeries(tvs);
-			
+			this.dao.insertTVSeries(tvs);			
 			
 			boolean insertedStatus = insertTVSeriesByAdmin(tvs);
 			
@@ -116,12 +113,81 @@ public class TVSeriesController {
 			
 			case "Edit":
 				
+				jspPage = "tvSeries.jsp";
+				showTVSeriesIdForm = false;
+				showDetails = false;
+				showEditForm = true;
+				showUpdateStatus = false;			
+
+				TVSeries tvsEdit = new TVSeries();
+
+				//Integer tvSIdEdit = Integer.parseInt(request.getParameter("tvsId"));
+				String titleEdit = request.getParameter("tvSeriesTitle");
+				String imageUrlEdit = request.getParameter("tvSeriesUrl");
+				boolean actionCEdit = Boolean.parseBoolean(request.getParameter("action_category"));
+				boolean adventureEdit = Boolean.parseBoolean(request.getParameter("adventure_category"));
+				boolean comedyEdit = Boolean.parseBoolean(request.getParameter("action_category"));
+				boolean scifyEdit = Boolean.parseBoolean(request.getParameter("scify_category"));
+				boolean horrorEdit = Boolean.parseBoolean(request.getParameter("horror_category"));
+				boolean romanceEdit = Boolean.parseBoolean(request.getParameter("romance_category"));
+				boolean scienceEdit = Boolean.parseBoolean(request.getParameter("science_category"));
+				boolean crimeEdit = Boolean.parseBoolean(request.getParameter("crime_category"));
+				boolean thrillerEdit = Boolean.parseBoolean(request.getParameter("thriller_category"));
+
+				//tvsEdit.setTvs_id(tvSIdEdit);
+				tvsEdit.setTitle(titleEdit);
+				tvsEdit.setTvs_img_url(imageUrlEdit);
+				tvsEdit.setAction_category(actionCEdit);
+				tvsEdit.setAdventure_category(adventureEdit);
+				tvsEdit.setComedy_category(comedyEdit);
+				tvsEdit.setScify_category(scifyEdit);
+				tvsEdit.setHorror_category(horrorEdit);
+				tvsEdit.setRomance_category(romanceEdit);
+				tvsEdit.setScience_category(scienceEdit);
+				tvsEdit.setCrime_category(crimeEdit);
+				tvsEdit.setThriller_category(thrillerEdit);
 				
-		}
+				this.dao.updateTVSeries(tvsEdit);			
+				
+				boolean updateStatus = updateTVSeriesByAdmin(tvsEdit);
+				
+				System.out.println(updateStatus);
+				String message = "Updated Successfully!";
+				System.out.println(message);
+				
+				if (updateStatus == false) {
+					message = "Update Failed!, Retry....";
+					System.out.println("Edit Form Show:" + showEditForm);
+				}
+				
+				request.setAttribute("xmessage", message);
+				System.out.println("Updated   " + updateStatus);
+
+			}
+
+			System.out.println("Watiting to Dispatch");
+			try {
+
+				System.out.println("showUpdateStatus" + showUpdateStatus);
+				
+				request.setAttribute("showUserIdForm", showTVSeriesIdForm);
+				request.setAttribute("showDetails", showDetails);
+				request.setAttribute("showEditForm", showEditForm);
+				request.setAttribute("showUpdateStatus", showUpdateStatus);
+				
+				this.dispatcher = request.getRequestDispatcher(jspPage);
+				dispatcher.forward(request, response);
+
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+				
+				//break;		
+				
+		}			
+			
 	
-			
-			
-	}
+
 	
 	private int getValueForId(String key) {
 		Cookie[] cookies = null;
@@ -163,9 +229,14 @@ public class TVSeriesController {
 			
 	}
 
-	public void updateTVSeries(String seriesTitle) {
-
-
-			
+	public boolean updateTVSeriesByAdmin(TVSeries tvseries) {
+		try {
+			boolean successUpdate = dao.updateTVSeries(tvseries);
+			request.setAttribute("isSuccessUpdate", successUpdate);
+			return true;
+		}catch(Exception e1) {
+			e1.printStackTrace();
+			return false;
+		}			
 	}
 }
