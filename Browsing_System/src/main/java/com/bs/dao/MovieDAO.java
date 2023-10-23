@@ -11,6 +11,13 @@ import java.sql.Date;
 
 public class MovieDAO implements IMovieDAO {
 	
+	private static final String SELECT_ALL_MOVIES = "SELECT movie_id, title, description, year, duration, quality, "
+			+ "watch_count, movie_img_url, movie_stream_url, action_category, "
+			+ "adventure_category, comedy_category, scify_category, horror_category, "
+			+ "romance_category, science_category, crime_category, thriller_category, "
+			+ "is_active, created_admin_name, row_created_datetime " 
+			+ "FROM movie";
+	
     private static final String SELECT_MOVIE_BY_ID = "SELECT movie_id, title, description, year, duration, quality, "
     												+ "watch_count, movie_img_url, movie_stream_url, action_category, "
     												+ "adventure_category, comedy_category, scify_category, horror_category, "
@@ -33,7 +40,57 @@ public class MovieDAO implements IMovieDAO {
     	 
     private static final String DELETE_MOVIE ="DELETE FROM movie WHERE movie_id = ?;";
     
-	
+    
+    //select movieDetails
+  	public  List<Movie> selectAllMovies(){
+  		
+  		ArrayList<Movie> movies = new ArrayList<>();
+  	
+  		try {
+  			
+  			Connection con = DBConnectionMSSQL.getConnection();	
+  			PreparedStatement stmt = con.prepareStatement(SELECT_ALL_MOVIES);
+  			ResultSet rs = stmt.executeQuery();
+  			
+  			while(rs.next()) {
+  				int retuernedMovie_id = rs.getInt("movie_id");
+  				String title = rs.getString("title");
+  				String description = rs.getString("description");
+  				int year = rs.getInt("year");
+  				int duration = rs.getInt("duration");
+  				String quality = rs.getString("quality");
+  				int watch_count = rs.getInt("watch_count");
+  				String movie_img_url = rs.getString("movie_img_url");
+  				String movie_stream_url = rs.getString("movie_stream_url");
+  				boolean action_category= rs.getBoolean("action_category");
+  				boolean adventure_category = rs.getBoolean("adventure_category");
+  				boolean comedy_category = rs.getBoolean("comedy_category");
+  				boolean scify_category = rs.getBoolean("scify_category");
+  				boolean horror_category = rs.getBoolean("horror_category");
+  				boolean romance_category = rs.getBoolean("romance_category");
+  				boolean science_category = rs.getBoolean("science_category");
+  				boolean crime_category = rs.getBoolean("crime_category");
+  				boolean thriller_category = rs.getBoolean("thriller_category");
+  				boolean is_active = rs.getBoolean("is_active");
+  				String created_admin_name = rs.getString("created_admin_name");
+  				Date row_created_datetime = rs.getDate("row_created_datetime");
+  				
+  				Movie movie = new Movie(retuernedMovie_id, title, description, year, duration, quality,
+  						watch_count, movie_img_url, movie_stream_url, action_category,
+  						adventure_category, comedy_category, scify_category, horror_category,
+  						romance_category, science_category, crime_category, thriller_category,
+  						is_active, created_admin_name, row_created_datetime);
+  				
+  				movies.add(movie);	
+  			}
+
+  		}catch(Exception e){
+  			e.printStackTrace();
+  		}
+  		
+  		return movies;
+  		
+  	}
 	
 	//select movieDetails
 	public  List<Movie> selectMovie(int movie_id){
