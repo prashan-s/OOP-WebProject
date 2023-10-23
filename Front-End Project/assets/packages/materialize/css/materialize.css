@@ -3428,11 +3428,11 @@ table span.badge {
           font-feature-settings: 'liga';
 }
 
-.container {
+/* .container {
   margin: 0 auto;
   max-width: 1280px;
   width: 90%;
-}
+} */
 
 @media only screen and (min-width: 601px) {
   .container {
@@ -3441,9 +3441,9 @@ table span.badge {
 }
 
 @media only screen and (min-width: 993px) {
-  .container {
+  /* .container {
     width: 70%;
-  }
+  } */
 }
 
 .col .row {

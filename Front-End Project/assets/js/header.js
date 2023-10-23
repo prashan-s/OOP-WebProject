@@ -1,23 +1,5 @@
 'use strict';
 
-window.onload = function () {
-  setInterval(setDateTimeNow, 1000);
-};
-
-$(document).ready(function () {
-  $('.fade').slick({
-    dots: true,
-    arrows: true,
-    infinite: true,
-    speed: 500,
-    fade: true,
-    cssEase: 'linear',
-    autoplay: true,
-    autoplaySpeed: 2000,
-  });
-});
-
-
 /**
  * navbar variables
  */
@@ -86,24 +68,4 @@ function toggleSignInSignUpCardForm(formHide, formShow, method) {
     }
   }
 
-}
-
-function setDateTimeNow() {
-  var dateTime = new Date();
-  var time = dateTime.toLocaleTimeString("en-US", {
-    hour12: false,
-    hour: "numeric",
-    minute: "numeric",
-  });
-
-  var options = {
-    weekday: "short",
-    month: "short",
-    day: "numeric",
-    year: "numeric",
-  };
-  var formattedDate = dateTime.toLocaleDateString("en-US", options);
-
-  document.getElementById("time").innerText = time;
-  document.getElementById("date").innerText = formattedDate;
 }

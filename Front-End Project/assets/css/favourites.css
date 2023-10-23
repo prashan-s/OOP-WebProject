@@ -1,5 +1,5 @@
 /*-----------------------------------*\
- * #MOVIE DETAIL 
+ * #FAVOURITES
 \*-----------------------------------*/
 
 main {
@@ -30,8 +30,8 @@ main {
 
 .movie-detail {
   /* background: url("../images/movie-detail-bg.png") no-repeat;
-    background-size: cover;
-    background-position: center; */
+      background-size: cover;
+      background-position: center; */
   padding-top: 130px;
   padding-bottom: var(--section-padding);
 }
@@ -103,83 +103,28 @@ main {
   color: var(--citrine);
 }
 
-.movie-detail .meta-wrapper {
-  margin-bottom: 30px;
-}
-
-.storyline {
-  color: var(--gray-x);
-  font-size: var(--fs-9);
-  font-weight: var(--fw-500);
-  line-height: 1.8;
-  margin-bottom: 40px;
-}
-
-.details-actions {
+.movie-heading-compartment {
   display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 20px 40px;
-  max-width: 460px;
-  background: var(--gunmetal-2);
-  padding: 25px;
-  border: 1px solid var(--jet);
-  border-radius: 4px;
-  margin-bottom: 30px;
+  justify-content: space-between;
 }
 
-.details-actions .share ion-icon {
-  font-size: 25px;
+.btn-section {
+  display: flex;
+  gap: 1em;
+  padding: 0 4em;
+  margin: 0 4em;
+}
+
+.filter-btn {
   color: var(--white);
-  margin-inline: auto;
-}
-
-.details-actions .share span {
-  color: var(--gainsboro);
-  font-size: var(--fs-11);
-  transition: var(--transition-1);
-}
-
-.details-actions .share:is(:hover, :focus) span {
-  color: var(--citrine);
-}
-
-.details-actions .title {
-  color: var(--white);
-  font-weight: var(--fw-700);
-}
-
-.details-actions .text {
-  font-size: var(--fs-11);
-  color: var(--gainsboro);
-}
-
-.details-actions .btn-primary {
-  font-size: 10px;
-  padding: 13px 26px;
-  letter-spacing: 0;
-  background: transparent;
-}
-
-.details-actions .btn-primary:is(:hover, :focus) {
-  background: var(--citrine);
-}
-
-.download-btn {
-  max-width: max-content;
-  background: var(--citrine);
-  color: var(--rich-black-fogra-29);
+  background: var(--raisin-black);
   font-size: var(--fs-11);
   font-weight: var(--fw-500);
-  text-transform: uppercase;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 20px 35px;
-  letter-spacing: 5px;
-  border-radius: 6px;
+  border: 2px solid var(--gunmetal-1);
+  padding: 12px 26px;
+  border-radius: 50px;
 }
 
-.download-btn ion-icon {
-  font-size: 16px;
+.filter-btn:focus {
+  border-color: var(--citrine);
 }
