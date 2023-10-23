@@ -71,7 +71,7 @@
                                     onclick="changeComponent(this.id, 'privacyContainer')">
                                 <input type="button" class="component-btn" value="Payment Method" id="payment"
                                     onclick="changeComponent(this.id, 'paymentContainer')">
-                                <input type="button" class="component-btn" value="Subscription" id="subscription"
+                                <input type="button" class="component-btn" value="Subscription Plans" id="subscription"
                                     onclick="changeComponent(this.id, 'subscriptionContainer')">
                                 <input type="button" class="component-btn" value="Watch List" id="watchList"
                                     onclick="changeComponent(this.id, 'watchListContainer')">
@@ -291,11 +291,67 @@
                         id="subscriptionContainer">
                         <div class="tour-history-component">
                             <div class="tour-history-heading">
-                                <h2>Subscription</h2>
+                                <h2>Subscription Plans</h2>
                             </div>
                             <hr>
-                            <div class="tour-history-description">
-
+                            <div class="subscription-plans">
+                                <div class="card pass-change-card">
+                                    <div class="user-privacy-sub-component">
+                                        <form action="../php/user_info_password_change_form_process.php" method="post"
+                                            onsubmit="return validateForm()">
+                                            <div class="subscription-plan-heading">
+                                                <h4>Monthly</h4>
+                                                <hr>
+                                            </div>
+                                            <div class="subscription-plan-card-body">
+                                                <h6>
+                                                    LKR XXXX
+                                                </h6>
+                                                <div class="btn-container">
+                                                    <input type="submit" value="Activate">
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="card pass-change-card">
+                                    <div class="user-privacy-sub-component">
+                                        <form action="../php/user_info_password_change_form_process.php" method="post"
+                                            onsubmit="return validateForm()">
+                                            <div class="subscription-plan-heading">
+                                                <h4>Quarterly</h4>
+                                                <hr>
+                                            </div>
+                                            <div class="subscription-plan-card-body">
+                                                <h6>
+                                                    LKR XXXX
+                                                </h6>
+                                                <div class="btn-container">
+                                                    <input type="submit" value="Activate">
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="card pass-change-card">
+                                    <div class="user-privacy-sub-component">
+                                        <form action="../php/user_info_password_change_form_process.php" method="post"
+                                            onsubmit="return validateForm()">
+                                            <div class="subscription-plan-heading">
+                                                <h4>Yearly</h4>
+                                                <hr>
+                                            </div>
+                                            <div class="subscription-plan-card-body">
+                                                <h6>
+                                                    LKR XXXX
+                                                </h6>
+                                                <div class="btn-container">
+                                                    <input type="submit" value="Activate">
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

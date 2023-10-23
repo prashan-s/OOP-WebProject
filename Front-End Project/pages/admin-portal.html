@@ -201,6 +201,9 @@
           <li onclick="showTvSeriesEpisodesGrid(this.id)" id="manageTvSeriesEpisodess" class="adming-heading">
             Manage Tv Series Episodes
           </li>
+          <li onclick="showSubscriptionPlanGrid(this.id)" id="manageSubscriptionPlan" class="adming-heading">
+            Manage Subscription Plans
+          </li>
         </ul>
       </li>
     </div>
@@ -600,31 +603,31 @@
               <p>Add a Movie</p>
             </div>
             <form action="../php/admin_portal_Movie_add_process.php" method="post" enctype="multipart/form-data">
-              <label for="txtMovieName">Title</label> <br />
-              <input type="text" name="Moviename" id="txtMovieName" required />
+              <label for="lblMovieName">Title</label> <br />
+              <input type="text" name="txtMovieName" id="txtMovieName" required />
               <br />
-              <label for="txtMovieDescription">Description</label> <br />
-              <input type="text" name="Moviedescription" id="txtMovieDescription" required />
+              <label for="lblMovieDescription">Description</label> <br />
+              <input type="text" name="txtMovieDescription" id="txtMovieDescription" required />
               <br />
-              <label for="txtMovieRoute">Year</label> <br />
-              <input type="text" name="route" id="txtMovieRoute" required />
+              <label for="lblMovieYear">Year</label> <br />
+              <input type="text" name="txtMovieYear" id="txtMovieYear" required />
               <br />
-              <label for="txtMovieDuration">Duration (Min)</label> <br />
-              <input type="text" name="duration" id="txtMovieDuration" required />
+              <label for="lblMovieDuration">Duration (Min)</label> <br />
+              <input type="text" name="txtMovieDuration" id="txtMovieDuration" required />
               <br />
-              <label for="txtMovieAmountperAdult">Quality</label>
+              <label for="lblMovieQuality">Quality</label>
               <br />
-              <input type="text" name="amountperadult" id="txtMovieAmountperAdult" required />
+              <input type="text" name="txtMovieQuality" id="txtMovieQuality" required />
               <br />
-              <label for="txtMovieAmountperChild">Image</label>
+              <label for="lblMovieImage">Image</label>
               <br />
-              <input type="file" name="Movieimage" id="imgMovieImage" accept="image/*" required />
+              <input type="file" name="fileMovieimage" id="fileMovieImage" accept="image/*" required />
               <br />
-              <label for="txtMovieTvSeriess">URL</label> <br />
-              <input type="text" name="amountperadult" id="txtMovieAmountperAdult" required />
+              <label for="lblMovieUrl">Stream URL</label> <br />
+              <input type="text" name="txtMovieUrl" id="txtMovieUrl" required />
               <br />
-              <label for="imgMovieImage">Category</label> <br />
-              <input type="file" name="Movieimage" id="imgMovieImage" accept="image/*" required />
+              <label for="lblMovieCategory">Category</label> <br />
+              <input type="text" name="txtMovieCategory" id="txtMovieCategory" required />
               <br />
               <input type="submit" class="submit-btn" value="Add" />
             </form>
@@ -636,38 +639,41 @@
               <p>Update Movie</p>
             </div>
             <form action="../php/admin_portal_Movie_update_process.php" method="post">
-              <label for="txtUpdateMovieName">Movie Name</label> <br />
-              <input type="text" name="Moviename" id="txtUpdateMovieName" required />
+              <label for="lblUpdateMovieName">Title</label> <br />
+              <input type="text" name="txtUpdateMovieName" id="txtUpdateMovieName" required />
               <br />
-              <label for="txtUpdateMovieDescription">Movie Description</label>
+              <label for="lblUpdateMovieDescription">Description</label>
               <br />
-              <input type="text" name="Moviedescription" id="txtUpdateMovieDescription" required />
+              <input type="text" name="txtUpdateMovieDescription" id="txtUpdateMovieDescription" required />
               <br />
-              <label for="txtUpdateMovieRoute">Route</label> <br />
-              <input type="text" name="route" id="txtUpdateMovieRoute" required />
+              <label for="lblUpdateMovieYear">Year</label> <br />
+              <input type="text" name="txtUpdateMovieYear" id="txtUpdateMovieYear" required />
               <br />
-              <label for="txtUpdateMovieDuration">Duration (Days)</label> <br />
-              <input type="text" name="duration" id="txtUpdateMovieDuration" required />
+              <label for="lblUpdateMovieDuration">Duration (Mins)</label> <br />
+              <input type="text" name="txtUpdateMovieDuration" id="txtUpdateMovieDuration" required />
               <br />
-              <label for="txtUpdateMovieAmountperAdult">Amount Per Adult (LKR)</label>
+              <label for="lblUpdateMovieQuality">Quality</label>
               <br />
-              <input type="text" name="amountperadult" id="txtUpdateMovieAmountperAdult" required />
+              <input type="text" name="txtUpdateMovieQuality" id="txtUpdateMovieQuality" required />
               <br />
-              <label for="txtUpdateMovieAmountperChild">Amount Per Child (LKR)</label>
+              <label for="lblUpdateMovieImage">Image</label>
               <br />
-              <input type="text" name="amountperchild" id="txtUpdateMovieAmountperChild" required />
+              <input type="file" name="fileUpdateMovieimage" id="fileUpdateMovieimage" accept="image/*" required />
               <br />
-              <label for="txtUpdateMovieStatus">Active / InActive</label> <br />
-              <select name="status" id="txtUpdateMovieStatus" required>
+              <label for="lblUpdateMovieUrl">Stream URL</label> <br />
+              <input type="text" name="txtUpdateMovieUrl" id="txtUpdateMovieUrl" required />
+              <br />
+              <label for="lblUpdateMovieCategory">Category</label> <br />
+              <input type="text" name="txtUpdateMovieCategory" id="txtUpdateMovieCategory" required />
+              <br />
+              <label for="lblUpdateMovieStatus">Active / InActive</label> <br />
+              <select name="txtUpdateMovieStatus" id="txtUpdateMovieStatus" required>
                 <option value=""></option>
                 <option value="1">Active</option>
                 <option value="0">InActive</option>
               </select>
-              <label for="txtUpdateMovieTvSeries">TvSeries</label> <br />
-              <select name="TvSeries" id="txtUpdateMovieTvSeries">
-                <option value="">-- Select a TvSeries --</option>
-              </select>
               <input type="hidden" name="rowid" id="editMovieRowId" />
+              <br />
               <input type="submit" class="submit-btn" value="Update" />
             </form>
           </div>
@@ -676,17 +682,17 @@
           <table>
             <thead>
               <tr>
-                <th class="hide">ID</th>
-                <th>Movie Name</th>
-                <th>Movie Description</th>
-                <th>Route</th>
-                <th>Duration (Days)</th>
-                <th>Amount Per Adult (LKR)</th>
-                <th>Amount Per Child (LKR)</th>
+                <th class="hide">Movie ID</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Year</th>
+                <th>Duration (Min)</th>
+                <th>Quality</th>
+                <th>Thumbnail</th>
+                <th>Stream Url</th>
+                <th>Category</th>
                 <th class="hide">Status</th>
                 <th>Active / InActive</th>
-                <th class="hide">TvSeriesID</th>
-                <th>TvSeries</th>
                 <th class="tbl-edit"></th>
                 <th class="tbl-delete"></th>
               </tr>
@@ -882,6 +888,105 @@
                 <th>Starting Date</th>
                 <th>Ending Date</th>
                 <th>TvSeriesEpisodes Percentage</th>
+                <th class="hide">Status</th>
+                <th>Active / InActive</th>
+                <th class="tbl-edit"></th>
+                <th class="tbl-delete"></th>
+              </tr>
+            </thead>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Manage Subscription Plans -->
+
+    <div class="manage-SubscriptionPlans-container-section container-section hide" id="manageSubscriptionPlans">
+      <div class="manage-SubscriptionPlans-heading">
+        <div class="manage-SubscriptionPlans-title">
+          <h4>Add / Edit / Delete Subscription Plans</h4>
+        </div>
+        <div class="add-SubscriptionPlans-btn">
+          <input type="button" value="Add a Tv Series Episodes" onclick="showAddSubscriptionPlansForm()" />
+        </div>
+      </div>
+      <div class="manage-SubscriptionPlans-grid">
+        <div class="add-new-SubscriptionPlans add-form" id="addSubscriptionPlansForm">
+          <div class="card">
+            <div class="card-heading">
+              <p>Add a SubscriptionPlans</p>
+            </div>
+            <form action="../php/admin_portal_SubscriptionPlans_add_process.php" method="post"
+              enctype="multipart/form-data">
+              <label for="txtSubscriptionPlansName">Tv Series Episodes Name</label> <br />
+              <input type="text" name="SubscriptionPlansname" id="txtSubscriptionPlansName" required />
+              <br />
+              <label for="txtSubscriptionPlansDescription">Tv Series Episodes Description</label> <br />
+              <input type="text" name="SubscriptionPlansdescription" id="txtSubscriptionPlansDescription" required />
+              <br />
+              <label for="txtSubscriptionPlansStartingDate">Starting Date</label> <br />
+              <input type="date" name="startingdate" id="txtSubscriptionPlansStartingDate" required />
+              <br />
+              <label for="txtSubscriptionPlansEndingDate">Ending Date</label> <br />
+              <input type="date" name="endingdate" id="txtSubscriptionPlansEndingDate" required />
+              <br />
+              <label for="txtSubscriptionPlansPercentage">SubscriptionPlans Percentage</label> <br />
+              <input type="text" name="percentage" id="txtSubscriptionPlansPercentage" required />
+              <br />
+              <label for="imgSubscriptionPlansImage">SubscriptionPlans Image</label> <br />
+              <input type="file" name="SubscriptionPlansimage" id="imgSubscriptionPlansImage" accept="image/*" required />
+              <br />
+              <input type="submit" class="submit-btn" value="Add" />
+            </form>
+          </div>
+        </div>
+        <div class="update-SubscriptionPlans update-form" id="updateSubscriptionPlansForm">
+          <div class="card">
+            <div class="card-heading">
+              <p>Update Subscription Plans</p>
+            </div>
+            <form action="../php/admin_portal_SubscriptionPlans_update_process.php" method="post">
+              <label for="txtUpdateSubscriptionPlansName">SubscriptionPlans Name</label> <br />
+              <input type="text" name="SubscriptionPlansname" id="txtUpdateSubscriptionPlansName" required />
+              <br />
+              <label for="txtUpdateSubscriptionPlansDescription">SubscriptionPlans Description</label>
+              <br />
+              <input type="text" name="SubscriptionPlansdescription" id="txtUpdateSubscriptionPlansDescription"
+                required />
+              <br />
+              <label for="txtUpdateSubscriptionPlansStartingDate">Starting Date</label>
+              <br />
+              <input type="date" name="startingdate" id="txtUpdateSubscriptionPlansStartingDate" required />
+              <br />
+              <label for="txtUpdateSubscriptionPlansEndingDate">Ending Date</label> <br />
+              <input type="date" name="endingdate" id="txtUpdateSubscriptionPlansEndingDate" required />
+              <br />
+              <label for="txtUpdateSubscriptionPlansPercentage">SubscriptionPlans Percentage</label>
+              <br />
+              <input type="text" name="percentage" id="txtUpdateSubscriptionPlansPercentage" required />
+              <br />
+              <label for="txtUpdateSubscriptionPlansStatus">Active / InActive</label> <br />
+              <select name="status" id="txtUpdateSubscriptionPlansStatus" required>
+                <option value=""></option>
+                <option value="1">Active</option>
+                <option value="0">InActive</option>
+              </select>
+              <input type="hidden" name="rowid" id="editSubscriptionPlansRowId" />
+              <input type="submit" class="submit-btn" value="Update" />
+            </form>
+          </div>
+        </div>
+        <div class="table-card">
+          <table>
+            <!-- <caption>Statement Summary</caption> -->
+            <thead>
+              <tr>
+                <th class="hide">ID</th>
+                <th>SubscriptionPlans Name</th>
+                <th>SubscriptionPlans Description</th>
+                <th>Starting Date</th>
+                <th>Ending Date</th>
+                <th>SubscriptionPlans Percentage</th>
                 <th class="hide">Status</th>
                 <th>Active / InActive</th>
                 <th class="tbl-edit"></th>

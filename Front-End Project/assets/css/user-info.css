@@ -250,3 +250,26 @@ hr {
 .welcome-user-heading {
   color: var(--white);
 }
+
+.subscription-plans {
+  display: flex;
+  gap: 2em;
+}
+
+.subscription-plan-heading {
+  text-align: center;
+}
+
+.subscription-plan-card-body {
+  margin-top: 2em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2em;
+}
+
+.subscription-plan-card-body .btn-container input {
+  border-radius: 8px;
+  font-size: 1.2em;
+}

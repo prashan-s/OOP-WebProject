@@ -193,7 +193,8 @@ main {
 .manage-customer-container-section,
 .manage-Movie-container-section,
 .manage-TvSeries-container-section,
-.manage-TvSeriesEpisodes-container-section {
+.manage-TvSeriesEpisodes-container-section,
+.manage-SubscriptionPlans-container-section {
   margin: 4rem 5rem 5rem 4rem;
   padding-top: 5rem;
 }
@@ -202,7 +203,8 @@ main {
 .manage-customer-heading,
 .manage-Movie-heading,
 .manage-TvSeries-heading,
-.manage-TvSeriesEpisodes-heading {
+.manage-TvSeriesEpisodes-heading,
+.manage-SubscriptionPlans-heading {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -212,7 +214,8 @@ main {
 .manage-customer-heading > div,
 .manage-Movie-heading > div,
 .manage-TvSeries-heading > div,
-.manage-TvSeriesEpisodes-heading > div {
+.manage-TvSeriesEpisodes-heading > div,
+.manage-SubscriptionPlans-heading > div {
   margin: 0 1rem;
 }
 
@@ -220,7 +223,8 @@ main {
 .add-customer-btn,
 .add-Movie-btn,
 .add-TvSeries-btn,
-.add-TvSeriesEpisodes-btn {
+.add-TvSeriesEpisodes-btn,
+.add-SubscriptionPlans-btn {
   display: flex;
   justify-content: flex-start;
   margin-bottom: 1rem;
@@ -230,7 +234,8 @@ main {
 .add-customer-btn input,
 .add-Movie-btn input,
 .add-TvSeries-btn input,
-.add-TvSeriesEpisodes-btn input {
+.add-TvSeriesEpisodes-btn input,
+.add-SubscriptionPlans-btn input {
   padding: 0.5rem 1rem;
   border-radius: 5px;
 }
@@ -239,7 +244,8 @@ main {
 .add-customer-btn input:hover,
 .add-Movie-btn input:hover,
 .add-TvSeries-btn input:hover,
-.add-TvSeriesEpisodes-btn input:hover {
+.add-TvSeriesEpisodes-btn input:hover,
+.add-SubscriptionPlans-btn input:hover {
   cursor: pointer;
   color: var(--white);
   background-color: var(--color-green);
@@ -249,7 +255,8 @@ main {
 .manage-customer-grid,
 .manage-Movie-grid,
 .manage-TvSeries-grid,
-.manage-TvSeriesEpisodes-grid {
+.manage-TvSeriesEpisodes-grid,
+.manage-SubscriptionPlans-grid {
   margin-top: 1rem;
 }
 
@@ -262,7 +269,9 @@ main {
 .add-new-TvSeries,
 .update-TvSeries,
 .add-new-TvSeriesEpisodes,
-.update-TvSeriesEpisodes {
+.update-TvSeriesEpisodes,
+.add-new-SubscriptionPlans,
+.update-SubscriptionPlans {
   width: 30%;
   margin: 0 0 3rem 0;
   display: none;
@@ -285,7 +294,8 @@ main {
 .manage-customer-title,
 .manage-Movie-title,
 .manage-TvSeries-title,
-.manage-TvSeriesEpisodes-title {
+.manage-TvSeriesEpisodes-title,
+.manage-SubscriptionPlans-title {
   color: var(--citrine);
 }
 

@@ -221,6 +221,19 @@ function showTvSeriesEpisodesGrid(id) {
   closeOverlay();
 }
 
+function showSubscriptionPlanGrid(id) {
+  hideGrids();
+  deselectHeading();
+
+  const selectedHeading = document.getElementById(id);
+  selectedHeading.classList.add("selected");
+
+  const manageSubscriptionPlans = document.getElementById("manageSubscriptionPlans");
+  manageSubscriptionPlans.classList.remove("hide");
+
+  closeOverlay();
+}
+
 function hideGrids() {
   const containers = document.getElementsByClassName("container-section");
 
@@ -285,6 +298,16 @@ function showAddTvSeriesEpisodesForm() {
 
   const addTvSeriesEpisodesForm = document.getElementById("addTvSeriesEpisodesForm");
   addTvSeriesEpisodesForm.classList.toggle("show");
+}
+
+function showAddSubscriptionPlansForm() {
+  const updateSubscriptionPlansForm = document.getElementById("updateSubscriptionPlansForm");
+  if (updateSubscriptionPlansForm.classList.contains("show")) {
+    updateSubscriptionPlansForm.classList.remove("show");
+  }
+
+  const addSubscriptionPlansForm = document.getElementById("addSubscriptionPlansForm");
+  addSubscriptionPlansForm.classList.toggle("show");
 }
 
 function showUpdatedMemberForm() {
