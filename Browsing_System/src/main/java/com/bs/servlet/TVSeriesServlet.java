@@ -25,7 +25,8 @@ public class TVSeriesServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("doGet: TVSeriesServlet");
         this.controller = new TVSeriesController(request, response);
-        this.controller.addTVSeries();
+        String a = request.getParameter("action");
+        this.controller.doAction(a);
     }
 
     /**
@@ -44,11 +45,11 @@ public class TVSeriesServlet extends HttpServlet {
     
     protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	System.out.println("doGet: TVSeriesServlet");
-    	System.out.println("selected ID: " + request.getParameter("tvSeriesId"));
+    	System.out.println("selected ID: " + request.getParameter("tvSeriesTitle"));
     	
-    	Integer seriesId = Integer.parseInt(request.getParameter("tvSeriesId"));
+    	String seriesTitle = request.getParameter("tvSeriesTitle");
     	
     	this.controller = new TVSeriesController(request, response);
-        this.controller.selectTVSeries(seriesId);
+        this.controller.updateTVSeries(seriesTitle);
     }
 }

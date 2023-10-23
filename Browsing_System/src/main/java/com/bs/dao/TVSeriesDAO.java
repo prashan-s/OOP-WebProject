@@ -71,8 +71,9 @@ public class TVSeriesDAO implements ITVSeriesDAO {
     }
 
     // Insert a new TV series
-    public void insertTVSeries(TVSeries series) {
+    public boolean insertTVSeries(TVSeries series) {
         System.out.println(INSERT_SERIES);
+        boolean rowInserted = false;
 
         try {
             Connection con = DBConnectionMSSQL.getConnection();
@@ -92,10 +93,13 @@ public class TVSeriesDAO implements ITVSeriesDAO {
             stmt.setBoolean(12, series.isActive());
 
             stmt.executeUpdate();
+            
+            return rowInserted;
 
         } catch (Exception e) {
             e.printStackTrace();
         }
+		return rowInserted;
     }
 
     // Update TV series
