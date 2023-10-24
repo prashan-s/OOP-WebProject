@@ -21,6 +21,13 @@
 			
 		</c:when>
 		
+		<c:when test="${showDeleteForm == true}">
+			<form method="post" action="UserServlet">
+					<label for="userId">delete account description</label>  
+					<input type="submit" name="action" value="deleteAccount">
+			</form>
+		</c:when>	
+		
 		<c:when test="${showPwEditForm == true}">
 			
 			<form method ="post"  action="UserServlet">	
@@ -40,6 +47,11 @@
 		<c:when test="${showPwChangeStatus == true}">
 			<div>	
 				<c:out value="${pwChangeMessage}"/>
+			</div>
+		</c:when>
+		<c:when test="${showDeleteStatus == true}">
+			<div>	
+				<c:out value="${deletionMessage}"/>
 			</div>
 		</c:when>
 		
