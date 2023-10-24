@@ -56,6 +56,12 @@
 			</div>
 		</c:when>
 		
+		<c:when test="${showSignInStatus == true}">
+			<div>
+				<c:out value ="${loginMessage}"/>
+			</div>
+		</c:when>
+		
 		
 	
 	</c:choose>
