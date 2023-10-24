@@ -21,13 +21,21 @@
 		</c:when>
 
 		<c:when test="${showDetails == true}">
-			<table>
+			<table border="1">
+			<thead>
+			<tr>
+			<th>Title</th>
+			<th>Image</th>
+			</tr>
+			</thead>
+			<tbody>
 				<c:forEach items="${seriesList}" var="tvSeries">
 					<tr>
 						<td>${tvSeries.title}</td>
 						<td>${tvSeries.tvs_img_url}</td>
 					</tr>
 				</c:forEach>
+				</tbody>
 			</table>
 
 			<form method="post" action="TVSeriesServlet">

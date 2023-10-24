@@ -124,7 +124,7 @@ public class TVSeriesController {
 
 			System.out.println("showUpdateStatus" + showUpdateStatus);
 
-			request.setAttribute("showUserIdForm", showTVSeriesIdForm);
+			request.setAttribute("showTVSeriesIdForm", showTVSeriesIdForm);
 			request.setAttribute("showDetails", showDetails);
 			request.setAttribute("showEditForm", showEditForm);
 			request.setAttribute("showUpdateStatus", showUpdateStatus);
@@ -160,7 +160,7 @@ public class TVSeriesController {
 			try {
 				tvSeriesId = Integer.parseInt(this.request.getParameter("userId"));
 			} catch (Exception ex) {
-				System.out.println("Error with User ID");
+				System.out.println("Error with tv series ID");
 			}
 		}
 		return tvSeriesId;
