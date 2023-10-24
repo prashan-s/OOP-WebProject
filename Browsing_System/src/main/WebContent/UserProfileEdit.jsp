@@ -11,21 +11,18 @@
 <body>
 	<c:set var="showUserIdForm" scope="session" value="true" />
 
-
-	<h1>H1</h1>
-	<h1>H1</h1>
-	<h1>H1</h1>
 	<c:choose>
 		<c:when test="${showUserIdForm == true}">
 			<form method="post" action="UserServlet">
-				<label for="userId">User Id</label> <input type="number"
-					name="userId"> <input type="submit" name="action"
-					value="submit">
+				<label for="userId">User Id</label> 
+				<input type="number" name="userId"> 
+				<input type="submit" name="action" value="submit">
 			</form>
 		</c:when>
+		
 		<c:when test="${showDetails == true}">
+
 			<table>
-				<c:forEach items="${users}" var="user">
 					<tr>
 						<td>Name:</td>
 						<td>${user.name}</td>
@@ -42,16 +39,16 @@
 						<td>Date of Birth:</td>
 						<td>${user.dob}</td>
 					</tr>
-				</c:forEach>
 			</table>
 
 			<form method="post" action="UserServlet">
 				<input type="submit" name="action" value="edit">
 			</form>
 		</c:when>
+		
 		<c:when test="${showEditForm == true}">
 			<form method="post" action="UserServlet">
-				<c:forEach items="${users}" var="user">
+			
 					<label for="name">Name</label>
 					<input type="text" name="name" value="${user.name}" />
 					<br>
@@ -66,23 +63,22 @@
 					<br>
 
 					<input type="submit" name="action" value="update">
-				</c:forEach>
+			
 			</form>
 		</c:when>
 	
 		<c:when test="${showUpdateStatus == true} ">
-			<h1>"${xmessage}"</h1>
-			<c:out value="${xmessage}"/>
+			<div>
+				<h1>"${xmessage}"</h1>
+				<c:out value="${xmessage}"/>
+			</div>
 		</c:when>
-		
-		
 		<c:otherwise>
-			<c:if test="${1==1}">
-				<h1>error</h1>
-				
-			</c:if>
+				<c:out value="${xmessage}"/>
 		</c:otherwise>
 	
+		
+				
 	</c:choose>
 </body>
 </html>

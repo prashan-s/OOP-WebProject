@@ -32,10 +32,10 @@ public class UserDAO implements IUserDAO{
 	private static final String DELETE_USER = "DELETE FROM users "
 											+ "WHERE user_id = ? ";	
 
-	public List<User> selectUser(int userId) {
+	public User selectUser(int userId) {
 		
 		ArrayList<User> users = new ArrayList<>();
-		
+		User user = null;
 		try {
 		Connection con =  DBConnectionMSSQL.getConnection();
 		PreparedStatement stmt = con.prepareStatement(SELECT_USER_BY_ID);
@@ -54,18 +54,19 @@ public class UserDAO implements IUserDAO{
 			boolean is_active = rs.getBoolean("is_active");
 			Date row_created_datetime = rs.getDate("row_created_datetime");
 		
-			User user = new User(returnedUserId , name , email , mobileNo , dob , premium_user ,
+			user = new User(returnedUserId , name , email , mobileNo , dob , premium_user ,
 					password , created_admin_name ,is_active ,row_created_datetime);
 			
-			users.add(user);
-		
+			//users.add(user);
+			
 		}
 
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
+		return user;
 		
-		return users;
+		
 	}
 
 	public boolean insertUser(User user) {
@@ -105,9 +106,8 @@ public class UserDAO implements IUserDAO{
 			stmt.setDate(4, dob);
 			
 			stmt.setInt(5, user.getUserId());
-//				
+				
 			rowUpdated = (stmt.executeUpdate() > 0);
-//			rowUpdated = true;
 			}catch(Exception e) {
 				e.printStackTrace();
 		}
@@ -143,15 +143,12 @@ public class UserDAO implements IUserDAO{
 		try {
 			Connection con = DBConnectionMSSQL.getConnection();
 			PreparedStatement stmt = con.prepareStatement(UPDATE_PASSWORD);
-			ResultSet rs = stmt.executeQuery();
-			
-			while(rs.next()) {
-				
+		
 				stmt.setString(1, user.getPassword());
 				stmt.setInt(2,user.getUserId());
 				
 				rowUpdated = (stmt.executeUpdate() > 0);
-			}
+			
 		}catch(Exception e){
 			e.printStackTrace();
 		}
