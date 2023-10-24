@@ -188,3 +188,12 @@ CREATE TABLE user_payment_method(
 CONSTRAINT fk_payment_method_user_id FOREIGN KEY(user_id) REFERENCES users (user_id)
 );
 
+
+
+ALTER TABLE tv_series_details
+DROP CONSTRAINT fk_tv_series_tvs_id;
+
+ALTER TABLE tv_series
+ADD CONSTRAINT fk_tv_series_tvs_id
+FOREIGN KEY (tvs_id) REFERENCES tv_series_details(tvs_id)
+ON DELETE CASCADE ON UPDATE CASCADE

@@ -19,6 +19,13 @@
 					type="number" name="tvSeriesDetailsId"> <input
 					type="submit" name="action" value="submit">
 			</form>
+			<br>
+			<br>
+
+			<form method="post" action="TVSeriesDetailsServlet">
+				<input type="submit" name="action" value="add">
+			</form>
+
 		</c:when>
 
 		<c:when test="${showDetails == true}">
@@ -49,6 +56,7 @@
 			<form method="post" action="TVSeriesDetailsServlet">
 				<input type="submit" name="action" value="edit">
 			</form>
+
 
 		</c:when>
 
@@ -84,26 +92,80 @@
 						value="${tvSeriesDetails.quality}">
 					<br>
 					<br>
-					
+
 					<label for="watchCount">Watch Count</label>
-					<input type="number" name="watchCount" value="${tvSeriesDetails.watchCount}">
+					<input type="number" name="watchCount"
+						value="${tvSeriesDetails.watchCount}">
 					<br>
 					<br>
 					<label for="streamUrl">TVSeries Stream URl</label>
-					<input type="text" name="streamUrl" value="${tvSeriesDetails.tvsStreamUrl}">
+					<input type="text" name="streamUrl"
+						value="${tvSeriesDetails.tvsStreamUrl}">
 					<br>
 					<br>
 					<label for="adminName">Created Admin Name</label>
-					<input type="text" name="adminName"  value="${tvSeriesDetails.createdAdminName}">
+					<input type="text" name="adminName"
+						value="${tvSeriesDetails.createdAdminName}">
 					<br>
 					<br>
-									
+
 					<input type="submit" name="action" Value="update">
 				</c:forEach>
 			</form>
 		</c:when>
 
+		<c:when test="${showAddForm == true}">
+			<form method="post" action="TVSeriesDetailsServlet">
+				
+					<label for="season_i">Season</label>
+					<input type="number" name="season_i">
+					<br>
+					<br>
+					<label for="episode_i">Episode</label>
+					<input type="number" name="episode_i">
+					<br>
+					<br>
+					<label for="description_i">Description</label>
+					<input type="text" name="description_i">
+					<br>
+					<br>
+					<label for="year_i">Year</label>
+					<input type="number" name="year_i">
+					<br>
+					<br>
+					<label for="duration_i">Duration</label>
+					<input type="number" name="duration_i">
+					<br>
+					<br>
+					<label for="quality_i">Quality</label>
+					<input type="text" name="quality_i">
+					<br>
+					<br>
+
+					<label for="watchCount_i">Watch Count</label>
+					<input type="number" name="watchCount_i">
+					<br>
+					<br>
+					<label for="streamUrl_i">TVSeries Stream URl</label>
+					<input type="text" name="streamUrl_i">
+					<br>
+					<br>
+					<label for="adminName_i">Created Admin Name</label>
+					<input type="text" name="adminName_i">
+					<br>
+					<br>
+
+					<input type="submit" name="action" Value="insert">
+			
+			</form>
+		</c:when>
+
 		<c:when test="${showUpdateStatus == true} ">
+			<h1>"${xmessage}"</h1>
+			<c:out value="${xmessage}" />
+		</c:when>
+
+		<c:when test="${showInsertStatus == true} ">
 			<h1>"${xmessage}"</h1>
 			<c:out value="${xmessage}" />
 		</c:when>
