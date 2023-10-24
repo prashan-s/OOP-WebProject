@@ -26,7 +26,7 @@ public class MovieServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("doGet : movieServlet");
 		this.controller = new MovieController(request, response);
-		
+		this.controller.selectAllMovies();
 	}
 
 	/**

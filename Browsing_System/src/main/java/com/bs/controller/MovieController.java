@@ -20,9 +20,26 @@ public class MovieController {
 	public MovieController(HttpServletRequest request, HttpServletResponse response){
 		this.request = request;
 		this.response = response;
-		this.dispacther =  request.getRequestDispatcher("Movie.jsp");
+		//this.dispacther =  request.getRequestDispatcher("Movie.jsp");
+		this.dispacther =  request.getRequestDispatcher("./WebApp/pages/admin-portal.jsp");
 		
+	}
+	
+	public void selectAllMovies() {
 		
+		try {
+		List<Movie> movies = new MovieDAO().selectAllMovies();
+		System.out.println("movies : " + movies.getFirst().getTitle());
+		request.setAttribute("movieData", movies);//attribute name, objectName
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		try {
+			dispacther.forward(request, response);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void selectMovie(int movieId) {
