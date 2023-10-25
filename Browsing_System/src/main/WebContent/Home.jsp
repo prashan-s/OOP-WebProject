@@ -9,8 +9,8 @@
 </head>
 <body>
 <c:set var="showSignInForm" scope="session" value="true"/>
-	<c:choose>
-		<c:when test="${showSignInForm == true}">
+	
+		<c:if test="${showSignInForm == true}">
 		    <form method="post" action="UserServlet">
 		        
 		        <label for="userName">User Name:</label>
@@ -23,8 +23,8 @@
 		        <input type="submit" name = "action" value="signUp"><br>
 		    </form>
 	
-		</c:when>
-		<c:when test="${showSignUpForm == true}">
+		</c:if>
+		<c:if test="${showSignUpForm == true}">
 	    	<form method="post" action="UserServlet" >
 	        
 		        <label for="userName">User Name:</label>
@@ -48,24 +48,20 @@
 		        <input type="submit" name = "action" value="register"><br>
 		    </form>
 
-		</c:when>
+		</c:if>
 		
-		<c:when test="${showSignUpStatus == true}">
+		<c:if test="${showSignUpStatus == true}">
 			<div>
 				<c:out value ="${SignUpMessage}"/>
 			</div>
-		</c:when>
+		</c:if>
 		
-		<c:when test="${showSignInStatus == true}">
+		<c:if test="${showSignInStatus == true}">
 			<div>
 				<c:out value ="${loginMessage}"/>
 			</div>
-		</c:when>
-		
-		
+		</c:if>
 	
-	</c:choose>
-
 
 </body>
 </html>

@@ -52,9 +52,7 @@ public class UserWatchHistoryDAO implements IUserWatchHistoryDAO{
             e.printStackTrace();
         }
 
-        for(UserWatchHistory h : userWatchHistory) {
-        	System.out.println(h);
-        }
+       
         return userWatchHistory;
     }
     

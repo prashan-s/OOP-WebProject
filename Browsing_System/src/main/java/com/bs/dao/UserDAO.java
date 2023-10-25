@@ -73,7 +73,7 @@ public class UserDAO implements IUserDAO {
 
 			while (rs.next()) {
 				password = rs.getString("password");
-				System.out.println("dao " +password);
+				System.out.println("dao " + password);
 			}
 
 		} catch (Exception e) {

@@ -10,7 +10,10 @@ public class SubscriptionPlan {
     private float amount;
     private boolean isActive;
     private Date rowCreatedDatetime;
-
+    
+    public SubscriptionPlan() {
+    	
+    }
     public SubscriptionPlan(int planId, String description, int duration, float amount,
                             boolean isActive, Date rowCreatedDatetime) {
         this.planId = planId;
@@ -44,4 +47,30 @@ public class SubscriptionPlan {
     public Date getRowCreatedDatetime() {
         return rowCreatedDatetime;
     }
+    public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public void setPlanId(int planId) {
+		this.planId = planId;
+	}
+
+	public void setDuration(int duration) {
+		this.duration = duration;
+	}
+
+	public void setAmount(float amount) {
+		this.amount = amount;
+	}
+
+	public void setActive(boolean isActive) {
+		this.isActive = isActive;
+	}
+
+
+	
 }

@@ -17,25 +17,17 @@ public class SubscriptionPlanServlet extends HttpServlet {
     public SubscriptionPlanServlet() {
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("doGet: SubscriptionPlanServlet");
 		this.controller = new SubscriptionPlanController(request,response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("doPost: SubscriptionPlanServlet");
-		System.out.println("Selected ID: " + request.getParameter("subId"));
-		
-		Integer subPlanId = Integer.parseInt(request.getParameter("subId"));
 		
 		this.controller = new SubscriptionPlanController(request, response);
-        this.controller.selectSubscriptionPlan(subPlanId);
+		String a = request.getParameter("action");
+		controller.doAction(a);
 	}
 
 }

@@ -12,9 +12,10 @@ import java.sql.Date;
 
 public class SubscriptionPlanDAO implements ISubscriptionPlanDAO {
 
-    private static final String SELECT_SUBSCRIPTION_PLAN_BY_ID = "SELECT plan_id, description, duration_in_months, amount, is_active, row_created_datetime "
+    private static final String SELECT_ACTIVE_SUBSCRIPTION = "SELECT plan_id, description, duration_in_months, amount, is_active, row_created_datetime "
             + "FROM subscription_plan "
-            + "WHERE plan_id = ?";
+            + "WHERE is_active = 1 "
+            + "ORDER BY duration_in_months ASC ";
 
     private static final String INSERT_SUBSCRIPTION_PLAN = "INSERT INTO subscription_plan (description, duration_in_months, amount, is_active) "
             + "VALUES (?, ?, ?, ?)";
@@ -24,24 +25,25 @@ public class SubscriptionPlanDAO implements ISubscriptionPlanDAO {
 
     private static final String DELETE_SUBSCRIPTION_PLAN = "DELETE FROM subscription_plan WHERE plan_id = ?";
 
-    public List<SubscriptionPlan> selectSubscriptionPlan(int planId) {
+    public List<SubscriptionPlan> selectSubscriptionPlan() {
+    	
         ArrayList<SubscriptionPlan> subscriptionPlans = new ArrayList<>();
 
         try {
             Connection con = DBConnectionMSSQL.getConnection();
-            PreparedStatement stmt = con.prepareStatement(SELECT_SUBSCRIPTION_PLAN_BY_ID);
-            stmt.setInt(1, planId);
+            PreparedStatement stmt = con.prepareStatement(SELECT_ACTIVE_SUBSCRIPTION);
+      
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
-                int returnedPlanId = rs.getInt("plan_id");
+                int PlanId = rs.getInt("plan_id");
                 String description = rs.getString("description");
                 int duration = rs.getInt("duration_in_months");
                 float amount = rs.getFloat("amount");
                 boolean isActive = rs.getBoolean("is_active");
                 Date rowCreatedDatetime = rs.getDate("row_created_datetime");
 
-                SubscriptionPlan subscriptionPlan = new SubscriptionPlan(returnedPlanId, description, duration, amount, isActive, rowCreatedDatetime);
+                SubscriptionPlan subscriptionPlan = new SubscriptionPlan(PlanId, description, duration, amount, isActive, rowCreatedDatetime);
                 subscriptionPlans.add(subscriptionPlan);
             }
 
@@ -52,8 +54,10 @@ public class SubscriptionPlanDAO implements ISubscriptionPlanDAO {
         return subscriptionPlans;
     }
 
-    public void insertSubscriptionPlan(SubscriptionPlan subscriptionPlan) {
-        try {
+    public boolean insertSubscriptionPlan(SubscriptionPlan subscriptionPlan) {
+        
+    	boolean insertStatus =false;
+    	try {
             Connection con = DBConnectionMSSQL.getConnection();
             PreparedStatement stmt = con.prepareStatement(INSERT_SUBSCRIPTION_PLAN);
 
@@ -62,11 +66,12 @@ public class SubscriptionPlanDAO implements ISubscriptionPlanDAO {
             stmt.setFloat(3, subscriptionPlan.getAmount());
             stmt.setBoolean(4, subscriptionPlan.isActive());
 
-            stmt.executeUpdate();
+            insertStatus= stmt.executeUpdate() >0;
 
         } catch (Exception e) {
             e.printStackTrace();
         }
+    	return insertStatus;
     }
 
     public boolean updateSubscriptionPlan(SubscriptionPlan subscriptionPlan) {
@@ -105,4 +110,6 @@ public class SubscriptionPlanDAO implements ISubscriptionPlanDAO {
         }
         return rowDelete;
     }
+    
+   
 }

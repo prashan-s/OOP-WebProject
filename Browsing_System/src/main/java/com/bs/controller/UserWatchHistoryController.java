@@ -93,7 +93,7 @@ public class UserWatchHistoryController {
 
 		try {
 			List<UserWatchHistory> history = new UserWatchHistoryDAO().selectHistory(userId);
-			request.setAttribute("history", history);// attribute name, objectName
+			request.setAttribute("history", history);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
