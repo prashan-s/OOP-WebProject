@@ -4,7 +4,7 @@ import java.util.List;
 import com.bs.model.User;
 
 public interface IUserDAO {
-	public List<User> selectUser(int userId);
+	public User selectUser(int userId);
 	public boolean insertUser(User user);
 	public boolean updateUserByUser(User user);
 	public boolean upgradeToPremium(int userId);

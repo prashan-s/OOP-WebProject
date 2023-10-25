@@ -8,10 +8,10 @@
 <title>User History Page</title>
 </head>
 <body>
-	<form method="post" action="UserWatchHistoryServlet">
+	<form method="post" action="UserServlet">
     	<label for="userId" >User Id</label>
 		<input type="number" name="userId"/>
-		 <input type="submit" value="Submit">
+		 <input type="submit" value="WatchHistory ">
    	</form>
         <table>
         	<c:forEach items="${history}" var="history">

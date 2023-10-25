@@ -12,7 +12,7 @@
 	 <form method="post" action="UserPaymentMethodServlet">
     	<label for="userId" >User Id</label>
 		<input type="number" name="userId"/>
-		 <input type="submit" value="Submit">
+		<input type="submit" value="Submit">
    	</form>
         <table>
         	<c:forEach items="${methods}" var="method">
