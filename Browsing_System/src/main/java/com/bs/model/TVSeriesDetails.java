@@ -18,7 +18,7 @@ public class TVSeriesDetails {
     private boolean isActive;
     private Date rowCreatedDatetime;
 
-    public TVSeriesDetails(int tvsDetailId, int tvsId, int season, int episode, String description,
+    public TVSeriesDetails(int tvsDetailId,int tvsId, int season, int episode, String description,
                            int year, int duration, String quality, Integer watchCount,
                            String tvsStreamUrl, String createdAdminName, boolean isActive, Date rowCreatedDatetime) {
         this.tvsDetailId = tvsDetailId;

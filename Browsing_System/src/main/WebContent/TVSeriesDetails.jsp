@@ -10,6 +10,16 @@
 </head>
 <body>
 
+	<script>
+    function confirmDelete() {
+        if (confirm("Are you sure you want to delete this TV series details?")) {
+            return true; 
+        }
+        return false;
+    }
+</script>
+
+
 	<c:set var="showTVSeriesDetailsIdForm" scope="session" value="true" />
 
 	<c:choose>
@@ -33,6 +43,7 @@
 			<table border="1">
 				<thead>
 					<tr>
+						<th>TVSeiesId</th>
 						<th>Season</th>
 						<th>Episode</th>
 						<th>Description</th>
@@ -43,6 +54,7 @@
 				<tbody>
 					<c:forEach items="${seriesDetailsList}" var="tvSeriesDetails">
 						<tr>
+							<td>${tvSeriesDetails.tvsId}</td>
 							<td>${tvSeriesDetails.season}</td>
 							<td>${tvSeriesDetails.episode}</td>
 							<td>${tvSeriesDetails.description}</td>
@@ -54,7 +66,10 @@
 			</table>
 
 			<form method="post" action="TVSeriesDetailsServlet">
-				<input type="submit" name="action" value="edit">
+				<br>
+				<br> <input type="submit" name="action" value="edit"> <br>
+				<br> <input type="submit" name="action" value="delete"
+					onclick="return confirmDelete();">
 			</form>
 
 
@@ -63,6 +78,11 @@
 		<c:when test="${showEditForm == true}">
 			<form method="post" action="TVSeriesDetailsServlet">
 				<c:forEach items="${seriesDetailsList}" var="tvSeriesDetails">
+
+					<label for="tvSid">tvsId</label>
+					<input type="number" name="tvSid" value="${tvSeriesDetails.tvsId}">
+					<br>
+					<br>
 					<label for="season">Season</label>
 					<input type="number" name="season"
 						value="${tvSeriesDetails.season}">
@@ -116,47 +136,26 @@
 
 		<c:when test="${showAddForm == true}">
 			<form method="post" action="TVSeriesDetailsServlet">
-				
-					<label for="season_i">Season</label>
-					<input type="number" name="season_i">
-					<br>
-					<br>
-					<label for="episode_i">Episode</label>
-					<input type="number" name="episode_i">
-					<br>
-					<br>
-					<label for="description_i">Description</label>
-					<input type="text" name="description_i">
-					<br>
-					<br>
-					<label for="year_i">Year</label>
-					<input type="number" name="year_i">
-					<br>
-					<br>
-					<label for="duration_i">Duration</label>
-					<input type="number" name="duration_i">
-					<br>
-					<br>
-					<label for="quality_i">Quality</label>
-					<input type="text" name="quality_i">
-					<br>
-					<br>
 
-					<label for="watchCount_i">Watch Count</label>
-					<input type="number" name="watchCount_i">
-					<br>
-					<br>
-					<label for="streamUrl_i">TVSeries Stream URl</label>
-					<input type="text" name="streamUrl_i">
-					<br>
-					<br>
-					<label for="adminName_i">Created Admin Name</label>
-					<input type="text" name="adminName_i">
-					<br>
-					<br>
+				<label for="tvSid_i">Season</label> <input type="number"
+					name="tvSid_i"> <br> <br> <label for="season_i">Season</label>
+				<input type="number" name="season_i"> <br> <br> <label
+					for="episode_i">Episode</label> <input type="number"
+					name="episode_i"> <br> <br> <label
+					for="description_i">Description</label> <input type="text"
+					name="description_i"> <br> <br> <label
+					for="year_i">Year</label> <input type="number" name="year_i">
+				<br> <br> <label for="duration_i">Duration</label> <input
+					type="number" name="duration_i"> <br> <br> <label
+					for="quality_i">Quality</label> <input type="text" name="quality_i">
+				<br> <br> <label for="watchCount_i">Watch Count</label> <input
+					type="number" name="watchCount_i"> <br> <br> <label
+					for="streamUrl_i">TVSeries Stream URl</label> <input type="text"
+					name="streamUrl_i"> <br> <br> <label
+					for="adminName_i">Created Admin Name</label> <input type="text"
+					name="adminName_i"> <br> <br> <input
+					type="submit" name="action" Value="insert">
 
-					<input type="submit" name="action" Value="insert">
-			
 			</form>
 		</c:when>
 
@@ -166,6 +165,11 @@
 		</c:when>
 
 		<c:when test="${showInsertStatus == true} ">
+			<h1>"${xmessage}"</h1>
+			<c:out value="${xmessage}" />
+		</c:when>
+
+		<c:when test="${showDeletetStatus == true} ">
 			<h1>"${xmessage}"</h1>
 			<c:out value="${xmessage}" />
 		</c:when>

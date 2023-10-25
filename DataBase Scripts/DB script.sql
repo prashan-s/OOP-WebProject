@@ -47,7 +47,7 @@ CREATE TABLE tv_series (
 
 
 CREATE TABLE tv_series_details (
-	tvs_detail_id			INT				NOT NULL PRIMARY KEY IDENTITY(1, 1),
+	tvs_detail_id			INT				NOT NULL PRIMARY KEY IDENTITY(1,1),
 	tvs_id					INT				NOT NULL,
 	season					INT				NOT NULL,
     episode					INT				NOT NULL,
@@ -59,12 +59,8 @@ CREATE TABLE tv_series_details (
 	tvs_stream_url			VARCHAR(1000)	NOT NULL,
 	created_admin_name		VARCHAR(200)	NOT NULL,
 	is_active				BIT				NOT NULL DEFAULT(1),
-    row_created_datetime	DATETIME		NOT NULL DEFAULT GETDATE(),
-
-	CONSTRAINT	fk_tv_series_tvs_id	FOREIGN KEY(tvs_id) REFERENCES tv_series(tvs_id)
+    row_created_datetime	DATETIME		NOT NULL DEFAULT GETDATE()
 );
-
-
 
 CREATE TABLE users (
 	user_id					INT					NOT NULL PRIMARY KEY IDENTITY(1, 1),

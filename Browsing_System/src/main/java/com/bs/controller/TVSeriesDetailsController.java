@@ -37,6 +37,7 @@ public class TVSeriesDetailsController {
 		boolean showUpdateStatus = false;
 		boolean showAddForm = false;
 		boolean showInsertStatus = false;
+		boolean showDeleteStatus = false;
 		String message;
 
 		switch (action) {
@@ -48,6 +49,7 @@ public class TVSeriesDetailsController {
 			showUpdateStatus = false;
 			showAddForm = false;
 			showInsertStatus = false;
+			showDeleteStatus = false;
 
 			jspPage = "TVSeriesDetails.jsp";
 			tvSeriesDetailsId = Integer.parseInt(this.request.getParameter("tvSeriesDetailsId"));
@@ -66,12 +68,37 @@ public class TVSeriesDetailsController {
 			showUpdateStatus = false;
 			showAddForm = false;
 			showInsertStatus = false;
+			showDeleteStatus = false;
 
 			tvSeriesDetailsId = getValueForId("tvSeriesDetailsId");
 
 			this.selectTVSeriesDetails(tvSeriesDetailsId);
 
 			break;
+			
+		case "delete":
+		    jspPage = "TVSeriesDetails.jsp";
+		    showTVSeriesDetailsIdForm = false;
+		    showDetails = false;
+		    showEditForm = false;
+		    showUpdateStatus = false;
+		    showAddForm = false;
+		    showInsertStatus = false;
+		    showDeleteStatus = true;
+
+		    tvSeriesDetailsId = getValueForId("tvSeriesDetailsId");
+
+		    boolean deleteStatus = deleteTVSeriesDetailsByAdmin(tvSeriesDetailsId);
+
+		    if (deleteStatus) {
+		        message = "Deleted Successfully!";
+		    } else {
+		        message = "Delete Failed!";
+		    }
+
+		    request.setAttribute("xmessage", message);
+		    break;
+
 
 		case "add":
 
@@ -82,6 +109,7 @@ public class TVSeriesDetailsController {
 			showUpdateStatus = false;
 			showAddForm = true;
 			showInsertStatus = false;
+			showDeleteStatus = false;
 
 			tvSeriesDetailsId = getValueForId("tvSeriesDetailsId");
 
@@ -98,12 +126,14 @@ public class TVSeriesDetailsController {
 			showUpdateStatus = false;
 			showAddForm = false;
 			showInsertStatus = true;
+			showDeleteStatus = false;
 
 			tvSeriesDetailsId = getValueForId("tvSeriesDetailsId");
 
 			TVSeriesDetails tvSD2 = new TVSeriesDetails();
 
 			tvSD2.setTvsDetailId(tvSeriesDetailsId);
+			tvSD2.setTvsId(Integer.parseInt(request.getParameter("tvSid_i")));
 			tvSD2.setSeason(Integer.parseInt(request.getParameter("season_i")));
 			tvSD2.setEpisode(Integer.parseInt(request.getParameter("episode_i")));
 			tvSD2.setDescription(request.getParameter("description_i"));
@@ -137,12 +167,14 @@ public class TVSeriesDetailsController {
 			showDetails = false;
 			showEditForm = false;
 			showUpdateStatus = true;
+			showDeleteStatus = false;
 
 			TVSeriesDetails tvSD = new TVSeriesDetails();
 
 			tvSeriesDetailsId = getValueForId("tvSeriesDetailsId");
 
 			tvSD.setTvsDetailId(tvSeriesDetailsId);
+			tvSD.setTvsId(Integer.parseInt(request.getParameter("tvSid")));
 			tvSD.setSeason(Integer.parseInt(request.getParameter("season")));
 			tvSD.setEpisode(Integer.parseInt(request.getParameter("episode")));
 			tvSD.setDescription(request.getParameter("description"));
@@ -182,7 +214,7 @@ public class TVSeriesDetailsController {
 			request.setAttribute("showUpdateStatus", showUpdateStatus);
 			request.setAttribute("showAddForm", showAddForm);
 			request.setAttribute("showInsertStatus", showInsertStatus);
-
+			request.setAttribute("showDeleteStatus", showDeleteStatus);
 			this.dispatcher = request.getRequestDispatcher(jspPage);
 			dispatcher.forward(request, response);
 

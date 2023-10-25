@@ -8,7 +8,6 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-import com.bs.controller.TVSeriesController;
 import com.bs.controller.TVSeriesDetailsController;
 
 @WebServlet(name = "TVSeriesDetailsServlet", urlPatterns = {"/TVSeriesDetailsServlet"})
@@ -47,6 +46,9 @@ public class TVSeriesDetailsServlet extends HttpServlet {
     }
     
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
+    	this.controller = new TVSeriesDetailsController(request, response);
+    	String a = request.getParameter("action");
+        controller.doAction(a);
 	}
 }
