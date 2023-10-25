@@ -148,7 +148,7 @@ public class UserController {
 			String userCurrentPw = userChangePw.getPassword();
 			String enterdCurrentPw = request.getParameter("currentPw");
 			String newPw = request.getParameter("newPw");
-			String confirmPw = request.getParameter("ConfirmPw");
+			String confirmPw = request.getParameter("confirmPw");
 
 			newUserChangePw.setUserId(userId);
 
@@ -174,11 +174,14 @@ public class UserController {
 						pwChangeMessage = "Password Successfully Updated..";
 					}
 
-					request.setAttribute("pwChangeMessage", pwChangeMessage);
-					System.out.println("pwChangeMessage :   " + pwChangeMessage);
+					
+					
 				}
-
+				
 			}
+				request.setAttribute("pwChangeMessage", pwChangeMessage);
+				System.out.println("pwChangeMessage :   " + pwChangeMessage);
+				
 			break;
 
 		case "deleteAccount":
@@ -268,6 +271,8 @@ public class UserController {
 				} else {
 					SignUpMessage = "Sign Up Successfull..";
 				}
+			}else {
+				SignUpMessage = "New Password and Confirm Password does not match...";
 			}
 			request.setAttribute("SignUpMessage", SignUpMessage);
 

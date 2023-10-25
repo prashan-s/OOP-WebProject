@@ -31,7 +31,6 @@ public class UserDAO implements IUserDAO {
 
 	public User selectUser(int userId) {
 
-		ArrayList<User> users = new ArrayList<>();
 		User user = null;
 		try {
 			Connection con = DBConnectionMSSQL.getConnection();
