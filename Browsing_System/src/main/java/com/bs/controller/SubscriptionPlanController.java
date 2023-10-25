@@ -33,6 +33,7 @@ public class SubscriptionPlanController {
 		String jspPage = "SubscriptionPlans.jsp";
 		int userId = -1;
 		boolean showUserIdForm = false;
+		boolean showAdminIdForm = false;
 		boolean showPlansToUser = false;
 		boolean showPlansToAdmin = false;
 		boolean editPlansByAdmin = false;
@@ -43,28 +44,29 @@ public class SubscriptionPlanController {
 		
 		switch (action) {
 
-		case "submit":
+		case "submit user Id":
 
 			jspPage = "SubscriptionPlans.jsp";
-			System.out.println("in submit");
-			String role = this.request.getParameter("role");
+			showPlansToUser = true;
+			request.setAttribute("subscriptionPlans", this.selectSubscriptionPlan());
+			
+			
+			userId = Integer.parseInt(this.request.getParameter("userId"));
+			Cookie cookieUser = new Cookie("userId", Integer.toString(userId));
+			this.response.addCookie(cookieUser);
+			
+			break;
+			
+		case "submit admin Id":
 
-			if (role.equals("user")) {
-				showPlansToUser = true;
-				request.setAttribute("subscriptionPlans", this.selectSubscriptionPlan());
-			} else if (role.equals("admin")) {
-				showPlansToAdmin = true;
-				request.setAttribute("subscriptionPlans", this.selectSubscriptionPlan());
-			}
+			jspPage = "AdminSubscriptionPlans.jsp";
+			showPlansToAdmin = true;
+			request.setAttribute("subscriptionPlans", this.selectSubscriptionPlan());
 			
-		//	userId = Integer.parseInt(this.request.getParameter("userId"));
-			
-		//	Cookie cookieUser = new Cookie("userId", Integer.toString(userId));
-		///	this.response.addCookie(cookieUser);
 			break;
 
 		case "edit":
-			jspPage = "SubscriptionPlans.jsp";
+			jspPage = "AdminSubscriptionPlans.jsp";
 			editPlansByAdmin = true;
 
 			int planId = Integer.parseInt(this.request.getParameter("planId"));
@@ -76,7 +78,7 @@ public class SubscriptionPlanController {
 
 		case "update":
 
-			jspPage = "SubscriptionPlans.jsp";
+			jspPage = "AdminSubscriptionPlans.jsp";
 			showUpdateStatus = true;
 			
 			boolean isActive = false;
@@ -110,7 +112,7 @@ public class SubscriptionPlanController {
 			break;
 
 		case "remove":
-			jspPage = "SubscriptionPlans.jsp";
+			jspPage = "AdminSubscriptionPlans.jsp";
 			showDeleteStatus = true;
 			boolean deleteStatus = false;
 			String deleteMessage = null;
@@ -126,12 +128,12 @@ public class SubscriptionPlanController {
 			break;
 		
 		case "addPlan":
-			jspPage = "SubscriptionPlans.jsp";
+			jspPage = "AdminSubscriptionPlans.jsp";
 			insertPlansByAdmin = true;
 			break;
 		
 		case "insert":
-			jspPage = "SubscriptionPlans.jsp";
+			jspPage = "AdminSubscriptionPlans.jsp";
 			showInsertedStatus = true;
 
 			boolean insertStatus = false;
@@ -164,6 +166,7 @@ public class SubscriptionPlanController {
 		}
 		try {
 			request.setAttribute("showUserIdForm", showUserIdForm);
+			request.setAttribute("showAdminIdForm", showAdminIdForm);
 			request.setAttribute("showPlansToUser", showPlansToUser);
 			request.setAttribute("showPlansToAdmin", showPlansToAdmin);
 			request.setAttribute("editPlansByAdmin", editPlansByAdmin);
