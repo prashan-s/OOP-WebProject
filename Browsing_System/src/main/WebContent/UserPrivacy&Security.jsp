@@ -11,17 +11,17 @@
 <body>
 	<c:set var="showUserIdForm" scope="session" value="true" />
 
-	<c:choose>
-		<c:when test="${showUserIdForm == true}">
+	
+		<c:if test="${showUserIdForm == true}">
 			<form method="post" action="UserServlet">
 				<label for="userId">User Id</label> 
 				<input type="number" name="userId"> 
 				<input type="submit" name="action" value="submitIdToChangePW">
 			</form>
 			
-		</c:when>
+		</c:if>
 		
-		<c:when test="${showPwEditForm == true}">
+		<c:if test="${showPwEditForm == true}">
 			
 			<form method ="post"  action="UserServlet">	
 					<label for="currentPw">Current Password</label>
@@ -31,19 +31,29 @@
 					<input type="password" name="newPw" />
 					<br>
 					<label for="ConfirmPw">Confirm Password</label>
-					<input type="password" name="ConfirmPw"/>
+					<input type="password" name="confirmPw"/>
 					<br>
 					<input type="submit" name="action" value="changePassword">
 			</form>
-		</c:when>
+		</c:if>
 		
-		<c:when test="${showPwChangeStatus == true}">
+		<c:if test="${showDeleteForm == true}">
+			<form method="post" action="UserServlet">
+					<label for="userId">delete account description</label>  
+					<input type="submit" name="action" value="deleteAccount">
+			</form>
+		</c:if>	
+		
+		<c:if test="${showPwChangeStatus == true}">
 			<div>	
 				<c:out value="${pwChangeMessage}"/>
 			</div>
-		</c:when>
-		
-		
-	</c:choose>
+		</c:if>
+		<c:if test="${showDeleteStatus == true}">
+			<div>	
+				<c:out value="${deletionMessage}"/>
+			</div>
+		</c:if>
+	
 </body>
 </html>

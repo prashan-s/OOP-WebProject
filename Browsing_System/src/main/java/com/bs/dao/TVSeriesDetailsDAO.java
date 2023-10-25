@@ -28,7 +28,7 @@ public class TVSeriesDetailsDAO implements ITVSeriesDetailsDAO {
     private static final String DELETE_TV_SERIES = "UPDATE tv_series_details SET is_active=0 WHERE tvs_detail_id=?";
 
     // Select TV series details
-    public List<TVSeriesDetails> selectTVSeries(int tvsDetailId) {
+    public List<TVSeriesDetails> selectTVSeriesDetails(int tvsDetailId) {
         ArrayList<TVSeriesDetails> seriesDetailsList = new ArrayList<>();
 
         try {
@@ -66,8 +66,9 @@ public class TVSeriesDetailsDAO implements ITVSeriesDetailsDAO {
     }
 
     // Inserting a new TV series details
-    public void insertTVSeries(TVSeriesDetails seriesDetails) {
+    public boolean insertTVSeriesDetails(TVSeriesDetails seriesDetails) {
         System.out.println(INSERT_TV_SERIES);
+        boolean rowInserted = false;
 
         try {
             Connection con = DBConnectionMSSQL.getConnection();
@@ -89,10 +90,12 @@ public class TVSeriesDetailsDAO implements ITVSeriesDetailsDAO {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        
+        return rowInserted;
     }
 
     // Update TV series details
-    public boolean updateTVSeries(TVSeriesDetails seriesDetails) {
+    public boolean updateTVSeriesDetails(TVSeriesDetails seriesDetails) {
 
         boolean rowUpdate = false;
         try {
@@ -122,7 +125,7 @@ public class TVSeriesDetailsDAO implements ITVSeriesDetailsDAO {
     }
 
     // Delete TV series details
-    public boolean deleteTVSeries(int tvsDetailId) {
+    public boolean deleteTVSeriesDetails(int tvsDetailId) {
 
         boolean rowDelete = false;
 

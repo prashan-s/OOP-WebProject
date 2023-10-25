@@ -6,7 +6,7 @@ import com.bs.model.TVSeries;
 public interface ITVSeriesDAO {
 
     List<TVSeries> selectTVSeries(int seriesId);
-    public void insertTVSeries(TVSeries series);
+    public boolean insertTVSeries(TVSeries series);
     public boolean updateTVSeries(TVSeries series);
     public boolean deleteTVSeries(int seriesId);
 }

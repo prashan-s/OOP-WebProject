@@ -145,8 +145,9 @@ public class MovieDAO implements IMovieDAO {
 	}
 	
 	//inserting a new movie
-	public void insertMovie(Movie movie) {
+	public boolean insertMovie(Movie movie) {
 		System.out.println(INSERT_MOVIE);
+		boolean rowInserted = false;
 		
 		try {
 			Connection con = DBConnectionMSSQL.getConnection();	
@@ -176,6 +177,8 @@ public class MovieDAO implements IMovieDAO {
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
+		
+		return rowInserted;
 	}
 	
 	
