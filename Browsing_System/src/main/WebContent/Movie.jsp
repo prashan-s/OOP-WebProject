@@ -66,6 +66,21 @@
 			</form>
 		</c:when>
 
+		<c:when test="${showAddForm == true}">
+			<form method="post" action="MovieServlet">
+
+				<label for="movieTitle_i">Title</label> <input type="text"
+					name="movieTitle_i"> <br> <br>
+				<label for="movieDirector_i">Director</label> <input type="text"
+					name="movieDirector_i" > <br> <br>
+				<label for="movieReleaseYear_i">Release Year</label> <input
+					type="text" name="movieReleaseYear_i" >
+				<br> <br> <input type="submit" name="action"
+					Value="insert">
+
+			</form>
+		</c:when>
+
 		<c:when test="${showUpdateStatus == true}">
 			<h1>${xmessage}</h1>
 			<c:out value="${xmessage}" />
@@ -77,6 +92,6 @@
 			</c:if>
 		</c:otherwise>
 
-</c:choose>
+	</c:choose>
 </body>
 </html>

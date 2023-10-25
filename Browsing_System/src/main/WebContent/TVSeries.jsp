@@ -132,7 +132,7 @@
 		<c:when test="${showAddForm == true}">
 			<form method="post" action="TVSeriesServlet">
 
-				<label for="tvSeireTitle_i">Title</label> <input type="text"
+				<label for="tvSeriesTitle_i">Title</label> <input type="text"
 					name="tvSeriesTitle_i"> <br> <br> <label
 					for="tvSeriesUrl_i">Enter a TVSeries Image URL:</label> <input
 					type="text" name="tvSeriesUrl_i" placeholder="https://example.com"

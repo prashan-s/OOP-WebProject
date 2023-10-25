@@ -133,7 +133,7 @@ public class TVSeriesController {
 			TVSeries tvS2 = new TVSeries();
 
 			tvS2.setTvs_id(tvssId);
-			tvS2.setTitle(request.getParameter("tvSeireTitle_i"));
+			tvS2.setTitle(request.getParameter("tvSeriesTitle_i"));
 			tvS2.setTvs_img_url(request.getParameter("tvSeriesUrl_i"));
 			tvS2.setAction_category(Boolean.parseBoolean("action_category_i"));
 			tvS2.setAdventure_category(Boolean.parseBoolean("adventure_category_i"));

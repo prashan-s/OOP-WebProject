@@ -94,7 +94,6 @@ public class TVSeriesDAO implements ITVSeriesDAO {
 
             stmt.executeUpdate();
             
-            return rowInserted;
 
         } catch (Exception e) {
             e.printStackTrace();
