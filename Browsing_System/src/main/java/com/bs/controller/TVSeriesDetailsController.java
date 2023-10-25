@@ -50,6 +50,7 @@ public class TVSeriesDetailsController {
 			showAddForm = false;
 			showInsertStatus = false;
 			showDeleteStatus = false;
+			
 
 			jspPage = "TVSeriesDetails.jsp";
 			tvSeriesDetailsId = Integer.parseInt(this.request.getParameter("tvSeriesDetailsId"));

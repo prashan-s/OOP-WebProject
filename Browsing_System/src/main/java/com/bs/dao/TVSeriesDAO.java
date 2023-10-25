@@ -19,8 +19,8 @@ public class TVSeriesDAO implements ITVSeriesDAO {
 
     private static final String INSERT_SERIES = "INSERT INTO tv_series (title, tvs_img_url, action_category, " +
             "adventure_category, comedy_category, scify_category, horror_category, romance_category, " +
-            "science_category, crime_category, thriller_category, is_active) " +
-            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            "science_category, crime_category, thriller_category) " +
+            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
     private static final String UPDATE_SERIES = "UPDATE tv_series SET title=?, tvs_img_url=?, action_category=?, " +
             "adventure_category=?, comedy_category=?, scify_category=?, horror_category=?, romance_category=?, " +
@@ -90,11 +90,10 @@ public class TVSeriesDAO implements ITVSeriesDAO {
             stmt.setBoolean(9, series.isScience_category());
             stmt.setBoolean(10, series.isCrime_category());
             stmt.setBoolean(11, series.isThriller_category());
-            stmt.setBoolean(12, series.isActive());
+ 
 
             stmt.executeUpdate();
             
-            return rowInserted;
 
         } catch (Exception e) {
             e.printStackTrace();

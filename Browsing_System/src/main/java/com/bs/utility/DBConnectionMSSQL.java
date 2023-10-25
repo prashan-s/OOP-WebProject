@@ -24,19 +24,30 @@ public class DBConnectionMSSQL {
 		try {
 
 //			Teran
-//			String dbURL = "jdbc:sqlserver://localhost;DatabaseName=OnlineWatchingMoviesandTVSeries;encrypt=true;trustServerCertificate=true;";
-//			String userName = "sa";
-//			String password = "Pass@1234#";
+			String dbURL = "jdbc:sqlserver://localhost;DatabaseName=OnlineWatchingMoviesandTVSeries;encrypt=true;trustServerCertificate=true;";
+			String userName = "sa";
+			String password = "Pass@1234#";
 
+<<<<<<< HEAD
 ////			Panchali
+=======
+//			Panchali
+>>>>>>> 0bb595da7cd53e07a466c7bbd9c9ad339e65f4ff
 //			String dbURL = "jdbc:sqlserver://DESKTOP-8G691HC\\SQLEXPRESS;DatabaseName=OnlineWatchingMoviesandTVSeries;encrypt=true;trustServerCertificate=true;";
 //			String userName = "sa";
 //			String password = "*272617Ps*";
 
+<<<<<<< HEAD
 //		//	Yethmi
 			String dbURL = "jdbc:sqlserver://YETHMI-PC\\SQLEXPRESS;DatabaseName=OnlineWatchingMoviesandTVSeries;encrypt=true;trustServerCertificate=true;";
 			String userName = "sa";
 			String password = "yethmi";
+=======
+		//	Yethmi
+			//String dbURL = "jdbc:sqlserver://YETHMI-PC\\SQLEXPRESS;DatabaseName=OnlineWatchingMoviesandTVSeries;encrypt=true;trustServerCertificate=true;";
+			//String userName = "sa";
+			//String password = "yethmi";
+>>>>>>> 0bb595da7cd53e07a466c7bbd9c9ad339e65f4ff
 
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 

@@ -137,7 +137,7 @@
 		<c:when test="${showAddForm == true}">
 			<form method="post" action="TVSeriesDetailsServlet">
 
-				<label for="tvSid_i">Season</label> <input type="number"
+				<label for="tvSid_i">TVSId</label> <input type="number"
 					name="tvSid_i"> <br> <br> <label for="season_i">Season</label>
 				<input type="number" name="season_i"> <br> <br> <label
 					for="episode_i">Episode</label> <input type="number"

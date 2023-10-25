@@ -2,14 +2,13 @@ package com.bs.controller;
 
 import com.bs.dao.TVSeriesDAO;
 import com.bs.model.TVSeries;
-import com.bs.model.User;
+
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-import java.text.ParseException;
 import java.util.List;
 
 public class TVSeriesController {
@@ -26,17 +25,22 @@ public class TVSeriesController {
 	public TVSeriesController(HttpServletRequest request, HttpServletResponse response) {
 		this.request = request;
 		this.response = response;
+		this.dispatcher = request.getRequestDispatcher("TVSeries.jsp");
 		this.dao = new TVSeriesDAO();
 	}
 
 	public void doAction(String action) {
 
 		String jspPage = "TVSeries.jsp";
-		int tvssId = -1;
+		Integer tvssId = -1;
 		boolean showTVSeriesIdForm = true;
 		boolean showDetails = false;
 		boolean showEditForm = false;
 		boolean showUpdateStatus = false;
+		boolean showAddForm = false;
+		boolean showInsertStatus = false;
+		boolean showDeleteStatus = false;
+		String message;
 
 		switch (action) {
 
@@ -45,6 +49,9 @@ public class TVSeriesController {
 			showDetails = true;
 			showEditForm = false;
 			showUpdateStatus = false;
+			showAddForm = false;
+			showInsertStatus = false;
+			showDeleteStatus = false;
 
 			jspPage = "TVSeries.jsp";
 			tvssId = Integer.parseInt(this.request.getParameter("tvsId"));
@@ -60,13 +67,100 @@ public class TVSeriesController {
 			showDetails = false;
 			showEditForm = true;
 			showUpdateStatus = false;
+			showAddForm = false;
+			showInsertStatus = false;
+			showDeleteStatus = false;
 
 			tvssId = getValueForId("tvsId");
 
 			this.selectTVSeries(tvssId);
 
 			break;
+			
+		case "delete":
+		    jspPage = "TVSeries.jsp";
+		    showTVSeriesIdForm = false;
+		    showDetails = false;
+		    showEditForm = false;
+		    showUpdateStatus = false;
+		    showAddForm = false;
+		    showInsertStatus = false;
+		    showDeleteStatus = true;
 
+		    tvssId = getValueForId("tvsId");
+
+		    boolean deleteStatus = deleteTVSeriesByAdmin( tvssId);
+
+		    if (deleteStatus) {
+		        message = "Deleted Successfully!";
+		    } else {
+		        message = "Delete Failed!";
+		    }
+
+		    request.setAttribute("xmessage", message);
+		    break;
+
+		case "add":
+
+			jspPage = "TVSeries.jsp";
+			showTVSeriesIdForm = false;
+			showDetails = false;
+			showEditForm = false;
+			showUpdateStatus = false;
+			showAddForm = true;
+			showInsertStatus = false;
+			showDeleteStatus = false;
+
+			tvssId = getValueForId("tvsId");
+
+			this.selectTVSeries(tvssId);
+
+			break;
+		    
+		case "insert":
+
+			jspPage = "TVSeries.jsp";
+			showTVSeriesIdForm = false;
+			showDetails = false;
+			showEditForm = false;
+			showUpdateStatus = false;
+			showAddForm = false;
+			showInsertStatus = true;
+			showDeleteStatus = false;
+
+			tvssId = getValueForId("tvsId");
+
+			TVSeries tvS2 = new TVSeries();
+
+			tvS2.setTvs_id(tvssId);
+			tvS2.setTitle(request.getParameter("tvSeriesTitle_i"));
+			tvS2.setTvs_img_url(request.getParameter("tvSeriesUrl_i"));
+			tvS2.setAction_category(Boolean.parseBoolean("action_category_i"));
+			tvS2.setAdventure_category(Boolean.parseBoolean("adventure_category_i"));
+			tvS2.setComedy_category(Boolean.parseBoolean("comedy_category_i"));;
+			tvS2.setScify_category(Boolean.parseBoolean("scify_category_i"));
+			tvS2.setHorror_category(Boolean.parseBoolean("horror_category_i"));
+			tvS2.setRomance_category(Boolean.parseBoolean("romance_category_i"));
+			tvS2.setScience_category(Boolean.parseBoolean("science_category_i"));
+			tvS2.setCrime_category(Boolean.parseBoolean("crime_category_i"));
+			tvS2.setThriller_category(Boolean.parseBoolean("thriller_category"));
+			
+			boolean insertStatus = insertTVSeriesByAdmin(tvS2);
+
+			System.out.println(insertStatus);
+			message = "Inserted Successfully!";
+			System.out.println(message);
+
+			if (insertStatus == false) {
+				message = "Insert Failed!, Retry....";
+				System.out.println("Edit Form Show:" + showAddForm);
+			}
+
+			request.setAttribute("xmessage", message);
+			System.out.println("Inserted   " + insertStatus);
+
+			break;
+			
 		case "update":
 
 			jspPage = "TVSeries.jsp";
@@ -74,6 +168,9 @@ public class TVSeriesController {
 			showDetails = false;
 			showEditForm = false;
 			showUpdateStatus = true;
+			showAddForm = false;
+			showInsertStatus = false;
+			showDeleteStatus = false;
 
 			TVSeries tvs = new TVSeries();
 			
@@ -106,7 +203,7 @@ public class TVSeriesController {
 			boolean updateStatus = updateTVSeriesByAdmin(tvs);
 
 			System.out.println(updateStatus);
-			String message = "Updated Successfully!";
+			message = "Updated Successfully!";
 			System.out.println(message);
 
 			if (updateStatus == false) {
@@ -128,6 +225,10 @@ public class TVSeriesController {
 			request.setAttribute("showDetails", showDetails);
 			request.setAttribute("showEditForm", showEditForm);
 			request.setAttribute("showUpdateStatus", showUpdateStatus);
+			request.setAttribute("showUpdateStatus", showUpdateStatus);
+			request.setAttribute("showAddForm", showAddForm);
+			request.setAttribute("showInsertStatus", showInsertStatus);
+			request.setAttribute("showDeleteStatus", showDeleteStatus);
 
 			this.dispatcher = request.getRequestDispatcher(jspPage);
 			dispatcher.forward(request, response);
@@ -147,7 +248,7 @@ public class TVSeriesController {
 			for (Cookie ck : cookies) {
 				if (ck.getName().equals(key)) {
 					tvSeriesId = Integer.parseInt(ck.getValue());
-					System.out.println("Cookie UserID:" + tvSeriesId);
+					System.out.println("Cookie  tvSeriesId:" + tvSeriesId);
 
 					break;
 				}
@@ -158,7 +259,7 @@ public class TVSeriesController {
 
 		if (tvSeriesId < 0) {
 			try {
-				tvSeriesId = Integer.parseInt(this.request.getParameter("userId"));
+				tvSeriesId = Integer.parseInt(this.request.getParameter("tvsId"));
 			} catch (Exception ex) {
 				System.out.println("Error with tv series ID");
 			}

@@ -150,7 +150,7 @@ public class SubscriptionPlanController {
 			planNew.setAmount(Float.parseFloat(request.getParameter("amount")));
 			planNew.setActive(Active);
 
-			insertStatus = updateSubscriptionPlan(planNew);
+			insertStatus = insertSubscriptionPlan(planNew);
 
 			if (insertStatus == false) {
 				insertMessage = "Insert Failed!, Retry....";
