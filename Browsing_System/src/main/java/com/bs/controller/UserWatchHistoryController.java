@@ -50,7 +50,7 @@ public class UserWatchHistoryController {
 			userId = Integer.parseInt(this.request.getParameter("userId"));
 			request.setAttribute("user", this.selectHistory(userId));
 
-			Cookie cookie = new Cookie("userId", Integer.toString(userId));
+			Cookie cookie = new Cookie("history", Integer.toString(userId));
 			this.response.addCookie(cookie);
 			break;
 

@@ -49,6 +49,7 @@
 					<th>Description</th>
 					<th>Duration in months</th>
 					<th>Amount</th>
+					<th>Activation</th>
 					<th> </th>
 				</tr>
 			</thead>
@@ -58,6 +59,7 @@
 						<td>${subPlans.description}</td>
 						<td>${subPlans.duration}</td>
 						<td>${subPlans.amount}</td>
+						<td>${subPlans.isActive}</td>
 						<td>
 							<form method="post" action="SubscriptionPlanServlet">
 								<input type="hidden" name="planId" value="${subPlans.planId}">
@@ -69,29 +71,29 @@
 				</c:forEach>
 	        </tbody>
 	    </table>
-	    
-	    <input type="submit" name="action" value="addPlan">
-	    
+	    <form method="post" action="SubscriptionPlanServlet">
+	    	<input type="submit" name="action" value="addPlan">
+	    </form>
 	</c:if>
 	
 	<c:if test="${editPlansByAdmin == true}">
 		<form method="post" action="SubscriptionPlanServlet">
-			
-			<label for="description">Description</label>
-			<input type="text" name="description" value="${subPlan.description}" />
-			<br>
-			<label for="duration">Duration in Months</label>
-			<input type="number" name="duration" value="${subPlan.duration}" />
-			<br>
-			<label for="amount">amount</label>
-			<input type="number" name="amount" value="${subPlan.amount}" />
-			<br>
-			<label for="isActive">Is Active </label>
-			<label><input type="radio" name="active" value=1>activate</label>
-			<label><input type="radio" name="active" value=0>de-activate</label>
-			<br>
-			<input type="submit" name="action" value="update">
-			
+	
+				<label for="description">Description</label>
+				<input type="text" name="description" value="${subPlan.description}" />
+				<br>
+				<label for="duration">Duration in Months</label>
+				<input type="number" name="duration" value="${subPlan.duration}" />
+				<br>
+				<label for="amount">amount</label>
+				<input type="number" name="amount" value="${subPlan.amount}" />
+				<br>
+				<label for="isActive">Is Active </label>
+				<label><input type="radio" name="active" value="active">activate</label>
+				<label><input type="radio" name="active" value="deActive">de-activate</label>
+				<br>
+				<input type="submit" name="action" value="update">
+		
 		</form>		
 	</c:if>
 	<c:if test="${showUpdateStatus == true}">
@@ -118,13 +120,17 @@
 		        <input type="number"  name="amount" ><br>
 		       
 		        <label for="isActive">Is Active </label>
-				<label><input type="radio" name="active" value=1>activate</label>
-				<label><input type="radio" name="active" value=0>de-activate</label><br>
+				<label><input type="radio" name="active" value="active">activate</label>
+				<label><input type="radio" name="active" value="deActive">de-activate</label><br>
 		        
 		       <input type="submit" name = "action" value="insert"><br>
 		   </form>
 	</c:if>
-	
+	<c:if test="${showInsertedStatus == true}">
+		<div>
+			<c:out value="${insertMessage}"></c:out>
+		</div>
+	</c:if>
 	
 </body>
 </html>

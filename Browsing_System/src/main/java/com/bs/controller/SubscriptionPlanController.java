@@ -68,7 +68,8 @@ public class SubscriptionPlanController {
 			editPlansByAdmin = true;
 
 			int planId = Integer.parseInt(this.request.getParameter("planId"));
-
+			request.setAttribute("subPlan", this.selectSubscriptionPlanById(planId));
+			
 			Cookie cookiePlan = new Cookie("planId", Integer.toString(planId));
 			this.response.addCookie(cookiePlan);
 			break;
@@ -77,16 +78,24 @@ public class SubscriptionPlanController {
 
 			jspPage = "SubscriptionPlans.jsp";
 			showUpdateStatus = true;
-
+			
+			boolean isActive = false;
 			boolean updateStatus = false;
 			String UpdateMessage = "";
 			SubscriptionPlan plan = new SubscriptionPlan();
 			planId = getValueForPlanId("planId");
 			plan.setPlanId(planId);
+			
+
+			if( request.getParameter("active").equals("active")){
+				 isActive = true;
+			}else {
+				isActive= false;
+			}
 			plan.setDescription(request.getParameter("description"));
 			plan.setDuration(Integer.parseInt(request.getParameter("duration")));
 			plan.setAmount(Float.parseFloat(request.getParameter("amount")));
-			plan.setActive(Boolean.getBoolean(request.getParameter("active")));
+			plan.setActive(isActive);
 
 			updateStatus = updateSubscriptionPlan(plan);
 
@@ -116,7 +125,7 @@ public class SubscriptionPlanController {
 			request.setAttribute("deleteMessage", deleteMessage);
 			break;
 		
-		case "add":
+		case "addPlan":
 			jspPage = "SubscriptionPlans.jsp";
 			insertPlansByAdmin = true;
 			break;
@@ -126,13 +135,20 @@ public class SubscriptionPlanController {
 			showInsertedStatus = true;
 
 			boolean insertStatus = false;
+			boolean Active = false;
 			String insertMessage = "";
 			SubscriptionPlan planNew = new SubscriptionPlan();
-
+			
+			if( request.getParameter("active").equals("active")){
+				 Active = true;
+			}else {
+				Active= false;
+			}
+			
 			planNew.setDescription(request.getParameter("description"));
 			planNew.setDuration(Integer.parseInt(request.getParameter("duration")));
 			planNew.setAmount(Float.parseFloat(request.getParameter("amount")));
-			planNew.setActive(Boolean.getBoolean(request.getParameter("active")));
+			planNew.setActive(Active);
 
 			insertStatus = updateSubscriptionPlan(planNew);
 
@@ -142,7 +158,7 @@ public class SubscriptionPlanController {
 				insertMessage = "Successfully added..";
 			}
 
-			request.setAttribute("UpdateMessage", insertMessage);
+			request.setAttribute("insertMessage", insertMessage);
 			break;
 		
 		}
@@ -166,6 +182,18 @@ public class SubscriptionPlanController {
 		
 
 	}
+	public SubscriptionPlan selectSubscriptionPlanById(int planId) {
+		SubscriptionPlan subscriptionPlan = null;
+		try {
+			subscriptionPlan = new SubscriptionPlanDAO().selectSubscriptionPlanById(planId);
+			request.setAttribute("subscriptionPlans", subscriptionPlan);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return subscriptionPlan;
+	}
+
+	
 
 	public List<SubscriptionPlan> selectSubscriptionPlan() {
 		List<SubscriptionPlan> subscriptionPlans = null;

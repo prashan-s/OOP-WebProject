@@ -12,104 +12,133 @@ import java.sql.Date;
 
 public class SubscriptionPlanDAO implements ISubscriptionPlanDAO {
 
-    private static final String SELECT_ACTIVE_SUBSCRIPTION = "SELECT plan_id, description, duration_in_months, amount, is_active, row_created_datetime "
-            + "FROM subscription_plan "
-            + "WHERE is_active = 1 "
-            + "ORDER BY duration_in_months ASC ";
+	private static final String SELECT_ACTIVE_SUBSCRIPTION = "SELECT plan_id, description, duration_in_months, amount, is_active, row_created_datetime "
+			+ "FROM subscription_plan " + "ORDER BY duration_in_months ASC ";
+	private static final String SELECT_SUBSCRIPTION_BY_ID = "SELECT plan_id, description, duration_in_months, amount, is_active, row_created_datetime "
+			+ "FROM subscription_plan " + "WHERE plan_id = ? ";
 
-    private static final String INSERT_SUBSCRIPTION_PLAN = "INSERT INTO subscription_plan (description, duration_in_months, amount, is_active) "
-            + "VALUES (?, ?, ?, ?)";
+	private static final String INSERT_SUBSCRIPTION_PLAN = "INSERT INTO subscription_plan (description, duration_in_months, amount, is_active) "
+			+ "VALUES (?, ?, ?, ?)";
 
-    private static final String UPDATE_SUBSCRIPTION_PLAN = "UPDATE subscription_plan SET description=?, duration_in_months=?, amount=?, is_active=? "
-            + "WHERE plan_id = ?";
+	private static final String UPDATE_SUBSCRIPTION_PLAN = "UPDATE subscription_plan SET description=?, duration_in_months=?, amount=?, is_active=? "
+			+ "WHERE plan_id = ?";
 
-    private static final String DELETE_SUBSCRIPTION_PLAN = "DELETE FROM subscription_plan WHERE plan_id = ?";
+	private static final String DELETE_SUBSCRIPTION_PLAN = "DELETE FROM subscription_plan WHERE plan_id = ?";
 
-    public List<SubscriptionPlan> selectSubscriptionPlan() {
-    	
-        ArrayList<SubscriptionPlan> subscriptionPlans = new ArrayList<>();
+	public SubscriptionPlan selectSubscriptionPlanById(int planId) {
+		SubscriptionPlan subscriptionPlan = null;
+		try {
+			Connection con = DBConnectionMSSQL.getConnection();
+			PreparedStatement stmt = con.prepareStatement(SELECT_SUBSCRIPTION_BY_ID);
+			stmt.setInt(1, planId);
 
-        try {
-            Connection con = DBConnectionMSSQL.getConnection();
-            PreparedStatement stmt = con.prepareStatement(SELECT_ACTIVE_SUBSCRIPTION);
-      
-            ResultSet rs = stmt.executeQuery();
+			ResultSet rs = stmt.executeQuery();
 
-            while (rs.next()) {
-                int PlanId = rs.getInt("plan_id");
-                String description = rs.getString("description");
-                int duration = rs.getInt("duration_in_months");
-                float amount = rs.getFloat("amount");
-                boolean isActive = rs.getBoolean("is_active");
-                Date rowCreatedDatetime = rs.getDate("row_created_datetime");
+			while (rs.next()) {
+				int PlanId = rs.getInt("plan_id");
+				String description = rs.getString("description");
+				int duration = rs.getInt("duration_in_months");
+				float amount = rs.getFloat("amount");
+				boolean isActive = rs.getBoolean("is_active");
+				Date rowCreatedDatetime = rs.getDate("row_created_datetime");
 
-                SubscriptionPlan subscriptionPlan = new SubscriptionPlan(PlanId, description, duration, amount, isActive, rowCreatedDatetime);
-                subscriptionPlans.add(subscriptionPlan);
-            }
+				subscriptionPlan = new SubscriptionPlan(PlanId, description, duration, amount, isActive,
+						rowCreatedDatetime);
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+			}
 
-        return subscriptionPlans;
-    }
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return subscriptionPlan;
 
-    public boolean insertSubscriptionPlan(SubscriptionPlan subscriptionPlan) {
-        
-    	boolean insertStatus =false;
-    	try {
-            Connection con = DBConnectionMSSQL.getConnection();
-            PreparedStatement stmt = con.prepareStatement(INSERT_SUBSCRIPTION_PLAN);
+	}
 
-            stmt.setString(1, subscriptionPlan.getTerm());
-            stmt.setInt(2, subscriptionPlan.getDuration());
-            stmt.setFloat(3, subscriptionPlan.getAmount());
-            stmt.setBoolean(4, subscriptionPlan.isActive());
+	public List<SubscriptionPlan> selectSubscriptionPlan() {
 
-            insertStatus= stmt.executeUpdate() >0;
+		ArrayList<SubscriptionPlan> subscriptionPlans = new ArrayList<>();
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    	return insertStatus;
-    }
+		try {
+			Connection con = DBConnectionMSSQL.getConnection();
+			PreparedStatement stmt = con.prepareStatement(SELECT_ACTIVE_SUBSCRIPTION);
 
-    public boolean updateSubscriptionPlan(SubscriptionPlan subscriptionPlan) {
-        boolean rowUpdate = false;
-        try {
-            Connection con = DBConnectionMSSQL.getConnection();
-            PreparedStatement stmt = con.prepareStatement(UPDATE_SUBSCRIPTION_PLAN);
+			ResultSet rs = stmt.executeQuery();
 
-            stmt.setString(1, subscriptionPlan.getTerm());
-            stmt.setInt(2, subscriptionPlan.getDuration());
-            stmt.setFloat(3, subscriptionPlan.getAmount());
-            stmt.setBoolean(4, subscriptionPlan.isActive());
+			while (rs.next()) {
+				int PlanId = rs.getInt("plan_id");
+				String description = rs.getString("description");
+				int duration = rs.getInt("duration_in_months");
+				float amount = rs.getFloat("amount");
+				boolean isActive = rs.getBoolean("is_active");
+				Date rowCreatedDatetime = rs.getDate("row_created_datetime");
 
-            stmt.setInt(5, subscriptionPlan.getPlanId());
+				SubscriptionPlan subscriptionPlan = new SubscriptionPlan(PlanId, description, duration, amount,
+						isActive, rowCreatedDatetime);
+				subscriptionPlans.add(subscriptionPlan);
+			}
 
-            rowUpdate = stmt.executeUpdate() > 0;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return rowUpdate;
-    }
+		return subscriptionPlans;
+	}
 
-    public boolean deleteSubscriptionPlan(int planId) {
-        boolean rowDelete = false;
+	public boolean insertSubscriptionPlan(SubscriptionPlan subscriptionPlan) {
 
-        try {
-            Connection con = DBConnectionMSSQL.getConnection();
-            PreparedStatement stmt = con.prepareStatement(DELETE_SUBSCRIPTION_PLAN);
+		boolean insertStatus = false;
+		try {
+			Connection con = DBConnectionMSSQL.getConnection();
+			PreparedStatement stmt = con.prepareStatement(INSERT_SUBSCRIPTION_PLAN);
 
-            stmt.setInt(1, planId);
-            rowDelete = stmt.executeUpdate() > 0;
+			stmt.setString(1, subscriptionPlan.getDescription());
+			stmt.setInt(2, subscriptionPlan.getDuration());
+			stmt.setFloat(3, subscriptionPlan.getAmount());
+			stmt.setBoolean(4, subscriptionPlan.getisActive());
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return rowDelete;
-    }
-    
-   
+			insertStatus = (stmt.executeUpdate() > 0);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return insertStatus;
+	}
+
+	public boolean updateSubscriptionPlan(SubscriptionPlan subscriptionPlan) {
+		boolean rowUpdate = false;
+		try {
+			Connection con = DBConnectionMSSQL.getConnection();
+			PreparedStatement stmt = con.prepareStatement(UPDATE_SUBSCRIPTION_PLAN);
+
+			stmt.setString(1, subscriptionPlan.getDescription());
+			stmt.setInt(2, subscriptionPlan.getDuration());
+			stmt.setFloat(3, subscriptionPlan.getAmount());
+			stmt.setBoolean(4, subscriptionPlan.getisActive());
+
+			stmt.setInt(5, subscriptionPlan.getPlanId());
+
+			rowUpdate = stmt.executeUpdate() > 0;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return rowUpdate;
+	}
+
+	public boolean deleteSubscriptionPlan(int planId) {
+		boolean rowDelete = false;
+
+		try {
+			Connection con = DBConnectionMSSQL.getConnection();
+			PreparedStatement stmt = con.prepareStatement(DELETE_SUBSCRIPTION_PLAN);
+
+			stmt.setInt(1, planId);
+			rowDelete = stmt.executeUpdate() > 0;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return rowDelete;
+	}
+
 }

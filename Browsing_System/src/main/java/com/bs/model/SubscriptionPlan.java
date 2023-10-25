@@ -27,11 +27,6 @@ public class SubscriptionPlan {
     public int getPlanId() {
         return planId;
     }
-
-    public String getTerm() {
-        return description;
-    }
-
     public int getDuration() {
         return duration;
     }
@@ -40,7 +35,7 @@ public class SubscriptionPlan {
         return amount;
     }
 
-    public boolean isActive() {
+    public boolean getisActive() {
         return isActive;
     }
 
