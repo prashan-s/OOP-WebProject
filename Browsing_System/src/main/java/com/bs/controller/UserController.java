@@ -46,6 +46,7 @@ public class UserController {
 		boolean showSignUpForm = false;
 		boolean showSignUpStatus = false;
 		boolean showSignInStatus = false;
+
 		switch (action) {
 
 		case "submit":
@@ -174,14 +175,12 @@ public class UserController {
 						pwChangeMessage = "Password Successfully Updated..";
 					}
 
-					
-					
 				}
-				
+
 			}
-				request.setAttribute("pwChangeMessage", pwChangeMessage);
-				System.out.println("pwChangeMessage :   " + pwChangeMessage);
-				
+			request.setAttribute("pwChangeMessage", pwChangeMessage);
+			System.out.println("pwChangeMessage :   " + pwChangeMessage);
+
 			break;
 
 		case "deleteAccount":
@@ -213,12 +212,12 @@ public class UserController {
 			String loginMessage = "";
 			String userName = this.request.getParameter("userName");
 			String enteredPassword = this.request.getParameter("password");
-		// 	ystem.out.println("do action ep " +enteredPassword);
+			// ystem.out.println("do action ep " +enteredPassword);
 			String userPassword = this.loginUser(userName);
-		//	System.out.println("do action up " +userPassword);
-			if(userPassword.equals(enteredPassword)) {
+			// System.out.println("do action up " +userPassword);
+			if (userPassword.equals(enteredPassword)) {
 				loginMessage = "Login Success..";
-			}else{
+			} else {
 				loginMessage = "Login Failed..";
 			}
 			request.setAttribute("loginMessage", loginMessage);
@@ -271,7 +270,7 @@ public class UserController {
 				} else {
 					SignUpMessage = "Sign Up Successfull..";
 				}
-			}else {
+			} else {
 				SignUpMessage = "New Password and Confirm Password does not match...";
 			}
 			request.setAttribute("SignUpMessage", SignUpMessage);
@@ -352,7 +351,7 @@ public class UserController {
 		try {
 			password = dao.loginUser(userName);
 			request.setAttribute("password", password);
-			System.out.println("cntrl " +password);
+			System.out.println("cntrl " + password);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

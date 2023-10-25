@@ -16,7 +16,7 @@ public class UserWatchHistoryDAO implements IUserWatchHistoryDAO{
 	
     private static final String SELECT_HISTORY_BY_USER_ID = "SELECT watch_id, user_id, type, tvs_id, movie_Id, row_created_datetime "
     												 	  + "FROM user_watch_history "
-    												 	  + "WHERE watch_id = ? "
+    												 	  + "WHERE user_id = ? "
     												 	  + "ORDER BY row_created_datetime DESC ";
     
     private static final String INSERT_HISTORY = "INSERT INTO user_watch_history (user_id, type, tvs_id, movie_Id) "
@@ -45,11 +45,16 @@ public class UserWatchHistoryDAO implements IUserWatchHistoryDAO{
                 UserWatchHistory history = new UserWatchHistory(watchId, returnedUserId, type, tvsId, movieId, rowCreatedDatetime);
                 
                 userWatchHistory.add(history);
+               
+                
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
+
+        for(UserWatchHistory h : userWatchHistory) {
+        	System.out.println(h);
+        }
         return userWatchHistory;
     }
     
