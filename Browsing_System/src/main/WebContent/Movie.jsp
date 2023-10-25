@@ -10,8 +10,8 @@
 <body>
 	<c:set var="showMovieIdForm" scope="session" value="true" />
 
-	<c:choose>
-		<c:when test="${showMovieIdForm  == true}">
+	
+		<c:if test="${showMovieIdForm  == true}">
 			<h1>List of Movies</h1>
 			<form method="post" action="MovieServlet">
 				<label for="movieId">Movie Id</label> <input type="number"
@@ -24,9 +24,9 @@
 			<form method="post" action="TVSeriesDetailsServlet">
 				<input type="submit" name="action" value="add">
 			</form>
-		</c:when>
+		</c:if>
 
-		<c:when test="${showDetails == true}">
+		<c:if test="${showDetails == true}">
 			<table border="1">
 				<thead>
 					<tr>
@@ -49,9 +49,9 @@
 			<form method="post" action="MovieServlet">
 				<input type="submit" name="action" value="edit">
 			</form>
-		</c:when>
+		</c:if>
 
-		<c:when test="${showEditForm == true}">
+		<c:if test="${showEditForm == true}">
 			<form method="post" action="MovieServlet">
 				<c:forEach items="${movies}" var="movie">
 					<label for="movie_id">Movie ID</label>
@@ -165,9 +165,9 @@
 					<input type="submit" name="action" value="update">
 				</c:forEach>
 			</form>
-		</c:when>
+		</c:if>
 
-		<c:when test="${showAddForm == true}">
+		<c:if test="${showAddForm == true}">
 			<form method="post" action="MovieServlet">
 
 				<label for="movie_id">Movie ID</label> <input type="text"
@@ -211,29 +211,23 @@
 					Value="insert">
 
 			</form>
-		</c:when>
+		</c:if>
 
-		<c:when test="${showUpdateStatus == true}">
+		<c:if test="${showUpdateStatus == true}">
 			<h1>${xmessage}</h1>
 			<c:out value="${xmessage}" />
-		</c:when>
+		</c:if>
 
-		<c:when test="${showInsertStatus == true} ">
+		<c:if test="${showInsertStatus == true} ">
 			<h1>"${xmessage}"</h1>
 			<c:out value="${xmessage}" />
-		</c:when>
+		</c:if>
 
-		<c:when test="${showDeletetStatus == true} ">
+		<c:if test="${showDeletetStatus == true} ">
 			<h1>"${xmessage}"</h1>
 			<c:out value="${xmessage}" />
-		</c:when>
+		</c:if>
 
-		<c:otherwise>
-			<c:if test="${1 == 1}">
-				<h1>error</h1>
-			</c:if>
-		</c:otherwise>
-
-	</c:choose>
+	
 </body>
 </html>

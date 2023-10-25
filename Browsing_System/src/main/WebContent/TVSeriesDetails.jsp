@@ -22,8 +22,8 @@
 
 	<c:set var="showTVSeriesDetailsIdForm" scope="session" value="true" />
 
-	<c:choose>
-		<c:when test="${showTVSeriesDetailsIdForm == true}">
+	
+		<c:if test="${showTVSeriesDetailsIdForm == true}">
 			<form method="post" action="TVSeriesDetailsServlet">
 				<label for="tvSeriesDetailsId">TVSeries Details Id</label> <input
 					type="number" name="tvSeriesDetailsId"> <input
@@ -36,9 +36,9 @@
 				<input type="submit" name="action" value="add">
 			</form>
 
-		</c:when>
+		</c:if>
 
-		<c:when test="${showDetails == true}">
+		<c:if test="${showDetails == true}">
 			<h1>List of TVSeries Details</h1>
 			<table border="1">
 				<thead>
@@ -73,9 +73,9 @@
 			</form>
 
 
-		</c:when>
+		</c:if>
 
-		<c:when test="${showEditForm == true}">
+		<c:if test="${showEditForm == true}">
 			<form method="post" action="TVSeriesDetailsServlet">
 				<c:forEach items="${seriesDetailsList}" var="tvSeriesDetails">
 
@@ -132,9 +132,9 @@
 					<input type="submit" name="action" Value="update">
 				</c:forEach>
 			</form>
-		</c:when>
+		</c:if>
 
-		<c:when test="${showAddForm == true}">
+		<c:if test="${showAddForm == true}">
 			<form method="post" action="TVSeriesDetailsServlet">
 
 				<label for="tvSid_i">TVSId</label> <input type="number"
@@ -157,30 +157,24 @@
 					type="submit" name="action" Value="insert">
 
 			</form>
-		</c:when>
+		</c:if>
 
-		<c:when test="${showUpdateStatus == true} ">
+		<c:if test="${showUpdateStatus == true} ">
 			<h1>"${xmessage}"</h1>
 			<c:out value="${xmessage}" />
-		</c:when>
+		</c:if>
 
-		<c:when test="${showInsertStatus == true} ">
+		<c:if test="${showInsertStatus == true} ">
 			<h1>"${xmessage}"</h1>
 			<c:out value="${xmessage}" />
-		</c:when>
+		</c:if>
 
-		<c:when test="${showDeletetStatus == true} ">
+		<c:if test="${showDeletetStatus == true} ">
 			<h1>"${xmessage}"</h1>
 			<c:out value="${xmessage}" />
-		</c:when>
+		</c:if>
 
-		<c:otherwise>
-			<c:if test="${1==1}">
-				<h1>error</h1>
 
-			</c:if>
-		</c:otherwise>
-
-	</c:choose>
+	
 </body>
 </html>
