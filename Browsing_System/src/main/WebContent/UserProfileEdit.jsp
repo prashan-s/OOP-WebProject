@@ -11,16 +11,16 @@
 <body>
 	<c:set var="showUserIdForm" scope="session" value="true" />
 
-	<c:choose>
-		<c:when test="${showUserIdForm == true}">
+
+		<c:if test="${showUserIdForm == true}">
 			<form method="post" action="UserServlet">
 				<label for="userId">User Id</label> 
 				<input type="number" name="userId"> 
 				<input type="submit" name="action" value="submit">
 			</form>
-		</c:when>
+		</c:if>
 		
-		<c:when test="${showDetails == true}">
+		<c:if test="${showDetails == true}">
 
 			<table>
 					<tr>
@@ -44,9 +44,9 @@
 			<form method="post" action="UserServlet">
 				<input type="submit" name="action" value="edit">
 			</form>
-		</c:when>
+		</c:if>
 		
-		<c:when test="${showEditForm == true}">
+		<c:if test="${showEditForm == true}">
 			<form method="post" action="UserServlet">
 			
 					<label for="name">Name</label>
@@ -65,20 +65,14 @@
 					<input type="submit" name="action" value="update">
 			
 			</form>
-		</c:when>
+		</c:if>
 	
-		<c:when test="${showUpdateStatus == true} ">
+		<c:if test="${showUpdateStatus == true}">
 			<div>
-				<h1>"${xmessage}"</h1>
 				<c:out value="${xmessage}"/>
 			</div>
-		</c:when>
-		<c:otherwise>
-				<c:out value="${xmessage}"/>
-		</c:otherwise>
-	
+		</c:if>
 		
-				
-	</c:choose>
+	
 </body>
 </html>
