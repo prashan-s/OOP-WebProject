@@ -294,7 +294,7 @@ public class MovieController {
 		}
 		
 		try {
-			dispacther.forward(request, response);
+			dispatcher.forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
