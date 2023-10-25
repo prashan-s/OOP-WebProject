@@ -18,6 +18,12 @@
 					name="movieId"> <input type="submit" name="action"
 					value="submit">
 			</form>
+			<br>
+			<br>
+
+			<form method="post" action="TVSeriesDetailsServlet">
+				<input type="submit" name="action" value="add">
+			</form>
 		</c:when>
 
 		<c:when test="${showDetails == true}">
@@ -33,8 +39,8 @@
 					<c:forEach items="${movies}" var="movie">
 						<tr>
 							<td>${movie.title}</td>
-							<td>${movie.director}</td>
-							<td>${movie.releaseYear}</td>
+							<td>${movie.description}</td>
+							<td>${movie.year}</td>
 						</tr>
 					</c:forEach>
 				</tbody>
@@ -156,10 +162,6 @@
 					<br>
 					<br>
 
-
-
-					<br>
-					<br>
 					<input type="submit" name="action" value="update">
 				</c:forEach>
 			</form>

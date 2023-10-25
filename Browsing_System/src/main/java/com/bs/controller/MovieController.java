@@ -24,14 +24,14 @@ public class MovieController {
 	public MovieController(HttpServletRequest request, HttpServletResponse response) {
 		this.request = request;
 		this.response = response;
-		this.dispatcher = request.getRequestDispatcher("movie.jsp");
+		this.dispatcher = request.getRequestDispatcher("Movie.jsp");
 		this.dao = new MovieDAO();
 
 	}
 
 	public void doAction(String action) {
 		String jspPage = "Movie.jsp";
-		int movieId = -1;
+		Integer movieId = -1;
 		boolean showMovieIdForm = true;
 		boolean showDetails = false;
 		boolean showEditForm = false;
@@ -281,11 +281,6 @@ public class MovieController {
 			e.printStackTrace();
 		}
 
-		try {
-			dispatcher.forward(request, response);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 	
 	public boolean updateMovieByAdmin(Movie movie) {
