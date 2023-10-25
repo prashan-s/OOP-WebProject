@@ -44,6 +44,9 @@ public class TVSeriesServlet extends HttpServlet {
     }
     
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+
+    	this.controller = new TVSeriesController(request, response);
+    	String a = request.getParameter("action");
+        controller.doAction(a);
 	}
 }

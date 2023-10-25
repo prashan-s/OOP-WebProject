@@ -8,6 +8,16 @@
 <title>TV Series List</title>
 </head>
 <body>
+
+	<script>
+		function confirmDelete() {
+			if (confirm("Are you sure you want to delete this TV series details?")) {
+				return true;
+			}
+			return false;
+		}
+	</script>
+
 	<c:set var="showTVSeriesIdForm" scope="session" value="true" />
 
 	<c:choose>
@@ -18,28 +28,36 @@
 					name="tvsId"> <input type="submit" name="action"
 					value="submit">
 			</form>
+			<br>
+			<br>
+
+			<form method="post" action="TVSeriesServlet">
+				<input type="submit" name="action" value="add">
+			</form>
 		</c:when>
 
 		<c:when test="${showDetails == true}">
 			<table border="1">
-			<thead>
-			<tr>
-			<th>Title</th>
-			<th>Image</th>
-			</tr>
-			</thead>
-			<tbody>
-				<c:forEach items="${seriesList}" var="tvSeries">
+				<thead>
 					<tr>
-						<td>${tvSeries.title}</td>
-						<td>${tvSeries.tvs_img_url}</td>
+						<th>Title</th>
+						<th>Image</th>
 					</tr>
-				</c:forEach>
+				</thead>
+				<tbody>
+					<c:forEach items="${seriesList}" var="tvSeries">
+						<tr>
+							<td>${tvSeries.title}</td>
+							<td>${tvSeries.tvs_img_url}</td>
+						</tr>
+					</c:forEach>
 				</tbody>
 			</table>
 
 			<form method="post" action="TVSeriesServlet">
-				<input type="submit" name="action" value="edit">
+				<br> <br> <input type="submit" name="action" value="edit">
+				<br> <br> <input type="submit" name="action"
+					value="delete" onclick="return confirmDelete();">
 			</form>
 		</c:when>
 
@@ -111,9 +129,54 @@
 			</form>
 		</c:when>
 
+		<c:when test="${showAddForm == true}">
+			<form method="post" action="TVSeriesServlet">
+
+				<label for="tvSeireTitle_i">Title</label> <input type="text"
+					name="tvSeriesTitle_i"> <br> <br> <label
+					for="tvSeriesUrl_i">Enter a TVSeries Image URL:</label> <input
+					type="text" name="tvSeriesUrl_i" placeholder="https://example.com"
+					required /> <br> <br> <label for="tvSeriesCategory_i">Select
+					Category</label> <br> <br> <label for="action_category_i">Action</label>
+				<input type="checkbox" id="action_category_i"
+					name="action_category_i"> <br> <label
+					for="adventure_category_i">Adventure</label> <input type="checkbox"
+					id="adventure_category_i" name="adventure_category_i"> <br>
+
+				<label for="comedy_category_i">Comedy</label> <input type="checkbox"
+					id="comedy_category_i" name="comedy_category_i"> <br>
+
+				<label for="scify_category_i">Science Fiction</label> <input
+					type="checkbox" id="scify_category_i" name="scify_category_i">
+				<br> <label for="horror_category_i">Horror</label> <input
+					type="checkbox" id="horror_category_i" name="horror_category_i">
+				<br> <label for="romance_category_i">Romance</label> <input
+					type="checkbox" id="romance_category_i" name="romance_category_i">
+				<br> <label for="science_category_i">Science</label> <input
+					type="checkbox" id="science_category_i" name="science_category_i">
+				<br> <label for="crime_category_i">Crime</label> <input
+					type="checkbox" id="crime_category_i" name="crime_category_i">
+				<br> <label for="thriller_category">Thriller</label> <input
+					type="checkbox" id="thriller_category_i" name="thriller_category_i">
+				<br> <br> <input type="submit" name="action"
+					Value="insert">
+
+			</form>
+		</c:when>
+
 		<c:when test="${showUpdateStatus == true} ">
 			<h1>"${xmessage}"</h1>
-			<c:out value="${xmessage}"/>
+			<c:out value="${xmessage}" />
+		</c:when>
+
+		<c:when test="${showInsertStatus == true} ">
+			<h1>"${xmessage}"</h1>
+			<c:out value="${xmessage}" />
+		</c:when>
+
+		<c:when test="${showDeletetStatus == true} ">
+			<h1>"${xmessage}"</h1>
+			<c:out value="${xmessage}" />
 		</c:when>
 
 
@@ -123,8 +186,8 @@
 
 			</c:if>
 		</c:otherwise>
-		
-</c:choose>
+
+	</c:choose>
 
 </body>
 </html>
