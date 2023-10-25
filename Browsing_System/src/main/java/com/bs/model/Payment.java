@@ -18,8 +18,44 @@ public class Payment {
         this.amount = amount;
         this.rowCreatedDatetime = rowCreatedDatetime;
     }
+    
+    
+    public Payment(int returnedPayment_id, int userId2, int subId2, float amount2, Date rowCreatedDatetime2) {
+		// TODO Auto-generated constructor stub
+	}
 
-    public int getPaymentId() {
+
+	public void setPaymentId(int paymentId) {
+		this.paymentId = paymentId;
+	}
+
+
+
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+
+
+
+	public void setSubId(int subId) {
+		this.subId = subId;
+	}
+
+
+
+	public void setAmount(float amount) {
+		this.amount = amount;
+	}
+
+
+
+	public void setRowCreatedDatetime(Date rowCreatedDatetime) {
+		this.rowCreatedDatetime = rowCreatedDatetime;
+	}
+
+
+
+	public int getPaymentId() {
         return paymentId;
     }
 

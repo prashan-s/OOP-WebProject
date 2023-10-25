@@ -23,29 +23,27 @@ public class TVSeriesServlet extends HttpServlet {
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("doGet: TVSeriesServlet");
-        this.controller = new TVSeriesController(request, response);
-        this.controller.addTVSeries();
+    	this.controller = new TVSeriesController(request, response);
     }
 
     /**
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("doPost: TVSeriesServlet");
-        System.out.println("Selected ID:" + request.getParameter("tvSeriesId"));
-
-        Integer seriesId = Integer.parseInt(request.getParameter("tvSeriesId"));
-
-        this.controller = new TVSeriesController(request, response);
-        this.controller.selectTVSeries(seriesId);
-        
-//        // Check if the "Add TV Series" form was submitted
-//        if (request.getParameter("Add") != null) {
-//            this.controller = new TVSeriesController(request, response);
-//            this.controller.addTVSeries();
-//        } else {
-//            System.out.println("Form sumission failed");
-//        }
+		this.controller = new TVSeriesController(request, response);
+		String a = request.getParameter("action");
+		controller.doAction(a);
+       
     }
+    
+    protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	
+    	this.controller = new TVSeriesController(request, response);
+    	String a = request.getParameter("action");
+        controller.doAction(a);
+    }
+    
+	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+	}
 }

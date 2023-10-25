@@ -18,7 +18,7 @@ public class TVSeriesDetails {
     private boolean isActive;
     private Date rowCreatedDatetime;
 
-    public TVSeriesDetails(int tvsDetailId, int tvsId, int season, int episode, String description,
+    public TVSeriesDetails(int tvsDetailId,int tvsId, int season, int episode, String description,
                            int year, int duration, String quality, Integer watchCount,
                            String tvsStreamUrl, String createdAdminName, boolean isActive, Date rowCreatedDatetime) {
         this.tvsDetailId = tvsDetailId;
@@ -36,7 +36,63 @@ public class TVSeriesDetails {
         this.rowCreatedDatetime = rowCreatedDatetime;
     }
 
-    public int getTvsDetailId() {
+    public TVSeriesDetails() {
+		
+	}
+
+	public void setTvsDetailId(int tvsDetailId) {
+		this.tvsDetailId = tvsDetailId;
+	}
+
+	public void setTvsId(int tvsId) {
+		this.tvsId = tvsId;
+	}
+
+	public void setSeason(int season) {
+		this.season = season;
+	}
+
+	public void setEpisode(int episode) {
+		this.episode = episode;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public void setYear(int year) {
+		this.year = year;
+	}
+
+	public void setDuration(int duration) {
+		this.duration = duration;
+	}
+
+	public void setQuality(String quality) {
+		this.quality = quality;
+	}
+
+	public void setWatchCount(Integer watchCount) {
+		this.watchCount = watchCount;
+	}
+
+	public void setTvsStreamUrl(String tvsStreamUrl) {
+		this.tvsStreamUrl = tvsStreamUrl;
+	}
+
+	public void setCreatedAdminName(String createdAdminName) {
+		this.createdAdminName = createdAdminName;
+	}
+
+	public void setActive(boolean isActive) {
+		this.isActive = isActive;
+	}
+
+	public void setRowCreatedDatetime(Date rowCreatedDatetime) {
+		this.rowCreatedDatetime = rowCreatedDatetime;
+	}
+
+	public int getTvsDetailId() {
         return tvsDetailId;
     }
 
