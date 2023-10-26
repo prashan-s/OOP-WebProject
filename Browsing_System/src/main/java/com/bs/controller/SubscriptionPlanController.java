@@ -3,6 +3,7 @@ package com.bs.controller;
 import java.util.List;
 
 import com.bs.dao.SubscriptionPlanDAO;
+import com.bs.dao.UserPaymentMethodDAO;
 import com.bs.model.SubscriptionPlan;
 import com.bs.model.UserPaymentMethod;
 
@@ -17,6 +18,7 @@ public class SubscriptionPlanController {
 	HttpServletRequest request;
 	HttpServletResponse response;
 	SubscriptionPlanDAO dao;
+	UserPaymentMethodDAO userPayMethodDao;
 
 	public SubscriptionPlanController() {
 
@@ -26,7 +28,7 @@ public class SubscriptionPlanController {
 		this.request = request;
 		this.response = response;
 		this.dao = new SubscriptionPlanDAO();
-
+		this.userPayMethodDao = new UserPaymentMethodDAO();
 	}
 
 	public void doAction(String action) {
@@ -71,13 +73,12 @@ public class SubscriptionPlanController {
 			showSubscriptionPayDetails =true;
 			List<UserPaymentMethod> methods = null;
 			
-			int userIdCustomer = getValueForId("userId");
+			userId = getValueForId("userId");
 			int selectedPlanId = Integer.parseInt(this.request.getParameter("planId"));			
-			UserPaymentMethodController UserPaymentMethodController = new UserPaymentMethodController();
 			
-			methods = UserPaymentMethodController.selectPaymentMethod(userIdCustomer);
+			methods = this.userPayMethodDao.selectUserPaymentMethod(userId);
 			
-			request.setAttribute("userIdCustomer", userIdCustomer);
+			request.setAttribute("userIdCustomer", userId);
 			request.setAttribute("selectedSubPlan", this.selectSubscriptionPlanById(selectedPlanId));
 			request.setAttribute("methods", methods);
 

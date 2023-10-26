@@ -4,7 +4,10 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
+import com.bs.dao.PaymentDAO;
+import com.bs.dao.UserDAO;
 import com.bs.dao.UserPaymentMethodDAO;
+import com.bs.dao.UserSubscriptionDAO;
 import com.bs.model.Payment;
 import com.bs.model.UserPaymentMethod;
 import com.bs.model.UserSubscription;
@@ -19,6 +22,9 @@ public class UserPaymentMethodController {
 	HttpServletRequest request;
 	HttpServletResponse response;
 	UserPaymentMethodDAO dao;
+	UserSubscriptionDAO userSubDao;
+	PaymentDAO paymentDao;
+	UserDAO userDao;
 	java.util.Date exp = new java.util.Date();
 	
 	public UserPaymentMethodController() {
@@ -30,6 +36,9 @@ public class UserPaymentMethodController {
 		this.request = request;
 		this.response = response;
 		this.dao = new UserPaymentMethodDAO();
+		this.userSubDao = new UserSubscriptionDAO();
+		this.paymentDao = new PaymentDAO();
+		this.userDao = new UserDAO();
 	}
 	public void doAction(String action) {
 		
@@ -62,25 +71,25 @@ public class UserPaymentMethodController {
 		String paymentMessage = "";
 		String premiumMessage = "";
 		
+		userId = Integer.parseInt(request.getParameter("userId"));
 		UserSubscription userSub = new UserSubscription();
-		userSub.setUserId(Integer.parseInt(request.getParameter("userId")));
+		userSub.setUserId(userId);
 		userSub.setPlanId(Integer.parseInt(request.getParameter("planId")));
-		UserSubscriptionController userSubCon  = new  UserSubscriptionController();
-		int subId =  userSubCon.insertSubReturnSubId(userSub);
+		int subId = userSubDao.insertSubReturnSubId(userSub);
 		
 		Payment payment = new Payment();
-		payment.setUserId(Integer.parseInt(request.getParameter("userId")));
+		payment.setUserId(userId);
 		payment.setAmount(Float.parseFloat(request.getParameter("amount")));
 		payment.setSubId(subId);
-		PaymentController paymentCon= new PaymentController();
-		Boolean paymentStatus = paymentCon.insertPayment(payment);
+		Boolean paymentStatus = paymentDao.insertPayment(payment);
+		
+		System.out.println(paymentStatus+ "in pay tag");
 		
 		if(paymentStatus == false) {
 			paymentMessage = "Payment failed..";
 		}else {
 			paymentMessage = "Payment Success..";
-			UserController userCon = new UserController();
-			boolean premiumStatus = userCon.upgradeToPremium(userId);
+			boolean premiumStatus = userDao.upgradeToPremium(userId);
 			if(premiumStatus == true) {
 				premiumMessage = "You are now Premium Member";
 			}else {
@@ -162,7 +171,7 @@ public class UserPaymentMethodController {
 		
 		List<UserPaymentMethod> methods = null;
 		try {
-			methods = new UserPaymentMethodDAO().selectUserPaymentMethod(userId);
+			methods = this.dao.selectUserPaymentMethod(userId);
 		//	request.setAttribute("methods", methods);
 		}catch(Exception e1){
 			e1.printStackTrace();

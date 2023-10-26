@@ -140,7 +140,9 @@ public class UserDAO implements IUserDAO {
 			stmt.setInt(1, userId);
 
 			rowUpdated = (stmt.executeUpdate() > 0);
-
+			
+			System.out.println(rowUpdated + "in user dao premium");
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

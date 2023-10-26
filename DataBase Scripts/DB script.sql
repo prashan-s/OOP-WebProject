@@ -1,6 +1,8 @@
-CREATE DATABASE OnlineWatchingMoviesandTVSeries;
+CREATE DATABASE OnlineWatchingMoviesandTVSeriesTest;
 GO
-USE OnlineWatchingMoviesandTVSeries;
+USE OnlineWatchingMoviesandTVSeriesTest;
+GO
+
 CREATE TABLE movie (
 	movie_id				INT				NOT NULL PRIMARY KEY IDENTITY(1, 1),
 	title					VARCHAR(100)	NOT NULL,
@@ -24,7 +26,7 @@ CREATE TABLE movie (
 	created_admin_name		VARCHAR(200)	NOT NULL,
 	row_created_datetime	DATETIME		NOT NULL DEFAULT GETDATE()
 );
-
+GO
 
 
 CREATE TABLE tv_series (
@@ -43,7 +45,7 @@ CREATE TABLE tv_series (
 	is_active				BIT				NOT NULL DEFAULT(1),
     row_created_datetime	DATETIME		NOT NULL DEFAULT GETDATE()
 );
-
+GO
 
 
 CREATE TABLE tv_series_details (
@@ -61,7 +63,7 @@ CREATE TABLE tv_series_details (
 	is_active				BIT				NOT NULL DEFAULT(1),
     row_created_datetime	DATETIME		NOT NULL DEFAULT GETDATE()
 );
-
+GO
 CREATE TABLE users (
 	user_id					INT					NOT NULL PRIMARY KEY IDENTITY(1, 1),
 	name					VARCHAR(200)		NOT NULL,
@@ -74,7 +76,7 @@ CREATE TABLE users (
 	is_active				BIT					NOT NULL DEFAULT(1),
     row_created_datetime	DATETIME			NOT NULL DEFAULT GETDATE()
 );
-
+GO
 
 
 CREATE TABLE user_rating (
@@ -86,12 +88,9 @@ CREATE TABLE user_rating (
 	rating					INT				NULL,
 	row_created_datetime	DATETIME		NOT NULL	DEFAULT GETDATE(),
 
-	CONSTRAINT fk1_user_rating_user_id FOREIGN KEY(user_id) REFERENCES users(user_id),
-	CONSTRAINT fk2_user_rating_tvs_id FOREIGN KEY(tvs_id) REFERENCES tv_series(tvs_id),
-	CONSTRAINT fk3_user_rating_movie_Id FOREIGN KEY(movie_Id) REFERENCES movie(movie_id)
 ); 
 
-
+GO
 
 CREATE TABLE user_favourite (
 	fav_id					INT			NOT NULL	PRIMARY KEY IDENTITY(1, 1),
@@ -101,11 +100,8 @@ CREATE TABLE user_favourite (
 	movie_Id				INT			NULL,
 	row_created_datetime	DATETIME	NOT NULL	DEFAULT GETDATE(),
 
-	CONSTRAINT fk1_user_favourite_user_id FOREIGN KEY(user_id) REFERENCES users(user_id),
-	CONSTRAINT fk2_user_favourite_tvs_id FOREIGN KEY(tvs_id) REFERENCES tv_series(tvs_id),
-	CONSTRAINT fk3_user_favourite_movie_Id FOREIGN KEY(movie_Id) REFERENCES movie(movie_id)
 );
-drop table user_watch_list
+GO
 CREATE TABLE user_watch_list (
 	watch_list_id			INT			NOT NULL	PRIMARY KEY IDENTITY(1, 1),
 	user_id					INT			NOT NULL,
@@ -113,12 +109,9 @@ CREATE TABLE user_watch_list (
 	tvs_id					INT			NULL,
 	movie_Id				INT			NULL,
 	row_created_datetime	DATETIME	NOT NULL	DEFAULT GETDATE(),
-);
-	CONSTRAINT fk1_user_watch_list_user_id FOREIGN KEY(user_id) REFERENCES users(user_id),
-	CONSTRAINT fk2_user_watch_list_tvs_id FOREIGN KEY(tvs_id) REFERENCES tv_series(tvs_id),
-	CONSTRAINT fk3_user_watch_list_movie_Id FOREIGN KEY(movie_Id) REFERENCES movie(movie_id)
-); 
 
+); 
+GO
 
 CREATE TABLE user_watch_history (
 	watch_id				INT			NOT NULL	PRIMARY KEY IDENTITY(1, 1),
@@ -128,11 +121,8 @@ CREATE TABLE user_watch_history (
 	movie_Id				INT			NULL,
 	row_created_datetime	DATETIME	NOT NULL	DEFAULT GETDATE(),
 
-	CONSTRAINT fk1_user_watch_history_user_id FOREIGN KEY(user_id) REFERENCES users(user_id),
-	CONSTRAINT fk2_user_watch_history_tvs_id FOREIGN KEY(tvs_id) REFERENCES tv_series(tvs_id),
-	CONSTRAINT fk3_user_watch_history_movie_Id FOREIGN KEY(movie_Id) REFERENCES movie(movie_id)
 );
-
+GO
 
 CREATE TABLE subscription_plan(
 	plan_id					INT				NOT NULL	PRIMARY KEY IDENTITY(1,1) ,
@@ -142,22 +132,20 @@ CREATE TABLE subscription_plan(
 	is_active				BIT				NOT NULL	DEFAULT(1),
 	row_created_datetime	DATETIME		NOT NULL	DEFAULT GETDATE()
 );
+GO
 
 CREATE TABLE user_subscription (
 	 sub_id				INT			NOT NULL	PRIMARY KEY IDENTITY(1, 1),
 	 user_id			INT			NOT NULL,
 	 plan_id			INT			NOT NULL,
-	 subscribe_date		DATE,
+	 subscribe_date		DATE		NOT NULL	DEFAULT GETDATE(),
 	 next_renewal_date	DATE,
 	 is_active			BIT			NOT NULL	DEFAULT(1),
 	 row_created_datetime	DATETIME	NOT NULL	DEFAULT GETDATE(),
 
-	 CONSTRAINT fk1_subscription_user_id FOREIGN KEY(user_id) REFERENCES users(user_id),
-	 CONSTRAINT fk2_subscription_user_id FOREIGN KEY(plan_id) REFERENCES subscription_plan(plan_id),
 
 );
-
-
+GO
 
 CREATE TABLE payment (
 	 payment_id				INT			NOT NULL	PRIMARY KEY IDENTITY(1, 1),
@@ -166,12 +154,10 @@ CREATE TABLE payment (
 	 amount					FLOAT		NOT NULL,
 	 row_created_datetime	DATETIME	NOT NULL	DEFAULT GETDATE(),
 
-	 CONSTRAINT fk1_payment_user_id FOREIGN KEY(user_id) REFERENCES users(user_id),
-	 CONSTRAINT fk2_payment_sub_id FOREIGN KEY(sub_Id) REFERENCES user_subscription(sub_id)
 );
+GO
 
 
-drop table user_payment_method ;
 CREATE TABLE user_payment_method(
 	payment_method_id		INT			NOT NULL	PRIMARY KEY	IDENTITY(1,1),
 	card_number				VARCHAR(20) NOT NULL,
@@ -180,16 +166,23 @@ CREATE TABLE user_payment_method(
 	user_id					INT			NOT NULL,
 	is_active				BIT			NOT NULL	DEFAULT(1),
 	row_created_datetime	DATETIME	NOT NULL	DEFAULT GETDATE()
+
 );
-CONSTRAINT fk_payment_method_user_id FOREIGN KEY(user_id) REFERENCES users (user_id)
-);
 
+--RUN TRIGGER AFTER CREATE TABLES
+-- Create a trigger to update next_renewal_date in user_subscription table
+-- when a new record is inserted.
 
+CREATE TRIGGER UpdateNextRenewalDate
+ON user_subscription
+AFTER INSERT
+AS
+BEGIN
+    -- Update the next_renewal_date using the duration_in_months from subscription_plan.
+    UPDATE us
+    SET us.next_renewal_date = DATEADD(MONTH, sp.duration_in_months, i.subscribe_date)
+    FROM user_subscription AS us
+    INNER JOIN inserted AS i ON us.sub_id = i.sub_id
+    INNER JOIN subscription_plan AS sp ON us.plan_id = sp.plan_id;
+END;
 
-ALTER TABLE tv_series_details
-DROP CONSTRAINT fk_tv_series_tvs_id;
-
-ALTER TABLE tv_series
-ADD CONSTRAINT fk_tv_series_tvs_id
-FOREIGN KEY (tvs_id) REFERENCES tv_series_details(tvs_id)
-ON DELETE CASCADE ON UPDATE CASCADE

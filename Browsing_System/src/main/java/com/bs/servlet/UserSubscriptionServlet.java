@@ -12,7 +12,8 @@ import jakarta.servlet.http.HttpServletResponse;
 
 @WebServlet(name = "UserSubscriptionServlet", urlPatterns = {"/UserSubscriptionServlet"})
 public class UserSubscriptionServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+	
+	 private static final long serialVersionUID = 1L;
 	 private UserSubscriptionController controller;
    
     public UserSubscriptionServlet() {

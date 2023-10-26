@@ -36,7 +36,7 @@
        		 <input type="hidden" name="userId" value="${userIdCustomer}">
        		 <input type="hidden" name="planId" value="${selectedSubPlan.planId}">
        		 <input type="hidden" name="amount" value="${selectedSubPlan.amount}">
-       		 <input type="submit" name="action"  value="pay">
+       		 <input type="submit" name="action" value="pay">
 		</form>
 	</c:if>
 	
