@@ -282,6 +282,24 @@ public class MovieController {
 		}
 
 	}
+		
+	public void selectAllMovies() {
+		
+		try {
+		List<Movie> movies = new MovieDAO().selectAllMovies();
+		System.out.println("movies : " + movies.getFirst().getTitle());
+		request.setAttribute("movieData", movies);//attribute name, objectName
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		try {
+			this.dispatcher =  request.getRequestDispatcher("./WebApp/pages/admin-portal.jsp");
+			this.dispatcher.forward(request, response);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
 	public boolean updateMovieByAdmin(Movie movie) {
 		boolean updateStatus = true;
