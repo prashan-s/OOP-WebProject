@@ -373,6 +373,20 @@ public class UserController {
 
 	}
 
+	public boolean upgradeToPremium(int userId) {
+		boolean premiumStatus = false;
+		try {
+			premiumStatus = dao.upgradeToPremium(userId);
+			request.setAttribute("premiumStatus", premiumStatus);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return premiumStatus;
+
+	}
+
 	public boolean changePassword(User user) {
 		boolean passwordStatus = false;
 		try {

@@ -18,6 +18,36 @@
 			<input type="submit" name="action"value="submit">
 		</form>
 	</c:if>
+	
+	<c:if test="${showSubscriptionPayDetails == true}">
+		
+		<form method="post" action="UserPaymentMethodServlet">
+			<label for="planDescription"><c:out value = "${selectedSubPlan.description}"/></label> <br>
+			<label for="amount"> LKR <c:out value = "${selectedSubPlan.amount}"/></label> <br>
+			<label for="duration"><c:out value = "${selectedSubPlan.duration}"/>  Months</label><br> 
+			
+			<label for="method">Choose Payment Method :</label> <br>
+        	
+        	<select name="method" >
+        		<c:forEach items="${methods}" var="method">
+		            <option value="${method.paymentMethodId}"><c:out value = "${method.cardNumber}"/> </option>
+		       </c:forEach>
+       		 </select>
+       		 <input type="hidden" name="userId" value="${userIdCustomer}">
+       		 <input type="hidden" name="planId" value="${selectedSubPlan.planId}">
+       		 <input type="hidden" name="amount" value="${selectedSubPlan.amount}">
+       		 <input type="submit" name="action"  value="pay">
+		</form>
+	</c:if>
+	
+	<c:if test="${showPaymentStatus == true}">
+		<div>
+			<c:out value="${paymentMessage}"/>
+		</div>
+		<div>
+			<c:out value="${premiumMessage}"/>
+		</div>
+	</c:if>
 
 	<c:if test="${listPaymentMethod == true}">
 		<table border = 1>
@@ -58,7 +88,8 @@
 			<input type="text" name="cardNo"><br> 
 			<label for="expDate">Expire Date :</label>
 			<input type="date" name="expDate"><br> 
-			<label for="cvv">CVV :</label> <input type="number" name="cvv"><br>
+			<label for="cvv">CVV :</label> 
+			<input type="number" name="cvv"><br>
 
 			<input type="submit" name="action" value="add"><br>
 			

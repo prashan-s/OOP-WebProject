@@ -2,7 +2,7 @@ package com.bs.servlet;
 
 import java.io.IOException;
 
-import com.bs.controller.PaymentController;
+import com.bs.controller.UserSubscriptionController;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -10,23 +10,16 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-
-@WebServlet(name = "PaymentServlet", urlPatterns = {"/PaymentServlet"})
-public class PaymentServlet extends HttpServlet {
+@WebServlet(name = "UserSubscriptionServlet", urlPatterns = {"/UserSubscriptionServlet"})
+public class UserSubscriptionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private PaymentController controller;
-	
-	public PaymentServlet() {
+	 private UserSubscriptionController controller;
+   
+    public UserSubscriptionServlet() {
 	}
-	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-	}
-
+  
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
-		this.controller = new PaymentController(request, response);
-		
+		this.controller = new UserSubscriptionController(request, response);
 		
 	}
 

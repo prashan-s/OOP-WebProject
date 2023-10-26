@@ -1,17 +1,18 @@
 package com.bs.controller;
 
-import jakarta.servlet.RequestDispatcher;
-import jakarta.servlet.http.Cookie;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
 import com.bs.dao.UserPaymentMethodDAO;
-import com.bs.model.SubscriptionPlan;
+import com.bs.model.Payment;
 import com.bs.model.UserPaymentMethod;
+import com.bs.model.UserSubscription;
+
+import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 public class UserPaymentMethodController {
 	RequestDispatcher dispacther;
@@ -19,6 +20,7 @@ public class UserPaymentMethodController {
 	HttpServletResponse response;
 	UserPaymentMethodDAO dao;
 	java.util.Date exp = new java.util.Date();
+	
 	public UserPaymentMethodController() {
 		
 	}
@@ -38,7 +40,7 @@ public class UserPaymentMethodController {
 		boolean addPaymentMethod =  false;
 		boolean showDeleteStatus=  false;
 		boolean showInsertStatus = false;
-		
+		boolean showPaymentStatus = false;
 		switch(action) {
 	
 	case "submit":
@@ -54,6 +56,41 @@ public class UserPaymentMethodController {
 		this.response.addCookie(cookie);
 		break;
 		
+	case "pay":
+		jspPage = "UserPaymentMethod.jsp";
+		showPaymentStatus = true;
+		String paymentMessage = "";
+		String premiumMessage = "";
+		
+		UserSubscription userSub = new UserSubscription();
+		userSub.setUserId(Integer.parseInt(request.getParameter("userId")));
+		userSub.setPlanId(Integer.parseInt(request.getParameter("planId")));
+		UserSubscriptionController userSubCon  = new  UserSubscriptionController();
+		int subId =  userSubCon.insertSubReturnSubId(userSub);
+		
+		Payment payment = new Payment();
+		payment.setUserId(Integer.parseInt(request.getParameter("userId")));
+		payment.setAmount(Float.parseFloat(request.getParameter("amount")));
+		payment.setSubId(subId);
+		PaymentController paymentCon= new PaymentController();
+		Boolean paymentStatus = paymentCon.insertPayment(payment);
+		
+		if(paymentStatus == false) {
+			paymentMessage = "Payment failed..";
+		}else {
+			paymentMessage = "Payment Success..";
+			UserController userCon = new UserController();
+			boolean premiumStatus = userCon.upgradeToPremium(userId);
+			if(premiumStatus == true) {
+				premiumMessage = "You are now Premium Member";
+			}else {
+				premiumMessage = "Still not a Premium Member";
+			}
+		}
+		request.setAttribute("paymentMessage", paymentMessage);
+		request.setAttribute("premiumMessage", premiumMessage);
+		break;
+		
 	case "remove":
 		jspPage = "UserPaymentMethod.jsp";
 		showDeleteStatus = true;
@@ -61,8 +98,6 @@ public class UserPaymentMethodController {
 		String deleteMessage = null;
 
 		int paymentMethodId = Integer.parseInt(this.request.getParameter("paymentMethodId"));
-		request.setAttribute("paymentMethodId", this.deletePaymentMethod(paymentMethodId));
-		
 
 		deleteStatus = this.deletePaymentMethod(paymentMethodId);
 		System.out.println(deleteStatus + "do action");
@@ -114,7 +149,8 @@ public class UserPaymentMethodController {
 		request.setAttribute("addPaymentMethod", addPaymentMethod);
 		request.setAttribute("showDeleteStatus", showDeleteStatus);
 		request.setAttribute("showInsertStatus", showInsertStatus);
-
+		request.setAttribute("showPaymentStatus", showPaymentStatus);
+		
 		this.dispacther = request.getRequestDispatcher(jspPage);
 		dispacther.forward(request, response);
 
@@ -127,7 +163,7 @@ public class UserPaymentMethodController {
 		List<UserPaymentMethod> methods = null;
 		try {
 			methods = new UserPaymentMethodDAO().selectUserPaymentMethod(userId);
-			request.setAttribute("methods", methods);
+		//	request.setAttribute("methods", methods);
 		}catch(Exception e1){
 			e1.printStackTrace();
 		}

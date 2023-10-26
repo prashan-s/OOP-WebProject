@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.bs.dao.SubscriptionPlanDAO;
 import com.bs.model.SubscriptionPlan;
+import com.bs.model.UserPaymentMethod;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.http.Cookie;
@@ -41,7 +42,7 @@ public class SubscriptionPlanController {
 		boolean showDeleteStatus = false;
 		boolean insertPlansByAdmin = false;
 		boolean showInsertedStatus = false;
-		
+		boolean showSubscriptionPayDetails = false;
 		switch (action) {
 
 		case "submit user Id":
@@ -64,7 +65,25 @@ public class SubscriptionPlanController {
 			request.setAttribute("subscriptionPlans", this.selectSubscriptionPlan());
 			
 			break;
+		case "activate":
+			
+			jspPage = "UserPaymentMethod.jsp";
+			showSubscriptionPayDetails =true;
+			List<UserPaymentMethod> methods = null;
+			
+			int userIdCustomer = getValueForId("userId");
+			int selectedPlanId = Integer.parseInt(this.request.getParameter("planId"));			
+			UserPaymentMethodController UserPaymentMethodController = new UserPaymentMethodController();
+			
+			methods = UserPaymentMethodController.selectPaymentMethod(userIdCustomer);
+			
+			request.setAttribute("userIdCustomer", userIdCustomer);
+			request.setAttribute("selectedSubPlan", this.selectSubscriptionPlanById(selectedPlanId));
+			request.setAttribute("methods", methods);
 
+			
+			break;
+			
 		case "edit":
 			jspPage = "AdminSubscriptionPlans.jsp";
 			editPlansByAdmin = true;
@@ -174,6 +193,7 @@ public class SubscriptionPlanController {
 			request.setAttribute("showDeleteStatus", showDeleteStatus);
 			request.setAttribute("insertPlansByAdmin", insertPlansByAdmin);
 			request.setAttribute("showInsertedStatus", showInsertedStatus);
+			request.setAttribute("showSubscriptionPayDetails", showSubscriptionPayDetails);
 
 			
 			this.dispacther = request.getRequestDispatcher(jspPage);
