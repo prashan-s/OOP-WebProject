@@ -9,6 +9,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import com.bs.controller.MovieController;
+import com.bs.controller.UserRatingsController;
 
 
 
@@ -18,6 +19,9 @@ public class MovieServlet extends HttpServlet {
 
 	
 	private MovieController controller;
+
+
+	private UserRatingsController rateController;
 	
 	public MovieServlet() {
 	}
@@ -38,6 +42,10 @@ public class MovieServlet extends HttpServlet {
 		this.controller = new MovieController(request, response);
     	String a = request.getParameter("action");
         controller.doAction(a);
+        
+        this.rateController = new UserRatingsController(request,response);
+        int movie_Id = Integer.parseInt(request.getParameter("movieId"));
+        this.rateController.selectMovieRatings(movie_Id);
 
 	}
 	
