@@ -20,6 +20,8 @@ public class UserRatingsDAO implements IUserRatingsDAO {
             "VALUES (?, ?, ?, ?, ?)";
 
     private static final String DELETE_USER_RATING = "DELETE FROM user_rating WHERE rate_id = ?";
+    
+    private static final String SELECT_USER_RATINGSCOUNT_BY_MOVIE_ID = "";
 
     @Override
     public List<UserRatings> selectUserRatings(int rateId) {
@@ -89,4 +91,9 @@ public class UserRatingsDAO implements IUserRatingsDAO {
 
         return rowDelete;
     }
+
+	public List<UserRatings> selectMovieRatings(int movieId,int userId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
