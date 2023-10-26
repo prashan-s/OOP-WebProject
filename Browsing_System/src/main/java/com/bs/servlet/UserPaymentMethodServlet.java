@@ -10,9 +10,6 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class UserPaymentMethodServlet
- */
 @WebServlet(name = "UserPaymentMethodServlet", urlPatterns = {"/UserPaymentMethodServlet"})
 public class UserPaymentMethodServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -26,15 +23,12 @@ public class UserPaymentMethodServlet extends HttpServlet {
 	
 	}
 
-	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int userId = Integer.parseInt(request.getParameter("userId"));
+	
 		this.controller = new UserPaymentMethodController(request, response);
-		this.controller.selectPaymentMethod(userId);
-		
-		
-		
-    
+		String a = request.getParameter("action");
+		controller.doAction(a);
+	
 	}
 
 }

@@ -132,3 +132,21 @@ VALUES
     ('Premium Plan', 6, 49.99),
     ('Family Plan', 6, 59.99),
     ('Ultimate Plan', 12, 99.99);
+
+--Insert values into the 'user_watch_list' table
+INSERT INTO user_watch_list (user_id, type, tvs_id, movie_Id)
+VALUES
+    (1, 'T', 101, NULL),
+    (1, 'M', NULL, 201),
+    (2, 'T', 102, NULL),
+    (3, 'M', NULL, 202),
+    (4, 'T', 103, NULL);
+
+-- Insert dummy data into the 'user_payment_method' table
+INSERT INTO user_payment_method (card_number, card_expiry_date, cvv, user_id)
+VALUES
+    ('1234567890123456', '2025-12-31', 123, 1),
+    ('9876543210987654', '2024-11-30', 456, 2),
+    ('5678567856785678', '2023-10-31', 789, 3),
+    ('1111222233334444', '2026-03-31', 321, 4),
+    ('9999888877776666', '2025-06-30', 654, 5);

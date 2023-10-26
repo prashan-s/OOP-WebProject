@@ -12,6 +12,9 @@ public class UserPaymentMethod {
     private boolean isActive;
     private Date rowCreatedDatetime;
 
+    public UserPaymentMethod() {
+    	
+    }
     public UserPaymentMethod(int paymentMethodId, String cardNumber, Date cardExpiryDate,
                              int cvv, int userId, boolean isActive, Date rowCreatedDatetime) {
         this.paymentMethodId = paymentMethodId;
@@ -31,7 +34,28 @@ public class UserPaymentMethod {
         return cardNumber;
     }
 
-    public Date getCardExpiryDate() {
+    public void setPaymentMethodId(int paymentMethodId) {
+		this.paymentMethodId = paymentMethodId;
+	}
+	public void setCardNumber(String cardNumber) {
+		this.cardNumber = cardNumber;
+	}
+	public void setCardExpiryDate(Date cardExpiryDate) {
+		this.cardExpiryDate = cardExpiryDate;
+	}
+	public void setCvv(int cvv) {
+		this.cvv = cvv;
+	}
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+	public void setActive(boolean isActive) {
+		this.isActive = isActive;
+	}
+	public void setRowCreatedDatetime(Date rowCreatedDatetime) {
+		this.rowCreatedDatetime = rowCreatedDatetime;
+	}
+	public Date getCardExpiryDate() {
         return cardExpiryDate;
     }
 
