@@ -42,9 +42,9 @@ public class UserRatingsController {
         }
     }
     
-    public void selectMovieRatings(int movieId,int userId) {
+    public void selectMovieRatings(int movieId) {
     	try {
-    		List<UserRatings> movieRatingsList = new UserRatingsDAO().selectMovieRatings(movieId,userId);
+    		List<UserRatings> movieRatingsList = new UserRatingsDAO().selectMovieRatings(movieId);
             System.out.println("User Ratings: " + movieRatingsList.get(0).getRateId());
             request.setAttribute("userRatingsList", movieRatingsList);
     	}catch(Exception e) {

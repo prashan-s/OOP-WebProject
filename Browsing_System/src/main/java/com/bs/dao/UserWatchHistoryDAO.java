@@ -20,10 +20,10 @@ public class UserWatchHistoryDAO implements IUserWatchHistoryDAO{
     												 	  + "ORDER BY row_created_datetime DESC ";
     
     private static final String INSERT_HISTORY = "INSERT INTO user_watch_history (user_id, type, tvs_id, movie_Id) "
-    										   + "VALUES (?, ?, ?, ?);";
+    										   + "VALUES (?, ?, ?, ?)";
     
     private static final String DELETE_HISTORY = "DELETE FROM user_watch_history "
-    										   + "WHERE watch_id = ?;";
+    										   + "WHERE watch_id = ?";
     
     public List<UserWatchHistory> selectHistory(int userId) {
         ArrayList<UserWatchHistory> userWatchHistory = new ArrayList<>();

@@ -23,7 +23,11 @@ public class UserRatings {
         this.rowCreatedDatetime = rowCreatedDatetime;
     }
 
-    public int getRateId() {
+    public UserRatings(int returnedMovieId, int ratingCount) {
+		// TODO Auto-generated constructor stub
+	}
+
+	public int getRateId() {
         return rateId;
     }
 
