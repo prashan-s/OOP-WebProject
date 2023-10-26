@@ -3,7 +3,9 @@ package com.bs.controller;
 import java.util.List;
 
 import com.bs.dao.SubscriptionPlanDAO;
+import com.bs.dao.UserPaymentMethodDAO;
 import com.bs.model.SubscriptionPlan;
+import com.bs.model.UserPaymentMethod;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.http.Cookie;
@@ -16,6 +18,7 @@ public class SubscriptionPlanController {
 	HttpServletRequest request;
 	HttpServletResponse response;
 	SubscriptionPlanDAO dao;
+	UserPaymentMethodDAO userPayMethodDao;
 
 	public SubscriptionPlanController() {
 
@@ -25,7 +28,7 @@ public class SubscriptionPlanController {
 		this.request = request;
 		this.response = response;
 		this.dao = new SubscriptionPlanDAO();
-
+		this.userPayMethodDao = new UserPaymentMethodDAO();
 	}
 
 	public void doAction(String action) {
@@ -41,7 +44,7 @@ public class SubscriptionPlanController {
 		boolean showDeleteStatus = false;
 		boolean insertPlansByAdmin = false;
 		boolean showInsertedStatus = false;
-		
+		boolean showSubscriptionPayDetails = false;
 		switch (action) {
 
 		case "submit user Id":
@@ -64,7 +67,24 @@ public class SubscriptionPlanController {
 			request.setAttribute("subscriptionPlans", this.selectSubscriptionPlan());
 			
 			break;
+		case "activate":
+			
+			jspPage = "UserPaymentMethod.jsp";
+			showSubscriptionPayDetails =true;
+			List<UserPaymentMethod> methods = null;
+			
+			userId = getValueForId("userId");
+			int selectedPlanId = Integer.parseInt(this.request.getParameter("planId"));			
+			
+			methods = this.userPayMethodDao.selectUserPaymentMethod(userId);
+			
+			request.setAttribute("userIdCustomer", userId);
+			request.setAttribute("selectedSubPlan", this.selectSubscriptionPlanById(selectedPlanId));
+			request.setAttribute("methods", methods);
 
+			
+			break;
+			
 		case "edit":
 			jspPage = "AdminSubscriptionPlans.jsp";
 			editPlansByAdmin = true;
@@ -174,6 +194,7 @@ public class SubscriptionPlanController {
 			request.setAttribute("showDeleteStatus", showDeleteStatus);
 			request.setAttribute("insertPlansByAdmin", insertPlansByAdmin);
 			request.setAttribute("showInsertedStatus", showInsertedStatus);
+			request.setAttribute("showSubscriptionPayDetails", showSubscriptionPayDetails);
 
 			
 			this.dispacther = request.getRequestDispatcher(jspPage);

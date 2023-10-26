@@ -19,6 +19,9 @@ public class UserSubscriptionDAO implements IUserSubscriptionDAO {
     													  + "FROM user_subscription "
     													  + "WHERE sub_id = ?";
     
+    private static final String INSERT_SUBSCRIPTION_RETURN_ID = " INSERT INTO user_subscription (user_id, plan_id  ) "
+													    	  + " VALUES (?, ?  ); " 
+													    	  + "SELECT SCOPE_IDENTITY() AS AutoIncrementedID; ";
     
     private static final String INSERT_SUBSCRIPTION = "INSERT INTO user_subscription (user_id, plan_id, subscribe_date, next_renewal_date) "
     												+ "VALUES(?, ?, ?, ?);";
@@ -56,6 +59,23 @@ public class UserSubscriptionDAO implements IUserSubscriptionDAO {
         }
 
         return userSubscriptions;
+    }
+    
+    public int insertSubReturnSubId(UserSubscription userSubscription) {
+       int subId = 0 ;
+    	try {
+            Connection con = DBConnectionMSSQL.getConnection();
+            PreparedStatement stmt = con.prepareStatement(INSERT_SUBSCRIPTION_RETURN_ID);
+
+            stmt.setInt(1, userSubscription.getUserId());
+            stmt.setInt(2, userSubscription.getPlanId());
+                       
+            subId = stmt.executeUpdate();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+		return subId;
     }
 
     public void insertSubscription(UserSubscription userSubscription) {

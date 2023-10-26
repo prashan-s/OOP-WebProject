@@ -7,5 +7,5 @@ import com.bs.model.Payment;
 public interface IPaymentDAO {
 
 	List<Payment>selectPayment(int paymentId);
-	public void insertPayment(Payment payment);
+	public boolean insertPayment(Payment payment);
 }

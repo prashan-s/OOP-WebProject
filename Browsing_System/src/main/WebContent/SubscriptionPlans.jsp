@@ -35,7 +35,12 @@
 						<td>${subPlans.description}</td>
 						<td>${subPlans.duration}</td>
 						<td>${subPlans.amount}</td>
-						 <td><input type="submit" name="action" value="activate"></td>		
+						 <td>
+						 	<form  method="post" action="SubscriptionPlanServlet">
+								<input type="hidden" name="planId" value="${subPlans.planId}">
+							 	<input type="submit" name="action" value="activate">
+						 	</form>
+						 </td>		
 					</tr>	
 				</c:forEach>
 	        </tbody>

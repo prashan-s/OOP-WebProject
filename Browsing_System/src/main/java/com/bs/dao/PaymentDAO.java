@@ -58,25 +58,24 @@ public class PaymentDAO implements IPaymentDAO{
 
 
 	//inserting a new payment
-	public void insertPayment(Payment payment) {
-		System.out.println(INSERT_PAYMENT);
+	public boolean insertPayment(Payment payment) {
 		
-		Connection con = null;
-		PreparedStatement stmt = null;
-		
+		boolean insertStatus = false;
+	
 		try {
-			con = DBConnectionMSSQL.getConnection();
-			stmt = (PreparedStatement) con.prepareStatement(INSERT_PAYMENT);
+			Connection con  = DBConnectionMSSQL.getConnection();
+			PreparedStatement stmt =  con.prepareStatement(INSERT_PAYMENT);
 			
 			stmt.setInt(1, payment.getUserId());
 			stmt.setInt(2, payment.getSubId());
 			stmt.setFloat(3, payment.getAmount());
 			
-			stmt.executeUpdate();
+			insertStatus = stmt.executeUpdate() > 0;
 			
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
+		return insertStatus;
 		
 	}
 	
