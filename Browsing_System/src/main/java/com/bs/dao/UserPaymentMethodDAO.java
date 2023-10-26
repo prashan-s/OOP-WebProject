@@ -57,7 +57,8 @@ public class UserPaymentMethodDAO implements IUserPaymentMethodDAO{
 	}
 	
 	
-	public void insertUserPaymentMethod(UserPaymentMethod userPaymentMethod) {
+	public boolean insertUserPaymentMethod(UserPaymentMethod userPaymentMethod) {
+		boolean insertStatus= false;
 		try {
 			Connection con = DBConnectionMSSQL.getConnection();
 			PreparedStatement stmt = con.prepareStatement(INSERT_USER_PAYMENT_METHOD);
@@ -67,10 +68,12 @@ public class UserPaymentMethodDAO implements IUserPaymentMethodDAO{
 			stmt.setInt(3, userPaymentMethod.getCvv());
 			stmt.setInt(4 , userPaymentMethod.getUserId());
 			
-			stmt.executeUpdate();
+			insertStatus = stmt.executeUpdate() > 0;
+			System.out.println(insertStatus + "insert dao");
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
+		return insertStatus;
 	}
 	public boolean deleteUserPaymentMethod(int paymentMethodId) {
 		
@@ -82,7 +85,7 @@ public class UserPaymentMethodDAO implements IUserPaymentMethodDAO{
 			
 			stmt.setInt(1, paymentMethodId);
 			rowDelete = stmt.executeUpdate() > 0;
-			
+			System.out.println(rowDelete + "dao");
 		}catch(Exception e) {
 			e.printStackTrace();
 			}

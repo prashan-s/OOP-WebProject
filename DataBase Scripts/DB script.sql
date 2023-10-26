@@ -105,7 +105,7 @@ CREATE TABLE user_favourite (
 	CONSTRAINT fk2_user_favourite_tvs_id FOREIGN KEY(tvs_id) REFERENCES tv_series(tvs_id),
 	CONSTRAINT fk3_user_favourite_movie_Id FOREIGN KEY(movie_Id) REFERENCES movie(movie_id)
 );
-
+drop table user_watch_list
 CREATE TABLE user_watch_list (
 	watch_list_id			INT			NOT NULL	PRIMARY KEY IDENTITY(1, 1),
 	user_id					INT			NOT NULL,
@@ -113,7 +113,7 @@ CREATE TABLE user_watch_list (
 	tvs_id					INT			NULL,
 	movie_Id				INT			NULL,
 	row_created_datetime	DATETIME	NOT NULL	DEFAULT GETDATE(),
-
+);
 	CONSTRAINT fk1_user_watch_list_user_id FOREIGN KEY(user_id) REFERENCES users(user_id),
 	CONSTRAINT fk2_user_watch_list_tvs_id FOREIGN KEY(tvs_id) REFERENCES tv_series(tvs_id),
 	CONSTRAINT fk3_user_watch_list_movie_Id FOREIGN KEY(movie_Id) REFERENCES movie(movie_id)
@@ -171,7 +171,7 @@ CREATE TABLE payment (
 );
 
 
-
+drop table user_payment_method ;
 CREATE TABLE user_payment_method(
 	payment_method_id		INT			NOT NULL	PRIMARY KEY	IDENTITY(1,1),
 	card_number				VARCHAR(20) NOT NULL,
@@ -179,8 +179,8 @@ CREATE TABLE user_payment_method(
 	cvv						INT			NOT NULL,
 	user_id					INT			NOT NULL,
 	is_active				BIT			NOT NULL	DEFAULT(1),
-	row_created_datetime	DATETIME	NOT NULL	DEFAULT GETDATE(),
-
+	row_created_datetime	DATETIME	NOT NULL	DEFAULT GETDATE()
+);
 CONSTRAINT fk_payment_method_user_id FOREIGN KEY(user_id) REFERENCES users (user_id)
 );
 

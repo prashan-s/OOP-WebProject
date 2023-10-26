@@ -20,8 +20,8 @@
 
 	<c:set var="showTVSeriesIdForm" scope="session" value="true" />
 
-	<c:choose>
-		<c:when test="${showTVSeriesIdForm  == true}">
+	
+		<c:if test="${showTVSeriesIdForm  == true}">
 			<h1>List of TV Series</h1>
 			<form method="post" action="TVSeriesServlet">
 				<label for="tvsId">TV Series Id</label> <input type="number"
@@ -34,9 +34,9 @@
 			<form method="post" action="TVSeriesServlet">
 				<input type="submit" name="action" value="add">
 			</form>
-		</c:when>
+		</c:if>
 
-		<c:when test="${showDetails == true}">
+		<c:if test="${showDetails == true}">
 			<table border="1">
 				<thead>
 					<tr>
@@ -59,9 +59,9 @@
 				<br> <br> <input type="submit" name="action"
 					value="delete" onclick="return confirmDelete();">
 			</form>
-		</c:when>
+		</c:if>
 
-		<c:when test="${showEditForm == true}">
+		<c:if test="${showEditForm == true}">
 			<form method="post" action="TVSeriesServlet">
 				<c:forEach items="${seriesList}" var="tvSeries">
 
@@ -127,9 +127,9 @@
 
 				</c:forEach>
 			</form>
-		</c:when>
+		</c:if>
 
-		<c:when test="${showAddForm == true}">
+		<c:if test="${showAddForm == true}">
 			<form method="post" action="TVSeriesServlet">
 
 				<label for="tvSeriesTitle_i">Title</label> <input type="text"
@@ -162,32 +162,25 @@
 					Value="insert">
 
 			</form>
-		</c:when>
+		</c:if>
 
-		<c:when test="${showUpdateStatus == true} ">
+		<c:if test="${showUpdateStatus == true} ">
 			<h1>"${xmessage}"</h1>
 			<c:out value="${xmessage}" />
-		</c:when>
+		</c:if>
 
-		<c:when test="${showInsertStatus == true} ">
+		<c:if test="${showInsertStatus == true} ">
 			<h1>"${xmessage}"</h1>
 			<c:out value="${xmessage}" />
-		</c:when>
+		</c:if>
 
-		<c:when test="${showDeletetStatus == true} ">
+		<c:if test="${showDeletetStatus == true} ">
 			<h1>"${xmessage}"</h1>
 			<c:out value="${xmessage}" />
-		</c:when>
+		</c:if>
 
 
-		<c:otherwise>
-			<c:if test="${1==1}">
-				<h1>error</h1>
-
-			</c:if>
-		</c:otherwise>
-
-	</c:choose>
+	
 
 </body>
 </html>
