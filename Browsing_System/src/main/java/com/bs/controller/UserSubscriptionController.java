@@ -27,13 +27,7 @@ public class UserSubscriptionController {
 	public int insertSubReturnSubId(UserSubscription userSubscription) {
 		 int subId = 0 ;
 		try {
-	//	 if (dao != null) {
 			subId = this.dao.insertSubReturnSubId(userSubscription);
-//			request.setAttribute("subId", subId);
-//			 }else {
-//				 System.out.println("usser sub dao null #####");
-//
-//			 }
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

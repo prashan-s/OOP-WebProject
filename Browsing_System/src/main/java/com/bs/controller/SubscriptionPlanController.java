@@ -45,6 +45,8 @@ public class SubscriptionPlanController {
 		boolean insertPlansByAdmin = false;
 		boolean showInsertedStatus = false;
 		boolean showSubscriptionPayDetails = false;
+		boolean listPaymentMethod = true;
+		boolean addPaymentMethod = true;
 		switch (action) {
 
 		case "submit user Id":
@@ -71,6 +73,8 @@ public class SubscriptionPlanController {
 			
 			jspPage = "UserPaymentMethod.jsp";
 			showSubscriptionPayDetails =true;
+			listPaymentMethod = true;
+			addPaymentMethod = true;
 			List<UserPaymentMethod> methods = null;
 			
 			userId = getValueForId("userId");
@@ -78,6 +82,9 @@ public class SubscriptionPlanController {
 			
 			methods = this.userPayMethodDao.selectUserPaymentMethod(userId);
 			
+			
+			request.setAttribute("listPaymentMethod", userId);
+			request.setAttribute("userIdCustomer", userId);
 			request.setAttribute("userIdCustomer", userId);
 			request.setAttribute("selectedSubPlan", this.selectSubscriptionPlanById(selectedPlanId));
 			request.setAttribute("methods", methods);
@@ -195,6 +202,8 @@ public class SubscriptionPlanController {
 			request.setAttribute("insertPlansByAdmin", insertPlansByAdmin);
 			request.setAttribute("showInsertedStatus", showInsertedStatus);
 			request.setAttribute("showSubscriptionPayDetails", showSubscriptionPayDetails);
+			request.setAttribute("listPaymentMethod", listPaymentMethod);
+			request.setAttribute("addPaymentMethod", addPaymentMethod);
 
 			
 			this.dispacther = request.getRequestDispatcher(jspPage);

@@ -2,6 +2,7 @@ package com.bs.controller;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.List;
 
 import com.bs.dao.UserDAO;
 import com.bs.model.User;
@@ -46,14 +47,15 @@ public class UserController {
 		boolean showSignUpForm = false;
 		boolean showSignUpStatus = false;
 		boolean showSignInStatus = false;
-
+		boolean showAdminIdForm = false;
+		boolean showUserList = false;
+		boolean showEditUserForm = false;
+		boolean showUpdateUserStatus = false;
+		boolean showDeleteUserStatus = false;
 		switch (action) {
 
 		case "submit":
-			showUserIdForm = false;
 			showDetails = true;
-			showEditForm = false;
-			showUpdateStatus = false;
 
 			jspPage = "UserProfileEdit.jsp";
 			userId = Integer.parseInt(this.request.getParameter("userId"));
@@ -66,10 +68,7 @@ public class UserController {
 		case "edit":
 
 			jspPage = "UserProfileEdit.jsp";
-			showUserIdForm = false;
-			showDetails = false;
 			showEditForm = true;
-			showUpdateStatus = false;
 
 			userId = getValueForId("userId");
 
@@ -80,9 +79,6 @@ public class UserController {
 		case "update":
 
 			jspPage = "UserProfileEdit.jsp";
-			showUserIdForm = false;
-			showDetails = false;
-			showEditForm = false;
 			showUpdateStatus = true;
 
 			String message = "Updated Successfully!";
@@ -110,11 +106,9 @@ public class UserController {
 
 			if (updateStatus == false) {
 				message = "Update Failed!, Retry....";
-				System.out.println("Edit Form Show: " + showEditForm);
-			}
+							}
 
 			request.setAttribute("xmessage", message);
-			System.out.println("Updated   " + updateStatus);
 			break;
 
 		case "submitIdToChangePW":
@@ -168,7 +162,7 @@ public class UserController {
 
 					newUserChangePw.setPassword(confirmPw);
 					pwStatus = changePassword(newUserChangePw);
-					System.out.println("pw status " + pwStatus);
+
 					if (pwStatus == false) {
 						pwChangeMessage = pwChangeMessage + "Password Change Failed!, Retry....";
 					} else {
@@ -179,7 +173,6 @@ public class UserController {
 
 			}
 			request.setAttribute("pwChangeMessage", pwChangeMessage);
-			System.out.println("pwChangeMessage :   " + pwChangeMessage);
 
 			break;
 
@@ -212,7 +205,7 @@ public class UserController {
 			String loginMessage = "";
 			String userName = this.request.getParameter("userName");
 			String enteredPassword = this.request.getParameter("password");
-			// ystem.out.println("do action ep " +enteredPassword);
+			// system.out.println("do action up " +enteredPassword);
 			String userPassword = this.loginUser(userName);
 			// System.out.println("do action up " +userPassword);
 			if (userPassword.equals(enteredPassword)) {
@@ -277,6 +270,80 @@ public class UserController {
 
 			break;
 
+		case "submit Admin Name":
+			jspPage = "AdminManageUser.jsp";
+			showUserList = true;
+			String adminName = request.getParameter("adminName");
+			
+			request.setAttribute("user", this.selectUserList());
+			Cookie cookieAdmin = new Cookie("cookieAdmin", adminName);
+			this.response.addCookie(cookieAdmin);
+			break;
+
+		case "editUser":
+
+			jspPage = "AdminManageUser.jsp";
+			showEditUserForm = true;
+
+			userId = Integer.parseInt(this.request.getParameter("userId"));
+			request.setAttribute("user", this.selectUser(userId));
+
+			Cookie cookieUerId = new Cookie("userId", Integer.toString(userId));
+			this.response.addCookie(cookieUerId);
+
+			break;
+
+		case "updateUser":
+			jspPage = "AdminManageUser.jsp";
+			showUpdateUserStatus = true;
+
+			String editUserMessage = "";
+			User updateUser = new User();
+
+			userId = getValueForId("userId");
+			adminName = getValueAdminName("adminName");
+
+			updateUser.setUserId(userId);
+			updateUser.setName(request.getParameter("name"));
+			updateUser.setEmail(request.getParameter("email"));
+			updateUser.setMobileNo(request.getParameter("mobileNo"));
+			updateUser.setCreatedAdminName(adminName);
+			SimpleDateFormat dateFormatUpdateUser = new SimpleDateFormat("yyyy-MM-dd");
+
+			try {
+				dob = dateFormatUpdateUser.parse(request.getParameter("dob"));
+				java.sql.Date dobUpdateUser = new java.sql.Date(dob.getTime());
+				updateUser.setDob(dobUpdateUser);
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+			updateUser.setPremiumUser(Boolean.parseBoolean("premium"));
+			boolean updateUserStatus = this.updateUserByAdmin(updateUser);
+
+			if (updateUserStatus == false) {
+				editUserMessage = "Update Failed!, Retry....";
+			} else {
+				editUserMessage = "Successfully updated..";
+			}
+
+			request.setAttribute("editUserMessage", editUserMessage);
+			break;
+
+		case "deleteUser":
+			jspPage = "AdminManageUser.jsp";
+			showDeleteUserStatus = true;
+			boolean deleteUserStatus = false;
+			String deleteUserMessage = "";
+			
+			deleteUserStatus = this.deleteUser(Integer.parseInt(request.getParameter("userId")));
+			if (deleteUserStatus == false) {
+				deleteUserMessage = "Deletion Failed!, Retry....";
+			} else {
+				deleteUserMessage = "Deletion Successfull....";
+			}
+			request.setAttribute("deleteUserMessage", deleteUserMessage);
+			break;
+
 		}
 		System.out.println("Watiting to Dispatch");
 		try {
@@ -295,6 +362,12 @@ public class UserController {
 			request.setAttribute("showSignUpForm", showSignUpForm);
 			request.setAttribute("showSignInStatus", showSignInStatus);
 			request.setAttribute("showSignUpStatus", showSignUpStatus);
+			request.setAttribute("showAdminIdForm", showAdminIdForm);
+			request.setAttribute("showUserList", showUserList);
+			request.setAttribute("showEditUserForm", showEditUserForm);
+			request.setAttribute("showUpdateUserStatus", showUpdateUserStatus);
+			request.setAttribute("showDeleteUserStatus", showDeleteUserStatus);
+
 			this.dispacther = request.getRequestDispatcher(jspPage);
 			dispacther.forward(request, response);
 
@@ -332,6 +405,34 @@ public class UserController {
 		return userId;
 	}
 
+	private String getValueAdminName(String key) {
+		Cookie[] cookies = null;
+		cookies = request.getCookies();
+		String adminName = "";
+		if (cookies != null) {
+
+			for (Cookie ck : cookies) {
+				if (ck.getName().equals(key)) {
+					adminName = (ck.getValue());
+					System.out.println("Cookie adminName:" + adminName);
+
+					break;
+				}
+			}
+		} else {
+			System.out.println("No cookies found!");
+		}
+
+		if (adminName.equals("")) {
+			try {
+				adminName = request.getParameter("adminName");
+			} catch (Exception ex) {
+				System.out.println("Error with User ID");
+			}
+		}
+		return adminName;
+	}
+
 	public User selectUser(int userId) {
 		User user = null;
 		try {
@@ -343,6 +444,19 @@ public class UserController {
 			e1.printStackTrace();
 		}
 		return user;
+
+	}
+
+	public List<User> selectUserList() {
+		List<User> users = null;
+		try {
+			users = this.dao.selectUserList();
+			request.setAttribute("users", users);
+
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+		return users;
 
 	}
 
@@ -363,6 +477,20 @@ public class UserController {
 		boolean updateStatus = false;
 		try {
 			updateStatus = dao.updateUserByUser(user);
+			request.setAttribute("isSuccessUpdate", updateStatus);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return updateStatus;
+
+	}
+
+	public boolean updateUserByAdmin(User user) {
+		boolean updateStatus = false;
+		try {
+			updateStatus = dao.updateUserByAdmin(user);
 			request.setAttribute("isSuccessUpdate", updateStatus);
 
 		} catch (Exception e) {

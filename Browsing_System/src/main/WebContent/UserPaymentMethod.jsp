@@ -37,7 +37,7 @@
        		 <input type="hidden" name="planId" value="${selectedSubPlan.planId}">
        		 <input type="hidden" name="amount" value="${selectedSubPlan.amount}">
        		 <input type="submit" name="action" value="pay">
-		</form>
+		</form><br><br><br>
 	</c:if>
 	
 	<c:if test="${showPaymentStatus == true}">
@@ -72,7 +72,7 @@
 					</tr>
 				</c:forEach>
 			</tbody>
-		</table>
+		</table><br><br><br>
 	</c:if>
 	
 	<c:if test="${showDeleteStatus == true}">
@@ -93,7 +93,7 @@
 
 			<input type="submit" name="action" value="add"><br>
 			
-		</form>
+		</form><br><br><br>
 	</c:if>
 	
 	<c:if test="${showInsertStatus == true}">
