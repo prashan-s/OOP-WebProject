@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+import com.bs.controller.MovieController;
 import com.bs.controller.UserFavouritesController;
 
 @WebServlet(name = "UserFavouritesServlet", urlPatterns = {"/UserFavouritesServlet"})
@@ -20,18 +21,29 @@ public class UserFavouritesServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("doGet : UserFavouritesServlet");
-        this.controller = new UserFavouritesController(request, response);
 
         // Perform any additional logic for doGet if needed
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("doPost : UserFavouritesServlet");
 
-        Integer favouriteId = Integer.parseInt(request.getParameter("favId"));
-
-        this.controller = new UserFavouritesController(request, response);
-        this.controller.selectUserFavourites(favouriteId);
+		this.controller = new UserFavouritesController(request, response);
+    	String a = request.getParameter("action");
+        controller.doAction(a);
+    	
     }
+    
+    protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	
+    	this.controller = new UserFavouritesController(request, response);
+    	String a = request.getParameter("action");
+        controller.doAction(a);
+    }
+    
+	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+    	this.controller = new UserFavouritesController(request, response);
+    	String a = request.getParameter("action");
+        controller.doAction(a);
+	}
 }

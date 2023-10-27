@@ -21,13 +21,14 @@ public class UserRatingsDAO implements IUserRatingsDAO {
 
     private static final String DELETE_USER_RATING = "DELETE FROM user_rating WHERE rate_id = ?";
     
-    private static final String SELECT_USER_FAVOURITE_COUNT_BY_MOVIE_ID = "SELECT COUNT(DISTINCT(user_id))"
-    		+ "FROM user_favourite"
-    		+ "WHERE movie_Id = ?;";
-    
-    private static final String SELECT_USER_WATCH_COUNT_BY_MOVIE_ID = " SELECT COUNT(DISTINCT(user_id))"
-    		+ " FROM user_watch_history"
-    		+ " WHERE movie_Id = ?;";
+    private static final String SELECT_USER_FAVOURITE_COUNT_BY_MOVIE_ID = "SELECT COUNT(DISTINCT(user_id)) " +
+            "FROM user_favourite " +
+            "WHERE movie_Id = ?";
+
+    private static final String SELECT_USER_WATCH_COUNT_BY_MOVIE_ID = "SELECT COUNT(DISTINCT(user_id)) " +
+            "FROM user_watch_history " +
+            "WHERE movie_Id = ?";
+
 
     @Override
     public List<UserRatings> selectUserRatings(int rateId) {

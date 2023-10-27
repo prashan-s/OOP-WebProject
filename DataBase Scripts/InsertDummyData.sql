@@ -111,7 +111,9 @@ VALUES
     (9, 9, '2023-10-18', '2023-11-18'),
     (10, 10, '2023-10-17', '2023-11-17');
 
-
+-- Inserting values into the 'user_subscription' table
+INSERT INTO user_subscription (user_id, plan_id, subscribe_date, next_renewal_date)
+VALUES
 (1, 1, '2023-01-01', '2024-01-01'),
 (2, 2, '2023-02-15', '2024-02-15'),
 (3, 1, '2023-03-10', '2024-03-10'),

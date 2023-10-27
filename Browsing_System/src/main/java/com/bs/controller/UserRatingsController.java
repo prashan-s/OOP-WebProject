@@ -11,48 +11,49 @@ import com.bs.model.UserRatings;
 
 public class UserRatingsController {
 
-    private RequestDispatcher dispatcher;
+    private RequestDispatcher dispatcher1;
+    private RequestDispatcher dispatcher2;
     private HttpServletRequest request;
     private HttpServletResponse response;
-
-    public UserRatingsController() {
-
-    }
 
     public UserRatingsController(HttpServletRequest request, HttpServletResponse response) {
         this.request = request;
         this.response = response;
-        this.dispatcher = request.getRequestDispatcher("UserRatings.jsp");
+        this.dispatcher1 = request.getRequestDispatcher("UserRatings.jsp");
+        this.dispatcher2 = request.getRequestDispatcher("Movie.jsp");
     }
 
     public void selectUserRatings(int rateId) {
-
         try {
             List<UserRatings> userRatingsList = new UserRatingsDAO().selectUserRatings(rateId);
-            System.out.println("User Ratings: " + userRatingsList.get(0).getRateId());
+            if (!userRatingsList.isEmpty()) {
+                System.out.println("User Ratings: " + userRatingsList.get(0).getRateId());
+            }
             request.setAttribute("userRatingsList", userRatingsList);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         try {
-            dispatcher.forward(request, response);
+            dispatcher1.forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    
+
     public void selectMovieRatings(int movieId) {
-    	try {
-    		List<UserRatings> movieRatingsList = new UserRatingsDAO().selectMovieRatings(movieId);
-            System.out.println("User Ratings: " + movieRatingsList.get(0).getRateId());
-            request.setAttribute("userRatingsList", movieRatingsList);
-    	}catch(Exception e) {
-    		e.printStackTrace();
-    	}
-    	
         try {
-            dispatcher.forward(request, response);
+            List<UserRatings> movieRatingsList = new UserRatingsDAO().selectMovieRatings(movieId);
+            if (!movieRatingsList.isEmpty()) {
+                System.out.println("User Ratings: " + movieRatingsList.get(0).getRateId());
+            }
+            request.setAttribute("userRatingsList", movieRatingsList);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        try {
+            dispatcher2.forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();
         }

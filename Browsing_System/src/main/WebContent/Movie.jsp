@@ -31,11 +31,9 @@
 			<thead>
 				<tr>
 					<th>Title</th>
-					<th>Director</th>
+					<th>Description</th>
 					<th>Release Year</th>
-					<th>Add Fav</th>
-					<th>Remove Fav</th>
-					<th>Rating</th>
+
 				</tr>
 			</thead>
 			<tbody>
@@ -44,21 +42,6 @@
 						<td>${movie.title}</td>
 						<td>${movie.description}</td>
 						<td>${movie.year}</td>
-						<td>
-							<form method="post" action="UserFavouritesServlet">
-								<input type="submit" name="action" value="addToFav">
-							</form>
-
-						</td>
-						<td>
-							<form method="post" action="UserFavouritesServlet">
-								<input type="submit" name="action" value="removeFav">
-							</form>
-						</td>
-
-						<c:forEach items="${movieRatingsList}" var="userRatings">
-							<td>${movieRatingsList.rating}</td>
-						</c:forEach>
 					</tr>
 				</c:forEach>
 			</tbody>

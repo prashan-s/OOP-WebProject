@@ -42,10 +42,7 @@ public class MovieServlet extends HttpServlet {
 		this.controller = new MovieController(request, response);
     	String a = request.getParameter("action");
         controller.doAction(a);
-        
-        this.rateController = new UserRatingsController(request,response);
-        int movie_Id = Integer.parseInt(request.getParameter("movieId"));
-        this.rateController.selectMovieRatings(movie_Id);
+       
 
 	}
 	
