@@ -27,6 +27,10 @@ public class UserRatings {
 		// TODO Auto-generated constructor stub
 	}
 
+	public UserRatings() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public int getRateId() {
         return rateId;
     }
@@ -54,4 +58,33 @@ public class UserRatings {
     public Date getRowCreatedDatetime() {
         return rowCreatedDatetime;
     }
+
+	public void setRateId(int rateId) {
+		this.rateId = rateId;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public void setTvsId(int tvsId) {
+		this.tvsId = tvsId;
+	}
+
+	public void setMovieId(int movieId) {
+		this.movieId = movieId;
+	}
+
+	public void setRating(int rating) {
+		this.rating = rating;
+	}
+
+	public void setRowCreatedDatetime(Date rowCreatedDatetime) {
+		this.rowCreatedDatetime = rowCreatedDatetime;
+	}
+    
 }

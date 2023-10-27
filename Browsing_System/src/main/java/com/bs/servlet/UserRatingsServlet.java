@@ -7,6 +7,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+
 import com.bs.controller.UserRatingsController;
 
 @WebServlet(name = "UserRatingsServlet", urlPatterns = {"/UserRatingsServlet"})
@@ -19,19 +20,32 @@ public class UserRatingsServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("doGet : UserRatingsServlet");
-        this.controller = new UserRatingsController(request, response);
 
-        // Perform any additional logic for doGet if needed
     }
-
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("doPost : UserRatingsServlet");
-
-        Integer rateId = Integer.parseInt(request.getParameter("rateId"));
-
-        this.controller = new UserRatingsController(request, response);
-        this.controller.selectUserRatings(rateId);
-    }
+    
+protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	
+		this.controller = new UserRatingsController(request, response);
+    	String a = request.getParameter("action");
+        controller.doAction(a);
+       
+
+	}
+	
+    protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	
+    	this.controller = new UserRatingsController(request, response);
+    	String a = request.getParameter("action");
+        controller.doAction(a);
+    }
+    
+	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+    	this.controller = new UserRatingsController(request, response);
+    	String a = request.getParameter("action");
+        controller.doAction(a);
+	}
+
+
+
 }

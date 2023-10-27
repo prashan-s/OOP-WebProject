@@ -1,6 +1,7 @@
 package com.bs.dao;
 
 import com.bs.interfaces.IUserRatingsDAO;
+import com.bs.model.Movie;
 import com.bs.model.UserRatings;
 import com.bs.utility.DBConnectionMSSQL;
 import java.sql.Connection;
@@ -69,8 +70,9 @@ public class UserRatingsDAO implements IUserRatingsDAO {
     }
 
     @Override
-    public void insertUserRating(UserRatings userRating) {
+    public boolean insertUserRating(UserRatings userRating) {
         System.out.println(INSERT_USER_RATING);
+        boolean rowInserted = false;
 
         try {
             Connection con = DBConnectionMSSQL.getConnection();
@@ -87,6 +89,7 @@ public class UserRatingsDAO implements IUserRatingsDAO {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    	return rowInserted;
     }
 
     @Override
@@ -188,7 +191,6 @@ public class UserRatingsDAO implements IUserRatingsDAO {
 
         return movieRatingsList;
     }
-
 
 
 }
