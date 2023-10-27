@@ -28,6 +28,14 @@ public class UserRatingsDAO implements IUserRatingsDAO {
     private static final String SELECT_USER_WATCH_COUNT_BY_MOVIE_ID = "SELECT COUNT(DISTINCT(user_id)) " +
             "FROM user_watch_history " +
             "WHERE movie_Id = ?";
+    
+    private static final String SELECT_USER_FAVOURITE_COUNT_BY_TVSeries_ID = "SELECT COUNT(DISTINCT(user_id)) " +
+            "FROM user_favourite " +
+            "WHERE tvs_Id = ?";
+
+    private static final String SELECT_USER_WATCH_COUNT_BY_TVSeries_ID = "SELECT COUNT(DISTINCT(user_id)) " +
+            "FROM user_watch_history " +
+            "WHERE tvs_Id = ?";
 
 
     @Override
@@ -139,6 +147,48 @@ public class UserRatingsDAO implements IUserRatingsDAO {
 
         return movieRatingsList;
     }
+    
+    public List<UserRatings> selectTVSeriesRatings(int tvsId) {
+        List<UserRatings> movieRatingsList = new ArrayList<>();
+
+        try {
+            Connection con = DBConnectionMSSQL.getConnection();
+            PreparedStatement stmt1 = con.prepareStatement(SELECT_USER_FAVOURITE_COUNT_BY_TVSeries_ID);
+            PreparedStatement stmt2 = con.prepareStatement(SELECT_USER_WATCH_COUNT_BY_TVSeries_ID);
+            stmt1.setInt(1, tvsId);
+            stmt2.setInt(1, tvsId);
+            
+            ResultSet rs1 = stmt1.executeQuery();
+            ResultSet rs2 = stmt2.executeQuery();
+
+            // Initialize variables to store the counts
+            int favoriteCount = 0;
+            int watchCount = 0;
+
+            // Retrieve the counts from the result sets
+            if (rs1.next()) {
+                favoriteCount = rs1.getInt(1); // Assuming the count is in the first column
+            }
+
+            if (rs2.next()) {
+                watchCount = rs2.getInt(1); // Assuming the count is in the first column
+            }
+
+            // Calculate the ratio and store it in a variable
+            double ratio = (watchCount != 0) ? (double) favoriteCount / watchCount : 0.0;
+
+            // You can use this ratio for further processing or return it in some way
+            System.out.println("Favorite Count: " + favoriteCount);
+            System.out.println("Watch Count: " + watchCount);
+            System.out.println("Ratio: " + ratio);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return movieRatingsList;
+    }
+
 
 
 }
