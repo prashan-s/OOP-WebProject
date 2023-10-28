@@ -19,11 +19,15 @@ public class UserRatingsServlet extends HttpServlet {
     public UserRatingsServlet() {
     }
 
+	//Handles HTTP GET requests.
+	//Initializes the MovieController and retrieves all ratings.
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
     
-protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	//Handles HTTP POST requests.
+	//Initialize the MovieController, retrieve the action parameter, and performs the corresponding action.
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	
 		this.controller = new UserRatingsController(request, response);
 		
@@ -37,6 +41,9 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 
 	}
 	
+	
+	//Handles HTTP PUT requests. 
+	//Initializes the MovieController, retrieves the action parameter, and performs the corresponding action.
     protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	
     	this.controller = new UserRatingsController(request, response);
@@ -50,6 +57,9 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 		}
     }
     
+    
+    //Handles HTTP DELETE requests.
+    //Initializes the MovieController, retrieves the action parameter, and performs the corresponding action.
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
     	this.controller = new UserRatingsController(request, response);

@@ -19,17 +19,15 @@ public class TVSeriesServlet extends HttpServlet {
     public TVSeriesServlet() {
     }
 
-    /**
-     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-     */
+	//Handles HTTP GET requests.
+	//Initializes the MovieController and retrieves all TVSeries.
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	this.controller = new TVSeriesController(request, response);
     	this.controller.selectAllTvSeries();
     }
 
-    /**
-     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-     */
+	//Handles HTTP POST requests.
+	//Initialize the MovieController, retrieve the action parameter, and performs the corresponding action.
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		this.controller = new TVSeriesController(request, response);
 		
@@ -43,6 +41,8 @@ public class TVSeriesServlet extends HttpServlet {
        
     }
     
+	//Handles HTTP PUT requests. 
+	//Initializes the MovieController, retrieves the action parameter, and performs the corresponding action.
     protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	
     	this.controller = new TVSeriesController(request, response);
@@ -56,6 +56,8 @@ public class TVSeriesServlet extends HttpServlet {
 		}
     }
     
+    //Handles HTTP DELETE requests.
+    //Initializes the MovieController, retrieves the action parameter, and performs the corresponding action.
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     	this.controller = new TVSeriesController(request, response);

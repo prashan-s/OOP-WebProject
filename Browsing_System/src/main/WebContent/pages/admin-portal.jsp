@@ -51,7 +51,7 @@
         <i class="fa-solid fa-bars" id="hamburger" onclick="toggleNavigation()"></i>
       </ul>
 
-      <a href="../index.jsp" class="logo">
+      <a href="${pageContext.request.contextPath}/index.jsp" class="logo">
         <img src="../assets/images/logo.svg" alt="Filmlane logo" />
       </a>
 

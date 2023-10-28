@@ -164,12 +164,26 @@ public class UserController {
 		case "Sign In":
 			showDetails = true;
 
-			jspPage = "./index.jsp";
-			userId = Integer.parseInt(this.request.getParameter("userId"));
-			request.setAttribute("user", this.selectUser(userId));
-
-			Cookie cookie = new Cookie("userId", Integer.toString(userId));
-			this.response.addCookie(cookie);
+			jspPage = "${pageContext.request.contextPath}/index.jsp";
+			showSignInForm = false;
+			showSignUpForm = false;
+			showSignUpStatus = false;
+			showSignInStatus = true;
+			String loginMessage = "";
+			String userName = this.request.getParameter("userName");
+			String enteredPassword = this.request.getParameter("password");
+			// system.out.println("do action up " +enteredPassword);
+			String userPassword = this.loginUser(userName);
+			// System.out.println("do action up " +userPassword);
+			boolean signInStatus = false;
+			if (userPassword.equals(enteredPassword)) {
+				loginMessage = "Login Success..";
+				signInStatus = true;
+			} else {
+				loginMessage = "Login Failed..";
+			}
+			request.setAttribute("signInStatus", signInStatus);
+			request.setAttribute("loginMessage", loginMessage);
 			break;
 			
 		case "submit":
