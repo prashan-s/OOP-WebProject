@@ -983,11 +983,7 @@
   <script>
 	//Construct the path dynamically by appending the context path
 	  var contextPath = "${pageContext.request.contextPath}";
-<<<<<<< HEAD
-	  var footerPath = contextPath + "/WebApp../components/footer.html";
-=======
 	  var footerPath = contextPath + "/components/footer.html";
->>>>>>> 8947eb3343506385e01b66d8ccc313ab8a113cd5
 	  
     // Fetch the HTML content of your component
     fetch(footerPath)
