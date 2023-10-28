@@ -50,8 +50,6 @@ public class TVSeries {
 		// TODO Auto-generated constructor stub
 	}
 
-
-
 	public void setActiveStatus(String str) {
 		this.isActiveStatus = str;
 	}

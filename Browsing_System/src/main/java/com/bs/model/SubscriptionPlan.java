@@ -2,6 +2,8 @@ package com.bs.model;
 
 import java.util.Date;
 
+import com.oracle.wls.shaded.org.apache.xpath.operations.String;
+
 public class SubscriptionPlan {
 
 	private int planId;
@@ -10,7 +12,7 @@ public class SubscriptionPlan {
     private float amount;
     private boolean isActive;
     private Date rowCreatedDatetime;
-    
+    private String activeStatus;
     public SubscriptionPlan() {
     	
     }
@@ -23,6 +25,11 @@ public class SubscriptionPlan {
         this.isActive = isActive;
         this.rowCreatedDatetime = rowCreatedDatetime;
     }
+
+    public void setActiveStatus(String str) {
+		this.activeStatus = str;
+	}
+
 
     public int getPlanId() {
         return planId;
