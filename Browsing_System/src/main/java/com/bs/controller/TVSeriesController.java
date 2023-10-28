@@ -32,7 +32,7 @@ public class TVSeriesController {
 
 	public void doAction(String action) {
 
-		String jspPage = "TVSeries.jsp";
+		String jspPage = "./pages/tv-series.jsp";
 		Integer tvssId = -1;
 		boolean showTVSeriesIdForm = true;
 		boolean showDetails = false;
@@ -46,6 +46,7 @@ public class TVSeriesController {
 		switch (action) {
 
 			case "submit":
+				jspPage = "./pages/tv-series-details.jsp";
 				showTVSeriesIdForm = false;
 				showDetails = true;
 				showEditForm = false;
@@ -63,6 +64,7 @@ public class TVSeriesController {
 
 			case "edit":
 
+				jspPage = "./pages/tv-series.jsp";
 				showTVSeriesIdForm = false;
 				showDetails = false;
 				showEditForm = true;
@@ -79,6 +81,7 @@ public class TVSeriesController {
 
 			case "delete":
 
+				jspPage = "./pages/tv-series.jsp";
 				showTVSeriesIdForm = false;
 				showDetails = false;
 				showEditForm = false;
@@ -102,6 +105,7 @@ public class TVSeriesController {
 
 			case "add":
 
+				jspPage = "./pages/tv-series.jsp";
 				showTVSeriesIdForm = false;
 				showDetails = false;
 				showEditForm = false;
@@ -118,6 +122,7 @@ public class TVSeriesController {
 
 			case "insert":
 
+				jspPage = "./pages/tv-series.jsp";
 				showTVSeriesIdForm = false;
 				showDetails = false;
 				showEditForm = false;

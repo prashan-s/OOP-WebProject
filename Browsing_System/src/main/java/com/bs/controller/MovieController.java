@@ -61,7 +61,7 @@ public class MovieController {
 				break;
 
 			case "edit":
-				jspPage = "./pages/movies.jsp";
+				jspPage = "./pages/admin-portal.jsp";
 				showMovieIdForm = false;
 				showDetails = false;
 				showEditForm = true;
@@ -78,7 +78,7 @@ public class MovieController {
 
 			case "delete":
 
-				jspPage = "./pages/movies.jsp";
+				jspPage = "./pages/admin-portal.jsp";
 				showMovieIdForm = false;
 				showDetails = false;
 				showEditForm = false;
@@ -102,7 +102,7 @@ public class MovieController {
 
 			case "add":
 
-				jspPage = "../pages/movies.jsp";
+				jspPage = "./pages/admin-portal.jsp";
 				showMovieIdForm = false;
 				showDetails = false;
 				showEditForm = false;
@@ -119,7 +119,7 @@ public class MovieController {
 
 			case "insert":
 				
-				jspPage = "./pages/movies.jsp";
+				jspPage = "./pages/admin-portal.jsp";
 				showMovieIdForm = false;
 				showDetails = false;
 				showEditForm = false;
@@ -169,7 +169,7 @@ public class MovieController {
 
 			case "update":
 
-				jspPage = "./pages/movies.jsp";
+				jspPage = "./pages/admin-portal.jsp";
 				showMovieIdForm = false;
 				showDetails = false;
 				showEditForm = false;
