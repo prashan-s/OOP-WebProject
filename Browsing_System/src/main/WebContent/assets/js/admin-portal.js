@@ -58,6 +58,27 @@ function toggleSignInSignUpCardForm(formHide, formShow, method) {
   if (!signUpForm.classList.contains('hide')) {
     signUpForm.classList.add("hide");
   }
+  <div className="movie-detail-container">
+    <c:foreach items="your_collection_here" var="item">
+      <figure className="movie-detail-banner">
+        <img src="../assets/images/movie-4.png" alt="Free guy movie poster" />
+        <button className="play-btn" onClick="openTvSeriesPage()">
+          <ion-icon name="play-circle-outline"></ion-icon>
+        </button>
+      </figure>
+
+      <div className="date-time">
+        <div>
+          <ion-icon name="calendar-outline"></ion-icon>
+          <time dateTime="2021">2021</time>
+        </div>
+        <div>
+          <ion-icon name="time-outline"></ion-icon>
+          <time dateTime="PT115M">115 min</time>
+        </div>
+      </div>
+    </c:foreach>
+  </div>
 
   if (method === 'toggle') {
     const signInForm = document.getElementById(formShow);

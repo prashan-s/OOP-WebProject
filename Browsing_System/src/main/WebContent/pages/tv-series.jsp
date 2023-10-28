@@ -57,11 +57,12 @@
         <div class="movie-heading">
           <p class="detail-subtitle">Recommended</p>
         </div>
-        <div class="movie-container">
-          <div class="movie-detail-container">
+
+        <div class="movie-detail-container">
+          <c:foreach items="your_collection_here" var="item">
             <figure class="movie-detail-banner">
-              <img src="../assets/images/movie-4.png" alt="Free guy movie poster" />
-              <button class="play-btn" onclick="openTvSeriesPage()">
+              <img src="${item.movie_img_url}" alt="${item.title} movie poster" />
+              <button class="play-btn" onclick="openTvSeriesPage('${item.movie_stream_url}')">
                 <ion-icon name="play-circle-outline"></ion-icon>
               </button>
             </figure>
@@ -69,264 +70,95 @@
             <div class="date-time">
               <div>
                 <ion-icon name="calendar-outline"></ion-icon>
-                <time datetime="2021">2021</time>
+                <time datetime="${item.year}">${item.year}</time>
               </div>
               <div>
                 <ion-icon name="time-outline"></ion-icon>
-                <time datetime="PT115M">115 min</time>
+                <time datetime="PT${item.duration}M">${item.duration} min</time>
               </div>
             </div>
-          </div>
-          <div class="movie-detail-container">
-            <figure class="movie-detail-banner">
-              <img src="../assets/images/movie-4.png" alt="Free guy movie poster" />
-              <button class="play-btn">
-                <ion-icon name="play-circle-outline"></ion-icon>
-              </button>
-            </figure>
+          </c:foreach>
+        </div>
+
+        <!-- <div class="movie-detail-content">
+
+          <p class="detail-subtitle">New Episodes</p>
+
+          <h1 class="h1 detail-title">
+            Free <strong>Guy</strong>
+          </h1>
+
+          <div class="meta-wrapper">
+
+            <div class="badge-wrapper">
+              <div class="badge badge-fill">PG 13</div>
+
+              <div class="badge badge-outline">HD</div>
+            </div>
+
+            <div class="ganre-wrapper">
+              <a href="#">Comedy,</a>
+
+              <a href="#">Action,</a>
+
+              <a href="#">Adventure,</a>
+
+              <a href="#">Science Fiction</a>
+            </div>
 
             <div class="date-time">
+
               <div>
                 <ion-icon name="calendar-outline"></ion-icon>
+
                 <time datetime="2021">2021</time>
               </div>
+
               <div>
                 <ion-icon name="time-outline"></ion-icon>
+
                 <time datetime="PT115M">115 min</time>
               </div>
+
             </div>
+
           </div>
-          <div class="movie-detail-container">
-            <figure class="movie-detail-banner">
-              <img src="../assets/images/movie-4.png" alt="Free guy movie poster" />
-              <button class="play-btn">
-                <ion-icon name="play-circle-outline"></ion-icon>
-              </button>
-            </figure>
 
-            <div class="date-time">
-              <div>
-                <ion-icon name="calendar-outline"></ion-icon>
-                <time datetime="2021">2021</time>
-              </div>
-              <div>
-                <ion-icon name="time-outline"></ion-icon>
-                <time datetime="PT115M">115 min</time>
-              </div>
+          <p class="storyline">
+            A bank teller called Guy realizes he is a background character in an open world video game called Free
+            City that will
+            soon go offline.
+          </p>
+
+          <div class="details-actions">
+
+            <button class="share">
+              <ion-icon name="share-social"></ion-icon>
+
+              <span>Share</span>
+            </button>
+
+            <div class="title-wrapper">
+              <p class="title">Prime Video</p>
+
+              <p class="text">Streaming Channels</p>
             </div>
+
+            <button class="btn btn-primary">
+              <ion-icon name="play"></ion-icon>
+
+              <span>Watch Now</span>
+            </button>
+
           </div>
-          <div class="movie-detail-container">
-            <figure class="movie-detail-banner">
-              <img src="../assets/images/movie-4.png" alt="Free guy movie poster" />
-              <button class="play-btn">
-                <ion-icon name="play-circle-outline"></ion-icon>
-              </button>
-            </figure>
 
-            <div class="date-time">
-              <div>
-                <ion-icon name="calendar-outline"></ion-icon>
-                <time datetime="2021">2021</time>
-              </div>
-              <div>
-                <ion-icon name="time-outline"></ion-icon>
-                <time datetime="PT115M">115 min</time>
-              </div>
-            </div>
-          </div>
-          <div class="movie-detail-container">
-            <figure class="movie-detail-banner">
-              <img src="../assets/images/movie-4.png" alt="Free guy movie poster" />
-              <button class="play-btn">
-                <ion-icon name="play-circle-outline"></ion-icon>
-              </button>
-            </figure>
+          <a href="../assets/images/movie-4.png" download class="download-btn">
+            <span>Download</span>
 
-            <div class="date-time">
-              <div>
-                <ion-icon name="calendar-outline"></ion-icon>
-                <time datetime="2021">2021</time>
-              </div>
-              <div>
-                <ion-icon name="time-outline"></ion-icon>
-                <time datetime="PT115M">115 min</time>
-              </div>
-            </div>
-          </div>
-          <div class="movie-detail-container">
-            <figure class="movie-detail-banner">
-              <img src="../assets/images/movie-4.png" alt="Free guy movie poster" />
-              <button class="play-btn">
-                <ion-icon name="play-circle-outline"></ion-icon>
-              </button>
-            </figure>
+            <ion-icon name="download-outline"></ion-icon>
+          </a>
 
-            <div class="date-time">
-              <div>
-                <ion-icon name="calendar-outline"></ion-icon>
-                <time datetime="2021">2021</time>
-              </div>
-              <div>
-                <ion-icon name="time-outline"></ion-icon>
-                <time datetime="PT115M">115 min</time>
-              </div>
-            </div>
-          </div>
-          <div class="movie-detail-container">
-            <figure class="movie-detail-banner">
-              <img src="../assets/images/movie-4.png" alt="Free guy movie poster" />
-              <button class="play-btn">
-                <ion-icon name="play-circle-outline"></ion-icon>
-              </button>
-            </figure>
-
-            <div class="date-time">
-              <div>
-                <ion-icon name="calendar-outline"></ion-icon>
-                <time datetime="2021">2021</time>
-              </div>
-              <div>
-                <ion-icon name="time-outline"></ion-icon>
-                <time datetime="PT115M">115 min</time>
-              </div>
-            </div>
-          </div>
-          <div class="movie-detail-container">
-            <figure class="movie-detail-banner">
-              <img src="../assets/images/movie-4.png" alt="Free guy movie poster" />
-              <button class="play-btn">
-                <ion-icon name="play-circle-outline"></ion-icon>
-              </button>
-            </figure>
-
-            <div class="date-time">
-              <div>
-                <ion-icon name="calendar-outline"></ion-icon>
-                <time datetime="2021">2021</time>
-              </div>
-              <div>
-                <ion-icon name="time-outline"></ion-icon>
-                <time datetime="PT115M">115 min</time>
-              </div>
-            </div>
-          </div>
-          <div class="movie-detail-container">
-            <figure class="movie-detail-banner">
-              <img src="../assets/images/movie-4.png" alt="Free guy movie poster" />
-              <button class="play-btn">
-                <ion-icon name="play-circle-outline"></ion-icon>
-              </button>
-            </figure>
-
-            <div class="date-time">
-              <div>
-                <ion-icon name="calendar-outline"></ion-icon>
-                <time datetime="2021">2021</time>
-              </div>
-              <div>
-                <ion-icon name="time-outline"></ion-icon>
-                <time datetime="PT115M">115 min</time>
-              </div>
-            </div>
-          </div>
-          <div class="movie-detail-container">
-            <figure class="movie-detail-banner">
-              <img src="../assets/images/movie-4.png" alt="Free guy movie poster" />
-              <button class="play-btn">
-                <ion-icon name="play-circle-outline"></ion-icon>
-              </button>
-            </figure>
-
-            <div class="date-time">
-              <div>
-                <ion-icon name="calendar-outline"></ion-icon>
-                <time datetime="2021">2021</time>
-              </div>
-              <div>
-                <ion-icon name="time-outline"></ion-icon>
-                <time datetime="PT115M">115 min</time>
-              </div>
-            </div>
-          </div>
-          <!-- <div class="movie-detail-content">
-
-            <p class="detail-subtitle">New Episodes</p>
-
-            <h1 class="h1 detail-title">
-              Free <strong>Guy</strong>
-            </h1>
-
-            <div class="meta-wrapper">
-
-              <div class="badge-wrapper">
-                <div class="badge badge-fill">PG 13</div>
-
-                <div class="badge badge-outline">HD</div>
-              </div>
-
-              <div class="ganre-wrapper">
-                <a href="#">Comedy,</a>
-
-                <a href="#">Action,</a>
-
-                <a href="#">Adventure,</a>
-
-                <a href="#">Science Fiction</a>
-              </div>
-
-              <div class="date-time">
-
-                <div>
-                  <ion-icon name="calendar-outline"></ion-icon>
-
-                  <time datetime="2021">2021</time>
-                </div>
-
-                <div>
-                  <ion-icon name="time-outline"></ion-icon>
-
-                  <time datetime="PT115M">115 min</time>
-                </div>
-
-              </div>
-
-            </div>
-
-            <p class="storyline">
-              A bank teller called Guy realizes he is a background character in an open world video game called Free
-              City that will
-              soon go offline.
-            </p>
-
-            <div class="details-actions">
-
-              <button class="share">
-                <ion-icon name="share-social"></ion-icon>
-
-                <span>Share</span>
-              </button>
-
-              <div class="title-wrapper">
-                <p class="title">Prime Video</p>
-
-                <p class="text">Streaming Channels</p>
-              </div>
-
-              <button class="btn btn-primary">
-                <ion-icon name="play"></ion-icon>
-
-                <span>Watch Now</span>
-              </button>
-
-            </div>
-
-            <a href="../assets/images/movie-4.png" download class="download-btn">
-              <span>Download</span>
-
-              <ion-icon name="download-outline"></ion-icon>
-            </a>
-
-          </div> -->
+        </div> -->
         </div>
       </section>
 
