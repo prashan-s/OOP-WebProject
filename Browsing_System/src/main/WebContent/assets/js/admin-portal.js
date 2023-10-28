@@ -427,24 +427,20 @@ function editUpdateCustomerRow(rowId) {
   // Get the row data
   var row = document.getElementById(rowId);
   var id = row.querySelector("td:nth-child(1)").textContent;
-  var firstName = row.querySelector("td:nth-child(2)").textContent;
-  var lastName = row.querySelector("td:nth-child(3)").textContent;
-  var email = row.querySelector("td:nth-child(4)").textContent;
-  var mobileNo = row.querySelector("td:nth-child(5)").textContent;
-  var gender = row.querySelector("td:nth-child(6)").textContent;
-  var username = row.querySelector("td:nth-child(8)").textContent;
-  var password = row.querySelector("td:nth-child(9)").textContent;
-  var status = row.querySelector("td:nth-child(10)").textContent;
+  var name = row.querySelector("td:nth-child(2)").textContent;
+  var email = row.querySelector("td:nth-child(3)").textContent;
+  var mobileNumber = row.querySelector("td:nth-child(4)").textContent;
+  var dob = row.querySelector("td:nth-child(5)").textContent;
+  var premiumUser = row.querySelector("td:nth-child(6)").textContent;
+  var status = row.querySelector("td:nth-child(7)").textContent;
 
   // Set the row data in the form fields
   document.getElementById("editCustomerRowId").value = id;
-  document.getElementById("txtCustomerUpdateFirstname").value = firstName;
-  document.getElementById("txtCustomerUpdateLastname").value = lastName;
+  document.getElementById("txtCustomerUpdateName").value = name;
   document.getElementById("txtCustomerUpdateEmail").value = email;
-  document.getElementById("txtCustomerUpdateMobileNo").value = mobileNo;
-  document.getElementById("txtCustomerUpdateGender").value = gender;
-  document.getElementById("txtCustomerUpdateUsername").value = username;
-  document.getElementById("txtCustomerUpdatePassword").value = password;
+  document.getElementById("txtCustomerUpdateMobileNo").value = mobileNumber;
+  document.getElementById("txtCustomerUpdateDateofBirth").value = dob;
+  document.getElementById("txtCustomerUpdatePremiumUser").value = premiumUser;
   document.getElementById("txtCustomerUpdateStatus").value = status;
   // Populate other form fields as needed
 
