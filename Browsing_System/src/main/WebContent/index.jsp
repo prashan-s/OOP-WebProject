@@ -46,7 +46,7 @@
   <script>
 
     // Fetch the HTML content of your component
-    fetch('./components/header.html')
+    fetch('./components/headerIndex.html')
       .then(response => response.text())
       .then(html => {
         // Inject the HTML content into your container

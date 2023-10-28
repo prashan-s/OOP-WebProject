@@ -51,7 +51,7 @@
         <i class="fa-solid fa-bars" id="hamburger" onclick="toggleNavigation()"></i>
       </ul>
 
-      <a href="../index.html" class="logo">
+      <a href="../index.jsp" class="logo">
         <img src="/assets/images/logo.svg" alt="Filmlane logo" />
       </a>
 
@@ -85,7 +85,7 @@
 
       <nav class="navbar" data-navbar>
         <div class="navbar-top">
-          <a href="../index.html" class="logo">
+          <a href="../index.jsp" class="logo">
             <img src="/assets/images/logo.svg" alt="Filmlane logo" />
           </a>
 
@@ -96,23 +96,23 @@
 
         <ul class="navbar-list">
           <li>
-            <a href="../index.html" class="navbar-link">Home</a>
+            <a href="./index.jsp" class="navbar-link">Home</a>
           </li>
 
           <li>
-            <a href="/pages/movies.html" class="navbar-link">Movies</a>
+            <a href="./movies.html" class="navbar-link">Movies</a>
           </li>
 
           <li>
-            <a href="/pages/tv-series.html" class="navbar-link">Tv Series</a>
+            <a href="./tv-series.html" class="navbar-link">Tv Series</a>
           </li>
 
           <li>
-            <a href="/pages/favourites.html" class="navbar-link">Favourites</a>
+            <a href="./favourites.html" class="navbar-link">Favourites</a>
           </li>
 
           <li>
-            <a href="/pages/about.html" class="navbar-link">About</a>
+            <a href="./about.html" class="navbar-link">About</a>
           </li>
         </ul>
 
