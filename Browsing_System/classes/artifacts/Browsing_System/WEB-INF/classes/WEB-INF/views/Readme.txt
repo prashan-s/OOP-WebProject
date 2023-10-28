@@ -1,1 +1,0 @@
-Use this folder only to create views.
