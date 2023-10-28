@@ -278,7 +278,7 @@ public class TVSeriesController {
 
 			try {
 				
-				this.dispatcher =  request.getRequestDispatcher("./WebApp/pages/admin-portal.jsp");
+				this.dispatcher =  request.getRequestDispatcher("./pages/admin-portal.jsp");
 				this.dispatcher.forward(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();

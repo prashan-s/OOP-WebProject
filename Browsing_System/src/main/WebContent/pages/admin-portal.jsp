@@ -1004,8 +1004,8 @@
   <!-- 
     - custom js link
   -->
-  <script src="${pageContext.request.contextPath}/WebApp/assets/js/admin-portal.js"></script>
-  <script src="${pageContext.request.contextPath}/WebApp/assets/js/script.js"></script>
+  <script src="${pageContext.request.contextPath}/assets/js/admin-portal.js"></script>
+  <script src="${pageContext.request.contextPath}/assets/js/script.js"></script>
   <!-- 
     - ionicon link
   -->
