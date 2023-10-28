@@ -27,9 +27,15 @@ public class UserWatchHistoryServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		this.controller = new UserWatchHistoryController(request, response);
-		String a = request.getParameter("action");
-		controller.doAction(a);
-		System.out.println("in servlet "+ a);
+		
+		//Handling the null Exception
+		try {
+			String a = request.getParameter("action");
+			controller.doAction(a);
+			System.out.println("in servlet "+ a);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }
