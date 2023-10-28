@@ -397,12 +397,11 @@
                         <br/>
                         <label for="txtCustomerUpdateDateofBirth">Date of Birth</label>
                         <input type="date" name="dob" id="txtCustomerUpdateDateofBirth" required/>
-                        <br/>
                         <input type="hidden" name="premiumuser" id="txtCustomerUpdatePremiumUser" required/>
-                        <br/>
                         <input type="hidden" name="updatestatus" id="txtCustomerUpdateStatus" required/>
                         <br/>
-                        <select name="status" id="txtMemberUpdateStatus" required>
+                        <label for="txtCustomerUpdateStatus">Active User</label>
+                        <select name="status" id="txtCustomerUpdateStatus" required>
                             <option value="" selected>-- Select User Status --</option>
                             <option value="1">Active</option>
                             <option value="0">InActive</option>
@@ -548,9 +547,6 @@
                         <label for="lblUpdateMovieUrl">Stream URL</label> <br/>
                         <input type="text" name="txtUpdateMovieUrl" id="txtUpdateMovieUrl" required/>
                         <br/>
-                        <label for="lblUpdateMovieCategory">Category</label> <br/>
-                        <input type="text" name="txtUpdateMovieCategory" id="txtUpdateMovieCategory" required/>
-                        <br/>
                         <label for="lblUpdateMovieStatus">Active / InActive</label> <br/>
                         <select name="txtUpdateMovieStatus" id="txtUpdateMovieStatus" required>
                             <option value=""></option>
@@ -578,7 +574,6 @@
                         <th>Quality</th>
                         <th>Thumbnail</th>
                         <th>Stream Url</th>
-                        <th>Category</th>
                         <th class="hide">Status</th>
                         <th>Active / InActive</th>
                         <th class="tbl-edit"></th>
@@ -596,9 +591,8 @@
                             <td>${movie.quality}</td>
                             <td>${movie.movie_img_url}</td>
                             <td>${movie.movie_stream_url}</td>
-                            <td>${movie.action_category}</td>
                             <td class="hide">${movie.is_active}</td>
-                            <td>${movie.is_active}</td>
+                            <td>${movie.is_active ? 'Active' : 'InActive'}</td>
                             <td>
                                 <i class="fa-solid fa-pen-to-square update-icon"
                                    onclick="editUpdateMovieRow('movie_${movie.movie_id}')"></i>
@@ -607,7 +601,7 @@
                                 <form action="${pageContext.request.contextPath}/MovieServlet" method="post">
                                     <input type="hidden" name="movie_id" value="${movie.movie_id}">
                                     <i class="fa-solid fa-trash-can delete-icon"
-                                       onclick="confirmDelete(event, 'btnmovieDelete')"></i>';
+                                       onclick="confirmDelete(event, 'btnmovieDelete')"></i>'
                                     <input type="submit" id="btnmovieDelete" style="display: none;">
                                 </form>
                             </td>
@@ -641,18 +635,6 @@
                           enctype="multipart/form-data">
                         <label for="txtTvSeriesName">TvSeries Name</label> <br/>
                         <input type="text" name="TvSeriesname" id="txtTvSeriesName" required/>
-                        <br/>
-                        <label for="txtTvSeriesDescription">TvSeries Description</label> <br/>
-                        <input type="text" name="TvSeriesdescription" id="txtTvSeriesDescription" required/>
-                        <br/>
-                        <label for="txtTvSeriesStartingDate">Starting Date</label> <br/>
-                        <input type="date" name="startingdate" id="txtTvSeriesStartingDate" required/>
-                        <br/>
-                        <label for="txtTvSeriesEndingDate">Ending Date</label> <br/>
-                        <input type="date" name="endingdate" id="txtTvSeriesEndingDate" required/>
-                        <br/>
-                        <label for="txtTvSeriesPercentage">TvSeries Percentage</label> <br/>
-                        <input type="text" name="percentage" id="txtTvSeriesPercentage" required/>
                         <br/>
                         <label for="imgTvSeriesImage">TvSeries Image</label> <br/>
                         <input type="file" name="TvSeriesimage" id="imgTvSeriesImage" accept="image/*" required/>
@@ -709,7 +691,7 @@
                             <td class="hide">${series.tvs_id}</td>
                             <td>${series.title}</td>
                             <td>${series.tvs_img_url}</td>
-                            <td>${series.active}</td>
+                            <td>${series.active ? 'Active' : 'InActive'}</td>
                             <td>
                                 <i class="fa-solid fa-pen-to-square update-icon"
                                    onclick="editUpdateTvSeriesRow('series_${series.tvs_id}')"></i>
@@ -718,7 +700,7 @@
                                 <form action="${pageContext.request.contextPath}/TVSeriesServlet" method="post">
                                     <input type="hidden" name="series_id" value="${series.tvs_id}">
                                     <i class="fa-solid fa-trash-can delete-icon"
-                                       onclick="confirmDelete(event, 'btnTvSeriesDelete')"></i>';
+                                       onclick="confirmDelete(event, 'btnTvSeriesDelete')"></i>'
                                     <input type="submit" id="btnTvSeriesDelete" style="display: none;">
                                 </form>
                             </td>
@@ -779,32 +761,34 @@
                         <p>Update Tv Series Episodes</p>
                     </div>
                     <form action="${pageContext.request.contextPath}/TVSeriesDetailsServlet" method="post">
-                        <label for="txtUpdateTvSeriesEpisodesName">TvSeriesEpisodes Name</label> <br/>
-                        <input type="text" name="TvSeriesEpisodesname" id="txtUpdateTvSeriesEpisodesName" required/>
+                        <label for="txtUpdateTvSeriesSeason">TvSeries Name</label> <br/>
+                        <input type="text" name="txtUpdateTvSeriesSeason" id="txtUpdateTvSeriesSeason" required/>
                         <br/>
-                        <label for="txtUpdateTvSeriesEpisodesDescription">TvSeriesEpisodes Description</label>
+                        <label for="txtUpdateTvSeriesEpisode">Tv Series Episode</label>
+                        <input type="text" name="txtUpdateTvSeriesEpisode" id="txtUpdateTvSeriesEpisode" required/>
                         <br/>
-                        <input type="text" name="TvSeriesEpisodesdescription" id="txtUpdateTvSeriesEpisodesDescription"
-                               required/>
+                        <label for="txtUpdateTvSeriesEpisodeDescription">Description</label>
+                        <input type="text" name="txtUpdateTvSeriesEpisodeDescription" id="txtUpdateTvSeriesEpisodeDescription" required/>
                         <br/>
-                        <label for="txtUpdateTvSeriesEpisodesStartingDate">Starting Date</label>
+                        <label for="txtUpdateTvSeriesEpisodeYear">Year</label> <br/>
+                        <input type="text" name="txtUpdateTvSeriesEpisodeYear" id="txtUpdateTvSeriesEpisodeYear" required/>
                         <br/>
-                        <input type="date" name="startingdate" id="txtUpdateTvSeriesEpisodesStartingDate" required/>
+                        <label for="txtUpdateTvSeriesEpisodeDuration">Episode Duration</label>
+                        <input type="text" name="txtUpdateTvSeriesEpisodeDuration" id="txtUpdateTvSeriesEpisodeDuration" required/>
                         <br/>
-                        <label for="txtUpdateTvSeriesEpisodesEndingDate">Ending Date</label> <br/>
-                        <input type="date" name="endingdate" id="txtUpdateTvSeriesEpisodesEndingDate" required/>
+                        <label for="txtUpdateTvSeriesEpisodeQuality">Episode Quality</label>
+                        <input type="text" name="txtUpdateTvSeriesEpisodeQuality" id="txtUpdateTvSeriesEpisodeQuality" required/>
                         <br/>
-                        <label for="txtUpdateTvSeriesEpisodesPercentage">TvSeriesEpisodes Percentage</label>
+                        <label for="txtUpdateTvSeriesEpisodeUrl">Episode Url</label>
+                        <input type="text" name="txtUpdateTvSeriesEpisodeUrl" id="txtUpdateTvSeriesEpisodeUrl" required/>
                         <br/>
-                        <input type="text" name="percentage" id="txtUpdateTvSeriesEpisodesPercentage" required/>
-                        <br/>
-                        <label for="txtUpdateTvSeriesEpisodesStatus">Active / InActive</label> <br/>
-                        <select name="status" id="txtUpdateTvSeriesEpisodesStatus" required>
+                        <label for="txtUpdateTvSeriesEpisodeStatus">Active / InActive</label> <br/>
+                        <select name="status" id="txtUpdateTvSeriesEpisodeStatus" required>
                             <option value=""></option>
                             <option value="1">Active</option>
                             <option value="0">InActive</option>
                         </select>
-                        <input type="hidden" name="rowid" id="editTvSeriesEpisodesRowId"/>
+                        <input type="hidden" name="rowid" id="editTvSeriesEpisodeRowId"/>
                         <input type="submit" class="submit-btn" value="Update"/>
                     </form>
                 </div>
@@ -826,7 +810,7 @@
                         <th>Year</th>
                         <th>Duration</th>
                         <th>Quality</th>
-                        <th>Image Url</th>
+                        <th>Stream Url</th>
                         <th>Active / InActive</th>
                         <th class="hide">Active / InActive Status</th>
                         <th class="tbl-edit"></th>
@@ -835,7 +819,7 @@
                     </thead>
                     <tbody>
                     <c:forEach items="${allTVSeriesEpisodesList}" var="TvSeriesEpisode">
-                        <tr id="movieDetail_${movie.movie_id}">
+                        <tr id="tvSeriesEpisode_${TvSeriesEpisode.tvsDetailId}">
                             <td class="hide">${TvSeriesEpisode.tvsDetailId}</td>
                             <td>${TvSeriesEpisode.tvsId}</td>
                             <td>${TvSeriesEpisode.season}</td>
@@ -849,13 +833,13 @@
                             <td class="hide">${TvSeriesEpisode.isActive}</td>
                             <td>
                                 <i class="fa-solid fa-pen-to-square update-icon"
-                                   onclick="editUpdateMovieRow('movieDetail_${movie.movie_id}')"></i>
+                                   onclick="editUpdateTvSeriesEpisodesRow('tvSeriesEpisode_${TvSeriesEpisode.tvsDetailId}')"></i>
                             </td>
                             <td>
                                 <form action="${pageContext.request.contextPath}/TVSeriesDetailsServlet" method="post">
-                                    <input type="hidden" name="movie_id" value="movieDetail_${movie.movie_id}">
+                                    <input type="hidden" name="tvSeriesEpisode" value="tvSeriesEpisode_${TvSeriesEpisode.tvsDetailId}">
                                     <i class="fa-solid fa-trash-can delete-icon"
-                                       onclick="confirmDelete(event, 'btnTvSeriesDetailDelete')"></i>';
+                                       onclick="confirmDelete(event, 'btnTvSeriesDetailDelete')"></i>'
                                     <input type="submit" id="btnTvSeriesDetailDelete" style="display: none;">
                                 </form>
                             </td>
@@ -973,7 +957,7 @@
                             <td>${subscriptionPlan.description}</td>
                             <td>${subscriptionPlan.duration}</td>
                             <td>${subscriptionPlan.amount}</td>
-                            <td>${subscriptionPlan.isActive}</td>
+                            <td>${subscriptionPlan.isActive ? 'Active' : 'InActive'}</td>
                             <td class="hide">${subscriptionPlan.isActive}</td>
                             <td class="tbl-edit"></td>
                             <td class="tbl-delete"></td>
