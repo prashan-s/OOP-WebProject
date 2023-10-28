@@ -507,20 +507,13 @@ function editUpdateTvSeriesRow(rowId) {
   var row = document.getElementById(rowId);
   var id = row.querySelector("td:nth-child(1)").textContent;
   var TvSeriesName = row.querySelector("td:nth-child(2)").textContent;
-  var TvSeriesDescription = row.querySelector("td:nth-child(3)").textContent;
-  var TvSeriesStartingDate = row.querySelector("td:nth-child(4)").textContent;
-  var TvSeriesEndingDate = row.querySelector("td:nth-child(5)").textContent;
-  var TvSeriesPercentage = row.querySelector("td:nth-child(6)").textContent;
-  var Status = row.querySelector("td:nth-child(7)").textContent;
+  var TvSeriesImageUrl = row.querySelector("td:nth-child(3)").textContent;
+  var Status = row.querySelector("td:nth-child(4)").textContent;
 
   // Set the row data in the form fields
   document.getElementById("editTvSeriesRowId").value = id;
   document.getElementById("txtUpdateTvSeriesName").value = TvSeriesName;
-  document.getElementById("txtUpdateTvSeriesDescription").value = TvSeriesDescription;
-  document.getElementById("txtUpdateTvSeriesStartingDate").value =
-    TvSeriesStartingDate;
-  document.getElementById("txtUpdateTvSeriesEndingDate").value = TvSeriesEndingDate;
-  document.getElementById("txtUpdateTvSeriesPercentage").value = TvSeriesPercentage;
+  document.getElementById("txtUpdateTvSeriesImageUrl").value = TvSeriesImageUrl;
   document.getElementById("txtUpdateTvSeriesStatus").value = Status;
   // Populate other form fields as needed
 

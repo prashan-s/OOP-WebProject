@@ -672,20 +672,9 @@
                         <label for="txtUpdateTvSeriesName">TvSeries Name</label> <br/>
                         <input type="text" name="TvSeriesname" id="txtUpdateTvSeriesName" required/>
                         <br/>
-                        <label for="txtUpdateTvSeriesDescription">TvSeries Description</label>
+                        <label for="txtUpdateTvSeriesImageUrl">TvSeries Image</label>
                         <br/>
-                        <input type="text" name="TvSeriesdescription" id="txtUpdateTvSeriesDescription" required/>
-                        <br/>
-                        <label for="txtUpdateTvSeriesStartingDate">Starting Date</label>
-                        <br/>
-                        <input type="date" name="startingdate" id="txtUpdateTvSeriesStartingDate" required/>
-                        <br/>
-                        <label for="txtUpdateTvSeriesEndingDate">Ending Date</label> <br/>
-                        <input type="date" name="endingdate" id="txtUpdateTvSeriesEndingDate" required/>
-                        <br/>
-                        <label for="txtUpdateTvSeriesPercentage">TvSeries Percentage</label>
-                        <br/>
-                        <input type="text" name="percentage" id="txtUpdateTvSeriesPercentage" required/>
+                        <input type="text" name="TvSeriesdescription" id="txtUpdateTvSeriesImageUrl" required/>
                         <br/>
                         <label for="txtUpdateTvSeriesStatus">Active / InActive</label> <br/>
                         <select name="status" id="txtUpdateTvSeriesStatus" required>
@@ -708,7 +697,7 @@
                     <tr>
                         <th class="hide">ID</th>
                         <th>TvSeries Name</th>
-                        <th>TvSeries Iamge</th>
+                        <th>TvSeries Image</th>
                         <th>Active / InActive</th>
                         <th class="tbl-edit"></th>
                         <th class="tbl-delete"></th>
@@ -727,7 +716,7 @@
                             </td>
                             <td>
                                 <form action="${pageContext.request.contextPath}/TVSeriesServlet" method="post">
-                                    <input type="hidden" name="movie_id" value="${series.tvs_id}">
+                                    <input type="hidden" name="series_id" value="${series.tvs_id}">
                                     <i class="fa-solid fa-trash-can delete-icon"
                                        onclick="confirmDelete(event, 'btnTvSeriesDelete')"></i>';
                                     <input type="submit" id="btnTvSeriesDelete" style="display: none;">
