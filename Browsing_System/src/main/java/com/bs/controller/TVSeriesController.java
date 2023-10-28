@@ -64,7 +64,7 @@ public class TVSeriesController {
 
 			case "edit":
 
-				jspPage = "./pages/tv-series.jsp";
+				jspPage = "./pages/admin-portal.jsp";
 				showTVSeriesIdForm = false;
 				showDetails = false;
 				showEditForm = true;
@@ -81,7 +81,7 @@ public class TVSeriesController {
 
 			case "delete":
 
-				jspPage = "./pages/tv-series.jsp";
+				jspPage = "./pages/admin-portal.jsp";
 				showTVSeriesIdForm = false;
 				showDetails = false;
 				showEditForm = false;
@@ -105,7 +105,7 @@ public class TVSeriesController {
 
 			case "add":
 
-				jspPage = "./pages/tv-series.jsp";
+				jspPage = "./pages/admin-portal.jsp";
 				showTVSeriesIdForm = false;
 				showDetails = false;
 				showEditForm = false;
@@ -122,7 +122,7 @@ public class TVSeriesController {
 
 			case "insert":
 
-				jspPage = "./pages/tv-series.jsp";
+				jspPage = "./pages/admin-portal.jsp";
 				showTVSeriesIdForm = false;
 				showDetails = false;
 				showEditForm = false;
@@ -167,6 +167,7 @@ public class TVSeriesController {
 
 			case "update":
 
+				jspPage = "./pages/admin-portal.jsp";
 				showTVSeriesIdForm = false;
 				showDetails = false;
 				showEditForm = false;
