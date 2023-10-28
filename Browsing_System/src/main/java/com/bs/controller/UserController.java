@@ -176,18 +176,20 @@ public class UserController {
 			 userName = this.request.getParameter("userName");
 			String enteredPassword = this.request.getParameter("password");
 			// system.out.println("do action up " +enteredPassword);
+			boolean signInStatus = false;
 			try {
 			String userPassword = this.loginUser(userName);
-			catch (Exception ex) {
-				
-			}
+			
 			// System.out.println("do action up " +userPassword);
-			boolean signInStatus = false;
+			 
 			if (userPassword.equals(enteredPassword)) {
 				loginMessage = "Login Success..";
 				signInStatus = true;
 			} else {
 				loginMessage = "Login Failed..";
+			}
+			catch (Exception ex) {
+				
 			}
 			request.setAttribute("signInStatus", signInStatus);
 			request.setAttribute("loginMessage", loginMessage);
