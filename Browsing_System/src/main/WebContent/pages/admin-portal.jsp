@@ -51,7 +51,7 @@
         <i class="fa-solid fa-bars" id="hamburger" onclick="toggleNavigation()"></i>
       </ul>
 
-      <a href="../index.html" class="logo">
+      <a href="../index.jsp" class="logo">
         <img src="/assets/images/logo.svg" alt="Filmlane logo" />
       </a>
 
@@ -85,7 +85,7 @@
 
       <nav class="navbar" data-navbar>
         <div class="navbar-top">
-          <a href="../index.html" class="logo">
+          <a href="../index.jsp" class="logo">
             <img src="/assets/images/logo.svg" alt="Filmlane logo" />
           </a>
 
@@ -96,23 +96,23 @@
 
         <ul class="navbar-list">
           <li>
-            <a href="../index.html" class="navbar-link">Home</a>
+            <a href="./index.jsp" class="navbar-link">Home</a>
           </li>
 
           <li>
-            <a href="/pages/movies.html" class="navbar-link">Movies</a>
+            <a href="./movies.html" class="navbar-link">Movies</a>
           </li>
 
           <li>
-            <a href="/pages/tv-series.html" class="navbar-link">Tv Series</a>
+            <a href="./tv-series.html" class="navbar-link">Tv Series</a>
           </li>
 
           <li>
-            <a href="/pages/favourites.html" class="navbar-link">Favourites</a>
+            <a href="./favourites.html" class="navbar-link">Favourites</a>
           </li>
 
           <li>
-            <a href="/pages/about.html" class="navbar-link">About</a>
+            <a href="./about.html" class="navbar-link">About</a>
           </li>
         </ul>
 
@@ -595,21 +595,29 @@
             </thead>
             <tbody>
 	            <c:forEach items="${movieData}" var="movie">
-		            <tr>
+		            <tr id="movie_${movie.movie_id}">
 		              <td class="hide">${movie.movie_id}</td>
-                  <td>${movie.title}</td>
-                  <td>${movie.description}</td>
-                  <td>${movie.year}</td>
-                  <td>${movie.duration}</td>
-                  <td>${movie.quality}</td>
-                  <td>${movie.movie_img_url}</td>
-                  <td>${movie.movie_stream_url}</td>
-                  <td>${movie.action_category}</td>
-                  <td class="hide">${movie.is_active}</td>
-                  <td>${movie.is_active}</td>
-                  <td class="tbl-edit"></td>
-                  <td class="tbl-delete"></td>
-			          </tr>
+	                  <td>${movie.title}</td>
+	                  <td>${movie.description}</td>
+	                  <td>${movie.year}</td>
+	                  <td>${movie.duration}</td>
+	                  <td>${movie.quality}</td>
+	                  <td>${movie.movie_img_url}</td>
+	                  <td>${movie.movie_stream_url}</td>
+	                  <td>${movie.action_category}</td>
+	                  <td class="hide">${movie.is_active}</td>
+	                  <td>${movie.is_active}</td>
+	                  <td>
+	                  	<i class="fa-solid fa-pen-to-square update-icon" onclick="editUpdateMovieRow('movie_${movie.movie_id}')"></i>
+	                  </td>
+                      <td>
+	                      <form action="../php/admin_portal_customer_delete_process.php" method="post">
+		                      <input type="hidden" name="movie_id" value="${movie.movie_id}">
+		                      <i class="fa-solid fa-trash-can delete-icon" onclick="confirmDelete(event)"></i>';
+		                      <input type="submit" style="display: none;">
+	                      </form>
+                      </td>
+		          </tr>
 			        </c:forEach>
             </tbody>
           </table>

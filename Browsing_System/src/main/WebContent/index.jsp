@@ -46,7 +46,7 @@
   <script>
 
     // Fetch the HTML content of your component
-    fetch('./components/header.html')
+    fetch('./components/headerIndex.html')
       .then(response => response.text())
       .then(html => {
         // Inject the HTML content into your container
@@ -233,14 +233,14 @@
             <li>
               <div class="movie-card">
 
-                <a href="./pages/movie-details.html">
+                <a href="./pages/movie-details.jsp">
                   <figure class="card-banner">
                     <img src="./assets/images/upcoming-1.png" alt="The Northman movie poster">
                   </figure>
                 </a>
 
                 <div class="title-wrapper">
-                  <a href="./pages/movie-details.html">
+                  <a href="./pages/movie-details.jsp">
                     <h3 class="card-title">The Northman</h3>
                   </a>
 
@@ -269,7 +269,7 @@
             <li>
               <div class="movie-card">
 
-                <a href="./pages/movie-details.html">
+                <a href="./pages/movie-details.jsp">
                   <figure class="card-banner">
                     <img src="./assets/images/upcoming-2.png"
                       alt="Doctor Strange in the Multiverse of Madness movie poster">
@@ -277,7 +277,7 @@
                 </a>
 
                 <div class="title-wrapper">
-                  <a href="./pages/movie-details.html">
+                  <a href="./pages/movie-details.jsp">
                     <h3 class="card-title">Doctor Strange in the Multiverse of Madness</h3>
                   </a>
 
@@ -306,14 +306,14 @@
             <li>
               <div class="movie-card">
 
-                <a href="./pages/movie-details.html">
+                <a href="./pages/movie-details.jsp">
                   <figure class="card-banner">
                     <img src="./assets/images/upcoming-3.png" alt="Memory movie poster">
                   </figure>
                 </a>
 
                 <div class="title-wrapper">
-                  <a href="./pages/movie-details.html">
+                  <a href="./pages/movie-details.jsp">
                     <h3 class="card-title">Memory</h3>
                   </a>
 
@@ -342,7 +342,7 @@
             <li>
               <div class="movie-card">
 
-                <a href="./pages/movie-details.html">
+                <a href="./pages/movie-details.jsp">
                   <figure class="card-banner">
                     <img src="./assets/images/upcoming-4.png"
                       alt="The Unbearable Weight of Massive Talent movie poster">
@@ -350,7 +350,7 @@
                 </a>
 
                 <div class="title-wrapper">
-                  <a href="./pages/movie-details.html">
+                  <a href="./pages/movie-details.jsp">
                     <h3 class="card-title">The Unbearable Weight of Massive Talent</h3>
                   </a>
 
@@ -420,14 +420,14 @@
             <li>
               <div class="movie-card">
 
-                <a href="./pages/movie-details.html">
+                <a href="./pages/movie-details.jsp">
                   <figure class="card-banner">
                     <img src="./assets/images/upcoming-1.png" alt="The Northman movie poster">
                   </figure>
                 </a>
 
                 <div class="title-wrapper">
-                  <a href="./pages/movie-details.html">
+                  <a href="./pages/movie-details.jsp">
                     <h3 class="card-title">The Northman</h3>
                   </a>
 
@@ -456,7 +456,7 @@
             <li>
               <div class="movie-card">
 
-                <a href="./pages/movie-details.html">
+                <a href="./pages/movie-details.jsp">
                   <figure class="card-banner">
                     <img src="./assets/images/upcoming-2.png"
                       alt="Doctor Strange in the Multiverse of Madness movie poster">
@@ -464,7 +464,7 @@
                 </a>
 
                 <div class="title-wrapper">
-                  <a href="./pages/movie-details.html">
+                  <a href="./pages/movie-details.jsp">
                     <h3 class="card-title">Doctor Strange in the Multiverse of Madness</h3>
                   </a>
 
@@ -493,14 +493,14 @@
             <li>
               <div class="movie-card">
 
-                <a href="./pages/movie-details.html">
+                <a href="./pages/movie-details.jsp">
                   <figure class="card-banner">
                     <img src="./assets/images/upcoming-3.png" alt="Memory movie poster">
                   </figure>
                 </a>
 
                 <div class="title-wrapper">
-                  <a href="./pages/movie-details.html">
+                  <a href="./pages/movie-details.jsp">
                     <h3 class="card-title">Memory</h3>
                   </a>
 
@@ -529,7 +529,7 @@
             <li>
               <div class="movie-card">
 
-                <a href="./pages/movie-details.html">
+                <a href="./pages/movie-details.jsp">
                   <figure class="card-banner">
                     <img src="./assets/images/upcoming-4.png"
                       alt="The Unbearable Weight of Massive Talent movie poster">
@@ -537,7 +537,7 @@
                 </a>
 
                 <div class="title-wrapper">
-                  <a href="./pages/movie-details.html">
+                  <a href="./pages/movie-details.jsp">
                     <h3 class="card-title">The Unbearable Weight of Massive Talent</h3>
                   </a>
 
@@ -607,14 +607,14 @@
             <li>
               <div class="movie-card">
 
-                <a href="./pages/movie-details.html">
+                <a href="./pages/movie-details.jsp">
                   <figure class="card-banner">
                     <img src="./assets/images/upcoming-1.png" alt="The Northman movie poster">
                   </figure>
                 </a>
 
                 <div class="title-wrapper">
-                  <a href="./pages/movie-details.html">
+                  <a href="./pages/movie-details.jsp">
                     <h3 class="card-title">The Northman</h3>
                   </a>
 
@@ -643,7 +643,7 @@
             <li>
               <div class="movie-card">
 
-                <a href="./pages/movie-details.html">
+                <a href="./pages/movie-details.jsp">
                   <figure class="card-banner">
                     <img src="./assets/images/upcoming-2.png"
                       alt="Doctor Strange in the Multiverse of Madness movie poster">
@@ -651,7 +651,7 @@
                 </a>
 
                 <div class="title-wrapper">
-                  <a href="./pages/movie-details.html">
+                  <a href="./pages/movie-details.jsp">
                     <h3 class="card-title">Doctor Strange in the Multiverse of Madness</h3>
                   </a>
 
@@ -680,14 +680,14 @@
             <li>
               <div class="movie-card">
 
-                <a href="./pages/movie-details.html">
+                <a href="./pages/movie-details.jsp">
                   <figure class="card-banner">
                     <img src="./assets/images/upcoming-3.png" alt="Memory movie poster">
                   </figure>
                 </a>
 
                 <div class="title-wrapper">
-                  <a href="./pages/movie-details.html">
+                  <a href="./pages/movie-details.jsp">
                     <h3 class="card-title">Memory</h3>
                   </a>
 
@@ -716,7 +716,7 @@
             <li>
               <div class="movie-card">
 
-                <a href="./pages/movie-details.html">
+                <a href="./pages/movie-details.jsp">
                   <figure class="card-banner">
                     <img src="./assets/images/upcoming-4.png"
                       alt="The Unbearable Weight of Massive Talent movie poster">
@@ -724,7 +724,7 @@
                 </a>
 
                 <div class="title-wrapper">
-                  <a href="./pages/movie-details.html">
+                  <a href="./pages/movie-details.jsp">
                     <h3 class="card-title">The Unbearable Weight of Massive Talent</h3>
                   </a>
 
