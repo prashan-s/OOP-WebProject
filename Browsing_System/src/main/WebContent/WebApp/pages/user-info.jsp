@@ -93,7 +93,7 @@
                             <div class="contact-description">
                                 <div class="contact-grid">
                                     <div class="labels">
-                                        <div class="item-1">First Name</div>
+                                        <div class="item-1">First Name</div><div></div>
                                         <div class="item-2">Last Name</div>
                                         <div class="item-3">Email</div>
                                         <div class="item-4">Mobile Number</div>
