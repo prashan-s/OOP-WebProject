@@ -565,9 +565,9 @@ for (let i = 0; i < mainItems.length; i++) {
   });
 }
 
-function confirmDelete(event) {
+function confirmDelete(event, btnId) {
   if (confirm("Are you sure you want to delete this record?")) {
-    event.target.parentElement.submit();
+	  document.getElementById(btnId).click();
   }
 }
 

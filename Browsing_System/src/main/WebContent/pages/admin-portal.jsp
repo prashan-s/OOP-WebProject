@@ -396,7 +396,12 @@
               <input type="text" name="mobile" id="txtCustomerUpdateMobileNo" required />
               <br />
               <label for="txtCustomerUpdateDateofBirth">Date of Birth</label>
-              <br />  
+              <input type="date" name="dob" id="txtCustomerUpdateDateofBirth" required />
+              <br />
+              <input type="hidden" name="premiumuser" id="txtCustomerUpdatePremiumUser" required />
+              <br />
+              <input type="hidden" name="updatestatus" id="txtCustomerUpdateStatus" required />
+              <br />    
               <select name="status" id="txtMemberUpdateStatus" required>
                 <option value="" selected>-- Select User Status --</option>
                 <option value="1">Active</option>
@@ -448,8 +453,8 @@
                       <td>
 	                      <form action="${pageContext.request.contextPath}/UserServlet" method="post">
 		                      <input type="hidden" name="userId" value="${user.userId}">
-		                      <i class="fa-solid fa-trash-can delete-icon" onclick="confirmDelete(event)"></i>';
-		                      <input type="submit" name="action" value="Delete" style="display: none;">
+		                      <i class="fa-solid fa-trash-can delete-icon" onclick="confirmDelete(event, 'userDelete')"></i>
+		                      <input type="submit" name="action" value="Delete" id="userDelete" style="display: none">
 	                      </form>
                       </td>
 		          	</tr>
