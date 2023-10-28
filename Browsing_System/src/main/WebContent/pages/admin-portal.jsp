@@ -375,7 +375,7 @@
               <label for="txtCustomerDob">Date of Birth</label> <br />
               <input type="date" name="dob" id="txtCustomerDob" required />
               <br />
-              <input type="submit" class="submit-btn" value="Add" name="action"/>
+              <input type="submit" name="action" class="submit-btn" value="Add" />
             </form>
           </div>
         </div>

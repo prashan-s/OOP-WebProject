@@ -52,6 +52,12 @@ public class UserController {
 		boolean showEditUserForm = false;
 		boolean showUpdateUserStatus = false;
 		boolean showDeleteUserStatus = false;
+		
+		User userSignUp = new User();
+		String SignUpMessage = "";
+		boolean insertStatus = false;
+		SimpleDateFormat dateFormatSignup = new SimpleDateFormat("yyyy-MM-dd");
+		
 		switch (action) {
 		case "Sign In":
 			showDetails = true;
@@ -70,8 +76,8 @@ public class UserController {
 			userId = Integer.parseInt(this.request.getParameter("userId"));
 			request.setAttribute("user", this.selectUser(userId));
 
-			Cookie cookie = new Cookie("userId", Integer.toString(userId));
-			this.response.addCookie(cookie);
+			Cookie cookie1 = new Cookie("userId", Integer.toString(userId));
+			this.response.addCookie(cookie1);
 			break;
 
 		case "edit":
@@ -235,20 +241,16 @@ public class UserController {
 			break;
 
 		case "Add":
-			jspPage = "admin-portal.jspsp";
+			jspPage = "admin-portal.jsp";
 			showSignInForm = false;
 			showSignUpForm = false;
 			showSignUpStatus = true;
 			showSignInStatus = false;
 
-			User userSignUp = new User();
-			String SignUpMessage = "";
-			boolean insertStatus = false;
-
 			userSignUp.setName(request.getParameter("userName"));
 			userSignUp.setEmail(request.getParameter("email"));
 			userSignUp.setMobileNo(request.getParameter("mobile"));
-			SimpleDateFormat dateFormatSignup = new SimpleDateFormat("yyyy-MM-dd");
+			
 			try {
 				dob = dateFormatSignup.parse(request.getParameter("dob"));
 				java.sql.Date dobSignUp = new java.sql.Date(dob.getTime());
@@ -258,7 +260,9 @@ public class UserController {
 			}
 			userSignUp.setPassword("Test123");
 			userSignUp.setPremiumUser(false);
+			userSignUp.setCreatedAdminName("Admin");
 			insertStatus = insertUser(userSignUp);
+			
 			System.out.println("insert sts " + insertStatus);
 
 			if (insertStatus == false) {
@@ -278,14 +282,11 @@ public class UserController {
 			showSignUpStatus = true;
 			showSignInStatus = false;
 
-			User userSignUp = new User();
-			String SignUpMessage = "";
-			boolean insertStatus = false;
+			
 
 			userSignUp.setName(request.getParameter("userName"));
 			userSignUp.setEmail(request.getParameter("email"));
 			userSignUp.setMobileNo(request.getParameter("mobile"));
-			SimpleDateFormat dateFormatSignup = new SimpleDateFormat("yyyy-MM-dd");
 			try {
 				dob = dateFormatSignup.parse(request.getParameter("dob"));
 				java.sql.Date dobSignUp = new java.sql.Date(dob.getTime());
