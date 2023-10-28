@@ -3,8 +3,6 @@ package com.bs.model;
 import java.lang.String;
 import java.util.Date;
 
-import com.oracle.wls.shaded.org.apache.xpath.operations.String;
-
 public class SubscriptionPlan {
 
 	private int planId;

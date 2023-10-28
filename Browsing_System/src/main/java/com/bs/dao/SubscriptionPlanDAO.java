@@ -14,10 +14,10 @@ public class SubscriptionPlanDAO implements ISubscriptionPlanDAO {
 
 	private static final String SELECT_ALL_SUBSCRIPTION_PLANS = "SELECT plan_id, description, duration_in_months, amount, is_active, row_created_datetime "
 			+ "FROM subscription_plan ORDER BY duration_in_months ASC ";
-	
+
 	private static final String SELECT_ALL_ACTIVE_SUBSCRIPTION_PLANS = "SELECT plan_id, description, duration_in_months, amount, is_active, row_created_datetime "
 			+ "FROM subscription_plan WHERE is_active = 1 ORDER BY duration_in_months ASC ";
-	
+
 	private static final String SELECT_SUBSCRIPTION_BY_ID = "SELECT plan_id, description, duration_in_months, amount, is_active, row_created_datetime "
 			+ "FROM subscription_plan WHERE plan_id = ? ";
 
@@ -29,6 +29,7 @@ public class SubscriptionPlanDAO implements ISubscriptionPlanDAO {
 
 	private static final String DELETE_SUBSCRIPTION_PLAN = "DELETE FROM subscription_plan WHERE plan_id = ?";
 
+	// select subscription details by Id
 	public SubscriptionPlan selectSubscriptionPlanById(int planId) {
 		SubscriptionPlan subscriptionPlan = null;
 		try {
@@ -58,6 +59,7 @@ public class SubscriptionPlanDAO implements ISubscriptionPlanDAO {
 
 	}
 
+	// select all subscription plans
 	public List<SubscriptionPlan> selectAllSubscriptionPlans() {
 
 		ArrayList<SubscriptionPlan> subscriptionPlans = new ArrayList<>();
@@ -88,7 +90,7 @@ public class SubscriptionPlanDAO implements ISubscriptionPlanDAO {
 
 		return subscriptionPlans;
 	}
-	
+
 	public List<SubscriptionPlan> selectAllActiveSubscriptionPlans() {
 
 		ArrayList<SubscriptionPlan> subscriptionPlans = new ArrayList<>();
@@ -119,6 +121,7 @@ public class SubscriptionPlanDAO implements ISubscriptionPlanDAO {
 		return subscriptionPlans;
 	}
 
+	// insert new subscription plan
 	public boolean insertSubscriptionPlan(SubscriptionPlan subscriptionPlan) {
 
 		boolean insertStatus = false;
@@ -139,6 +142,7 @@ public class SubscriptionPlanDAO implements ISubscriptionPlanDAO {
 		return insertStatus;
 	}
 
+	// update subscription plan
 	public boolean updateSubscriptionPlan(SubscriptionPlan subscriptionPlan) {
 		boolean rowUpdate = false;
 		try {
@@ -160,6 +164,7 @@ public class SubscriptionPlanDAO implements ISubscriptionPlanDAO {
 		return rowUpdate;
 	}
 
+	// delete a subscription plan
 	public boolean deleteSubscriptionPlan(int planId) {
 		boolean rowDelete = false;
 
