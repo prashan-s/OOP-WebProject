@@ -15,12 +15,12 @@ public class TVSeriesDetails {
     private Integer watchCount;
     private String tvsStreamUrl;
     private String createdAdminName;
-    private boolean isActive;
+    private String isActive;
     private Date rowCreatedDatetime;
 
     public TVSeriesDetails(int tvsDetailId,int tvsId, int season, int episode, String description,
                            int year, int duration, String quality, Integer watchCount,
-                           String tvsStreamUrl, String createdAdminName, boolean isActive, Date rowCreatedDatetime) {
+                           String tvsStreamUrl, String createdAdminName, String isActive, Date rowCreatedDatetime) {
         this.tvsDetailId = tvsDetailId;
         this.tvsId = tvsId;
         this.season = season;
