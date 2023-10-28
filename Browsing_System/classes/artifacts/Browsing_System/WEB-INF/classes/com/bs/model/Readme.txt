@@ -1,1 +1,0 @@
-Use this package only to create models.
