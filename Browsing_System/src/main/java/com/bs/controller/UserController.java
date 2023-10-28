@@ -13,7 +13,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 public class UserController {
-	RequestDispatcher dispacther;
+	RequestDispatcher dispatcher;
 	HttpServletRequest request;
 	HttpServletResponse response;
 	UserDAO dao;
@@ -368,8 +368,8 @@ public class UserController {
 			request.setAttribute("showUpdateUserStatus", showUpdateUserStatus);
 			request.setAttribute("showDeleteUserStatus", showDeleteUserStatus);
 
-			this.dispacther = request.getRequestDispatcher(jspPage);
-			dispacther.forward(request, response);
+			this.dispatcher = request.getRequestDispatcher(jspPage);
+			dispatcher.forward(request, response);
 
 		} catch (Exception e2) {
 			e2.printStackTrace();
@@ -444,6 +444,26 @@ public class UserController {
 			e1.printStackTrace();
 		}
 		return user;
+
+	}
+	
+	public void selectAllUserList() {
+		List<User> users = null;
+		try {
+			users = this.dao.selectAllUserList();
+			request.setAttribute("users", users);
+
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+
+		try {
+			
+			this.dispatcher =  request.getRequestDispatcher("./WebApp/pages/admin-portal.jsp");
+			this.dispatcher.forward(request, response);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
 	}
 

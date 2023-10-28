@@ -53,7 +53,7 @@ public class TVSeries {
 
 
 	public void setActiveStatus(String str) {
-		this.activeStatus = str;
+		this.isActiveStatus = str;
 	}
 
 	public void setTvs_id(int tvs_id) {

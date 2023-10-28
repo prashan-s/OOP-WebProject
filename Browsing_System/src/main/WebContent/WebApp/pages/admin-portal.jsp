@@ -328,141 +328,17 @@
             <thead>
               <tr>
                 <th class="hide">ID</th>
-                <th>First Name</th>
-                <th>Last Name</th>
+                <th>Name</th>
                 <th>Email</th>
-                <th>Role</th>
                 <th>Mobile Number</th>
-                <th class="hide">Gender</th>
-                <th>Gender</th>
-                <th>User Name</th>
-                <th class="hide">Password</th>
-                <th class="hide">Role ID</th>
-                <th class="hide">Status</th>
+                <th>Date of birth</th>
+                <th>Premium User</th>
                 <th>Active / InActive</th>
                 <th class="tbl-edit"></th>
                 <th class="tbl-delete"></th>
               </tr>
             </thead>
             <tbody>
-              <!-- Main Table -->
-              <!-- Get Employee Data from DB -->
-              <!-- Dummy Data Rows -->
-              <tr id="movie_1">
-                <td class="hide">1</td>
-                <td>John</td>
-                <td>Doe</td>
-                <td>johndoe@example.com</td>
-                <td>Manager</td>
-                <td>555-123-4567</td>
-                <td class="hide">Male</td>
-                <td>Male</td>
-                <td>johndoe</td>
-                <td class="hide">********</td>
-                <td class="hide">1</td>
-                <td class="hide">Active</td>
-                <td>Active</td>
-                <td><i class="fa-solid fa-pen-to-square update-icon" onclick="editUpdateMemberRow('movie_1')"></i></td>
-                <td>
-                  <form action="#" method="post">
-                    <input type="hidden" name="movie_id" value="movie_1">
-                    <i class="fa-solid fa-trash-can delete-icon" onclick="confirmDelete(event)"></i>
-                    <input type="submit" style="display: none;">
-                  </form>
-                </td>
-              </tr>
-              <tr id="movie_2">
-                <td class="hide">2</td>
-                <td>Jane</td>
-                <td>Smith</td>
-                <td>janesmith@example.com</td>
-                <td>Employee</td>
-                <td>555-987-6543</td>
-                <td class="hide">Female</td>
-                <td>Female</td>
-                <td>janesmith</td>
-                <td class="hide">********</td>
-                <td class="hide">2</td>
-                <td class="hide">Active</td>
-                <td>Active</td>
-                <td><i class="fa-solid fa-pen-to-square update-icon" onclick="editUpdateMemberRow('movie_2')"></i></td>
-                <td>
-                  <form action="#" method="post">
-                    <input type="hidden" name="movie_id" value="movie_2">
-                    <i class="fa-solid fa-trash-can delete-icon" onclick="confirmDelete(event)"></i>
-                    <input type="submit" style="display: none;">
-                  </form>
-                </td>
-              </tr>
-              <tr id="movie_3">
-                <td class="hide">3</td>
-                <td>Michael</td>
-                <td>Johnson</td>
-                <td>michaeljohnson@example.com</td>
-                <td>Manager</td>
-                <td>555-234-5678</td>
-                <td class="hide">Male</td>
-                <td>Male</td>
-                <td>michaeljohnson</td>
-                <td class="hide">********</td>
-                <td class="hide">1</td>
-                <td class="hide">Inactive</td>
-                <td>Inactive</td>
-                <td><i class="fa-solid fa-pen-to-square update-icon" onclick="editUpdateMemberRow('movie_3')"></i></td>
-                <td>
-                  <form action="#" method="post">
-                    <input type="hidden" name="movie_id" value="movie_3">
-                    <i class="fa-solid fa-trash-can delete-icon" onclick="confirmDelete(event)"></i>
-                    <input type="submit" style="display: none;">
-                  </form>
-                </td>
-              </tr>
-              <tr id="movie_4">
-                <td class="hide">4</td>
-                <td>Sarah</td>
-                <td>Williams</td>
-                <td>sarahwilliams@example.com</td>
-                <td>Employee</td>
-                <td>555-876-5432</td>
-                <td class="hide">Female</td>
-                <td>Female</td>
-                <td>sarahwilliams</td>
-                <td class="hide">********</td>
-                <td class="hide">2</td>
-                <td class="hide">Active</td>
-                <td>Active</td>
-                <td><i class="fa-solid fa-pen-to-square update-icon" onclick="editUpdateMemberRow('movie_4')"></i></td>
-                <td>
-                  <form action="#" method="post">
-                    <input type="hidden" name="movie_id" value="movie_4">
-                    <i class="fa-solid fa-trash-can delete-icon" onclick="confirmDelete(event)"></i>
-                    <input type="submit" style="display: none;">
-                  </form>
-                </td>
-              </tr>
-              <tr id="movie_5">
-                <td class="hide">5</td>
-                <td>David</td>
-                <td>Miller</td>
-                <td>davidmiller@example.com</td>
-                <td>Employee</td>
-                <td>555-765-4321</td>
-                <td class="hide">Male</td>
-                <td>Male</td>
-                <td>davidmiller</td>
-                <td class="hide">********</td>
-                <td class="hide">2</td>
-                <td class="hide">Active</td>
-                <td>Active</td>
-                <td><i class="fa-solid fa-pen-to-square update-icon" onclick="editUpdateMemberRow('movie_5')"></i></td>
-                <td>
-                  <form action="#" method="post">
-                    <input type="hidden" name="movie_id" value="movie_5">
-                    <i class="fa-solid fa-trash-can delete-icon" onclick="confirmDelete(event)"></i>
-                    <input type="submit" style="display: none;">
-                  </form>
-                </td>
-              </tr>
             </tbody>
           </table>
         </div>
@@ -566,24 +442,37 @@
           </div>
         </div>
         <div class="table-card">
-          <table>
+          <form id="userGetForm" action="${pageContext.request.contextPath}/UserServlet" method="GET">
+	        	<input type="submit" id="getUserDataButton" style="display: none">
+		      </form>
+          <table class="striped">
             <thead>
               <tr>
                 <th class="hide">ID</th>
-                <th>First Name</th>
-                <th>Last Name</th>
+                <th>Name</th>
                 <th>Email</th>
                 <th>Mobile Number</th>
-                <th>Gender</th>
-                <th>User Name</th>
-                <th class="hide">Password</th>
-                <th class="hide">Status</th>
+                <th>Date of birth</th>
+                <th>Premium User</th>
                 <th>Active / InActive</th>
                 <th class="tbl-edit"></th>
                 <th class="tbl-delete"></th>
               </tr>
             </thead>
-            <tbody></tbody>
+            <tbody>
+	            <c:forEach items="${users}" var="user">
+		            <tr>
+		              <td class="hide">${user.userId}</td>
+	                  <td>${user.name}</td>
+	                  <td>${user.email}</td>
+	                  <td>${user.mobileNo}</td>
+	                  <td>${user.dob}</td>
+	                  <td>${user.premiumUser}</td>
+	                  <td class="tbl-edit"></td>
+	                  <td class="tbl-delete"></td>
+		          	</tr>
+		        </c:forEach>
+            </tbody>
           </table>
         </div>
       </div>

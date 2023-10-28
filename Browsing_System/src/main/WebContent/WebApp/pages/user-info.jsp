@@ -19,8 +19,8 @@
     <!-- 
     - custom css link
   -->
-    <link rel="stylesheet" href="../assets/css/style.css" />
-    <link rel="stylesheet" href="../assets/css/user-info.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/WebApp/assets/css/style.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/WebApp/assets/css/user-info.css" />
 
     <!-- 
     - google font link
@@ -382,15 +382,19 @@
 
     <div id="footer"></div>
 
-    <script>
-        // Fetch the HTML content of your component
-        fetch("/components/footer.html")
-            .then((response) => response.text())
-            .then((html) => {
-                // Inject the HTML content into your container-section
-                document.getElementById("footer").innerHTML = html;
-            });
-    </script>
+  <script>
+	//Construct the path dynamically by appending the context path
+	  var contextPath = "${pageContext.request.contextPath}";
+	  var footerPath = contextPath + "/WebApp/components/footer.html";
+	  
+    // Fetch the HTML content of your component
+    fetch(footerPath)
+      .then((response) => response.text())
+      .then((html) => {
+        // Inject the HTML content into your container-section
+        document.getElementById("footer").innerHTML = html;
+      });
+  </script>
 
     <!-- 
     - #GO TO TOP
@@ -403,8 +407,8 @@
     <!-- 
     - custom js link
   -->
-    <script src="../assets/js/user-info.js"></script>
-    <script src="../assets/js/script.js"></script>
+    <script src="${pageContext.request.contextPath}/WebApp/assets/js/user-info.js"></script>
+    <script src="${pageContext.request.contextPath}/WebApp/assets/js/script.js"></script>
     <!-- 
     - ionicon link
   -->

@@ -70,6 +70,40 @@ public class UserDAO implements IUserDAO {
 		return user;
 
 	}
+	
+	// all user list
+		public List<User> selectAllUserList() {
+
+			List<User> users = new ArrayList<>();
+			try {
+				Connection con = DBConnectionMSSQL.getConnection();
+				PreparedStatement stmt = con.prepareStatement(SELECT_USER_LIST);
+
+				ResultSet rs = stmt.executeQuery();
+				
+				while (rs.next()) {
+					int returnedUserId = rs.getInt("user_id");
+					String name = rs.getString("name");
+					String email = rs.getString("email");
+					String mobileNo = rs.getString("mobile_no");
+					Date dob = rs.getDate("dob");
+					boolean premium_user = rs.getBoolean("premium_user");
+					String password = rs.getString("password");
+					String created_admin_name = rs.getString("created_admin_name");
+					boolean is_active = rs.getBoolean("is_active");
+					Date row_created_datetime = rs.getDate("row_created_datetime");
+
+					User user = new User(returnedUserId, name, email, mobileNo, dob, premium_user, password, created_admin_name,
+							is_active, row_created_datetime);
+					users.add(user);
+				}
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return users;
+
+		}
 
 	// all user list
 	public List<User> selectUserList() {

@@ -77,7 +77,7 @@ window.addEventListener("load", function () {
 	  console.log(currentGrid);
 	  if (currentGrid) {
 		  // Call the corresponding function to display the grid
-		  if (currentGrid === "customer") {
+		  if (currentGrid === "User") {
 		    showCustomerGrid("manageCustomers");
 		  } else if (currentGrid === "Movie") {
 		    showMovieGrid("manageMovies");
@@ -184,6 +184,8 @@ function showCustomerGrid(id) {
   manageCustomer.classList.remove("hide");
 
   closeOverlay();
+  localStorage.setItem("currentGrid", "User");
+  submitFormWithLocalStorageCheck('getUserDataButton', 'formUserGetSubmitted');
 }
 
 function showMovieGrid(id) {
@@ -198,7 +200,7 @@ function showMovieGrid(id) {
 
   closeOverlay();
   localStorage.setItem("currentGrid", "Movie");
-  submitFormWithLocalStorageCheck('getMovieDataButton', 'formMovieGetSubmitted');
+  submitFormWithLocalStorageCheck('getMovieDataButton', 'formUserGetSubmitted');
 }
 
 function showTvSeriesGrid(id) {

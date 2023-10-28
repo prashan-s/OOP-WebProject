@@ -73,7 +73,7 @@ public class MovieDAO implements IMovieDAO {
   				boolean thriller_category = rs.getBoolean("thriller_category");
   				boolean is_active = rs.getBoolean("is_active");
 				String isActiveStatus = "Active";  
-				if (!isActive) {
+				if (!is_active) {
 				  isActiveStatus = "InActive";
 				}
   				String created_admin_name = rs.getString("created_admin_name");
