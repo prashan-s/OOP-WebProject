@@ -54,6 +54,8 @@ public class UserController {
 		boolean showDeleteUserStatus = false;
 		boolean deleteStatus = false;
 		String deletionMessage;
+		String adminName = "";
+		String userName = "";
 
 		User userSignUp = new User();
 		String SignUpMessage = "";
@@ -171,7 +173,7 @@ public class UserController {
 			showSignUpStatus = false;
 			showSignInStatus = true;
 			String loginMessage = "";
-			String userName = this.request.getParameter("userName");
+			 userName = this.request.getParameter("userName");
 			String enteredPassword = this.request.getParameter("password");
 			// system.out.println("do action up " +enteredPassword);
 			String userPassword = this.loginUser(userName);
@@ -375,7 +377,7 @@ public class UserController {
 		case "submit Admin Name":
 			jspPage = "AdminManageUser.jsp";
 			showUserList = true;
-			String adminName = request.getParameter("adminName");
+			adminName = request.getParameter("adminName");
 			
 			request.setAttribute("user", this.selectUserList());
 			Cookie cookieAdmin = new Cookie("cookieAdmin", adminName);
