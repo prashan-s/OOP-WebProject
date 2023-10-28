@@ -37,6 +37,22 @@
 
 <body id="top">
 
+<c:if test="${signUpStatus == true}">
+
+</c:if>
+
+<c:if test="${signUpStatus == false}">
+
+</c:if>
+
+<c:if test="${signInStatus == true}">
+
+</c:if>
+
+<c:if test="${signInStatus == false}">
+
+</c:if>
+
   <!-- 
     - #HEADER
   -->
@@ -126,7 +142,7 @@
         </div>
 
         <div class="sign-in card hide" id="sign-in-form">
-          <form class="ui form" action="UserServlet" method="post">
+          <form class="ui form" action="${pageContext.request.contextPath}/UserServlet" method="post">
             <div class="sign-card-heading-section">
               <div class="form-close-icon">
                 <ion-icon name="close-outline" class="close-icon"
@@ -145,7 +161,7 @@
                 <label>Password</label>
                 <input type="password" name="password" placeholder="Password">
               </div>
-              <input class="ui button sign-in-btn" type="submit" value="Sign In" ></input>
+              <input class="ui button sign-in-btn" type="submit" value="Sign In" name="action"></input>
             </div>
           </form>
           <div class="dont-have-an-account">
@@ -156,7 +172,7 @@
         </div>
 
         <div class="sign-up card hide" id="sign-up-form">
-          <form class="ui form" action="#" method="post">
+          <form class="ui form" action="${pageContext.request.contextPath}/UserServlet" method="post">
             <div class="form-close-icon">
               <ion-icon name="close-outline" class="close-icon"
                 onclick="toggleSignInSignUpCardForm('sign-up-form', 'sign-in-form', 'close')"></ion-icon>
@@ -164,8 +180,8 @@
             <h1 class="sign-up-heading">Sign Up</h1>
             <div class="sign-up-field">
               <div class="field">
-                <label>Username</label>
-                <input type="text" name="username" placeholder="Username">
+                <label>User Name</label>
+                <input type="text" name="userName" placeholder="Username">
               </div>
               <div class="field">
                 <label>Email</label>
@@ -173,7 +189,11 @@
               </div>
               <div class="field">
                 <label>Mobile Number</label>
-                <input type="number" name="mobileno" placeholder="Mobile Number">
+                <input type="number" name="mobile" placeholder="Mobile Number">
+              </div>
+              <div class="field">
+                <label>Date of birth</label>
+                <input type="date" name="dob" placeholder="Date of birth">
               </div>
               <div class="field">
                 <label>Password</label>
@@ -181,9 +201,9 @@
               </div>
               <div class="field">
                 <label>Confirm Password</label>
-                <input type="password" name="confirmpassword" placeholder="Confirm Password">
+                <input type="password" name="confirmPassword" placeholder="Confirm Password">
               </div>
-              <input class="ui button sign-up-btn" type="submit" value="Sign Up"></input>
+              <input class="ui button sign-up-btn" type="submit" value="Sign Up" name="action"></input>
             </div>
           </form>
           <div class="dont-have-an-account">
