@@ -14,7 +14,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 public class SubscriptionPlanController {
 
-	RequestDispatcher dispacther;
+	RequestDispatcher dispatcher;
 	HttpServletRequest request;
 	HttpServletResponse response;
 	SubscriptionPlanDAO dao;
@@ -53,7 +53,7 @@ public class SubscriptionPlanController {
 
 			jspPage = "SubscriptionPlans.jsp";
 			showPlansToUser = true;
-			request.setAttribute("subscriptionPlans", this.selectSubscriptionPlan());
+			request.setAttribute("subscriptionPlans", this.selectAllActiveSubscriptionPlans());
 			
 			
 			userId = Integer.parseInt(this.request.getParameter("userId"));
@@ -66,7 +66,7 @@ public class SubscriptionPlanController {
 
 			jspPage = "AdminSubscriptionPlans.jsp";
 			showPlansToAdmin = true;
-			request.setAttribute("subscriptionPlans", this.selectSubscriptionPlan());
+			request.setAttribute("subscriptionPlans", this.selectAllActiveSubscriptionPlans());
 			
 			break;
 		case "activate":
@@ -206,8 +206,8 @@ public class SubscriptionPlanController {
 			request.setAttribute("addPaymentMethod", addPaymentMethod);
 
 			
-			this.dispacther = request.getRequestDispatcher(jspPage);
-			dispacther.forward(request, response);
+			this.dispatcher = request.getRequestDispatcher(jspPage);
+			dispatcher.forward(request, response);
 
 		} catch (Exception e2) {
 			e2.printStackTrace();
@@ -226,12 +226,27 @@ public class SubscriptionPlanController {
 		return subscriptionPlan;
 	}
 
-	
-
-	public List<SubscriptionPlan> selectSubscriptionPlan() {
+	public void selectAllSubscriptionPlans() {
 		List<SubscriptionPlan> subscriptionPlans = null;
 		try {
-			subscriptionPlans = new SubscriptionPlanDAO().selectSubscriptionPlan();
+			subscriptionPlans = new SubscriptionPlanDAO().selectAllSubscriptionPlans();
+			request.setAttribute("subscriptionPlans", subscriptionPlans);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			this.dispatcher =  request.getRequestDispatcher("./WebApp/pages/admin-portal.jsp");
+			this.dispatcher.forward(request, response);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public List<SubscriptionPlan> selectAllActiveSubscriptionPlans() {
+		List<SubscriptionPlan> subscriptionPlans = null;
+		try {
+			subscriptionPlans = new SubscriptionPlanDAO().selectAllActiveSubscriptionPlans();
 			request.setAttribute("subscriptionPlans", subscriptionPlans);
 		} catch (Exception e) {
 			e.printStackTrace();

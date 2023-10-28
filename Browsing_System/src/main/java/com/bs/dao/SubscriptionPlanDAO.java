@@ -12,10 +12,14 @@ import java.sql.Date;
 
 public class SubscriptionPlanDAO implements ISubscriptionPlanDAO {
 
-	private static final String SELECT_ACTIVE_SUBSCRIPTION = "SELECT plan_id, description, duration_in_months, amount, is_active, row_created_datetime "
-			+ "FROM subscription_plan " + "ORDER BY duration_in_months ASC ";
+	private static final String SELECT_ALL_SUBSCRIPTION_PLANS = "SELECT plan_id, description, duration_in_months, amount, is_active, row_created_datetime "
+			+ "FROM subscription_plan ORDER BY duration_in_months ASC ";
+	
+	private static final String SELECT_ALL_ACTIVE_SUBSCRIPTION_PLANS = "SELECT plan_id, description, duration_in_months, amount, is_active, row_created_datetime "
+			+ "FROM subscription_plan WHERE is_active = 1 ORDER BY duration_in_months ASC ";
+	
 	private static final String SELECT_SUBSCRIPTION_BY_ID = "SELECT plan_id, description, duration_in_months, amount, is_active, row_created_datetime "
-			+ "FROM subscription_plan " + "WHERE plan_id = ? ";
+			+ "FROM subscription_plan WHERE plan_id = ? ";
 
 	private static final String INSERT_SUBSCRIPTION_PLAN = "INSERT INTO subscription_plan (description, duration_in_months, amount, is_active) "
 			+ "VALUES (?, ?, ?, ?)";
@@ -54,13 +58,43 @@ public class SubscriptionPlanDAO implements ISubscriptionPlanDAO {
 
 	}
 
-	public List<SubscriptionPlan> selectSubscriptionPlan() {
+	public List<SubscriptionPlan> selectAllSubscriptionPlans() {
 
 		ArrayList<SubscriptionPlan> subscriptionPlans = new ArrayList<>();
 
 		try {
 			Connection con = DBConnectionMSSQL.getConnection();
-			PreparedStatement stmt = con.prepareStatement(SELECT_ACTIVE_SUBSCRIPTION);
+			PreparedStatement stmt = con.prepareStatement(SELECT_ALL_SUBSCRIPTION_PLANS);
+
+			ResultSet rs = stmt.executeQuery();
+
+			while (rs.next()) {
+				int PlanId = rs.getInt("plan_id");
+				String description = rs.getString("description");
+				int duration = rs.getInt("duration_in_months");
+				float amount = rs.getFloat("amount");
+				boolean isActive = rs.getBoolean("is_active");
+				Date rowCreatedDatetime = rs.getDate("row_created_datetime");
+
+				SubscriptionPlan subscriptionPlan = new SubscriptionPlan(PlanId, description, duration, amount,
+						isActive, rowCreatedDatetime);
+				subscriptionPlans.add(subscriptionPlan);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return subscriptionPlans;
+	}
+	
+	public List<SubscriptionPlan> selectAllActiveSubscriptionPlans() {
+
+		ArrayList<SubscriptionPlan> subscriptionPlans = new ArrayList<>();
+
+		try {
+			Connection con = DBConnectionMSSQL.getConnection();
+			PreparedStatement stmt = con.prepareStatement(SELECT_ALL_ACTIVE_SUBSCRIPTION_PLANS);
 
 			ResultSet rs = stmt.executeQuery();
 

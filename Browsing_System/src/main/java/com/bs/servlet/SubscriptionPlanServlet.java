@@ -20,6 +20,7 @@ public class SubscriptionPlanServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		this.controller = new SubscriptionPlanController(request,response);
+		this.controller.selectAllSubscriptionPlans();
 	}
 
 	

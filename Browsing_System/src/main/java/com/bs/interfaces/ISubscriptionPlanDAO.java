@@ -6,7 +6,8 @@ import com.bs.model.SubscriptionPlan;
 
 public interface ISubscriptionPlanDAO {
 
-	List<SubscriptionPlan>selectSubscriptionPlan();
+	List<SubscriptionPlan>selectAllSubscriptionPlans();
+	List<SubscriptionPlan>selectAllActiveSubscriptionPlans();
 	public boolean insertSubscriptionPlan(SubscriptionPlan sub);
 	public boolean updateSubscriptionPlan(SubscriptionPlan sub);
 	public boolean deleteSubscriptionPlan(int planId);

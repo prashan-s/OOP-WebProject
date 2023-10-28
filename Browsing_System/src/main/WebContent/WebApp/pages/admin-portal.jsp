@@ -205,7 +205,7 @@
           <li onclick="showTvSeriesEpisodesGrid(this.id)" id="manageTvSeriesEpisodess" class="adming-heading">
             Manage Tv Series Episodes
           </li>
-          <li onclick="showSubscriptionPlanGrid(this.id)" id="manageSubscriptionPlan" class="adming-heading">
+          <li onclick="showSubscriptionPlanGrid(this.id)" id="manageSubscriptionPlanss" class="adming-heading">
             Manage Subscription Plans
           </li>
         </ul>
@@ -1038,24 +1038,37 @@
           </div>
         </div>
         <div class="table-card">
-          <form id="subscriptionPlanGetForm" action="${pageContext.request.contextPath}/MovieServlet" method="GET">
-		      </form>
+          <form id="subscriptionPlanGetForm" action="${pageContext.request.contextPath}/SubscriptionPlanServlet" method="GET">
+          	<input type="submit" id="getSubscriptionPlanDataButton" style="display: none">
+	      </form>
           <table>
             <!-- <caption>Statement Summary</caption> -->
             <thead>
               <tr>
                 <th class="hide">ID</th>
-                <th>SubscriptionPlans Name</th>
-                <th>SubscriptionPlans Description</th>
-                <th>Starting Date</th>
-                <th>Ending Date</th>
-                <th>SubscriptionPlans Percentage</th>
-                <th class="hide">Status</th>
+                <th>Subscription Plan Name</th>
+                <th>Duration (Months)</th>
+                <th>Amount (LKR)</th>
                 <th>Active / InActive</th>
+                <th class="hide">Status</th>
                 <th class="tbl-edit"></th>
                 <th class="tbl-delete"></th>
               </tr>
             </thead>
+            <tbody>
+	            <c:forEach items="${subscriptionPlans}" var="subscriptionPlan">
+		            <tr>
+		              <td class="hide">${subscriptionPlan.planId}</td>
+	                  <td>${subscriptionPlan.description}</td>
+	                  <td>${subscriptionPlan.duration}</td>
+	                  <td>${subscriptionPlan.amount}</td>
+	                  <td>${subscriptionPlan.isActive}</td>
+	                  <td class="hide">${subscriptionPlan.isActive}</td>
+	                  <td class="tbl-edit"></td>
+	                  <td class="tbl-delete"></td>
+		            </tr>
+		        </c:forEach>
+            </tbody>
           </table>
         </div>
       </div>

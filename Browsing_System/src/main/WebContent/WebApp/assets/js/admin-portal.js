@@ -85,6 +85,8 @@ window.addEventListener("load", function () {
 		    showTvSeriesGrid("manageTvSeriess");
 		  } else if (currentGrid === "TvSeriesEpisodes") {
 		    showTvSeriesEpisodesGrid("manageTvSeriesEpisodess");
+		  } else if (currentGrid === "SubscriptionPlan") {
+		    showSubscriptionPlanGrid("manageSubscriptionPlans");
 		  }
 	  }  
 		
@@ -236,10 +238,12 @@ function showSubscriptionPlanGrid(id) {
   const selectedHeading = document.getElementById(id);
   selectedHeading.classList.add("selected");
 
-  const manageSubscriptionPlans = document.getElementById("manageSubscriptionPlans");
-  manageSubscriptionPlans.classList.remove("hide");
+  const manageSubscriptionPlan = document.getElementById("manageSubscriptionPlans");
+  manageSubscriptionPlan.classList.remove("hide");
 
   closeOverlay();
+  localStorage.setItem("currentGrid", "SubscriptionPlan");
+  submitFormWithLocalStorageCheck('getSubscriptionPlanDataButton', 'formSubscriptionPlanGetSubmitted');
 }
 
 function hideGrids() {
@@ -321,13 +325,13 @@ function showAddTvSeriesEpisodesForm() {
 }
 
 function showAddSubscriptionPlansForm() {
-  const updateSubscriptionPlansForm = document.getElementById("updateSubscriptionPlansForm");
-  if (updateSubscriptionPlansForm.classList.contains("show")) {
-    updateSubscriptionPlansForm.classList.remove("show");
+  const updateSubscriptionPlanForm = document.getElementById("updateSubscriptionPlanForm");
+  if (updateSubscriptionPlanForm.classList.contains("show")) {
+    updateSubscriptionPlanForm.classList.remove("show");
   }
 
-  const addSubscriptionPlansForm = document.getElementById("addSubscriptionPlansForm");
-  addSubscriptionPlansForm.classList.toggle("show");
+  const addSubscriptionPlanForm = document.getElementById("addSubscriptionPlanForm");
+  addSubscriptionPlanForm.classList.toggle("show");
 }
 
 function showUpdatedMemberForm() {
