@@ -277,7 +277,8 @@ public class TVSeriesController {
 			request.setAttribute("seriesList", seriesList);
 
 			try {
-				this.dispatcher =  request.getRequestDispatcher("./WebApp/pages/admin-portal.jsp?type=TvSeries");
+				
+				this.dispatcher =  request.getRequestDispatcher("./WebApp/pages/admin-portal.jsp");
 				this.dispatcher.forward(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();

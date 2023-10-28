@@ -72,6 +72,10 @@ public class MovieDAO implements IMovieDAO {
   				boolean crime_category = rs.getBoolean("crime_category");
   				boolean thriller_category = rs.getBoolean("thriller_category");
   				boolean is_active = rs.getBoolean("is_active");
+				String isActiveStatus = "Active";  
+				if (!isActive) {
+				  isActiveStatus = "InActive";
+				}
   				String created_admin_name = rs.getString("created_admin_name");
   				Date row_created_datetime = rs.getDate("row_created_datetime");
   				
@@ -80,7 +84,7 @@ public class MovieDAO implements IMovieDAO {
   						adventure_category, comedy_category, scify_category, horror_category,
   						romance_category, science_category, crime_category, thriller_category,
   						is_active, created_admin_name, row_created_datetime);
-  				
+  				movie.setisActiveStatus(isActiveStatus);
   				movies.add(movie);	
   			}
 
