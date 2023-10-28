@@ -5,88 +5,88 @@ GO
 
 CREATE TABLE movie (
 	movie_id				INT				NOT NULL PRIMARY KEY IDENTITY(1, 1),
-	title					VARCHAR(100)	NOT NULL,
+	title					VARCHAR(100)	NULL,
 	description				VARCHAR(1000)	NULL,
-	year					INT				NOT NULL,
+	year					INT				NULL,
 	duration				INT				NULL,
-	quality					CHAR(2)			NOT NULL,
+	quality					CHAR(2)			NULL,
 	watch_count				INT				NULL,
-	movie_img_url			VARCHAR(1000)	NOT NULL,
-	movie_stream_url		VARCHAR(1000)	NOT NULL,
-	action_category			BIT				NOT NULL DEFAULT(0),
-	adventure_category		BIT				NOT NULL DEFAULT(0),
-	comedy_category			BIT				NOT NULL DEFAULT(0),
-	scify_category			BIT				NOT NULL DEFAULT(0),
-	horror_category			BIT				NOT NULL DEFAULT(0),
-	romance_category		BIT				NOT NULL DEFAULT(0),
-	science_category		BIT				NOT NULL DEFAULT(0),
-	crime_category			BIT				NOT NULL DEFAULT(0),
-	thriller_category		BIT				NOT NULL DEFAULT(0),
-	is_active				BIT				NOT NULL DEFAULT(1),
-	created_admin_name		VARCHAR(200)	NOT NULL,
-	row_created_datetime	DATETIME		NOT NULL DEFAULT GETDATE()
+	movie_img_url			VARCHAR(1000)	NULL,
+	movie_stream_url		VARCHAR(1000)	NULL,
+	action_category			BIT				NULL DEFAULT(0),
+	adventure_category		BIT				NULL DEFAULT(0),
+	comedy_category			BIT				NULL DEFAULT(0),
+	scify_category			BIT				NULL DEFAULT(0),
+	horror_category			BIT				NULL DEFAULT(0),
+	romance_category		BIT				NULL DEFAULT(0),
+	science_category		BIT				NULL DEFAULT(0),
+	crime_category			BIT				NULL DEFAULT(0),
+	thriller_category		BIT				NULL DEFAULT(0),
+	is_active				BIT				NULL DEFAULT(1),
+	created_admin_name		VARCHAR(200)	NULL,
+	row_created_datetime	DATETIME		NULL DEFAULT GETDATE()
 );
 GO
 
 
 CREATE TABLE tv_series (
 	tvs_id					INT				NOT NULL PRIMARY KEY IDENTITY(1, 1),
-	title					VARCHAR(100)	NOT NULL,
-	tvs_img_url				VARCHAR(1000)	NOT NULL,
-	action_category			BIT				NOT NULL DEFAULT(0),
-	adventure_category		BIT				NOT NULL DEFAULT(0),
-	comedy_category			BIT				NOT NULL DEFAULT(0),
-	scify_category			BIT				NOT NULL DEFAULT(0),
-	horror_category			BIT				NOT NULL DEFAULT(0),
-	romance_category		BIT				NOT NULL DEFAULT(0),
-	science_category		BIT				NOT NULL DEFAULT(0),
-	crime_category			BIT				NOT NULL DEFAULT(0),
-	thriller_category		BIT				NOT NULL DEFAULT(0),
-	is_active				BIT				NOT NULL DEFAULT(1),
-    row_created_datetime	DATETIME		NOT NULL DEFAULT GETDATE()
+	title					VARCHAR(100)	NULL,
+	tvs_img_url				VARCHAR(1000)	NULL,
+	action_category			BIT				NULL DEFAULT(0),
+	adventure_category		BIT				NULL DEFAULT(0),
+	comedy_category			BIT				NULL DEFAULT(0),
+	scify_category			BIT				NULL DEFAULT(0),
+	horror_category			BIT				NULL DEFAULT(0),
+	romance_category		BIT				NULL DEFAULT(0),
+	science_category		BIT				NULL DEFAULT(0),
+	crime_category			BIT				NULL DEFAULT(0),
+	thriller_category		BIT				NULL DEFAULT(0),
+	is_active				BIT				NULL DEFAULT(1),
+    row_created_datetime	DATETIME		NULL DEFAULT GETDATE()
 );
 GO
 
 
 CREATE TABLE tv_series_details (
 	tvs_detail_id			INT				NOT NULL PRIMARY KEY IDENTITY(1,1),
-	tvs_id					INT				NOT NULL,
-	season					INT				NOT NULL,
-    episode					INT				NOT NULL,
+	tvs_id					INT				NULL,
+	season					INT				NULL,
+    episode					INT				NULL,
     description				VARCHAR(1000)	NULL,
-    year					INT				NOT NULL,
-    duration				INT				NOT NULL,
-    quality					CHAR(2)			NOT NULL,
+    year					INT				NULL,
+    duration				INT				NULL,
+    quality					CHAR(2)			NULL,
 	watch_count				INT				NULL,
-	tvs_stream_url			VARCHAR(1000)	NOT NULL,
-	created_admin_name		VARCHAR(200)	NOT NULL,
-	is_active				BIT				NOT NULL DEFAULT(1),
-    row_created_datetime	DATETIME		NOT NULL DEFAULT GETDATE()
+	tvs_stream_url			VARCHAR(1000)	NULL,
+	created_admin_name		VARCHAR(200)	NULL,
+	is_active				BIT				NULL DEFAULT(1),
+    row_created_datetime	DATETIME		NULL DEFAULT GETDATE()
 );
 GO
 CREATE TABLE users (
 	user_id					INT					NOT NULL PRIMARY KEY IDENTITY(1, 1),
-	name					VARCHAR(200)		NOT NULL,
-	email					VARCHAR(200)		NOT NULL, 
-	mobile_no				CHAR(10)			NOT NULL,
+	name					VARCHAR(200)		NULL,
+	email					VARCHAR(200)		NULL, 
+	mobile_no				CHAR(10)			NULL,
 	dob						DATE				NULL,
-	premium_user			BIT					NOT NULL DEFAULT(0),
-	password				VARCHAR(200)		NOT NULL,
+	premium_user			BIT					NULL DEFAULT(0),
+	password				VARCHAR(200)		NULL,
 	created_admin_name		VARCHAR(200)		NULL,
-	is_active				BIT					NOT NULL DEFAULT(1),
-    row_created_datetime	DATETIME			NOT NULL DEFAULT GETDATE()
+	is_active				BIT					NULL DEFAULT(1),
+    row_created_datetime	DATETIME			NULL DEFAULT GETDATE()
 );
 GO
 
 
 CREATE TABLE user_rating (
 	rate_id					INT				NOT NULL	PRIMARY KEY IDENTITY(1, 1),
-	user_id					INT				NOT NULL,
-	type					CHAR(1)			NOT NULL,
+	user_id					INT				NULL,
+	type					CHAR(1)			NULL,
 	tvs_id					INT				NULL,
 	movie_Id				INT				NULL,
 	rating					INT				NULL,
-	row_created_datetime	DATETIME		NOT NULL	DEFAULT GETDATE(),
+	row_created_datetime	DATETIME		NULL	DEFAULT GETDATE(),
 
 ); 
 
@@ -94,54 +94,54 @@ GO
 
 CREATE TABLE user_favourite (
 	fav_id					INT			NOT NULL	PRIMARY KEY IDENTITY(1, 1),
-	user_id					INT			NOT NULL,
-	type					CHAR(1)		NOT NULL,
+	user_id					INT			NULL,
+	type					CHAR(1)		NULL,
 	tvs_id					INT			NULL,
 	movie_Id				INT			NULL,
-	row_created_datetime	DATETIME	NOT NULL	DEFAULT GETDATE(),
+	row_created_datetime	DATETIME	NULL	DEFAULT GETDATE(),
 
 );
 GO
 CREATE TABLE user_watch_list (
 	watch_list_id			INT			NOT NULL	PRIMARY KEY IDENTITY(1, 1),
-	user_id					INT			NOT NULL,
-	type					CHAR(1)		NOT NULL,
+	user_id					INT			NULL,
+	type					CHAR(1)		NULL,
 	tvs_id					INT			NULL,
 	movie_Id				INT			NULL,
-	row_created_datetime	DATETIME	NOT NULL	DEFAULT GETDATE(),
+	row_created_datetime	DATETIME	NULL	DEFAULT GETDATE(),
 
 ); 
 GO
 
 CREATE TABLE user_watch_history (
 	watch_id				INT			NOT NULL	PRIMARY KEY IDENTITY(1, 1),
-	user_id					INT			NOT NULL,
-	type					CHAR(1)		NOT NULL,
+	user_id					INT			NULL,
+	type					CHAR(1)		NULL,
 	tvs_id					INT			NULL,
 	movie_Id				INT			NULL,
-	row_created_datetime	DATETIME	NOT NULL	DEFAULT GETDATE(),
+	row_created_datetime	DATETIME	NULL	DEFAULT GETDATE(),
 
 );
 GO
 
 CREATE TABLE subscription_plan(
 	plan_id					INT				NOT NULL	PRIMARY KEY IDENTITY(1,1) ,
-	description				VARCHAR(100)	NOT NULL,
-	duration_in_months		INT				NOT NULL,
-	amount					FLOAT			NOT NULL,
-	is_active				BIT				NOT NULL	DEFAULT(1),
-	row_created_datetime	DATETIME		NOT NULL	DEFAULT GETDATE()
+	description				VARCHAR(100)	NULL,
+	duration_in_months		INT				NULL,
+	amount					FLOAT			NULL,
+	is_active				BIT				NULL	DEFAULT(1),
+	row_created_datetime	DATETIME		NULL	DEFAULT GETDATE()
 );
 GO
 
 CREATE TABLE user_subscription (
 	 sub_id				INT			NOT NULL	PRIMARY KEY IDENTITY(1, 1),
-	 user_id			INT			NOT NULL,
-	 plan_id			INT			NOT NULL,
-	 subscribe_date		DATE		NOT NULL	DEFAULT GETDATE(),
-	 next_renewal_date	DATE,
-	 is_active			BIT			NOT NULL	DEFAULT(1),
-	 row_created_datetime	DATETIME	NOT NULL	DEFAULT GETDATE(),
+	 user_id			INT			NULL,
+	 plan_id			INT			NULL,
+	 subscribe_date		DATE		NULL	DEFAULT GETDATE(),
+	 next_renewal_date	DATE		NULL,
+	 is_active			BIT			NULL	DEFAULT(1),
+	 row_created_datetime	DATETIME	NULL	DEFAULT GETDATE(),
 
 
 );
@@ -149,10 +149,10 @@ GO
 
 CREATE TABLE payment (
 	 payment_id				INT			NOT NULL	PRIMARY KEY IDENTITY(1, 1),
-	 user_id				INT			NOT NULL,
-	 sub_id					INT			NOT NULL,
-	 amount					FLOAT		NOT NULL,
-	 row_created_datetime	DATETIME	NOT NULL	DEFAULT GETDATE(),
+	 user_id				INT			NULL,
+	 sub_id					INT			NULL,
+	 amount					FLOAT		NULL,
+	 row_created_datetime	DATETIME	NULL	DEFAULT GETDATE(),
 
 );
 GO
@@ -160,12 +160,12 @@ GO
 
 CREATE TABLE user_payment_method(
 	payment_method_id		INT			NOT NULL	PRIMARY KEY	IDENTITY(1,1),
-	card_number				VARCHAR(20) NOT NULL,
-	card_expiry_date		DATE		NOT NULL,
-	cvv						INT			NOT NULL,
-	user_id					INT			NOT NULL,
-	is_active				BIT			NOT NULL	DEFAULT(1),
-	row_created_datetime	DATETIME	NOT NULL	DEFAULT GETDATE()
+	card_number				VARCHAR(20) NULL,
+	card_expiry_date		DATE		NULL,
+	cvv						INT			NULL,
+	user_id					INT			NULL,
+	is_active				BIT			NULL	DEFAULT(1),
+	row_created_datetime	DATETIME	NULL	DEFAULT GETDATE()
 
 );
 

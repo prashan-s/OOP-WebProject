@@ -12,176 +12,175 @@ import java.sql.Date;
 
 public class TVSeriesDetailsDAO implements ITVSeriesDetailsDAO {
 
-	private static final String SELECT_ALL_TV_SERIES = "SELECT tvs_detail_id, tvs_id, season, episode, description, year, duration, quality, " +
-            "watch_count, tvs_stream_url, created_admin_name, CASE WHEN is_active = 1 THEN 'Active' ELSE 'InActive' END AS is_active_status, is_active, row_created_datetime " +
-            "FROM tv_series_details";
-	
-    private static final String SELECT_TV_SERIES_BY_ID = "SELECT tvs_detail_id, tvs_id, season, episode, description, year, duration, quality, " +
-            "watch_count, tvs_stream_url, created_admin_name, CASE WHEN is_active = 1 THEN 'Active' ELSE 'InActive' END AS is_active_status, is_active, row_created_datetime " +
-            "FROM tv_series_details " +
-            "WHERE tvs_detail_id = ?";
+	private static final String SELECT_ALL_TV_SERIES = "SELECT tvs_detail_id, tvs_id, season, episode, description, year, duration, quality, "
+			+ "watch_count, tvs_stream_url, created_admin_name, CASE WHEN is_active = 1 THEN 'Active' ELSE 'InActive' END AS is_active_status, is_active, row_created_datetime "
+			+ "FROM tv_series_details";
 
-    private static final String INSERT_TV_SERIES = "INSERT INTO tv_series_details (tvs_id, season, episode, description, year, duration, quality, " +
-            "watch_count, tvs_stream_url, created_admin_name) " +
-            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	private static final String SELECT_TV_SERIES_BY_ID = "SELECT tvs_detail_id, tvs_id, season, episode, description, year, duration, quality, "
+			+ "watch_count, tvs_stream_url, created_admin_name, CASE WHEN is_active = 1 THEN 'Active' ELSE 'InActive' END AS is_active_status, is_active, row_created_datetime "
+			+ "FROM tv_series_details " + "WHERE tvs_detail_id = ?";
 
-    private static final String UPDATE_TV_SERIES = "UPDATE tv_series_details SET tvs_id=?, season=?, episode=?, description=?, year=?, " +
-            "duration=?, quality=?, watch_count=?, tvs_stream_url=?, created_admin_name=? " +
-            "WHERE tvs_detail_id=?";
+	private static final String INSERT_TV_SERIES = "INSERT INTO tv_series_details (tvs_id, season, episode, description, year, duration, quality, "
+			+ "watch_count, tvs_stream_url, created_admin_name) " + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-    private static final String DELETE_TV_SERIES = "UPDATE tv_series_details SET is_active=0 WHERE tvs_detail_id=?";
+	private static final String UPDATE_TV_SERIES = "UPDATE tv_series_details SET tvs_id=?, season=?, episode=?, description=?, year=?, "
+			+ "duration=?, quality=?, watch_count=?, tvs_stream_url=?, created_admin_name=? " + "WHERE tvs_detail_id=?";
 
-    // Select All TV series details
-    public List<TVSeriesDetails> selectAllTVSeriesEpisodesDetails() {
-        ArrayList<TVSeriesDetails> seriesDetailsList = new ArrayList<>();
+	private static final String DELETE_TV_SERIES = "UPDATE tv_series_details SET is_active=0 WHERE tvs_detail_id=?";
 
-        try {
-            Connection con = DBConnectionMSSQL.getConnection();
-            PreparedStatement stmt = con.prepareStatement(SELECT_ALL_TV_SERIES);
-            ResultSet rs = stmt.executeQuery();
+	// Select All TV series details
+	public List<TVSeriesDetails> selectAllTVSeriesEpisodesDetails() {
+		ArrayList<TVSeriesDetails> seriesDetailsList = new ArrayList<>();
 
-            while (rs.next()) {
-                int tvsDetailIdReturned = rs.getInt("tvs_detail_id");
-                int tvsId = rs.getInt("tvs_id");
-                int season = rs.getInt("season");
-                int episode = rs.getInt("episode");
-                String description = rs.getString("description");
-                int year = rs.getInt("year");
-                int duration = rs.getInt("duration");
-                String quality = rs.getString("quality");
-                int watchCount = rs.getInt("watch_count");
-                String tvsStreamUrl = rs.getString("tvs_stream_url");
-                String createdAdminName = rs.getString("created_admin_name");
-                String isActiveStatus = rs.getString("is_active_status");
-                boolean isActive = rs.getBoolean("is_active");
-                Date rowCreatedDatetime = rs.getDate("row_created_datetime");
+		try {
+			Connection con = DBConnectionMSSQL.getConnection();
+			PreparedStatement stmt = con.prepareStatement(SELECT_ALL_TV_SERIES);
+			ResultSet rs = stmt.executeQuery();
 
-                TVSeriesDetails seriesDetails = new TVSeriesDetails(tvsDetailIdReturned, tvsId, season, episode, description,
-                        year, duration, quality, watchCount, tvsStreamUrl, createdAdminName, isActiveStatus, isActive, rowCreatedDatetime);
+			while (rs.next()) {
+				int tvsDetailIdReturned = rs.getInt("tvs_detail_id");
+				int tvsId = rs.getInt("tvs_id");
+				int season = rs.getInt("season");
+				int episode = rs.getInt("episode");
+				String description = rs.getString("description");
+				int year = rs.getInt("year");
+				int duration = rs.getInt("duration");
+				String quality = rs.getString("quality");
+				int watchCount = rs.getInt("watch_count");
+				String tvsStreamUrl = rs.getString("tvs_stream_url");
+				String createdAdminName = rs.getString("created_admin_name");
+				String isActiveStatus = rs.getString("is_active_status");
+				boolean isActive = rs.getBoolean("is_active");
+				Date rowCreatedDatetime = rs.getDate("row_created_datetime");
 
-                seriesDetailsList.add(seriesDetails);
-            }
+				TVSeriesDetails seriesDetails = new TVSeriesDetails(tvsDetailIdReturned, tvsId, season, episode,
+						description, year, duration, quality, watchCount, tvsStreamUrl, createdAdminName,
+						isActiveStatus, isActive, rowCreatedDatetime);
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+				seriesDetailsList.add(seriesDetails);
+			}
 
-        return seriesDetailsList;
-    }
-    
-    // Select TV series details
-    public List<TVSeriesDetails> selectTVSeriesDetails(int tvsDetailId) {
-        ArrayList<TVSeriesDetails> seriesDetailsList = new ArrayList<>();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
-        try {
-            Connection con = DBConnectionMSSQL.getConnection();
-            PreparedStatement stmt = con.prepareStatement(SELECT_TV_SERIES_BY_ID);
-            stmt.setInt(1, tvsDetailId);
-            ResultSet rs = stmt.executeQuery();
+		return seriesDetailsList;
+	}
 
-            while (rs.next()) {
-                int tvsDetailIdReturned = rs.getInt("tvs_detail_id");
-                int tvsId = rs.getInt("tvs_id");
-                int season = rs.getInt("season");
-                int episode = rs.getInt("episode");
-                String description = rs.getString("description");
-                int year = rs.getInt("year");
-                int duration = rs.getInt("duration");
-                String quality = rs.getString("quality");
-                int watchCount = rs.getInt("watch_count");
-                String tvsStreamUrl = rs.getString("tvs_stream_url");
-                String createdAdminName = rs.getString("created_admin_name");
-                String isActiveStatus = rs.getString("is_active_status");
-                boolean isActive = rs.getBoolean("is_active");
-                Date rowCreatedDatetime = rs.getDate("row_created_datetime");
+	// Select TV series details
+	public List<TVSeriesDetails> selectTVSeriesDetails(int tvsDetailId) {
+		ArrayList<TVSeriesDetails> seriesDetailsList = new ArrayList<>();
 
-                TVSeriesDetails seriesDetails = new TVSeriesDetails(tvsDetailIdReturned, tvsId, season, episode, description,
-                        year, duration, quality, watchCount, tvsStreamUrl, createdAdminName, isActiveStatus, isActive, rowCreatedDatetime);
+		try {
+			Connection con = DBConnectionMSSQL.getConnection();
+			PreparedStatement stmt = con.prepareStatement(SELECT_TV_SERIES_BY_ID);
+			stmt.setInt(1, tvsDetailId);
+			ResultSet rs = stmt.executeQuery();
 
-                seriesDetailsList.add(seriesDetails);
-            }
+			while (rs.next()) {
+				int tvsDetailIdReturned = rs.getInt("tvs_detail_id");
+				int tvsId = rs.getInt("tvs_id");
+				int season = rs.getInt("season");
+				int episode = rs.getInt("episode");
+				String description = rs.getString("description");
+				int year = rs.getInt("year");
+				int duration = rs.getInt("duration");
+				String quality = rs.getString("quality");
+				int watchCount = rs.getInt("watch_count");
+				String tvsStreamUrl = rs.getString("tvs_stream_url");
+				String createdAdminName = rs.getString("created_admin_name");
+				String isActiveStatus = rs.getString("is_active_status");
+				boolean isActive = rs.getBoolean("is_active");
+				Date rowCreatedDatetime = rs.getDate("row_created_datetime");
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+				TVSeriesDetails seriesDetails = new TVSeriesDetails(tvsDetailIdReturned, tvsId, season, episode,
+						description, year, duration, quality, watchCount, tvsStreamUrl, createdAdminName,
+						isActiveStatus, isActive, rowCreatedDatetime);
 
-        return seriesDetailsList;
-    }
+				seriesDetailsList.add(seriesDetails);
+			}
 
-    // Inserting a new TV series details
-    public boolean insertTVSeriesDetails(TVSeriesDetails seriesDetails) {
-        System.out.println(INSERT_TV_SERIES);
-        boolean rowInserted = false;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
-        try {
-            Connection con = DBConnectionMSSQL.getConnection();
-            PreparedStatement stmt = con.prepareStatement(INSERT_TV_SERIES);
+		return seriesDetailsList;
+	}
 
-            stmt.setInt(1, seriesDetails.getTvsId());
-            stmt.setInt(2, seriesDetails.getSeason());
-            stmt.setInt(3, seriesDetails.getEpisode());
-            stmt.setString(4, seriesDetails.getDescription());
-            stmt.setInt(5, seriesDetails.getYear());
-            stmt.setInt(6, seriesDetails.getDuration());
-            stmt.setString(7, seriesDetails.getQuality());
-            stmt.setInt(8, seriesDetails.getWatchCount());
-            stmt.setString(9, seriesDetails.getTvsStreamUrl());
-            stmt.setString(10, seriesDetails.getCreatedAdminName());
+	// Inserting a new TV series details
+	public boolean insertTVSeriesDetails(TVSeriesDetails seriesDetails) {
+		System.out.println(INSERT_TV_SERIES);
+		boolean rowInserted = false;
 
-            stmt.executeUpdate();
+		try {
+			Connection con = DBConnectionMSSQL.getConnection();
+			PreparedStatement stmt = con.prepareStatement(INSERT_TV_SERIES);
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        
-        return rowInserted;
-    }
+			stmt.setInt(1, seriesDetails.getTvsId());
+			stmt.setInt(2, seriesDetails.getSeason());
+			stmt.setInt(3, seriesDetails.getEpisode());
+			stmt.setString(4, seriesDetails.getDescription());
+			stmt.setInt(5, seriesDetails.getYear());
+			stmt.setInt(6, seriesDetails.getDuration());
+			stmt.setString(7, seriesDetails.getQuality());
+			stmt.setInt(8, seriesDetails.getWatchCount());
+			stmt.setString(9, seriesDetails.getTvsStreamUrl());
+			stmt.setString(10, seriesDetails.getCreatedAdminName());
 
-    // Update TV series details
-    public boolean updateTVSeriesDetails(TVSeriesDetails seriesDetails) {
+			stmt.executeUpdate();
 
-        boolean rowUpdate = false;
-        try {
-            Connection con = DBConnectionMSSQL.getConnection();
-            PreparedStatement stmt = con.prepareStatement(UPDATE_TV_SERIES);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
-            stmt.setInt(1, seriesDetails.getTvsId());
-            stmt.setInt(2, seriesDetails.getSeason());
-            stmt.setInt(3, seriesDetails.getEpisode());
-            stmt.setString(4, seriesDetails.getDescription());
-            stmt.setInt(5, seriesDetails.getYear());
-            stmt.setInt(6, seriesDetails.getDuration());
-            stmt.setString(7, seriesDetails.getQuality());
-            stmt.setInt(8, seriesDetails.getWatchCount());
-            stmt.setString(9, seriesDetails.getTvsStreamUrl());
-            stmt.setString(10, seriesDetails.getCreatedAdminName());
+		return rowInserted;
+	}
 
-            stmt.setInt(11, seriesDetails.getTvsDetailId());
+	// Update TV series details
+	public boolean updateTVSeriesDetails(TVSeriesDetails seriesDetails) {
 
-            rowUpdate = stmt.executeUpdate() > 0;
+		boolean rowUpdate = false;
+		try {
+			Connection con = DBConnectionMSSQL.getConnection();
+			PreparedStatement stmt = con.prepareStatement(UPDATE_TV_SERIES);
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return rowUpdate;
+			stmt.setInt(1, seriesDetails.getTvsId());
+			stmt.setInt(2, seriesDetails.getSeason());
+			stmt.setInt(3, seriesDetails.getEpisode());
+			stmt.setString(4, seriesDetails.getDescription());
+			stmt.setInt(5, seriesDetails.getYear());
+			stmt.setInt(6, seriesDetails.getDuration());
+			stmt.setString(7, seriesDetails.getQuality());
+			stmt.setInt(8, seriesDetails.getWatchCount());
+			stmt.setString(9, seriesDetails.getTvsStreamUrl());
+			stmt.setString(10, seriesDetails.getCreatedAdminName());
 
-    }
+			stmt.setInt(11, seriesDetails.getTvsDetailId());
 
-    // Delete TV series details
-    public boolean deleteTVSeriesDetails(int tvsDetailId) {
+			rowUpdate = stmt.executeUpdate() > 0;
 
-        boolean rowDelete = false;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return rowUpdate;
 
-        try {
-            Connection con = DBConnectionMSSQL.getConnection();
-            PreparedStatement stmt = con.prepareStatement(DELETE_TV_SERIES);
+	}
 
-            stmt.setInt(1, tvsDetailId);
-            rowDelete = stmt.executeUpdate() > 0;
+	// Delete TV series details
+	public boolean deleteTVSeriesDetails(int tvsDetailId) {
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return rowDelete;
-    }
+		boolean rowDelete = false;
+
+		try {
+			Connection con = DBConnectionMSSQL.getConnection();
+			PreparedStatement stmt = con.prepareStatement(DELETE_TV_SERIES);
+
+			stmt.setInt(1, tvsDetailId);
+			rowDelete = stmt.executeUpdate() > 0;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return rowDelete;
+	}
 }

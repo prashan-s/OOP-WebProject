@@ -12,189 +12,181 @@ import java.util.List;
 
 public class TVSeriesDAO implements ITVSeriesDAO {
 
-	private static final String SELECT_ALL_SERIES = "SELECT tvs_id, title, tvs_img_url, action_category, " +
-            "adventure_category, comedy_category, scify_category, horror_category, romance_category, " +
-            "science_category, crime_category, thriller_category, is_active, row_created_datetime " +
-            "FROM tv_series";
-	
-    private static final String SELECT_SERIES_BY_ID = "SELECT tvs_id, title, tvs_img_url, action_category, " +
-            "adventure_category, comedy_category, scify_category, horror_category, romance_category, " +
-            "science_category, crime_category, thriller_category, is_active, row_created_datetime " +
-            "FROM tv_series WHERE tvs_id = ?";
+	private static final String SELECT_ALL_SERIES = "SELECT tvs_id, title, tvs_img_url, action_category, "
+			+ "adventure_category, comedy_category, scify_category, horror_category, romance_category, "
+			+ "science_category, crime_category, thriller_category, is_active, row_created_datetime "
+			+ "FROM tv_series";
 
-    private static final String INSERT_SERIES = "INSERT INTO tv_series (title, tvs_img_url, action_category, " +
-            "adventure_category, comedy_category, scify_category, horror_category, romance_category, " +
-            "science_category, crime_category, thriller_category) " +
-            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	private static final String SELECT_SERIES_BY_ID = "SELECT tvs_id, title, tvs_img_url, action_category, "
+			+ "adventure_category, comedy_category, scify_category, horror_category, romance_category, "
+			+ "science_category, crime_category, thriller_category, is_active, row_created_datetime "
+			+ "FROM tv_series WHERE tvs_id = ?";
 
-    private static final String UPDATE_SERIES = "UPDATE tv_series SET title=?, tvs_img_url=?, action_category=?, " +
-            "adventure_category=?, comedy_category=?, scify_category=?, horror_category=?, romance_category=?, " +
-            "science_category=?, crime_category=?, thriller_category=?" +
-            "WHERE tvs_id = ?";
+	private static final String INSERT_SERIES = "INSERT INTO tv_series (title, tvs_img_url, action_category, "
+			+ "adventure_category, comedy_category, scify_category, horror_category, romance_category, "
+			+ "science_category, crime_category, thriller_category) " + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-    private static final String DELETE_SERIES = "UPDATE tv_series SET is_active=0 WHERE tvs_id = ?";
+	private static final String UPDATE_SERIES = "UPDATE tv_series SET title=?, tvs_img_url=?, action_category=?, "
+			+ "adventure_category=?, comedy_category=?, scify_category=?, horror_category=?, romance_category=?, "
+			+ "science_category=?, crime_category=?, thriller_category=?" + "WHERE tvs_id = ?";
 
- // Select TV series details
-    public List<TVSeries> selectAllTVSeries() {
-        ArrayList<TVSeries> seriesList = new ArrayList<>();
+	private static final String DELETE_SERIES = "UPDATE tv_series SET is_active=0 WHERE tvs_id = ?";
 
-        try {
-            Connection con = DBConnectionMSSQL.getConnection();
-            PreparedStatement stmt = con.prepareStatement(SELECT_ALL_SERIES);
-            ResultSet rs = stmt.executeQuery();
+	// Select all TV series 
+	public List<TVSeries> selectAllTVSeries() {
+		ArrayList<TVSeries> seriesList = new ArrayList<>();
 
-            while (rs.next()) {
+		try {
+			Connection con = DBConnectionMSSQL.getConnection();
+			PreparedStatement stmt = con.prepareStatement(SELECT_ALL_SERIES);
+			ResultSet rs = stmt.executeQuery();
 
-                int returnedSeriesId = rs.getInt("tvs_id");
-                String title = rs.getString("title");
-                String tvsImgUrl = rs.getString("tvs_img_url");
-                boolean actionCategory = rs.getBoolean("action_category");
-                boolean adventureCategory = rs.getBoolean("adventure_category");
-                boolean comedyCategory = rs.getBoolean("comedy_category");
-                boolean scifyCategory = rs.getBoolean("scify_category");
-                boolean horrorCategory = rs.getBoolean("horror_category");
-                boolean romanceCategory = rs.getBoolean("romance_category");
-                boolean scienceCategory = rs.getBoolean("science_category");
-                boolean crimeCategory = rs.getBoolean("crime_category");
-                boolean thrillerCategory = rs.getBoolean("thriller_category");
-                boolean isActive = rs.getBoolean("is_active");
-            	String strIsActive = (isActive) ? "Active" : "InActive";
+			while (rs.next()) {
 
-                Date rowCreatedDatetime = rs.getDate("row_created_datetime");
+				int returnedSeriesId = rs.getInt("tvs_id");
+				String title = rs.getString("title");
+				String tvsImgUrl = rs.getString("tvs_img_url");
+				boolean actionCategory = rs.getBoolean("action_category");
+				boolean adventureCategory = rs.getBoolean("adventure_category");
+				boolean comedyCategory = rs.getBoolean("comedy_category");
+				boolean scifyCategory = rs.getBoolean("scify_category");
+				boolean horrorCategory = rs.getBoolean("horror_category");
+				boolean romanceCategory = rs.getBoolean("romance_category");
+				boolean scienceCategory = rs.getBoolean("science_category");
+				boolean crimeCategory = rs.getBoolean("crime_category");
+				boolean thrillerCategory = rs.getBoolean("thriller_category");
+				boolean isActive = rs.getBoolean("is_active");
+				String strIsActive = (isActive) ? "Active" : "InActive";
 
-                TVSeries series = new TVSeries(returnedSeriesId, title, tvsImgUrl, actionCategory,
-                        adventureCategory, comedyCategory, scifyCategory, horrorCategory,
-                        romanceCategory, scienceCategory, crimeCategory, thrillerCategory,
-                        isActive, rowCreatedDatetime);
-                series.setActiveStatus(strIsActive);
-                
-                seriesList.add(series);
-            }
+				Date rowCreatedDatetime = rs.getDate("row_created_datetime");
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+				TVSeries series = new TVSeries(returnedSeriesId, title, tvsImgUrl, actionCategory, adventureCategory,
+						comedyCategory, scifyCategory, horrorCategory, romanceCategory, scienceCategory, crimeCategory,
+						thrillerCategory, isActive, rowCreatedDatetime);
+				series.setActiveStatus(strIsActive);
 
-        return seriesList;
-    }
-    
-    // Select TV series details
-    public List<TVSeries> selectTVSeries(int series_Id) {
-        ArrayList<TVSeries> seriesList = new ArrayList<>();
+				seriesList.add(series);
+			}
 
-        try {
-            Connection con = DBConnectionMSSQL.getConnection();
-            PreparedStatement stmt = con.prepareStatement(SELECT_SERIES_BY_ID);
-            stmt.setInt(1, series_Id);
-            ResultSet rs = stmt.executeQuery();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
-            while (rs.next()) {
-                int returnedSeriesId = rs.getInt("tvs_id");
-                String title = rs.getString("title");
-                String tvsImgUrl = rs.getString("tvs_img_url");
-                boolean actionCategory = rs.getBoolean("action_category");
-                boolean adventureCategory = rs.getBoolean("adventure_category");
-                boolean comedyCategory = rs.getBoolean("comedy_category");
-                boolean scifyCategory = rs.getBoolean("scify_category");
-                boolean horrorCategory = rs.getBoolean("horror_category");
-                boolean romanceCategory = rs.getBoolean("romance_category");
-                boolean scienceCategory = rs.getBoolean("science_category");
-                boolean crimeCategory = rs.getBoolean("crime_category");
-                boolean thrillerCategory = rs.getBoolean("thriller_category");
-                boolean isActive = rs.getBoolean("is_active");
-                Date rowCreatedDatetime = rs.getDate("row_created_datetime");
+		return seriesList;
+	}
 
-                TVSeries series = new TVSeries(returnedSeriesId, title, tvsImgUrl, actionCategory,
-                        adventureCategory, comedyCategory, scifyCategory, horrorCategory,
-                        romanceCategory, scienceCategory, crimeCategory, thrillerCategory,
-                        isActive, rowCreatedDatetime);
+	// Select TV series details by id
+	public List<TVSeries> selectTVSeries(int series_Id) {
+		ArrayList<TVSeries> seriesList = new ArrayList<>();
 
-                seriesList.add(series);
-            }
+		try {
+			Connection con = DBConnectionMSSQL.getConnection();
+			PreparedStatement stmt = con.prepareStatement(SELECT_SERIES_BY_ID);
+			stmt.setInt(1, series_Id);
+			ResultSet rs = stmt.executeQuery();
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+			while (rs.next()) {
+				int returnedSeriesId = rs.getInt("tvs_id");
+				String title = rs.getString("title");
+				String tvsImgUrl = rs.getString("tvs_img_url");
+				boolean actionCategory = rs.getBoolean("action_category");
+				boolean adventureCategory = rs.getBoolean("adventure_category");
+				boolean comedyCategory = rs.getBoolean("comedy_category");
+				boolean scifyCategory = rs.getBoolean("scify_category");
+				boolean horrorCategory = rs.getBoolean("horror_category");
+				boolean romanceCategory = rs.getBoolean("romance_category");
+				boolean scienceCategory = rs.getBoolean("science_category");
+				boolean crimeCategory = rs.getBoolean("crime_category");
+				boolean thrillerCategory = rs.getBoolean("thriller_category");
+				boolean isActive = rs.getBoolean("is_active");
+				Date rowCreatedDatetime = rs.getDate("row_created_datetime");
 
-        return seriesList;
-    }
+				TVSeries series = new TVSeries(returnedSeriesId, title, tvsImgUrl, actionCategory, adventureCategory,
+						comedyCategory, scifyCategory, horrorCategory, romanceCategory, scienceCategory, crimeCategory,
+						thrillerCategory, isActive, rowCreatedDatetime);
 
-    // Insert a new TV series
-    public boolean insertTVSeries(TVSeries series) {
-        System.out.println(INSERT_SERIES);
-        boolean rowInserted = false;
+				seriesList.add(series);
+			}
 
-        try {
-            Connection con = DBConnectionMSSQL.getConnection();
-            PreparedStatement stmt = con.prepareStatement(INSERT_SERIES);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
-            stmt.setString(1, series.getTitle());
-            stmt.setString(2, series.getTvs_img_url());
-            stmt.setBoolean(3, series.isAction_category());
-            stmt.setBoolean(4, series.isAdventure_category());
-            stmt.setBoolean(5, series.isComedy_category());
-            stmt.setBoolean(6, series.isScify_category());
-            stmt.setBoolean(7, series.isHorror_category());
-            stmt.setBoolean(8, series.isRomance_category());
-            stmt.setBoolean(9, series.isScience_category());
-            stmt.setBoolean(10, series.isCrime_category());
-            stmt.setBoolean(11, series.isThriller_category());
- 
+		return seriesList;
+	}
 
-            stmt.executeUpdate();
-            
+	// Insert a new TV series
+	public boolean insertTVSeries(TVSeries series) {
+		System.out.println(INSERT_SERIES);
+		boolean rowInserted = false;
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+		try {
+			Connection con = DBConnectionMSSQL.getConnection();
+			PreparedStatement stmt = con.prepareStatement(INSERT_SERIES);
+
+			stmt.setString(1, series.getTitle());
+			stmt.setString(2, series.getTvs_img_url());
+			stmt.setBoolean(3, series.isAction_category());
+			stmt.setBoolean(4, series.isAdventure_category());
+			stmt.setBoolean(5, series.isComedy_category());
+			stmt.setBoolean(6, series.isScify_category());
+			stmt.setBoolean(7, series.isHorror_category());
+			stmt.setBoolean(8, series.isRomance_category());
+			stmt.setBoolean(9, series.isScience_category());
+			stmt.setBoolean(10, series.isCrime_category());
+			stmt.setBoolean(11, series.isThriller_category());
+
+			stmt.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return rowInserted;
-    }
+	}
 
-    // Update TV series
-    public boolean updateTVSeries(TVSeries series) {
-        boolean rowUpdate = false;
-        try {
-            Connection con = DBConnectionMSSQL.getConnection();
-            PreparedStatement stmt = con.prepareStatement(UPDATE_SERIES);
+	// Update TV series
+	public boolean updateTVSeries(TVSeries series) {
+		boolean rowUpdate = false;
+		try {
+			Connection con = DBConnectionMSSQL.getConnection();
+			PreparedStatement stmt = con.prepareStatement(UPDATE_SERIES);
 
-            stmt.setString(1, series.getTitle());
-            stmt.setString(2, series.getTvs_img_url());
-            stmt.setBoolean(3, series.isAction_category());
-            stmt.setBoolean(4, series.isAdventure_category());
-            stmt.setBoolean(5, series.isComedy_category());
-            stmt.setBoolean(6, series.isScify_category());
-            stmt.setBoolean(7, series.isHorror_category());
-            stmt.setBoolean(8, series.isRomance_category());
-            stmt.setBoolean(9, series.isScience_category());
-            stmt.setBoolean(10, series.isCrime_category());
-            stmt.setBoolean(11, series.isThriller_category());
-            //stmt.setBoolean(12, series.isActive());
-            //stmt.setDate(13, new java.sql.Date(series.getRow_created_datetime().getTime()));
+			stmt.setString(1, series.getTitle());
+			stmt.setString(2, series.getTvs_img_url());
+			stmt.setBoolean(3, series.isAction_category());
+			stmt.setBoolean(4, series.isAdventure_category());
+			stmt.setBoolean(5, series.isComedy_category());
+			stmt.setBoolean(6, series.isScify_category());
+			stmt.setBoolean(7, series.isHorror_category());
+			stmt.setBoolean(8, series.isRomance_category());
+			stmt.setBoolean(9, series.isScience_category());
+			stmt.setBoolean(10, series.isCrime_category());
+			stmt.setBoolean(11, series.isThriller_category());
 
-            stmt.setInt(12, series.getTvs_id());
+			stmt.setInt(12, series.getTvs_id());
 
-            rowUpdate = (stmt.executeUpdate() > 0);
+			rowUpdate = (stmt.executeUpdate() > 0);
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return rowUpdate;
-    }
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return rowUpdate;
+	}
 
-    // Delete TV series
-    public boolean deleteTVSeries(int seriesId) {
-        boolean rowDelete = false;
+	// Delete TV series
+	public boolean deleteTVSeries(int seriesId) {
+		boolean rowDelete = false;
 
-        try {
-            Connection con = DBConnectionMSSQL.getConnection();
-            PreparedStatement stmt = con.prepareStatement(DELETE_SERIES);
+		try {
+			Connection con = DBConnectionMSSQL.getConnection();
+			PreparedStatement stmt = con.prepareStatement(DELETE_SERIES);
 
-            stmt.setInt(1, seriesId);
-            rowDelete = stmt.executeUpdate() > 0;
+			stmt.setInt(1, seriesId);
+			rowDelete = stmt.executeUpdate() > 0;
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return rowDelete;
-    }
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return rowDelete;
+	}
 }

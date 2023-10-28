@@ -25,7 +25,7 @@ public class UserPaymentMethodDAO implements IUserPaymentMethodDAO{
 	private static final String DELETE_USER_PAYMENT_METHOD = "DELETE FROM user_payment_method "
 														   + "WHERE payment_method_id = ? ";
  
-	
+	//select user payment method by user id
 	public List<UserPaymentMethod> selectUserPaymentMethod(int userId){
 		
 		ArrayList<UserPaymentMethod>  methods = new ArrayList<>();
@@ -56,7 +56,7 @@ public class UserPaymentMethodDAO implements IUserPaymentMethodDAO{
 		return methods; 
 	}
 	
-	
+	//add new user payment method
 	public boolean insertUserPaymentMethod(UserPaymentMethod userPaymentMethod) {
 		boolean insertStatus= false;
 		try {
@@ -75,6 +75,8 @@ public class UserPaymentMethodDAO implements IUserPaymentMethodDAO{
 		}
 		return insertStatus;
 	}
+	
+	//delete user payment method
 	public boolean deleteUserPaymentMethod(int paymentMethodId) {
 		
 		boolean rowDelete = false;

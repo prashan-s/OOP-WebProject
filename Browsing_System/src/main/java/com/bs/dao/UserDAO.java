@@ -18,8 +18,8 @@ public class UserDAO implements IUserDAO {
 	// admin select user list
 	private static final String SELECT_USER_LIST = "SELECT user_id, name, email, mobile_no, dob, "
 			+ "CASE WHEN premium_user = 1 THEN 'Yes' ELSE 'No' END AS is_premium_user, premium_user, password , "
-			+ "created_admin_name, CASE WHEN is_active = 1 THEN 'Active' ELSE 'InActive' END AS is_active_status, is_active, row_created_datetime " + "FROM users "
-			+ "ORDER BY row_created_datetime DESC ";
+			+ "created_admin_name, CASE WHEN is_active = 1 THEN 'Active' ELSE 'InActive' END AS is_active_status, is_active, row_created_datetime "
+			+ "FROM users " + "ORDER BY row_created_datetime DESC ";
 	// when login
 	private static final String SELECT_PASSWORD_BY_USERNAME = "SELECT password " + "FROM users " + "WHERE name = ?  ";
 
@@ -39,6 +39,7 @@ public class UserDAO implements IUserDAO {
 	// when user or admin delete user
 	private static final String DELETE_USER = "DELETE FROM users " + "WHERE user_id = ? ";
 
+	// select a user by id
 	public User selectUser(int userId) {
 
 		User user = null;
@@ -62,8 +63,8 @@ public class UserDAO implements IUserDAO {
 				boolean is_active = rs.getBoolean("is_active");
 				Date row_created_datetime = rs.getDate("row_created_datetime");
 
-				user = new User(returnedUserId, name, email, mobileNo, dob, isPremiumUser, premium_user, password, created_admin_name, isActiveStatus,
-						is_active, row_created_datetime);
+				user = new User(returnedUserId, name, email, mobileNo, dob, isPremiumUser, premium_user, password,
+						created_admin_name, isActiveStatus, is_active, row_created_datetime);
 
 			}
 
@@ -73,45 +74,9 @@ public class UserDAO implements IUserDAO {
 		return user;
 
 	}
-	
-	// all user list
-		public List<User> selectAllUserList() {
 
-			List<User> users = new ArrayList<>();
-			try {
-				Connection con = DBConnectionMSSQL.getConnection();
-				PreparedStatement stmt = con.prepareStatement(SELECT_USER_LIST);
-
-				ResultSet rs = stmt.executeQuery();
-				
-				while (rs.next()) {
-					int returnedUserId = rs.getInt("user_id");
-					String name = rs.getString("name");
-					String email = rs.getString("email");
-					String mobileNo = rs.getString("mobile_no");
-					Date dob = rs.getDate("dob");
-					String isPremiumUser = rs.getString("is_premium_user");
-					boolean premium_user = rs.getBoolean("premium_user");
-					String password = rs.getString("password");
-					String created_admin_name = rs.getString("created_admin_name");
-					String isActiveStatus = rs.getString("is_active_status");
-					boolean is_active = rs.getBoolean("is_active");
-					Date row_created_datetime = rs.getDate("row_created_datetime");
-
-					User user = new User(returnedUserId, name, email, mobileNo, dob, isPremiumUser, premium_user, password, created_admin_name, isActiveStatus,
-							is_active, row_created_datetime);
-					users.add(user);
-				}
-
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			return users;
-
-		}
-
-	// all user list
-	public List<User> selectUserList() {
+	// select all user list
+	public List<User> selectAllUserList() {
 
 		List<User> users = new ArrayList<>();
 		try {
@@ -119,7 +84,7 @@ public class UserDAO implements IUserDAO {
 			PreparedStatement stmt = con.prepareStatement(SELECT_USER_LIST);
 
 			ResultSet rs = stmt.executeQuery();
-			
+
 			while (rs.next()) {
 				int returnedUserId = rs.getInt("user_id");
 				String name = rs.getString("name");
@@ -134,8 +99,44 @@ public class UserDAO implements IUserDAO {
 				boolean is_active = rs.getBoolean("is_active");
 				Date row_created_datetime = rs.getDate("row_created_datetime");
 
-				User user = new User(returnedUserId, name, email, mobileNo, dob, isPremiumUser, premium_user, password, created_admin_name, isActiveStatus,
-						is_active, row_created_datetime);
+				User user = new User(returnedUserId, name, email, mobileNo, dob, isPremiumUser, premium_user, password,
+						created_admin_name, isActiveStatus, is_active, row_created_datetime);
+				users.add(user);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return users;
+
+	}
+
+	// all user list
+	public List<User> selectUserList() {
+
+		List<User> users = new ArrayList<>();
+		try {
+			Connection con = DBConnectionMSSQL.getConnection();
+			PreparedStatement stmt = con.prepareStatement(SELECT_USER_LIST);
+
+			ResultSet rs = stmt.executeQuery();
+
+			while (rs.next()) {
+				int returnedUserId = rs.getInt("user_id");
+				String name = rs.getString("name");
+				String email = rs.getString("email");
+				String mobileNo = rs.getString("mobile_no");
+				Date dob = rs.getDate("dob");
+				String isPremiumUser = rs.getString("is_premium_user");
+				boolean premium_user = rs.getBoolean("premium_user");
+				String password = rs.getString("password");
+				String created_admin_name = rs.getString("created_admin_name");
+				String isActiveStatus = rs.getString("is_active_status");
+				boolean is_active = rs.getBoolean("is_active");
+				Date row_created_datetime = rs.getDate("row_created_datetime");
+
+				User user = new User(returnedUserId, name, email, mobileNo, dob, isPremiumUser, premium_user, password,
+						created_admin_name, isActiveStatus, is_active, row_created_datetime);
 				users.add(user);
 			}
 
@@ -168,7 +169,7 @@ public class UserDAO implements IUserDAO {
 
 	}
 
-	// user signup
+	// Insert a new user
 	public boolean insertUser(User user) {
 
 		boolean rowInserted = false;
@@ -190,7 +191,7 @@ public class UserDAO implements IUserDAO {
 		return rowInserted;
 	}
 
-	// user edit
+	// Update edit user details
 	public boolean updateUserByUser(User user) {
 
 		boolean rowUpdated = false;
@@ -215,7 +216,7 @@ public class UserDAO implements IUserDAO {
 		return rowUpdated;
 	}
 
-	// admin edit
+	// Update edit user details by admin
 	public boolean updateUserByAdmin(User user) {
 
 		boolean rowUpdated = false;
@@ -229,7 +230,7 @@ public class UserDAO implements IUserDAO {
 			stmt.setString(3, user.getMobileNo());
 			Date dob = new Date(user.getDob().getTime());
 			stmt.setDate(4, dob);
-			stmt.setBoolean(5, user.premiumUser());
+			stmt.setBoolean(5, user.getPremiumUser());
 
 			stmt.setInt(6, user.getUserId());
 
@@ -241,7 +242,7 @@ public class UserDAO implements IUserDAO {
 		return rowUpdated;
 	}
 
-	// upgrade to premium
+	// upgrade user to premium
 	public boolean upgradeToPremium(int userId) {
 
 		boolean rowUpdated = false;
@@ -264,7 +265,7 @@ public class UserDAO implements IUserDAO {
 
 	}
 
-	// user change password
+	// Change user password
 	public boolean changePassword(User user) {
 
 		boolean rowUpdated = false;

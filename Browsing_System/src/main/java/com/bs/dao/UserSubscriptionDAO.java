@@ -13,123 +13,124 @@ import com.bs.model.UserSubscription;
 import com.bs.utility.DBConnectionMSSQL;
 
 public class UserSubscriptionDAO implements IUserSubscriptionDAO {
-	
-    private static final String SELECT_SUBSCRIPTION_BY_ID = "SELECT sub_id, user_id, plan_id, subscribe_date, next_renewal_date, is_active, "
-    													  + "row_created_datetime "
-    													  + "FROM user_subscription "
-    													  + "WHERE sub_id = ?";
-    
-    private static final String INSERT_SUBSCRIPTION_RETURN_ID = " INSERT INTO user_subscription (user_id, plan_id  ) "
-													    	  + " VALUES (?, ?  ); " 
-													    	  + "SELECT SCOPE_IDENTITY() AS AutoIncrementedID; ";
-    
-    private static final String INSERT_SUBSCRIPTION = "INSERT INTO user_subscription (user_id, plan_id, subscribe_date, next_renewal_date) "
-    												+ "VALUES(?, ?, ?, ?);";
-    
-    private static final String UPDATE_SUBSCRIPTION = "UPDATE user_subscription SET user_id=?, plan_id=?, subscribe_date=?, next_renewal_date=?, "
-    												+ "is_active=? "
-    												+ "WHERE sub_id = ?";
-    
-    private static final String DELETE_SUBSCRIPTION = "DELETE FROM user_subscription "
-    												+ "WHERE sub_id = ?";
 
-    public List<UserSubscription> selectSubscription(int sub_id) {
-    	ArrayList<UserSubscription> userSubscriptions = new ArrayList<>();
-        try {
-            Connection con = DBConnectionMSSQL.getConnection();
-            PreparedStatement stmt = con.prepareStatement(SELECT_SUBSCRIPTION_BY_ID);
-            stmt.setInt(1, sub_id);
-            ResultSet rs = stmt.executeQuery();
+	private static final String SELECT_SUBSCRIPTION_BY_ID = "SELECT sub_id, user_id, plan_id, subscribe_date, next_renewal_date, is_active, "
+			+ "row_created_datetime " + "FROM user_subscription " + "WHERE sub_id = ?";
 
-            if (rs.next()) {
-                int returnedSubId = rs.getInt("sub_id");
-                int userId = rs.getInt("user_id");
-                int planId = rs.getInt("plan_id");
-                Date subscribeDate = rs.getDate("subscribe_date");
-                Date nextRenewalDate = rs.getDate("next_renewal_date");
-                boolean isActive = rs.getBoolean("is_active");
-                Timestamp rowCreatedDatetime = rs.getTimestamp("row_created_datetime");
+	private static final String INSERT_SUBSCRIPTION_RETURN_ID = " INSERT INTO user_subscription (user_id, plan_id  ) "
+			+ " VALUES (?, ?  ); " + "SELECT SCOPE_IDENTITY() AS AutoIncrementedID; ";
 
-                UserSubscription userSubscription = new UserSubscription(returnedSubId, userId, subscribeDate, nextRenewalDate, planId, isActive, rowCreatedDatetime);
-                userSubscriptions.add(userSubscription);
-            }
+	private static final String INSERT_SUBSCRIPTION = "INSERT INTO user_subscription (user_id, plan_id, subscribe_date, next_renewal_date) "
+			+ "VALUES(?, ?, ?, ?);";
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+	private static final String UPDATE_SUBSCRIPTION = "UPDATE user_subscription SET user_id=?, plan_id=?, subscribe_date=?, next_renewal_date=?, "
+			+ "is_active=? " + "WHERE sub_id = ?";
 
-        return userSubscriptions;
-    }
-    
-    public int insertSubReturnSubId(UserSubscription userSubscription) {
-       int subId = 0 ;
-    	try {
-            Connection con = DBConnectionMSSQL.getConnection();
-            PreparedStatement stmt = con.prepareStatement(INSERT_SUBSCRIPTION_RETURN_ID);
+	private static final String DELETE_SUBSCRIPTION = "DELETE FROM user_subscription " + "WHERE sub_id = ?";
 
-            stmt.setInt(1, userSubscription.getUserId());
-            stmt.setInt(2, userSubscription.getPlanId());
-                       
-            subId = stmt.executeUpdate();
+	// select user subscriptin subscription id
+	public List<UserSubscription> selectSubscription(int sub_id) {
+		ArrayList<UserSubscription> userSubscriptions = new ArrayList<>();
+		try {
+			Connection con = DBConnectionMSSQL.getConnection();
+			PreparedStatement stmt = con.prepareStatement(SELECT_SUBSCRIPTION_BY_ID);
+			stmt.setInt(1, sub_id);
+			ResultSet rs = stmt.executeQuery();
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+			if (rs.next()) {
+				int returnedSubId = rs.getInt("sub_id");
+				int userId = rs.getInt("user_id");
+				int planId = rs.getInt("plan_id");
+				Date subscribeDate = rs.getDate("subscribe_date");
+				Date nextRenewalDate = rs.getDate("next_renewal_date");
+				boolean isActive = rs.getBoolean("is_active");
+				Timestamp rowCreatedDatetime = rs.getTimestamp("row_created_datetime");
+
+				UserSubscription userSubscription = new UserSubscription(returnedSubId, userId, subscribeDate,
+						nextRenewalDate, planId, isActive, rowCreatedDatetime);
+				userSubscriptions.add(userSubscription);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return userSubscriptions;
+	}
+
+	// insert a new user subscription and return that subscription Id
+	public int insertSubReturnSubId(UserSubscription userSubscription) {
+		int subId = 0;
+		try {
+			Connection con = DBConnectionMSSQL.getConnection();
+			PreparedStatement stmt = con.prepareStatement(INSERT_SUBSCRIPTION_RETURN_ID);
+
+			stmt.setInt(1, userSubscription.getUserId());
+			stmt.setInt(2, userSubscription.getPlanId());
+
+			subId = stmt.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return subId;
-    }
+	}
 
-    public void insertSubscription(UserSubscription userSubscription) {
-        try {
-            Connection con = DBConnectionMSSQL.getConnection();
-            PreparedStatement stmt = con.prepareStatement(INSERT_SUBSCRIPTION);
+	// insert a new user subscription
+	public void insertSubscription(UserSubscription userSubscription) {
+		try {
+			Connection con = DBConnectionMSSQL.getConnection();
+			PreparedStatement stmt = con.prepareStatement(INSERT_SUBSCRIPTION);
 
-            stmt.setInt(1, userSubscription.getUserId());
-            stmt.setInt(2, userSubscription.getPlanId());
-            stmt.setDate(3, (Date) userSubscription.getSubscribeDate());
-            stmt.setDate(4, (Date) userSubscription.getNextRenewalDate());
+			stmt.setInt(1, userSubscription.getUserId());
+			stmt.setInt(2, userSubscription.getPlanId());
+			stmt.setDate(3, (Date) userSubscription.getSubscribeDate());
+			stmt.setDate(4, (Date) userSubscription.getNextRenewalDate());
 
-            stmt.executeUpdate();
+			stmt.executeUpdate();
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
-    public boolean updateSubscription(UserSubscription userSubscription) {
-       
-    	boolean rowUpdate = false;
-        try {
-            Connection con = DBConnectionMSSQL.getConnection();
-            PreparedStatement stmt = con.prepareStatement(UPDATE_SUBSCRIPTION);
+	// update a new user subscription
+	public boolean updateSubscription(UserSubscription userSubscription) {
 
-            stmt.setInt(1, userSubscription.getUserId());
-            stmt.setInt(2, userSubscription.getPlanId());
-            stmt.setDate(3,(Date) userSubscription.getSubscribeDate());
-            stmt.setDate(4, (Date)userSubscription.getNextRenewalDate());
-            stmt.setBoolean(5, userSubscription.isActive());
-            stmt.setInt(6, userSubscription.getSubId());
+		boolean rowUpdate = false;
+		try {
+			Connection con = DBConnectionMSSQL.getConnection();
+			PreparedStatement stmt = con.prepareStatement(UPDATE_SUBSCRIPTION);
 
-            rowUpdate = stmt.executeUpdate() > 0;
+			stmt.setInt(1, userSubscription.getUserId());
+			stmt.setInt(2, userSubscription.getPlanId());
+			stmt.setDate(3, (Date) userSubscription.getSubscribeDate());
+			stmt.setDate(4, (Date) userSubscription.getNextRenewalDate());
+			stmt.setBoolean(5, userSubscription.isActive());
+			stmt.setInt(6, userSubscription.getSubId());
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return rowUpdate;
-    }
+			rowUpdate = stmt.executeUpdate() > 0;
 
-    public boolean deleteSubscription(int sub_id) {
-        boolean rowDelete = false;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return rowUpdate;
+	}
 
-        try {
-            Connection con = DBConnectionMSSQL.getConnection();
-            PreparedStatement stmt = con.prepareStatement(DELETE_SUBSCRIPTION);
+	//// delete a new user subscription
+	public boolean deleteSubscription(int sub_id) {
+		boolean rowDelete = false;
 
-            stmt.setInt(1, sub_id);
-            rowDelete = stmt.executeUpdate() > 0;
+		try {
+			Connection con = DBConnectionMSSQL.getConnection();
+			PreparedStatement stmt = con.prepareStatement(DELETE_SUBSCRIPTION);
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return rowDelete;
-    }
+			stmt.setInt(1, sub_id);
+			rowDelete = stmt.executeUpdate() > 0;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return rowDelete;
+	}
 }
