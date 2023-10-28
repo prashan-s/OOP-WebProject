@@ -126,7 +126,7 @@
         </div>
 
         <div class="sign-in card hide" id="sign-in-form">
-          <form class="ui form" action="#" method="post">
+          <form class="ui form" action="UserServlet" method="post">
             <div class="sign-card-heading-section">
               <div class="form-close-icon">
                 <ion-icon name="close-outline" class="close-icon"
@@ -139,13 +139,13 @@
             <div class="sign-in-field">
               <div class="field">
                 <label>Username</label>
-                <input type="text" name="username" placeholder="Username">
+                <input type="text" name="userName" placeholder="Username">
               </div>
               <div class="field">
                 <label>Password</label>
                 <input type="password" name="password" placeholder="Password">
               </div>
-              <input class="ui button sign-in-btn" type="submit" value="Sign In"></input>
+              <input class="ui button sign-in-btn" type="submit" value="Sign In" ></input>
             </div>
           </form>
           <div class="dont-have-an-account">

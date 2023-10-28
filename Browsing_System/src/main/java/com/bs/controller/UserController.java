@@ -241,7 +241,7 @@ public class UserController {
 			break;
 
 		case "Add":
-			jspPage = "admin-portal.jsp";
+			jspPage = "./admin-portal.jsp";
 			showSignInForm = false;
 			showSignUpForm = false;
 			showSignUpStatus = true;
@@ -255,6 +255,51 @@ public class UserController {
 				dob = dateFormatSignup.parse(request.getParameter("dob"));
 				java.sql.Date dobSignUp = new java.sql.Date(dob.getTime());
 				userSignUp.setDob(dobSignUp);
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+			userSignUp.setPassword("Test123");
+			userSignUp.setPremiumUser(false);
+			userSignUp.setCreatedAdminName("Admin");
+			insertStatus = insertUser(userSignUp);
+			
+			System.out.println("insert sts " + insertStatus);
+
+			if (insertStatus == false) {
+				SignUpMessage = "Sign Up Failed!, Retry....";
+			} else {
+				SignUpMessage = "Sign Up Successfull..";
+			}
+			
+			request.setAttribute("SignUpMessage", SignUpMessage);
+
+			break;
+			
+		case "Update":
+			jspPage = "./admin-portal.jsp";
+			showSignInForm = false;
+			showSignUpForm = false;
+			showSignUpStatus = true;
+			showSignInStatus = false;
+
+			userSignUp.setName(request.getParameter("userId"));
+			userSignUp.setName(request.getParameter("userName"));
+			userSignUp.setEmail(request.getParameter("email"));
+			userSignUp.setMobileNo(request.getParameter("mobile"));
+			
+			userSignUp.setIsActive(true);
+			
+			String activeStr = request.getParameter("status");
+			userSignUp.setIsActive(true);
+			
+			try {
+				if (activeStr.equals("0")){
+					userSignUp.setIsActive(true);
+				}
+				dob = dateFormatSignup.parse(request.getParameter("dob"));
+				java.sql.Date dobSignUp = new java.sql.Date(dob.getTime());
+				userSignUp.setDob(dobSignUp);
+				
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
