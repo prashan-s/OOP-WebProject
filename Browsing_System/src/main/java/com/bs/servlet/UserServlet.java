@@ -20,12 +20,15 @@ public class UserServlet extends HttpServlet {
         
     }
 
-	
+	//Handles HTTP GET requests.
+	//Initializes the MovieController and retrieves all user.
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		this.controller = new UserController(request, response);
 		this.controller.selectAllUserList();
 	}
 
+	//Handles HTTP POST requests.
+	//Initialize the MovieController, retrieve the action parameter, and performs the corresponding action.
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		this.controller = new UserController(request, response);
