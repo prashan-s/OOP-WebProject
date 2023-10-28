@@ -72,7 +72,7 @@ public class UserWatchHistoryController {
 				System.out.println(deleteMessage);
 				request.setAttribute("deleteMessage", deleteMessage);
 				break;
-
+			
 		}
 
 		try {
@@ -104,7 +104,6 @@ public class UserWatchHistoryController {
 		boolean deleteStatus = false;
 		try {
 			deleteStatus = new UserWatchHistoryDAO().deleteHistory(watchId);
-			request.setAttribute("deleteStatus", deleteStatus);// attribute name, objectName
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
