@@ -69,7 +69,8 @@ public class TVSeriesDAO implements ITVSeriesDAO {
                         adventureCategory, comedyCategory, scifyCategory, horrorCategory,
                         romanceCategory, scienceCategory, crimeCategory, thrillerCategory,
                         isActive, rowCreatedDatetime);
-
+                series.setActiveStatus(isActiveStatus);
+                
                 seriesList.add(series);
             }
 

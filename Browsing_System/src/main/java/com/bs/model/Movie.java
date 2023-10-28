@@ -23,6 +23,7 @@ public class Movie {
 	private boolean crime_category;
 	private boolean thriller_category;
 	private boolean is_active;
+	private String is_active_Status;
 	private String created_admin_name;
 	private Date row_created_datetime;
 
@@ -53,6 +54,10 @@ public class Movie {
 		this.is_active = is_active;
 		this.created_admin_name = created_admin_name;
 		this.row_created_datetime = row_created_datetime;
+	}
+
+	public void setisActiveStatus(String str) {
+		this.is_active_Status = str;
 	}
 
 	public void setMovie_id(int movie_id) {

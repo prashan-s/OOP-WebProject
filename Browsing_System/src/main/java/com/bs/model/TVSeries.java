@@ -2,6 +2,8 @@ package com.bs.model;
 
 import java.util.Date;
 
+import com.oracle.wls.shaded.org.apache.xpath.operations.String;
+
 public class TVSeries {
 
 	private int tvs_id;
@@ -16,6 +18,7 @@ public class TVSeries {
 	private boolean science_category;
 	private boolean crime_category;
 	private boolean thriller_category;
+	private String isActiveStatus;
 	private boolean active;
 	private Date row_created_datetime;
 	
@@ -23,7 +26,7 @@ public class TVSeries {
 
 	public TVSeries(int tvs_id, String title, String tvs_img_url, boolean action_category, boolean adventure_category,
 			boolean comedy_category, boolean scify_category, boolean horror_category, boolean romance_category,
-			boolean science_category, boolean crime_category, boolean thriller_category, boolean active,
+			boolean science_category, boolean crime_category, boolean thriller_category ,boolean active,
 			Date row_created_datetime) {
 		super();
 		this.tvs_id = tvs_id;
@@ -43,20 +46,15 @@ public class TVSeries {
 	}
 
 
-
-	public TVSeries(String title2, String imageUrl, boolean contains, boolean contains2, boolean contains3,
-			boolean contains4, boolean contains5, boolean contains6, boolean contains7, boolean contains8,
-			boolean contains9, boolean b, String string) {
-		// TODO Auto-generated constructor stub
-	}
-
-
-
 	public TVSeries() {
 		// TODO Auto-generated constructor stub
 	}
 
 
+
+	public void setActiveStatus(String str) {
+		this.activeStatus = str;
+	}
 
 	public void setTvs_id(int tvs_id) {
 		this.tvs_id = tvs_id;

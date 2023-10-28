@@ -84,7 +84,7 @@ public class MovieDAO implements IMovieDAO {
   						adventure_category, comedy_category, scify_category, horror_category,
   						romance_category, science_category, crime_category, thriller_category,
   						is_active, created_admin_name, row_created_datetime);
-  				
+  				movie.setisActiveStatus(isActiveStatus);
   				movies.add(movie);	
   			}
 
