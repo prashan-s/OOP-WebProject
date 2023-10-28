@@ -19,10 +19,14 @@ public class PaymentServlet extends HttpServlet {
 	public PaymentServlet() {
 	}
 	
+	//Handles HTTP GET requests.
+	//Initializes the MovieController and retrieves all payments.
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 	}
 
+	//Handles HTTP POST requests.
+	//Initialize the MovieController, retrieve the action parameter, and performs the corresponding action.
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
 		this.controller = new PaymentController(request, response);

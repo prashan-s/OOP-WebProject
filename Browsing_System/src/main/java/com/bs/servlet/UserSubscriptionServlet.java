@@ -19,6 +19,8 @@ public class UserSubscriptionServlet extends HttpServlet {
     public UserSubscriptionServlet() {
 	}
   
+	//Handles HTTP POST requests.
+	//Initialize the MovieController, retrieve the action parameter, and performs the corresponding action.
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		this.controller = new UserSubscriptionController(request, response);
 		

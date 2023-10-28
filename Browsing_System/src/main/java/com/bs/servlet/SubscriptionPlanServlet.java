@@ -17,13 +17,15 @@ public class SubscriptionPlanServlet extends HttpServlet {
     public SubscriptionPlanServlet() {
     }
 
-
+	//Handles HTTP GET requests.
+	//Initializes the MovieController and retrieves all movies.
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		this.controller = new SubscriptionPlanController(request,response);
 		this.controller.selectAllSubscriptionPlans();
 	}
 
-	
+	//Handles HTTP POST requests.
+	//Initialize the MovieController, retrieve the action parameter, and performs the corresponding action.
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		this.controller = new SubscriptionPlanController(request, response);
