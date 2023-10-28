@@ -1,6 +1,6 @@
-CREATE DATABASE OnlineWatchingMoviesandTVSeriesTest;
+CREATE DATABASE OnlineWatchingMoviesandTVSeries;
 GO
-USE OnlineWatchingMoviesandTVSeriesTest;
+USE OnlineWatchingMoviesandTVSeries;
 GO
 
 CREATE TABLE movie (
