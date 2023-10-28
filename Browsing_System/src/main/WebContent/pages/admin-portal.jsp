@@ -482,7 +482,7 @@
             <div class="card-heading">
               <p>Add a Movie</p>
             </div>
-            <form action="../php/admin_portal_Movie_add_process.php" method="post" enctype="multipart/form-data">
+            <form action="${pageContext.request.contextPath}/MovieServlet" method="post" enctype="multipart/form-data">
               <label for="lblMovieName">Title</label> <br />
               <input type="text" name="txtMovieName" id="txtMovieName" required />
               <br />
@@ -518,7 +518,7 @@
             <div class="card-heading">
               <p>Update Movie</p>
             </div>
-            <form action="../php/admin_portal_Movie_update_process.php" method="post">
+            <form action="${pageContext.request.contextPath}/MovieServlet" method="post">
               <label for="lblUpdateMovieName">Title</label> <br />
               <input type="text" name="txtUpdateMovieName" id="txtUpdateMovieName" required />
               <br />
@@ -598,7 +598,7 @@
 	                  	<i class="fa-solid fa-pen-to-square update-icon" onclick="editUpdateMovieRow('movie_${movie.movie_id}')"></i>
 	                  </td>
                       <td>
-	                      <form action="../php/admin_portal_customer_delete_process.php" method="post">
+	                      <form action="${pageContext.request.contextPath}/MovieServlet" method="post">
 		                      <input type="hidden" name="movie_id" value="${movie.movie_id}">
 		                      <i class="fa-solid fa-trash-can delete-icon" onclick="confirmDelete(event)"></i>';
 		                      <input type="submit" style="display: none;">
