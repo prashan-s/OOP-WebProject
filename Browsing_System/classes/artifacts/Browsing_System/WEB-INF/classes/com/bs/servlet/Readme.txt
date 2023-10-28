@@ -1,0 +1,1 @@
+Use this package only to create controllers.

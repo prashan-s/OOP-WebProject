@@ -1,0 +1,21 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="Browsing_System">
+    <output-path>$PROJECT_DIR$/classes/artifacts/Browsing_System</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="Browsing_System/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="Browsing_System" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="module" name="jakarta.servlet-api.jar" module-name="Browsing_System" />
+          <element id="library" level="module" name="jakarta.servlet.jsp.tag.jar" module-name="Browsing_System" />
+          <element id="library" level="module" name="jstl-2.0.0.jar" module-name="Browsing_System" />
+          <element id="library" level="module" name="jstl-api-2.0.0.jar" module-name="Browsing_System" />
+          <element id="library" level="module" name="mssql-jdbc.jar" module-name="Browsing_System" />
+          <element id="library" level="module" name="mysql-connector.jar" module-name="Browsing_System" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>
