@@ -13,11 +13,11 @@ import java.sql.Date;
 public class TVSeriesDetailsDAO implements ITVSeriesDetailsDAO {
 
 	private static final String SELECT_ALL_TV_SERIES = "SELECT tvs_detail_id, tvs_id, season, episode, description, year, duration, quality, " +
-            "watch_count, tvs_stream_url, created_admin_name, CASE WHEN is_active = 1 THEN 'Active' ELSE 'InActive' END AS is_active, row_created_datetime " +
+            "watch_count, tvs_stream_url, created_admin_name, CASE WHEN is_active = 1 THEN 'Active' ELSE 'InActive' END AS is_active_status, is_active, row_created_datetime " +
             "FROM tv_series_details";
 	
     private static final String SELECT_TV_SERIES_BY_ID = "SELECT tvs_detail_id, tvs_id, season, episode, description, year, duration, quality, " +
-            "watch_count, tvs_stream_url, created_admin_name, is_active, row_created_datetime " +
+            "watch_count, tvs_stream_url, created_admin_name, CASE WHEN is_active = 1 THEN 'Active' ELSE 'InActive' END AS is_active_status, is_active, row_created_datetime " +
             "FROM tv_series_details " +
             "WHERE tvs_detail_id = ?";
 
@@ -52,11 +52,12 @@ public class TVSeriesDetailsDAO implements ITVSeriesDetailsDAO {
                 int watchCount = rs.getInt("watch_count");
                 String tvsStreamUrl = rs.getString("tvs_stream_url");
                 String createdAdminName = rs.getString("created_admin_name");
-                String isActive = rs.getString("is_active");
+                String isActiveStatus = rs.getString("is_active_status");
+                boolean isActive = rs.getBoolean("is_active");
                 Date rowCreatedDatetime = rs.getDate("row_created_datetime");
 
                 TVSeriesDetails seriesDetails = new TVSeriesDetails(tvsDetailIdReturned, tvsId, season, episode, description,
-                        year, duration, quality, watchCount, tvsStreamUrl, createdAdminName, isActive, rowCreatedDatetime);
+                        year, duration, quality, watchCount, tvsStreamUrl, createdAdminName, isActiveStatus, isActive, rowCreatedDatetime);
 
                 seriesDetailsList.add(seriesDetails);
             }
@@ -90,11 +91,12 @@ public class TVSeriesDetailsDAO implements ITVSeriesDetailsDAO {
                 int watchCount = rs.getInt("watch_count");
                 String tvsStreamUrl = rs.getString("tvs_stream_url");
                 String createdAdminName = rs.getString("created_admin_name");
+                String isActiveStatus = rs.getString("is_active_status");
                 boolean isActive = rs.getBoolean("is_active");
                 Date rowCreatedDatetime = rs.getDate("row_created_datetime");
 
                 TVSeriesDetails seriesDetails = new TVSeriesDetails(tvsDetailIdReturned, tvsId, season, episode, description,
-                        year, duration, quality, watchCount, tvsStreamUrl, createdAdminName, isActive, rowCreatedDatetime);
+                        year, duration, quality, watchCount, tvsStreamUrl, createdAdminName, isActiveStatus, isActive, rowCreatedDatetime);
 
                 seriesDetailsList.add(seriesDetails);
             }

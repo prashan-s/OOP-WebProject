@@ -15,12 +15,13 @@ public class TVSeriesDetails {
     private Integer watchCount;
     private String tvsStreamUrl;
     private String createdAdminName;
-    private String isActive;
+    private String isActiveStatus;
+    private boolean isActive;
     private Date rowCreatedDatetime;
 
     public TVSeriesDetails(int tvsDetailId,int tvsId, int season, int episode, String description,
                            int year, int duration, String quality, Integer watchCount,
-                           String tvsStreamUrl, String createdAdminName, String isActive, Date rowCreatedDatetime) {
+                           String tvsStreamUrl, String createdAdminName, String isActiveStatus, boolean isActive, Date rowCreatedDatetime) {
         this.tvsDetailId = tvsDetailId;
         this.tvsId = tvsId;
         this.season = season;
@@ -32,6 +33,7 @@ public class TVSeriesDetails {
         this.watchCount = watchCount;
         this.tvsStreamUrl = tvsStreamUrl;
         this.createdAdminName = createdAdminName;
+        this.isActiveStatus = isActiveStatus;
         this.isActive = isActive;
         this.rowCreatedDatetime = rowCreatedDatetime;
     }
@@ -82,6 +84,10 @@ public class TVSeriesDetails {
 
 	public void setCreatedAdminName(String createdAdminName) {
 		this.createdAdminName = createdAdminName;
+	}
+	
+	public void setActiveStatus(String isActiveStatus) {
+		this.isActiveStatus = isActiveStatus;
 	}
 
 	public void setActive(boolean isActive) {
@@ -136,6 +142,10 @@ public class TVSeriesDetails {
         return createdAdminName;
     }
 
+    public String getisActiveStatus() {
+        return isActiveStatus;
+    }
+    
     public boolean getisActive() {
         return isActive;
     }

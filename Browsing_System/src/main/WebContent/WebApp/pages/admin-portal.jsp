@@ -931,6 +931,7 @@
                 <th>Quality</th>
                 <th>Image Url</th>
                 <th>Active / InActive</th>
+                <th class="hide">Active / InActive Status</th>
                 <th class="tbl-edit"></th>
                 <th class="tbl-delete"></th>
               </tr>
@@ -947,7 +948,8 @@
 	                  <td>${TvSeriesEpisode.duration}</td>
 	                  <td>${TvSeriesEpisode.quality}</td>
 	                  <td>${TvSeriesEpisode.tvsStreamUrl}</td>
-	                  <td>${TvSeriesEpisode.isActive}</td>
+	                  <td>${TvSeriesEpisode.isActiveStatus}</td>
+	                  <td class="hide">${TvSeriesEpisode.isActive}</td>
 	                  <td class="tbl-edit"></td>
 	                  <td class="tbl-delete"></td>
 		            </tr>
