@@ -164,10 +164,10 @@ public class UserController {
 			break;
 			
 		case "Sign In":
-		{
+		
 			showDetails = true;
 
-			jspPage = "${pageContext.request.contextPath}/index.jsp";
+			jspPage = "./index.jsp";
 			showSignInForm = false;
 			showSignUpForm = false;
 			showSignUpStatus = false;
@@ -176,19 +176,68 @@ public class UserController {
 			 userName = this.request.getParameter("userName");
 			String enteredPassword = this.request.getParameter("password");
 			// system.out.println("do action up " +enteredPassword);
-			String userPassword = this.loginUser(userName);
-			// System.out.println("do action up " +userPassword);
 			boolean signInStatus = false;
+			try {
+			String userPassword = this.loginUser(userName);
+			
+			// System.out.println("do action up " +userPassword);
+			 
 			if (userPassword.equals(enteredPassword)) {
 				loginMessage = "Login Success..";
 				signInStatus = true;
 			} else {
 				loginMessage = "Login Failed..";
 			}
+			}catch (Exception ex) {
+				
+			}
 			request.setAttribute("signInStatus", signInStatus);
 			request.setAttribute("loginMessage", loginMessage);
 			break;
-		}
+		
+		case "Sign Up":
+			jspPage = "./index.jsp";
+			showSignInForm = false;
+			showSignUpForm = false;
+			showSignUpStatus = true;
+			showSignInStatus = false;
+
+			
+
+			userSignUp.setName(request.getParameter("userName"));
+			userSignUp.setEmail(request.getParameter("email"));
+			userSignUp.setMobileNo(request.getParameter("mobile"));
+			try {
+				dob = dateFormatSignup.parse(request.getParameter("dob"));
+				java.sql.Date dobSignUp = new java.sql.Date(dob.getTime());
+				userSignUp.setDob(dobSignUp);
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+
+			String pwSignUp = request.getParameter("password");
+			String confirmPwSignUp = request.getParameter("confirmPassword");
+			System.out.println(pwSignUp);
+			System.out.println(confirmPwSignUp);
+
+			if (pwSignUp.equals(confirmPwSignUp)) {
+				userSignUp.setPassword(confirmPwSignUp);
+
+				insertStatus = insertUser(userSignUp);
+				System.out.println("insert sts " + insertStatus);
+				if (insertStatus == false) {
+					SignUpMessage = "Sign Up Failed!, Retry....";
+				} else {
+					SignUpMessage = "Sign Up Successfull..";
+				}
+			} else {
+				SignUpMessage = "New Password and Confirm Password does not match...";
+			}
+			request.setAttribute("SignUpMessage", SignUpMessage);
+			request.setAttribute("signUpStatus", insertStatus);
+
+			break;
+
 		case "submit":
 			showDetails = true;
 
@@ -331,49 +380,7 @@ public class UserController {
 			request.setAttribute("deletionMessage", deletionMessage);
 			break;
 		
-		case "Sign Up":
-			jspPage = "Home.jsp";
-			showSignInForm = false;
-			showSignUpForm = false;
-			showSignUpStatus = true;
-			showSignInStatus = false;
-
-			
-
-			userSignUp.setName(request.getParameter("userName"));
-			userSignUp.setEmail(request.getParameter("email"));
-			userSignUp.setMobileNo(request.getParameter("mobile"));
-			try {
-				dob = dateFormatSignup.parse(request.getParameter("dob"));
-				java.sql.Date dobSignUp = new java.sql.Date(dob.getTime());
-				userSignUp.setDob(dobSignUp);
-			} catch (ParseException e) {
-				e.printStackTrace();
-			}
-
-			String pwSignUp = request.getParameter("password");
-			String confirmPwSignUp = request.getParameter("confirmPassword");
-			System.out.println(pwSignUp);
-			System.out.println(confirmPwSignUp);
-
-			if (pwSignUp.equals(confirmPwSignUp)) {
-				userSignUp.setPassword(confirmPwSignUp);
-
-				insertStatus = insertUser(userSignUp);
-				System.out.println("insert sts " + insertStatus);
-				if (insertStatus == false) {
-					SignUpMessage = "Sign Up Failed!, Retry....";
-				} else {
-					SignUpMessage = "Sign Up Successfull..";
-				}
-			} else {
-				SignUpMessage = "New Password and Confirm Password does not match...";
-			}
-			request.setAttribute("SignUpMessage", SignUpMessage);
-			request.setAttribute("signUpStatus", insertStatus);
-
-			break;
-
+		
 		case "submit Admin Name":
 			jspPage = "AdminManageUser.jsp";
 			showUserList = true;
