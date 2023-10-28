@@ -188,7 +188,7 @@ public class UserController {
 			} else {
 				loginMessage = "Login Failed..";
 			}
-			catch (Exception ex) {
+			}catch (Exception ex) {
 				
 			}
 			request.setAttribute("signInStatus", signInStatus);
