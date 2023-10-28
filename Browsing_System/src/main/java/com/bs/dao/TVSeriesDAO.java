@@ -44,6 +44,7 @@ public class TVSeriesDAO implements ITVSeriesDAO {
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
+
                 int returnedSeriesId = rs.getInt("tvs_id");
                 String title = rs.getString("title");
                 String tvsImgUrl = rs.getString("tvs_img_url");
@@ -57,6 +58,11 @@ public class TVSeriesDAO implements ITVSeriesDAO {
                 boolean crimeCategory = rs.getBoolean("crime_category");
                 boolean thrillerCategory = rs.getBoolean("thriller_category");
                 boolean isActive = rs.getBoolean("is_active");
+                String isActiveStatus = "Active";  
+                if (!isActive) {
+                    isActiveStatus = "InActive";
+                }
+
                 Date rowCreatedDatetime = rs.getDate("row_created_datetime");
 
                 TVSeries series = new TVSeries(returnedSeriesId, title, tvsImgUrl, actionCategory,
