@@ -16,7 +16,8 @@ public class UserDAO implements IUserDAO {
 	private static final String SELECT_USER_BY_ID = "SELECT user_id, name, email, mobile_no, dob , premium_user, password , "
 			+ "created_admin_name, is_active, row_created_datetime " + "FROM users " + "WHERE user_id = ? ";
 	// admin select user list
-	private static final String SELECT_USER_LIST = "SELECT user_id, name, email, mobile_no, dob , premium_user, password , "
+	private static final String SELECT_USER_LIST = "SELECT user_id, name, email, mobile_no, dob, "
+			+ "CASE WHEN premium_user = 1 THEN 'Yes' ELSE 'No' END AS is_premium_user, premium_user, password , "
 			+ "created_admin_name, CASE WHEN is_active = 1 THEN 'Active' ELSE 'InActive' END AS is_active_status, is_active, row_created_datetime " + "FROM users "
 			+ "ORDER BY row_created_datetime DESC ";
 	// when login
@@ -53,7 +54,7 @@ public class UserDAO implements IUserDAO {
 				String email = rs.getString("email");
 				String mobileNo = rs.getString("mobile_no");
 				Date dob = rs.getDate("dob");
-				String isPremiumUser = rs.getString("premium_user");
+				String isPremiumUser = rs.getString("is_premium_user");
 				boolean premium_user = rs.getBoolean("premium_user");
 				String password = rs.getString("password");
 				String created_admin_name = rs.getString("created_admin_name");
@@ -89,7 +90,7 @@ public class UserDAO implements IUserDAO {
 					String email = rs.getString("email");
 					String mobileNo = rs.getString("mobile_no");
 					Date dob = rs.getDate("dob");
-					String isPremiumUser = rs.getString("premium_user");
+					String isPremiumUser = rs.getString("is_premium_user");
 					boolean premium_user = rs.getBoolean("premium_user");
 					String password = rs.getString("password");
 					String created_admin_name = rs.getString("created_admin_name");
@@ -125,7 +126,7 @@ public class UserDAO implements IUserDAO {
 				String email = rs.getString("email");
 				String mobileNo = rs.getString("mobile_no");
 				Date dob = rs.getDate("dob");
-				String isPremiumUser = rs.getString("premium_user");
+				String isPremiumUser = rs.getString("is_premium_user");
 				boolean premium_user = rs.getBoolean("premium_user");
 				String password = rs.getString("password");
 				String created_admin_name = rs.getString("created_admin_name");

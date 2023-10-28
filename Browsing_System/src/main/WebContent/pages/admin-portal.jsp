@@ -362,36 +362,20 @@
             <div class="card-heading">
               <p>Add a Customer</p>
             </div>
-            <form action="../php/admin_portal_customer_add_process.php" method="post">
-              <label for="txtCustomerFirstname">First Name</label> <br />
-              <input type="text" name="firstname" id="txtCustomerFirstname" required />
-              <br />
-              <label for="txtCustomerLastname">Last Name</label> <br />
-              <input type="text" name="lastname" id="txtCustomerLastname" required />
+            <form action="${pageContext.request.contextPath}/UserServlet" method="post">
+              <label for="txtCustomerName">Name</label> <br />
+              <input type="text" name="userName" id="txtCustomerName" required />
               <br />
               <label for="txtCustomerEmail">Email</label> <br />
               <input type="text" name="email" id="txtCustomerEmail" required />
               <br />
-              <label for="txtCustomerGender">Gender</label> <br />
-              <select name="gender" id="txtCustomerGender" required>
-                <option value="" selected>-- Select a Gender --</option>
-                <option value="M">Male</option>
-                <br />
-                <option value="F">Female</option>
-                <br />
-                <option value="O">Other</option>
-                <br />
-              </select>
-              <label for="txtCustomerUsername">User Name</label> <br />
-              <input type="text" name="username" id="txtCustomerUsername" required />
+              <label for="txtCustomerMobileNumber">Mobile Number</label> <br />
+              <input type="text" name="mobile" id="txtCustomerMobileNumber" required />
               <br />
-              <label for="txtCustomerPassword">Password</label> <br />
-              <input type="password" name="password" id="txtCustomerPassword" required />
+              <label for="txtCustomerDob">Date of Birth</label> <br />
+              <input type="date" name="dob" id="txtCustomerDob" required />
               <br />
-              <label for="txtCustomerMobileNo">Mobile Number</label> <br />
-              <input type="text" name="mobileno" id="txtCustomerMobileNo" required />
-              <br />
-              <input type="submit" class="submit-btn" value="Add" />
+              <input type="submit" name="action" class="submit-btn" value="Add" />
             </form>
           </div>
         </div>
@@ -400,34 +384,32 @@
             <div class="card-heading">
               <p>Update Customer</p>
             </div>
-            <form action="../php/admin_portal_customer_update_process.php" method="post">
+            <form action="${pageContext.request.contextPath}/UserServlet" method="post">
               <label for="txtCustomerUpdateName">Name</label> <br />
-              <input type="text" name="name" id="txtCustomerUpdateName" required />
+              <input type="text" name="userName" id="txtCustomerUpdateName" required />
               <br />
               <label for="txtCustomerUpdateEmail">Email</label> <br />
               <input type="text" name="email" id="txtCustomerUpdateEmail" required />
               <br />
               <label for="txtCustomerUpdateMobileNo">Mobile Number</label>
               <br />
-              <input type="text" name="mobileno" id="txtCustomerUpdateMobileNo" required />
+              <input type="text" name="mobile" id="txtCustomerUpdateMobileNo" required />
               <br />
               <label for="txtCustomerUpdateDateofBirth">Date of Birth</label>
+              <input type="date" name="dob" id="txtCustomerUpdateDateofBirth" required />
               <br />
-              <input type="text" name="dob" id="txtCustomerUpdateDateofBirth" required />
+              <input type="hidden" name="premiumuser" id="txtCustomerUpdatePremiumUser" required />
               <br />
-              <label for="txtCustomerUpdatePremiumUser">Premium User</label>
-              <br />
-              <input type="text" name="premiumUser" id="txtCustomerUpdatePremiumUser" required />
-              <br />
-              <label for="txtCustomerUpdateStatus">Active / InActive</label>
-              <br />
-              <select name="status" id="txtCustomerUpdateStatus" required>
-                <option value=""></option>
+              <input type="hidden" name="updatestatus" id="txtCustomerUpdateStatus" required />
+              <br />    
+              <select name="status" id="txtMemberUpdateStatus" required>
+                <option value="" selected>-- Select User Status --</option>
                 <option value="1">Active</option>
                 <option value="0">InActive</option>
-              </select>
-              <input type="hidden" name="rowid" id="editCustomerRowId" />
-              <input type="submit" class="submit-btn" value="Update" />
+              </select>  
+              <br />            
+              <input type="hidden" name="userId" id="editCustomerRowId" />
+              <input type="submit" class="submit-btn" value="Update" name="action"/>
             </form>
           </div>
         </div>
@@ -459,8 +441,8 @@
 	                  <td>${user.email}</td>
 	                  <td>${user.mobileNo}</td>
 	                  <td>${user.dob}</td>
-	                  <td>${user.isActiveStatus}</td>
-	                  <td class="hide">${user.isPremiumUser}</td>
+	                  <td>${user.isPremiumUser}</td>
+	                  <td class="hide">${user.premiumUser}</td>
 	                  <td>${user.isActiveStatus}</td>
 	                  <td class="hide">${user.isActive}</td>
 	                  <td class="tbl-edit"></td>
@@ -469,10 +451,10 @@
 	                  	<i class="fa-solid fa-pen-to-square update-icon" onclick="editUpdateCustomerRow('user_${user.userId}')"></i>
 	                  </td>
                       <td>
-	                      <form action="../php/admin_portal_customer_delete_process.php" method="post">
-		                      <input type="hidden" name="user_id" value="${user.userId}">
-		                      <i class="fa-solid fa-trash-can delete-icon" onclick="confirmDelete(event)"></i>';
-		                      <input type="submit" style="display: none;">
+	                      <form action="${pageContext.request.contextPath}/UserServlet" method="post">
+		                      <input type="hidden" name="userId" value="${user.userId}">
+		                      <i class="fa-solid fa-trash-can delete-icon" onclick="confirmDelete(event, 'userDelete')"></i>
+		                      <input type="submit" name="action" value="Delete" id="userDelete" style="display: none">
 	                      </form>
                       </td>
 		          	</tr>
@@ -1018,45 +1000,14 @@
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script>
-  /*
-  window.addEventListener("load", function () {
-	    // Add an event listener to a button or any trigger that should initiate the AJAX request
-	    const getMovieDataButton = document.getElementById("getMovieDataButton");
-	    getMovieDataButton.addEventListener("click", function () {
-	        retrieveMovieDataAndPopulateTable();
-	    });
-	});
+  document.addEventListener('DOMContentLoaded', function() {
+	    //var elems = document.querySelectorAll('select');
+	    //var instances = M.FormSelect.init(elems);
+	    
+	    var select = document.querySelectorAll('select');
+	    var instances = M.FormSelect.init(select);
+	  });
 
-	function retrieveMovieDataAndPopulateTable() {
-	    // Make an AJAX request to fetch movie data from the servlet
-	    $.ajax({
-	        url: "${pageContext.request.contextPath}/MovieServlet",
-	        method: "GET",
-	        dataType: "json", // Assuming the servlet returns JSON data
-	        success: function (data) {
-	        	console.log(data);
-	        },
-	        error: function (error) {
-	            console.log("Error fetching movie data: " + error);
-	        }
-	    });
-	}
-	
-	function retrieveTvSeriesDataAndPopulateTable() {
-	    // Make an AJAX request to fetch movie data from the servlet
-	    $.ajax({
-	        url: "${pageContext.request.contextPath}/TVSeriesServlet",
-	        method: "GET",
-	        dataType: "json", // Assuming the servlet returns JSON data
-	        success: function (data) {
-	        	console.log(data);
-	        },
-	        error: function (error) {
-	            console.log("Error fetching movie data: " + error);
-	        }
-	    });
-	}
-	 */
 </script>
 
 </body>
