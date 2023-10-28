@@ -384,36 +384,27 @@
             <div class="card-heading">
               <p>Update Customer</p>
             </div>
-            <form action="../php/admin_portal_customer_update_process.php" method="post">
+            <form action="${pageContext.request.contextPath}/UserServlet" method="post">
               <label for="txtCustomerUpdateName">Name</label> <br />
-              <input type="text" name="name" id="txtCustomerUpdateName" required />
+              <input type="text" name="userName" id="txtCustomerUpdateName" required />
               <br />
               <label for="txtCustomerUpdateEmail">Email</label> <br />
               <input type="text" name="email" id="txtCustomerUpdateEmail" required />
               <br />
               <label for="txtCustomerUpdateMobileNo">Mobile Number</label>
               <br />
-              <input type="text" name="mobileno" id="txtCustomerUpdateMobileNo" required />
+              <input type="text" name="mobile" id="txtCustomerUpdateMobileNo" required />
               <br />
               <label for="txtCustomerUpdateDateofBirth">Date of Birth</label>
-              <br />
-              <input type="text" name="dob" id="txtCustomerUpdateDateofBirth" required />
-              <br />
-              <label for="txtCustomerUpdatePremiumUser">Premium User</label>
-              <br />
-              <select name="premium" id="txtCustomerUpdatePremiumUser" required>
-                <option value="1">Yes</option>
-                <option value="0">No</option>
-              </select>
-              <br />
-              <label for="txtCustomerUpdateStatus">Active / InActive</label>
-              <br />
-              <select name="status" id="txtCustomerUpdateStatus" required>
+              <br />  
+              <select name="status" id="txtMemberUpdateStatus" required>
+                <option value="" selected>-- Select User Status --</option>
                 <option value="1">Active</option>
                 <option value="0">InActive</option>
-              </select>
-              <input type="hidden" name="rowid" id="editCustomerRowId" />
-              <input type="submit" class="submit-btn" value="Update" />
+              </select>  
+              <br />            
+              <input type="hidden" name="userId" id="editCustomerRowId" />
+              <input type="submit" class="submit-btn" value="Update" name="action"/>
             </form>
           </div>
         </div>
@@ -455,10 +446,10 @@
 	                  	<i class="fa-solid fa-pen-to-square update-icon" onclick="editUpdateCustomerRow('user_${user.userId}')"></i>
 	                  </td>
                       <td>
-	                      <form action="../php/admin_portal_customer_delete_process.php" method="post">
-		                      <input type="hidden" name="user_id" value="${user.userId}">
+	                      <form action="${pageContext.request.contextPath}/UserServlet" method="post">
+		                      <input type="hidden" name="userId" value="${user.userId}">
 		                      <i class="fa-solid fa-trash-can delete-icon" onclick="confirmDelete(event)"></i>';
-		                      <input type="submit" style="display: none;">
+		                      <input type="submit" name="action" value="Delete" style="display: none;">
 	                      </form>
                       </td>
 		          	</tr>
