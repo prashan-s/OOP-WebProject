@@ -1,3 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core"%>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -37,20 +41,37 @@
 
 <body id="top">
 
+
 <c:if test="${signUpStatus == true}">
+
+	<script>
+        alert("Registration was successful!");
+    </script>
 
 </c:if>
 
 <c:if test="${signUpStatus == false}">
 
+	<script>
+        alert("Registration failed. Please check your information and try again.");
+    </script>
+
 </c:if>
 
 <c:if test="${signInStatus == true}">
+
+	<script>
+        alert("Sign-in was successful!");
+    </script>
 
 </c:if>
 
 <c:if test="${signInStatus == false}">
 
+	<script>
+        alert("Incorrect username or password. Please try again.");
+    </script>
+ 
 </c:if>
 
   <!-- 
