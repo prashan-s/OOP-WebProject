@@ -34,21 +34,38 @@ public class TVSeriesDetailsServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         
         this.controller = new TVSeriesDetailsController(request, response);
-		String a = request.getParameter("action");
-		controller.doAction(a);
+		//Handling the null Exception
+		try {
+			String a = request.getParameter("action");
+			controller.doAction(a);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
     }
     
     protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	
     	this.controller = new TVSeriesDetailsController(request, response);
-    	String a = request.getParameter("action");
-        controller.doAction(a);
+    	
+		//Handling the null Exception
+		try {
+	    	String a = request.getParameter("action");
+	        controller.doAction(a);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
     }
     
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
     	this.controller = new TVSeriesDetailsController(request, response);
-    	String a = request.getParameter("action");
-        controller.doAction(a);
+    	
+		//Handling the null Exception
+		try {
+	    	String a = request.getParameter("action");
+	        controller.doAction(a);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

@@ -52,13 +52,115 @@ public class UserController {
 		boolean showEditUserForm = false;
 		boolean showUpdateUserStatus = false;
 		boolean showDeleteUserStatus = false;
-		
+		boolean deleteStatus = false;
+		String deletionMessage;
+
 		User userSignUp = new User();
 		String SignUpMessage = "";
 		boolean insertStatus = false;
 		SimpleDateFormat dateFormatSignup = new SimpleDateFormat("yyyy-MM-dd");
 		
 		switch (action) {
+		case "Add":
+			jspPage = "./pages/admin-portal.jsp";
+			showSignInForm = false;
+			showSignUpForm = false;
+			showSignUpStatus = true;
+			showSignInStatus = false;
+
+			userSignUp.setName(request.getParameter("userName"));
+			userSignUp.setEmail(request.getParameter("email"));
+			userSignUp.setMobileNo(request.getParameter("mobile"));
+			
+			try {
+				dob = dateFormatSignup.parse(request.getParameter("dob"));
+				java.sql.Date dobSignUp = new java.sql.Date(dob.getTime());
+				userSignUp.setDob(dobSignUp);
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+			userSignUp.setPassword("Test123");
+			userSignUp.setPremiumUser(false);
+			userSignUp.setCreatedAdminName("Admin");
+			insertStatus = insertUser(userSignUp);
+			
+			System.out.println("insert sts " + insertStatus);
+
+			if (insertStatus == false) {
+				SignUpMessage = "Sign Up Failed!, Retry....";
+			} else {
+				SignUpMessage = "Sign Up Successfull..";
+			}
+			
+			request.setAttribute("SignUpMessage", SignUpMessage);
+
+			break;
+			
+		case "Update":
+			jspPage = "./pages/admin-portal.jsp";
+			showSignInForm = false;
+			showSignUpForm = false;
+			showSignUpStatus = true;
+			showSignInStatus = false;
+
+			userSignUp.setName(request.getParameter("userId"));
+			userSignUp.setName(request.getParameter("userName"));
+			userSignUp.setEmail(request.getParameter("email"));
+			userSignUp.setMobileNo(request.getParameter("mobile"));
+			userSignUp.setIsActive(true);
+			String activeStr = request.getParameter("status");
+			userSignUp.setIsActive(true);
+			
+			try {
+				if (activeStr.equals("0")){
+					userSignUp.setIsActive(true);
+				}
+				dob = dateFormatSignup.parse(request.getParameter("dob"));
+				java.sql.Date dobSignUp = new java.sql.Date(dob.getTime());
+				userSignUp.setDob(dobSignUp);
+				
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+			
+			userSignUp.setPassword("Test123");
+			userSignUp.setPremiumUser(false);
+			userSignUp.setCreatedAdminName("Admin");
+			insertStatus = insertUser(userSignUp);
+			
+			System.out.println("insert sts " + insertStatus);
+
+			if (insertStatus == false) {
+				SignUpMessage = "Sign Up Failed!, Retry....";
+			} else {
+				SignUpMessage = "Sign Up Successfull..";
+			}
+			
+			request.setAttribute("SignUpMessage", SignUpMessage);
+
+			break;
+			
+		case "Delete":
+			
+			jspPage = "./pages/admin-portal.jsp";
+			showUserIdForm = false;
+			showPwEditForm = false;
+			showPwChangeStatus = false;
+			showDeleteForm = false;
+			showDeleteStatus = true;
+			deleteStatus = false;
+			deletionMessage = "";
+			userId = getValueForId("userId");
+
+			deleteStatus = deleteUser(userId);
+			if (deleteStatus == false) {
+				deletionMessage = "Deletion Failed!, Retry....";
+			} else {
+				deletionMessage = "Deletion Successfull....";
+			}
+			request.setAttribute("deletionMessage", deletionMessage);
+			break;
+			
 		case "Sign In":
 			showDetails = true;
 
@@ -69,6 +171,7 @@ public class UserController {
 			Cookie cookie = new Cookie("userId", Integer.toString(userId));
 			this.response.addCookie(cookie);
 			break;
+			
 		case "submit":
 			showDetails = true;
 
@@ -198,8 +301,8 @@ public class UserController {
 			showPwChangeStatus = false;
 			showDeleteForm = false;
 			showDeleteStatus = true;
-			boolean deleteStatus = false;
-			String deletionMessage = "";
+			deleteStatus = false;
+			deletionMessage = "";
 			userId = getValueForId("userId");
 
 			deleteStatus = deleteUser(userId);
@@ -240,40 +343,7 @@ public class UserController {
 
 			break;
 
-		case "Add":
-			jspPage = "admin-portal.jsp";
-			showSignInForm = false;
-			showSignUpForm = false;
-			showSignUpStatus = true;
-			showSignInStatus = false;
-
-			userSignUp.setName(request.getParameter("userName"));
-			userSignUp.setEmail(request.getParameter("email"));
-			userSignUp.setMobileNo(request.getParameter("mobile"));
-			
-			try {
-				dob = dateFormatSignup.parse(request.getParameter("dob"));
-				java.sql.Date dobSignUp = new java.sql.Date(dob.getTime());
-				userSignUp.setDob(dobSignUp);
-			} catch (ParseException e) {
-				e.printStackTrace();
-			}
-			userSignUp.setPassword("Test123");
-			userSignUp.setPremiumUser(false);
-			userSignUp.setCreatedAdminName("Admin");
-			insertStatus = insertUser(userSignUp);
-			
-			System.out.println("insert sts " + insertStatus);
-
-			if (insertStatus == false) {
-				SignUpMessage = "Sign Up Failed!, Retry....";
-			} else {
-				SignUpMessage = "Sign Up Successfull..";
-			}
-			
-			request.setAttribute("SignUpMessage", SignUpMessage);
-
-			break;
+		
 			
 		case "register":
 			jspPage = "Home.jsp";
