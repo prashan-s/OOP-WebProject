@@ -251,6 +251,24 @@ public class TVSeriesDetailsController {
 		}
 		return tvSeriesDetailsId;
 	}
+	
+	public void selectAllTVSeriesEpisodesDetails() {
+
+		try {
+			List<TVSeriesDetails> allTVSeriesEpisodesList = new TVSeriesDetailsDAO().selectAllTVSeriesEpisodesDetails();
+			request.setAttribute("allTVSeriesEpisodesList", allTVSeriesEpisodesList);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			this.dispatcher =  request.getRequestDispatcher("./WebApp/pages/admin-portal.jsp");
+			this.dispatcher.forward(request, response);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
 
 	public void selectTVSeriesDetails(int tvsDetailId) {
 

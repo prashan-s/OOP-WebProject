@@ -1,6 +1,8 @@
 package com.bs.controller;
 
+import com.bs.dao.MovieDAO;
 import com.bs.dao.TVSeriesDAO;
+import com.bs.model.Movie;
 import com.bs.model.TVSeries;
 
 
@@ -265,6 +267,31 @@ public class TVSeriesController {
 			}
 		}
 		return tvSeriesId;
+	}
+	
+	public void selectAllTvSeries() {
+		
+		try {
+			List<TVSeries> seriesList = new TVSeriesDAO().selectAllTVSeries();
+			System.out.println("TV Series: " + seriesList.getFirst().getTitle());
+			request.setAttribute("seriesList", seriesList);
+
+			try {
+				this.dispatcher =  request.getRequestDispatcher("./WebApp/pages/admin-portal.jsp?type=TvSeries");
+				this.dispatcher.forward(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		try {
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void selectTVSeries(int seriesId) {

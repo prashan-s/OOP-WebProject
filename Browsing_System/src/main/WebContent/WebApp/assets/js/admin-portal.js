@@ -72,20 +72,22 @@ function toggleSignInSignUpCardForm(formHide, formShow, method) {
 
 
 window.addEventListener("load", function () {
-  // Get the URL parameter 'type'
-  const urlParams = new URLSearchParams(window.location.search);
-  const updateType = urlParams.get("type");
-
-  console.log(updateType);
-  if (updateType === "customer") {
-    showCustomerGrid("manageCustomers");
-  } else if (updateType === "Movie") {
-    showMovieGrid("manageMovies");
-  } else if (updateType === "TvSeries") {
-    showTvSeriesGrid("manageTvSeriess");
-  } else if (updateType === "TvSeriesEpisodes") {
-    showTvSeriesGrid("manageTvSeriesEpisodess");
-  }
+	
+	  const currentGrid = localStorage.getItem("currentGrid");
+	  console.log(currentGrid);
+	  if (currentGrid) {
+		  // Call the corresponding function to display the grid
+		  if (currentGrid === "customer") {
+		    showCustomerGrid("manageCustomers");
+		  } else if (currentGrid === "Movie") {
+		    showMovieGrid("manageMovies");
+		  } else if (currentGrid === "TvSeries") {
+		    showTvSeriesGrid("manageTvSeriess");
+		  } else if (currentGrid === "TvSeriesEpisodes") {
+		    showTvSeriesEpisodesGrid("manageTvSeriesEpisodess");
+		  }
+	  }  
+		
 
   // Call collapseSubLists on page load
   const navigationBar = document.getElementById("adminNavigationBar");
@@ -193,6 +195,8 @@ function showMovieGrid(id) {
   manageMovie.classList.remove("hide");
 
   closeOverlay();
+  localStorage.setItem("currentGrid", "Movie");
+  submitFormWithLocalStorageCheck('getMovieDataButton', 'formMovieGetSubmitted');
 }
 
 function showTvSeriesGrid(id) {
@@ -206,6 +210,8 @@ function showTvSeriesGrid(id) {
   manageTvSeries.classList.remove("hide");
 
   closeOverlay();
+  localStorage.setItem("currentGrid", "TvSeries");
+  submitFormWithLocalStorageCheck('getTvSeriesDataButton', 'formMovieGetSubmitted');
 }
 
 function showTvSeriesEpisodesGrid(id) {
@@ -219,6 +225,8 @@ function showTvSeriesEpisodesGrid(id) {
   manageTvSeriesEpisodes.classList.remove("hide");
 
   closeOverlay();
+  localStorage.setItem("currentGrid", "TvSeriesEpisodes");
+  submitFormWithLocalStorageCheck('getTvSeriesEpisodesDataButton', 'formTvSeriesEpisodesGetSubmitted');
 }
 
 function showSubscriptionPlanGrid(id) {
@@ -241,6 +249,18 @@ function hideGrids() {
     containers[i].classList.add("hide");
   }
 }
+
+function submitFormWithLocalStorageCheck(btnId, storageKey) {
+        if (!localStorage.getItem(storageKey)) {
+            //document.getElementById(formId).submit();
+            const getFormSubmitBtn = document.getElementById(btnId);
+	    	getFormSubmitBtn.click();
+            localStorage.setItem(storageKey, 'true');
+        }else {
+            // Optionally, you can remove the localStorage item to reset it for future page loads
+            localStorage.removeItem(storageKey);
+        }
+    }
 
 function deselectHeading() {
   const admingHeadings = document.getElementsByClassName("adming-heading");

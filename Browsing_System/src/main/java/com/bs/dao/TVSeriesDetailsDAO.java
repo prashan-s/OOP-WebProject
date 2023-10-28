@@ -12,6 +12,10 @@ import java.sql.Date;
 
 public class TVSeriesDetailsDAO implements ITVSeriesDetailsDAO {
 
+	private static final String SELECT_ALL_TV_SERIES_BY_ID = "SELECT tvs_detail_id, tvs_id, season, episode, description, year, duration, quality, " +
+            "watch_count, tvs_stream_url, created_admin_name, is_active, row_created_datetime " +
+            "FROM tv_series_details";
+	
     private static final String SELECT_TV_SERIES_BY_ID = "SELECT tvs_detail_id, tvs_id, season, episode, description, year, duration, quality, " +
             "watch_count, tvs_stream_url, created_admin_name, is_active, row_created_datetime " +
             "FROM tv_series_details " +
@@ -27,6 +31,43 @@ public class TVSeriesDetailsDAO implements ITVSeriesDetailsDAO {
 
     private static final String DELETE_TV_SERIES = "UPDATE tv_series_details SET is_active=0 WHERE tvs_detail_id=?";
 
+    // Select All TV series details
+    public List<TVSeriesDetails> selectAllTVSeriesEpisodesDetails() {
+        ArrayList<TVSeriesDetails> seriesDetailsList = new ArrayList<>();
+
+        try {
+            Connection con = DBConnectionMSSQL.getConnection();
+            PreparedStatement stmt = con.prepareStatement(SELECT_ALL_TV_SERIES_BY_ID);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                int tvsDetailIdReturned = rs.getInt("tvs_detail_id");
+                int tvsId = rs.getInt("tvs_id");
+                int season = rs.getInt("season");
+                int episode = rs.getInt("episode");
+                String description = rs.getString("description");
+                int year = rs.getInt("year");
+                int duration = rs.getInt("duration");
+                String quality = rs.getString("quality");
+                int watchCount = rs.getInt("watch_count");
+                String tvsStreamUrl = rs.getString("tvs_stream_url");
+                String createdAdminName = rs.getString("created_admin_name");
+                boolean isActive = rs.getBoolean("is_active");
+                Date rowCreatedDatetime = rs.getDate("row_created_datetime");
+
+                TVSeriesDetails seriesDetails = new TVSeriesDetails(tvsDetailIdReturned, tvsId, season, episode, description,
+                        year, duration, quality, watchCount, tvsStreamUrl, createdAdminName, isActive, rowCreatedDatetime);
+
+                seriesDetailsList.add(seriesDetails);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return seriesDetailsList;
+    }
+    
     // Select TV series details
     public List<TVSeriesDetails> selectTVSeriesDetails(int tvsDetailId) {
         ArrayList<TVSeriesDetails> seriesDetailsList = new ArrayList<>();

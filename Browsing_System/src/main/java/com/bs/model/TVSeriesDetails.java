@@ -136,7 +136,7 @@ public class TVSeriesDetails {
         return createdAdminName;
     }
 
-    public boolean isActive() {
+    public boolean getisActive() {
         return isActive;
     }
 

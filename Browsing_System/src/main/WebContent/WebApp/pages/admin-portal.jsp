@@ -683,10 +683,10 @@
           </div>
         </div>
         <div class="table-card">
-	        <form action="${pageContext.request.contextPath}/MovieServlet" method="GET">
-	            <input type="submit" value="Fetch Movie Data">
-	        </form>
-          <table>
+	        <form id="movieGetForm" action="${pageContext.request.contextPath}/MovieServlet" method="GET">
+	        	<input type="submit" id="getMovieDataButton" style="display: none">
+		      </form>
+          <table id="movieTable">
             <thead>
               <tr>
                 <th class="hide">Movie ID</th>
@@ -708,20 +708,20 @@
 	            <c:forEach items="${movieData}" var="movie">
 		            <tr>
 		              <td class="hide">${movie.movie_id}</td>
-			          <td>${movie.title}</td>
-			          <td>${movie.description}</td>
-			          <td>${movie.year}</td>
-			          <td>${movie.duration}</td>
-			          <td>${movie.quality}</td>
-			          <td>${movie.movie_img_url}</td>
-			          <td>${movie.movie_stream_url}</td>
-			          <td>${movie.action_category}</td>
-			          <td class="hide">${movie.is_active}</td>
-			          <td>${movie.is_active}</td>
-			          <td class="tbl-edit"></td>
-			          <td class="tbl-delete"></td>
-			        </tr>
-			    </c:forEach>
+                  <td>${movie.title}</td>
+                  <td>${movie.description}</td>
+                  <td>${movie.year}</td>
+                  <td>${movie.duration}</td>
+                  <td>${movie.quality}</td>
+                  <td>${movie.movie_img_url}</td>
+                  <td>${movie.movie_stream_url}</td>
+                  <td>${movie.action_category}</td>
+                  <td class="hide">${movie.is_active}</td>
+                  <td>${movie.is_active}</td>
+                  <td class="tbl-edit"></td>
+                  <td class="tbl-delete"></td>
+			          </tr>
+			        </c:forEach>
             </tbody>
           </table>
         </div>
@@ -804,22 +804,33 @@
           </div>
         </div>
         <div class="table-card">
-          <table>
+          <form id="tvSeriesGetForm" action="${pageContext.request.contextPath}/TVSeriesServlet" method="GET">
+          	<input type="submit" id="getTvSeriesDataButton" style="display: none">
+	      </form>
+          <table id="tvSeriesTable">
             <!-- <caption>Statement Summary</caption> -->
             <thead>
               <tr>
                 <th class="hide">ID</th>
                 <th>TvSeries Name</th>
-                <th>TvSeries Description</th>
-                <th>Starting Date</th>
-                <th>Ending Date</th>
-                <th>TvSeries Percentage</th>
-                <th class="hide">Status</th>
+                <th>TvSeries Iamge</th>
                 <th>Active / InActive</th>
                 <th class="tbl-edit"></th>
                 <th class="tbl-delete"></th>
               </tr>
             </thead>
+            <tbody>
+	            <c:forEach items="${seriesList}" var="series">
+		            <tr>
+		              <td class="hide">${series.tvs_id}</td>
+	                  <td>${series.title}</td>
+	                  <td>${series.tvs_img_url}</td>
+	                  <td>${series.active}</td>
+	                  <td class="tbl-edit"></td>
+	                  <td class="tbl-delete"></td>
+			          </tr>
+			        </c:forEach>
+            </tbody>
           </table>
         </div>
       </div>
@@ -903,22 +914,45 @@
           </div>
         </div>
         <div class="table-card">
+          <form id="tvSeriesEpisodesGetForm" action="${pageContext.request.contextPath}/TVSeriesDetailsServlet" method="GET">
+          	<input type="submit" id="getTvSeriesEpisodesDataButton" style="display: none">
+	      </form>
           <table>
             <!-- <caption>Statement Summary</caption> -->
             <thead>
               <tr>
                 <th class="hide">ID</th>
-                <th>TvSeriesEpisodes Name</th>
-                <th>TvSeriesEpisodes Description</th>
-                <th>Starting Date</th>
-                <th>Ending Date</th>
-                <th>TvSeriesEpisodes Percentage</th>
-                <th class="hide">Status</th>
+                <th>Tv Series TVS ID</th>
+                <th>Tv Series Season</th>
+                <th>Tv Series Episode</th>
+                <th>Description</th>
+                <th>Year</th>
+                <th>Duration</th>
+                <th>Quality</th>
+                <th>Image Url</th>
                 <th>Active / InActive</th>
                 <th class="tbl-edit"></th>
                 <th class="tbl-delete"></th>
               </tr>
             </thead>
+            <tbody>
+	            <c:forEach items="${allTVSeriesEpisodesList}" var="TvSeriesEpisode">
+		            <tr>
+		              <td class="hide">${TvSeriesEpisode.tvsDetailId}</td>
+	                  <td>${TvSeriesEpisode.tvsId}</td>
+	                  <td>${TvSeriesEpisode.season}</td>
+	                  <td>${TvSeriesEpisode.episode}</td>
+	                  <td>${TvSeriesEpisode.description}</td>
+	                  <td>${TvSeriesEpisode.year}</td>
+	                  <td>${TvSeriesEpisode.duration}</td>
+	                  <td>${TvSeriesEpisode.quality}</td>
+	                  <td>${TvSeriesEpisode.tvsStreamUrl}</td>
+	                  <td>${TvSeriesEpisode.isActive}</td>
+	                  <td class="tbl-edit"></td>
+	                  <td class="tbl-delete"></td>
+		            </tr>
+		        </c:forEach>
+            </tbody>
           </table>
         </div>
       </div>
@@ -1002,6 +1036,8 @@
           </div>
         </div>
         <div class="table-card">
+          <form id="subscriptionPlanGetForm" action="${pageContext.request.contextPath}/MovieServlet" method="GET">
+		      </form>
           <table>
             <!-- <caption>Statement Summary</caption> -->
             <thead>
@@ -1063,6 +1099,49 @@
   -->
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+  /*
+  window.addEventListener("load", function () {
+	    // Add an event listener to a button or any trigger that should initiate the AJAX request
+	    const getMovieDataButton = document.getElementById("getMovieDataButton");
+	    getMovieDataButton.addEventListener("click", function () {
+	        retrieveMovieDataAndPopulateTable();
+	    });
+	});
+
+	function retrieveMovieDataAndPopulateTable() {
+	    // Make an AJAX request to fetch movie data from the servlet
+	    $.ajax({
+	        url: "${pageContext.request.contextPath}/MovieServlet",
+	        method: "GET",
+	        dataType: "json", // Assuming the servlet returns JSON data
+	        success: function (data) {
+	        	console.log(data);
+	        },
+	        error: function (error) {
+	            console.log("Error fetching movie data: " + error);
+	        }
+	    });
+	}
+	
+	function retrieveTvSeriesDataAndPopulateTable() {
+	    // Make an AJAX request to fetch movie data from the servlet
+	    $.ajax({
+	        url: "${pageContext.request.contextPath}/TVSeriesServlet",
+	        method: "GET",
+	        dataType: "json", // Assuming the servlet returns JSON data
+	        success: function (data) {
+	        	console.log(data);
+	        },
+	        error: function (error) {
+	            console.log("Error fetching movie data: " + error);
+	        }
+	    });
+	}
+	 */
+</script>
+
 </body>
 
 </html>

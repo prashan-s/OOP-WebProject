@@ -24,6 +24,7 @@ public class TVSeriesServlet extends HttpServlet {
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	this.controller = new TVSeriesController(request, response);
+    	this.controller.selectAllTvSeries();
     }
 
     /**
