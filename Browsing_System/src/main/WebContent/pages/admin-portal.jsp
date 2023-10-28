@@ -600,8 +600,8 @@
                       <td>
 	                      <form action="${pageContext.request.contextPath}/MovieServlet" method="post">
 		                      <input type="hidden" name="movie_id" value="${movie.movie_id}">
-		                      <i class="fa-solid fa-trash-can delete-icon" onclick="confirmDelete(event)"></i>';
-		                      <input type="submit" style="display: none;">
+		                      <i class="fa-solid fa-trash-can delete-icon" onclick="confirmDelete(event, 'btnmovieDelete')"></i>';
+		                      <input type="submit" id="btnmovieDelete" style="display: none;">
 	                      </form>
                       </td>
 		          </tr>
@@ -629,7 +629,8 @@
             <div class="card-heading">
               <p>Add a TvSeries</p>
             </div>
-            <form action="../php/admin_portal_TvSeries_add_process.php" method="post" enctype="multipart/form-data">
+            <%--Add Tv Series--%>
+            <form action="${pageContext.request.contextPath}/TVSeriesServlet" method="post" enctype="multipart/form-data">
               <label for="txtTvSeriesName">TvSeries Name</label> <br />
               <input type="text" name="TvSeriesname" id="txtTvSeriesName" required />
               <br />
@@ -652,12 +653,14 @@
             </form>
           </div>
         </div>
+
         <div class="update-TvSeries update-form" id="updateTvSeriesForm">
           <div class="card">
             <div class="card-heading">
               <p>Update Tv Series</p>
             </div>
-            <form action="../php/admin_portal_TvSeries_update_process.php" method="post">
+            <%--Update Tv Series--%>
+            <form action="${pageContext.request.contextPath}/TVSeriesServlet" method="post">
               <label for="txtUpdateTvSeriesName">TvSeries Name</label> <br />
               <input type="text" name="TvSeriesname" id="txtUpdateTvSeriesName" required />
               <br />
@@ -710,8 +713,16 @@
 	                  <td>${series.title}</td>
 	                  <td>${series.tvs_img_url}</td>
 	                  <td>${series.active}</td>
-	                  <td class="tbl-edit"></td>
-	                  <td class="tbl-delete"></td>
+                      <td>
+                        <i class="fa-solid fa-pen-to-square update-icon" onclick="editUpdateMovieRow('movie_${movie.movie_id}')"></i>
+                      </td>
+                      <td>
+                        <form action="${pageContext.request.contextPath}/TVSeriesServlet" method="post">
+                          <input type="hidden" name="movie_id" value="${movie.movie_id}">
+                          <i class="fa-solid fa-trash-can delete-icon" onclick="confirmDelete(event, 'btnTvSeriesDelete')"></i>';
+                          <input type="submit" id="btnTvSeriesDelete" style="display: none;">
+                        </form>
+                      </td>
 			          </tr>
 			        </c:forEach>
             </tbody>
