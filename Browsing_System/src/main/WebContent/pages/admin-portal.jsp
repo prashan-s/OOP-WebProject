@@ -52,7 +52,7 @@
       </ul>
 
       <a href="../index.jsp" class="logo">
-        <img src="/assets/images/logo.svg" alt="Filmlane logo" />
+        <img src="../assets/images/logo.svg" alt="Filmlane logo" />
       </a>
 
       <div class="header-actions">
@@ -86,7 +86,7 @@
       <nav class="navbar" data-navbar>
         <div class="navbar-top">
           <a href="../index.jsp" class="logo">
-            <img src="/assets/images/logo.svg" alt="Filmlane logo" />
+            <img src="../assets/images/logo.svg" alt="Filmlane logo" />
           </a>
 
           <button class="menu-close-btn" data-menu-close-btn>
@@ -96,7 +96,7 @@
 
         <ul class="navbar-list">
           <li>
-            <a href="./index.jsp" class="navbar-link">Home</a>
+            <a href="../index.jsp" class="navbar-link">Home</a>
           </li>
 
           <li>

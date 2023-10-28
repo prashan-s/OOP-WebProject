@@ -24,12 +24,12 @@ public class TVSeriesDetailsController {
 	public TVSeriesDetailsController(HttpServletRequest request, HttpServletResponse response) {
 		this.request = request;
 		this.response = response;
-		this.dispatcher = request.getRequestDispatcher("TVSeriesDetails.jsp");
+		this.dispatcher = request.getRequestDispatcher("./pages/tv-series.jsp");
 		this.dao = new TVSeriesDetailsDAO();
 	}
 
 	public void doAction(String action) {
-		String jspPage = "TVSeriesDetails.jsp";
+		String jspPage = "./pages/tv-series-details.jsp";
 		int tvSeriesDetailsId = -1;
 		boolean showTVSeriesDetailsIdForm = true;
 		boolean showDetails = false;
@@ -43,6 +43,7 @@ public class TVSeriesDetailsController {
 		switch (action) {
 
 			case "submit":
+				jspPage = "./pages/tv-series-details.jsp";
 				showTVSeriesDetailsIdForm = false;
 				showDetails = true;
 				showEditForm = false;
@@ -61,7 +62,7 @@ public class TVSeriesDetailsController {
 
 			case "edit":
 
-				
+				jspPage = "./pages/admin-portal.jsp";
 				showTVSeriesDetailsIdForm = false;
 				showDetails = false;
 				showEditForm = true;
@@ -78,6 +79,7 @@ public class TVSeriesDetailsController {
 
 			case "delete":
 				
+				jspPage = "./pages/tv-series-details.jsp";
 				showTVSeriesDetailsIdForm = false;
 				showDetails = false;
 				showEditForm = false;
@@ -101,7 +103,7 @@ public class TVSeriesDetailsController {
 
 			case "add":
 
-				
+				jspPage = "./pages/tv-series-details.jsp";
 				showTVSeriesDetailsIdForm = false;
 				showDetails = false;
 				showEditForm = false;
@@ -118,7 +120,7 @@ public class TVSeriesDetailsController {
 
 			case "insert":
 
-				
+				jspPage = "./pages/tv-series-details.jsp";
 				showTVSeriesDetailsIdForm = false;
 				showDetails = false;
 				showEditForm = false;
@@ -161,7 +163,7 @@ public class TVSeriesDetailsController {
 
 			case "update":
 
-				
+				jspPage = "./pages/tv-series-details.jsp";
 				showTVSeriesDetailsIdForm = false;
 				showDetails = false;
 				showEditForm = false;
