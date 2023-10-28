@@ -162,6 +162,7 @@ public class UserController {
 			break;
 			
 		case "Sign In":
+		{
 			showDetails = true;
 
 			jspPage = "${pageContext.request.contextPath}/index.jsp";
@@ -185,7 +186,7 @@ public class UserController {
 			request.setAttribute("signInStatus", signInStatus);
 			request.setAttribute("loginMessage", loginMessage);
 			break;
-			
+		}
 		case "submit":
 			showDetails = true;
 
@@ -327,39 +328,8 @@ public class UserController {
 			}
 			request.setAttribute("deletionMessage", deletionMessage);
 			break;
-
-		case "signIn":
-			jspPage = "Home.jsp";
-			showSignInForm = false;
-			showSignUpForm = false;
-			showSignUpStatus = false;
-			showSignInStatus = true;
-			String loginMessage = "";
-			String userName = this.request.getParameter("userName");
-			String enteredPassword = this.request.getParameter("password");
-			// system.out.println("do action up " +enteredPassword);
-			String userPassword = this.loginUser(userName);
-			// System.out.println("do action up " +userPassword);
-			if (userPassword.equals(enteredPassword)) {
-				loginMessage = "Login Success..";
-			} else {
-				loginMessage = "Login Failed..";
-			}
-			request.setAttribute("loginMessage", loginMessage);
-			break;
-
-		case "signUp":
-			jspPage = "Home.jsp";
-			showSignInForm = false;
-			showSignUpForm = true;
-			showSignUpStatus = false;
-			showSignInStatus = false;
-
-			break;
-
 		
-			
-		case "register":
+		case "Sign Up":
 			jspPage = "Home.jsp";
 			showSignInForm = false;
 			showSignUpForm = false;
@@ -398,6 +368,7 @@ public class UserController {
 				SignUpMessage = "New Password and Confirm Password does not match...";
 			}
 			request.setAttribute("SignUpMessage", SignUpMessage);
+			request.setAttribute("signUpStatus", insertStatus);
 
 			break;
 
