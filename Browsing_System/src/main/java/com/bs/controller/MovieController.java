@@ -24,7 +24,7 @@ public class MovieController {
 	public MovieController(HttpServletRequest request, HttpServletResponse response) {
 		this.request = request;
 		this.response = response;
-		this.dispatcher = request.getRequestDispatcher("Movie.jsp");
+		this.dispatcher = request.getRequestDispatcher("./pages/movies.jsp");
 		this.dao = new MovieDAO();
 
 	}
@@ -61,7 +61,7 @@ public class MovieController {
 				break;
 
 			case "edit":
-
+				jspPage = "./pages/movies.jsp";
 				showMovieIdForm = false;
 				showDetails = false;
 				showEditForm = true;
@@ -78,6 +78,7 @@ public class MovieController {
 
 			case "delete":
 
+				jspPage = "./pages/movies.jsp";
 				showMovieIdForm = false;
 				showDetails = false;
 				showEditForm = false;
@@ -101,6 +102,7 @@ public class MovieController {
 
 			case "add":
 
+				jspPage = "../pages/movies.jsp";
 				showMovieIdForm = false;
 				showDetails = false;
 				showEditForm = false;
@@ -116,7 +118,8 @@ public class MovieController {
 				break;
 
 			case "insert":
-
+				
+				jspPage = "./pages/movies.jsp";
 				showMovieIdForm = false;
 				showDetails = false;
 				showEditForm = false;
@@ -166,6 +169,7 @@ public class MovieController {
 
 			case "update":
 
+				jspPage = "./pages/movies.jsp";
 				showMovieIdForm = false;
 				showDetails = false;
 				showEditForm = false;
@@ -317,11 +321,11 @@ public class MovieController {
 		return insertStatus;
 	}
 
-	public boolean deleteMovieByAdmin(int tvSeiesId) {
+	public boolean deleteMovieByAdmin(int movieId) {
 		boolean deleteStatus = false;
 		try {
 
-			deleteStatus = dao.deleteMovie(tvSeiesId);
+			deleteStatus = dao.deleteMovie(movieId);
 			request.setAttribute("isSuccessDelete", deleteStatus);
 		} catch (Exception e1) {
 			e1.printStackTrace();

@@ -26,7 +26,7 @@ public class TVSeriesController {
 	public TVSeriesController(HttpServletRequest request, HttpServletResponse response) {
 		this.request = request;
 		this.response = response;
-		this.dispatcher = request.getRequestDispatcher("TVSeries.jsp");
+		this.dispatcher = request.getRequestDispatcher("./pages/tv-series.jsp");
 		this.dao = new TVSeriesDAO();
 	}
 
