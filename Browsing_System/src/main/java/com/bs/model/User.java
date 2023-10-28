@@ -58,11 +58,11 @@ public class User {
         return dob;
     }
     
-    public String isPremiumUser() {
+    public String getIsPremiumUser() {
         return isPremiumUser;
     }
 
-    public boolean premiumUser() {
+    public boolean getPremiumUser() {
         return premiumUser;
     }
 

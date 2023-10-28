@@ -431,8 +431,23 @@ function editUpdateCustomerRow(rowId) {
   var email = row.querySelector("td:nth-child(3)").textContent;
   var mobileNumber = row.querySelector("td:nth-child(4)").textContent;
   var dob = row.querySelector("td:nth-child(5)").textContent;
-  var premiumUser = row.querySelector("td:nth-child(6)").textContent;
-  var status = row.querySelector("td:nth-child(7)").textContent;
+  var premiumUser = row.querySelector("td:nth-child(7)").textContent;
+  var status = row.querySelector("td:nth-child(9)").textContent;
+  
+  var isPremiumUser;
+  var isActive;
+  
+	if (premiumUser == 'true') {
+		isPremiumUser = 1;
+	} else {
+		isPremiumUser = 0;
+	}
+	
+	if (status == 'true') {
+		isActive = 1;
+	} else {
+		isActive = 0;
+	}
 
   // Set the row data in the form fields
   document.getElementById("editCustomerRowId").value = id;
@@ -440,8 +455,18 @@ function editUpdateCustomerRow(rowId) {
   document.getElementById("txtCustomerUpdateEmail").value = email;
   document.getElementById("txtCustomerUpdateMobileNo").value = mobileNumber;
   document.getElementById("txtCustomerUpdateDateofBirth").value = dob;
-  document.getElementById("txtCustomerUpdatePremiumUser").value = premiumUser;
-  document.getElementById("txtCustomerUpdateStatus").value = status;
+  document.getElementById("txtCustomerUpdatePremiumUser").value = isPremiumUser;
+  document.getElementById("txtCustomerUpdateStatus").value = isActive;
+  
+  // Trigger the 'change' event to update the select element
+  	var selectElement = document.getElementById("txtCustomerUpdatePremiumUser");
+	var event = new Event("change", { bubbles: true });
+	selectElement.dispatchEvent(event);
+	
+	var selectElement = document.getElementById("txtCustomerUpdateStatus");
+	var event = new Event("change", { bubbles: true });
+	selectElement.dispatchEvent(event);
+
   // Populate other form fields as needed
 
   // Show the customer form
