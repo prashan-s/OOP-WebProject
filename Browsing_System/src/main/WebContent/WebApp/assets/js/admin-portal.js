@@ -460,23 +460,21 @@ function editUpdateMovieRow(rowId) {
   var MovieDescription = row.querySelector("td:nth-child(3)").textContent;
   var MovieRoute = row.querySelector("td:nth-child(4)").textContent;
   var MovieDuration = row.querySelector("td:nth-child(5)").textContent;
-  var MovieAmountperAdult = row.querySelector("td:nth-child(6)").textContent;
-  var MovieAmountperChild = row.querySelector("td:nth-child(7)").textContent;
-  var MovieStatus = row.querySelector("td:nth-child(8)").textContent;
-  var TvSeries = row.querySelector("td:nth-child(10)").textContent;
+  var MovieQuality = row.querySelector("td:nth-child(6)").textContent;
+  var MovieUrl = row.querySelector("td:nth-child(7)").textContent;
+  var MovieCategory = row.querySelector("td:nth-child(8)").textContent;
+  var MovieStatus = row.querySelector("td:nth-child(10)").textContent;
 
   // Set the row data in the form fields
   document.getElementById("editMovieRowId").value = id;
   document.getElementById("txtUpdateMovieName").value = MovieName;
   document.getElementById("txtUpdateMovieDescription").value = MovieDescription;
-  document.getElementById("txtUpdateMovieRoute").value = MovieRoute;
+  document.getElementById("txtUpdateMovieYear").value = MovieRoute;
   document.getElementById("txtUpdateMovieDuration").value = MovieDuration;
-  document.getElementById("txtUpdateMovieAmountperAdult").value =
-    MovieAmountperAdult;
-  document.getElementById("txtUpdateMovieAmountperChild").value =
-    MovieAmountperChild;
+  document.getElementById("txtUpdateMovieQuality").value = MovieQuality;
+  document.getElementById("txtUpdateMovieUrl").value = MovieUrl;
+  document.getElementById("txtUpdateMovieCategory").value = MovieCategory;
   document.getElementById("txtUpdateMovieStatus").value = MovieStatus;
-  document.getElementById("txtUpdateMovieTvSeries").value = TvSeries;
   // Populate other form fields as needed
 
   // Show the Movie form
