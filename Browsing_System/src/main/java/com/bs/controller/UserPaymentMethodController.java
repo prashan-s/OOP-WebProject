@@ -52,102 +52,101 @@ public class UserPaymentMethodController {
 		boolean showPaymentStatus = false;
 		switch (action) {
 
-		case "submit":
+			case "submit":
 
-			listPaymentMethod = true;
-			addPaymentMethod = true;
+				listPaymentMethod = true;
+				addPaymentMethod = true;
 
-			jspPage = "UserPaymentMethod.jsp";
-			userId = Integer.parseInt(this.request.getParameter("userId"));
-			request.setAttribute("methods", this.selectPaymentMethod(userId));
+				userId = Integer.parseInt(this.request.getParameter("userId"));
+				request.setAttribute("methods", this.selectPaymentMethod(userId));
 
-			Cookie cookie = new Cookie("userId", Integer.toString(userId));
-			this.response.addCookie(cookie);
-			break;
+				Cookie cookie = new Cookie("userId", Integer.toString(userId));
+				this.response.addCookie(cookie);
+				break;
 
-		case "pay":
-			jspPage = "UserPaymentMethod.jsp";
-			showPaymentStatus = true;
-			String paymentMessage = "";
-			String premiumMessage = "";
+			case "pay":
 
-			userId = Integer.parseInt(request.getParameter("userId"));
-			UserSubscription userSub = new UserSubscription();
-			userSub.setUserId(userId);
-			userSub.setPlanId(Integer.parseInt(request.getParameter("planId")));
-			int subId = userSubDao.insertSubReturnSubId(userSub);
+				showPaymentStatus = true;
+				String paymentMessage = "";
+				String premiumMessage = "";
 
-			Payment payment = new Payment();
-			payment.setUserId(userId);
-			payment.setAmount(Float.parseFloat(request.getParameter("amount")));
-			payment.setSubId(subId);
-			Boolean paymentStatus = paymentDao.insertPayment(payment);
+				userId = Integer.parseInt(request.getParameter("userId"));
+				UserSubscription userSub = new UserSubscription();
+				userSub.setUserId(userId);
+				userSub.setPlanId(Integer.parseInt(request.getParameter("planId")));
+				int subId = userSubDao.insertSubReturnSubId(userSub);
 
-			System.out.println(paymentStatus + "in pay tag");
+				Payment payment = new Payment();
+				payment.setUserId(userId);
+				payment.setAmount(Float.parseFloat(request.getParameter("amount")));
+				payment.setSubId(subId);
+				Boolean paymentStatus = paymentDao.insertPayment(payment);
 
-			if (paymentStatus == false) {
-				paymentMessage = "Payment failed..";
-			} else {
-				paymentMessage = "Payment Success..";
-				boolean premiumStatus = userDao.upgradeToPremium(userId);
-				if (premiumStatus == true) {
-					premiumMessage = "You are now Premium Member";
+				System.out.println(paymentStatus + "in pay tag");
+
+				if (paymentStatus == false) {
+					paymentMessage = "Payment failed..";
 				} else {
-					premiumMessage = "Still not a Premium Member";
+					paymentMessage = "Payment Success..";
+					boolean premiumStatus = userDao.upgradeToPremium(userId);
+					if (premiumStatus == true) {
+						premiumMessage = "You are now Premium Member";
+					} else {
+						premiumMessage = "Still not a Premium Member";
+					}
 				}
-			}
-			request.setAttribute("paymentMessage", paymentMessage);
-			request.setAttribute("premiumMessage", premiumMessage);
-			break;
+				request.setAttribute("paymentMessage", paymentMessage);
+				request.setAttribute("premiumMessage", premiumMessage);
+				break;
 
-		case "remove":
-			jspPage = "UserPaymentMethod.jsp";
-			showDeleteStatus = true;
-			boolean deleteStatus = false;
-			String deleteMessage = null;
+			case "remove":
 
-			int paymentMethodId = Integer.parseInt(this.request.getParameter("paymentMethodId"));
+				showDeleteStatus = true;
+				boolean deleteStatus = false;
+				String deleteMessage = null;
 
-			deleteStatus = this.deletePaymentMethod(paymentMethodId);
-			if (deleteStatus == false) {
-				deleteMessage = "failed to remove";
-			} else {
-				deleteMessage = "removed from Payment Methods";
-			}
-			request.setAttribute("deleteMessage", deleteMessage);
-			break;
+				int paymentMethodId = Integer.parseInt(this.request.getParameter("paymentMethodId"));
 
-		case "add":
-			jspPage = "UserPaymentMethod.jsp";
-			showInsertStatus = true;
-			boolean insertStatus = false;
-			String insertMessage = null;
+				deleteStatus = this.deletePaymentMethod(paymentMethodId);
+				if (deleteStatus == false) {
+					deleteMessage = "failed to remove";
+				} else {
+					deleteMessage = "removed from Payment Methods";
+				}
+				request.setAttribute("deleteMessage", deleteMessage);
+				break;
 
-			UserPaymentMethod method = new UserPaymentMethod();
-			SimpleDateFormat dateFormatPayMethod = new SimpleDateFormat("yyyy-MM-dd");
+			case "add":
 
-			method.setCardNumber(request.getParameter("cardNo"));
-			try {
-				exp = dateFormatPayMethod.parse(request.getParameter("expDate"));
-				java.sql.Date expMethod = new java.sql.Date(exp.getTime());
-				method.setCardExpiryDate(expMethod);
-			} catch (ParseException e) {
-				e.printStackTrace();
-			}
-			method.setCvv(Integer.parseInt(request.getParameter("cvv")));
-			method.setUserId(getValueForId("userId"));
+				showInsertStatus = true;
+				boolean insertStatus = false;
+				String insertMessage = null;
 
-			insertStatus = this.addUserPaymentMethod(method);
+				UserPaymentMethod method = new UserPaymentMethod();
+				SimpleDateFormat dateFormatPayMethod = new SimpleDateFormat("yyyy-MM-dd");
 
-			if (insertStatus == false) {
-				insertMessage = "Failed to add payment method..";
+				method.setCardNumber(request.getParameter("cardNo"));
+				try {
+					exp = dateFormatPayMethod.parse(request.getParameter("expDate"));
+					java.sql.Date expMethod = new java.sql.Date(exp.getTime());
+					method.setCardExpiryDate(expMethod);
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
+				method.setCvv(Integer.parseInt(request.getParameter("cvv")));
+				method.setUserId(getValueForId("userId"));
 
-			} else {
-				insertMessage = "Successfully add payment Method..";
-			}
-			request.setAttribute("insertMessage", insertMessage);
+				insertStatus = this.addUserPaymentMethod(method);
 
-			break;
+				if (insertStatus == false) {
+					insertMessage = "Failed to add payment method..";
+
+				} else {
+					insertMessage = "Successfully add payment Method..";
+				}
+				request.setAttribute("insertMessage", insertMessage);
+
+				break;
 
 		}
 		try {

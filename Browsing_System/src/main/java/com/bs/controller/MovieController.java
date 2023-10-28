@@ -30,7 +30,7 @@ public class MovieController {
 	}
 
 	public void doAction(String action) {
-		String jspPage = "Movie.jsp";
+		String jspPage = "TVSeriesDetails.jsp";
 		Integer movieId = -1;
 		boolean showMovieIdForm = true;
 		boolean showDetails = false;
@@ -40,9 +40,7 @@ public class MovieController {
 		boolean showInsertStatus = false;
 		boolean showDeleteStatus = false;
 		String message;
-		
 
-			
 		switch (action) {
 
 			case "submit":
@@ -53,19 +51,16 @@ public class MovieController {
 				showAddForm = false;
 				showInsertStatus = false;
 				showDeleteStatus = false;
-				
 
-				jspPage = "Movie.jsp";
 				movieId = Integer.parseInt(this.request.getParameter("movieId"));
 				this.selectMovie(movieId);
 
 				Cookie cookie = new Cookie("movieId", Integer.toString(movieId));
 				this.response.addCookie(cookie);
 				break;
-				
+
 			case "edit":
 
-				jspPage = "Movie.jsp";
 				showMovieIdForm = false;
 				showDetails = false;
 				showEditForm = true;
@@ -79,34 +74,32 @@ public class MovieController {
 				this.selectMovie(movieId);
 
 				break;
-				
+
 			case "delete":
-			    jspPage = "Movie.jsp";
-			    showMovieIdForm = false;
-			    showDetails = false;
-			    showEditForm = false;
-			    showUpdateStatus = false;
-			    showAddForm = false;
-			    showInsertStatus = false;
-			    showDeleteStatus = true;
 
-			    movieId = getValueForId("movieId");
+				showMovieIdForm = false;
+				showDetails = false;
+				showEditForm = false;
+				showUpdateStatus = false;
+				showAddForm = false;
+				showInsertStatus = false;
+				showDeleteStatus = true;
 
-			    boolean deleteStatus = deleteMovieByAdmin(movieId);
+				movieId = getValueForId("movieId");
 
-			    if (deleteStatus) {
-			        message = "Deleted Successfully!";
-			    } else {
-			        message = "Delete Failed!";
-			    }
+				boolean deleteStatus = deleteMovieByAdmin(movieId);
 
-			    request.setAttribute("xmessage", message);
-			    break;
+				if (deleteStatus) {
+					message = "Deleted Successfully!";
+				} else {
+					message = "Delete Failed!";
+				}
 
+				request.setAttribute("xmessage", message);
+				break;
 
 			case "add":
 
-				jspPage = "Movie.jsp";
 				showMovieIdForm = false;
 				showDetails = false;
 				showEditForm = false;
@@ -120,10 +113,9 @@ public class MovieController {
 				this.selectMovie(movieId);
 
 				break;
-				
+
 			case "insert":
 
-				jspPage = "Movie.jsp";
 				showMovieIdForm = false;
 				showDetails = false;
 				showEditForm = false;
@@ -133,9 +125,9 @@ public class MovieController {
 				showDeleteStatus = false;
 
 				movieId = getValueForId("movieId");
-				
+
 				Movie m1 = new Movie();
-				
+
 				m1.setTitle(request.getParameter("title"));
 				m1.setDescription(request.getParameter("description"));
 				m1.setYear(Integer.parseInt(request.getParameter("year")));
@@ -154,7 +146,7 @@ public class MovieController {
 				m1.setCrime_category(Boolean.parseBoolean(request.getParameter("crime_category")));
 				m1.setThriller_category(Boolean.parseBoolean(request.getParameter("thriller_category")));
 				m1.setCreated_admin_name(request.getParameter("created_admin_name"));
-				
+
 				boolean insertStatus = insertMovieByAdmin(m1);
 
 				System.out.println(insertStatus);
@@ -170,10 +162,9 @@ public class MovieController {
 				System.out.println("Inserted   " + insertStatus);
 
 				break;
-				
+
 			case "update":
 
-				jspPage = "Movie.jsp";
 				showMovieIdForm = false;
 				showDetails = false;
 				showEditForm = false;
@@ -183,7 +174,7 @@ public class MovieController {
 				Movie m2 = new Movie();
 
 				movieId = getValueForId("movieId");
-				
+
 				m2.setTitle(request.getParameter("title"));
 				m2.setDescription(request.getParameter("description"));
 				m2.setYear(Integer.parseInt(request.getParameter("year")));
@@ -202,7 +193,7 @@ public class MovieController {
 				m2.setCrime_category(Boolean.parseBoolean(request.getParameter("crime_category")));
 				m2.setThriller_category(Boolean.parseBoolean(request.getParameter("thriller_category")));
 				m2.setCreated_admin_name(request.getParameter("created_admin_name"));
-				
+
 				boolean updateStatus = updateMovieByAdmin(m2);
 
 				System.out.println(updateStatus);
@@ -216,32 +207,32 @@ public class MovieController {
 
 				request.setAttribute("xmessage", message);
 				System.out.println("Updated   " + updateStatus);
-				
+
 				break;
-				
-			}
-			
-			System.out.println("Watiting to Dispatch");
-			try {
 
-				System.out.println("showUpdateStatus " + showUpdateStatus);
+		}
 
-				request.setAttribute("showMovieIdForm", showMovieIdForm);
-				request.setAttribute("showDetails", showDetails);
-				request.setAttribute("showEditForm", showEditForm);
-				request.setAttribute("showUpdateStatus", showUpdateStatus);
-				request.setAttribute("showAddForm", showAddForm);
-				request.setAttribute("showInsertStatus", showInsertStatus);
-				request.setAttribute("showDeleteStatus", showDeleteStatus);
-				this.dispatcher = request.getRequestDispatcher(jspPage);
-				dispatcher.forward(request, response);
-				
-			} catch (Exception e2) {
-				e2.printStackTrace();
-			}
-	
+		System.out.println("Watiting to Dispatch");
+		try {
+
+			System.out.println("showUpdateStatus " + showUpdateStatus);
+
+			request.setAttribute("showMovieIdForm", showMovieIdForm);
+			request.setAttribute("showDetails", showDetails);
+			request.setAttribute("showEditForm", showEditForm);
+			request.setAttribute("showUpdateStatus", showUpdateStatus);
+			request.setAttribute("showAddForm", showAddForm);
+			request.setAttribute("showInsertStatus", showInsertStatus);
+			request.setAttribute("showDeleteStatus", showDeleteStatus);
+			this.dispatcher = request.getRequestDispatcher(jspPage);
+			dispatcher.forward(request, response);
+
+		} catch (Exception e2) {
+			e2.printStackTrace();
+		}
+
 	}
-	
+
 	private int getValueForId(String key) {
 		Cookie[] cookies = null;
 		cookies = request.getCookies();
@@ -270,7 +261,6 @@ public class MovieController {
 		return movieId;
 	}
 
-
 	public void selectMovie(int movieId) {
 
 		try {
@@ -282,25 +272,25 @@ public class MovieController {
 		}
 
 	}
-		
+
 	public void selectAllMovies() {
-		
+
 		try {
-		List<Movie> movies = new MovieDAO().selectAllMovies();
-		System.out.println("movies : " + movies.getFirst().getTitle());
-		request.setAttribute("movieData", movies);//attribute name, objectName
-		}catch(Exception e){
+			List<Movie> movies = new MovieDAO().selectAllMovies();
+			System.out.println("movies : " + movies.getFirst().getTitle());
+			request.setAttribute("movieData", movies);// attribute name, objectName
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		try {
-			this.dispatcher =  request.getRequestDispatcher("./pages/admin-portal.jsp");
+			this.dispatcher = request.getRequestDispatcher("./pages/admin-portal.jsp");
 			this.dispatcher.forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public boolean updateMovieByAdmin(Movie movie) {
 		boolean updateStatus = true;
 		try {
