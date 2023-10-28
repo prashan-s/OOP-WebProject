@@ -716,18 +716,18 @@
                     </thead>
                     <tbody>
                     <c:forEach items="${seriesList}" var="series">
-                        <tr id="movie_${movie.movie_id}">
+                        <tr id="series_${series.tvs_id}">
                             <td class="hide">${series.tvs_id}</td>
                             <td>${series.title}</td>
                             <td>${series.tvs_img_url}</td>
                             <td>${series.active}</td>
                             <td>
                                 <i class="fa-solid fa-pen-to-square update-icon"
-                                   onclick="editUpdateMovieRow('movie_${movie.movie_id}')"></i>
+                                   onclick="editUpdateTvSeriesRow('series_${series.tvs_id}')"></i>
                             </td>
                             <td>
                                 <form action="${pageContext.request.contextPath}/TVSeriesServlet" method="post">
-                                    <input type="hidden" name="movie_id" value="${movie.movie_id}">
+                                    <input type="hidden" name="movie_id" value="${series.tvs_id}">
                                     <i class="fa-solid fa-trash-can delete-icon"
                                        onclick="confirmDelete(event, 'btnTvSeriesDelete')"></i>';
                                     <input type="submit" id="btnTvSeriesDelete" style="display: none;">
