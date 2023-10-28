@@ -17,7 +17,7 @@ public class UserDAO implements IUserDAO {
 			+ "created_admin_name, is_active, row_created_datetime " + "FROM users " + "WHERE user_id = ? ";
 	// admin select user list
 	private static final String SELECT_USER_LIST = "SELECT user_id, name, email, mobile_no, dob , premium_user, password , "
-			+ "created_admin_name, is_active, row_created_datetime " + "FROM users "
+			+ "created_admin_name, CASE WHEN is_active = 1 THEN 'Active' ELSE 'InActive' END AS is_active_status, is_active, row_created_datetime " + "FROM users "
 			+ "ORDER BY row_created_datetime DESC ";
 	// when login
 	private static final String SELECT_PASSWORD_BY_USERNAME = "SELECT password " + "FROM users " + "WHERE name = ?  ";
@@ -53,13 +53,15 @@ public class UserDAO implements IUserDAO {
 				String email = rs.getString("email");
 				String mobileNo = rs.getString("mobile_no");
 				Date dob = rs.getDate("dob");
+				String isPremiumUser = rs.getString("premium_user");
 				boolean premium_user = rs.getBoolean("premium_user");
 				String password = rs.getString("password");
 				String created_admin_name = rs.getString("created_admin_name");
+				String isActiveStatus = rs.getString("is_active_status");
 				boolean is_active = rs.getBoolean("is_active");
 				Date row_created_datetime = rs.getDate("row_created_datetime");
 
-				user = new User(returnedUserId, name, email, mobileNo, dob, premium_user, password, created_admin_name,
+				user = new User(returnedUserId, name, email, mobileNo, dob, isPremiumUser, premium_user, password, created_admin_name, isActiveStatus,
 						is_active, row_created_datetime);
 
 			}
@@ -87,13 +89,15 @@ public class UserDAO implements IUserDAO {
 					String email = rs.getString("email");
 					String mobileNo = rs.getString("mobile_no");
 					Date dob = rs.getDate("dob");
+					String isPremiumUser = rs.getString("premium_user");
 					boolean premium_user = rs.getBoolean("premium_user");
 					String password = rs.getString("password");
 					String created_admin_name = rs.getString("created_admin_name");
+					String isActiveStatus = rs.getString("is_active_status");
 					boolean is_active = rs.getBoolean("is_active");
 					Date row_created_datetime = rs.getDate("row_created_datetime");
 
-					User user = new User(returnedUserId, name, email, mobileNo, dob, premium_user, password, created_admin_name,
+					User user = new User(returnedUserId, name, email, mobileNo, dob, isPremiumUser, premium_user, password, created_admin_name, isActiveStatus,
 							is_active, row_created_datetime);
 					users.add(user);
 				}
@@ -121,13 +125,15 @@ public class UserDAO implements IUserDAO {
 				String email = rs.getString("email");
 				String mobileNo = rs.getString("mobile_no");
 				Date dob = rs.getDate("dob");
+				String isPremiumUser = rs.getString("premium_user");
 				boolean premium_user = rs.getBoolean("premium_user");
 				String password = rs.getString("password");
 				String created_admin_name = rs.getString("created_admin_name");
+				String isActiveStatus = rs.getString("is_active_status");
 				boolean is_active = rs.getBoolean("is_active");
 				Date row_created_datetime = rs.getDate("row_created_datetime");
 
-				User user = new User(returnedUserId, name, email, mobileNo, dob, premium_user, password, created_admin_name,
+				User user = new User(returnedUserId, name, email, mobileNo, dob, isPremiumUser, premium_user, password, created_admin_name, isActiveStatus,
 						is_active, row_created_datetime);
 				users.add(user);
 			}
@@ -222,7 +228,7 @@ public class UserDAO implements IUserDAO {
 			stmt.setString(3, user.getMobileNo());
 			Date dob = new Date(user.getDob().getTime());
 			stmt.setDate(4, dob);
-			stmt.setBoolean(5, user.isPremiumUser());
+			stmt.setBoolean(5, user.premiumUser());
 
 			stmt.setInt(6, user.getUserId());
 

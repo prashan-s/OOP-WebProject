@@ -52,7 +52,7 @@
       </ul>
 
       <a href="../index.jsp" class="logo">
-        <img src="/assets/images/logo.svg" alt="Filmlane logo" />
+        <img src="../assets/images/logo.svg" alt="Filmlane logo" />
       </a>
 
       <div class="header-actions">
@@ -86,7 +86,7 @@
       <nav class="navbar" data-navbar>
         <div class="navbar-top">
           <a href="../index.jsp" class="logo">
-            <img src="/assets/images/logo.svg" alt="Filmlane logo" />
+            <img src="../assets/images/logo.svg" alt="Filmlane logo" />
           </a>
 
           <button class="menu-close-btn" data-menu-close-btn>
@@ -96,7 +96,7 @@
 
         <ul class="navbar-list">
           <li>
-            <a href="./index.jsp" class="navbar-link">Home</a>
+            <a href="../index.jsp" class="navbar-link">Home</a>
           </li>
 
           <li>
@@ -401,8 +401,8 @@
               <p>Update Customer</p>
             </div>
             <form action="../php/admin_portal_customer_update_process.php" method="post">
-              <label for="txtCustomerUpdateFirstname">Name</label> <br />
-              <input type="text" name="name" id="txtCustomerUpdateFirstname" required />
+              <label for="txtCustomerUpdateName">Name</label> <br />
+              <input type="text" name="name" id="txtCustomerUpdateName" required />
               <br />
               <label for="txtCustomerUpdateEmail">Email</label> <br />
               <input type="text" name="email" id="txtCustomerUpdateEmail" required />
@@ -444,7 +444,9 @@
                 <th>Mobile Number</th>
                 <th>Date of birth</th>
                 <th>Premium User</th>
+                <th class="hide">Premium User Status</th>
                 <th>Active / InActive</th>
+                <th class="hide">Active / InActive Status</th>
                 <th class="tbl-edit"></th>
                 <th class="tbl-delete"></th>
               </tr>
@@ -457,8 +459,10 @@
 	                  <td>${user.email}</td>
 	                  <td>${user.mobileNo}</td>
 	                  <td>${user.dob}</td>
-	                  <td>${user.premiumUser}</td>
-	                  <td>${user.isActive}</td>
+	                  <td>${user.isActiveStatus}</td>
+	                  <td class="hide">${user.isPremiumUser}</td>
+	                  <td>${user.isActiveStatus}</td>
+	                  <td class="hide">${user.isActive}</td>
 	                  <td class="tbl-edit"></td>
 	                  <td class="tbl-delete"></td>
 	                  <td>
@@ -466,7 +470,7 @@
 	                  </td>
                       <td>
 	                      <form action="../php/admin_portal_customer_delete_process.php" method="post">
-		                      <input type="hidden" name="userId_id" value="${user.userId}">
+		                      <input type="hidden" name="user_id" value="${user.userId}">
 		                      <i class="fa-solid fa-trash-can delete-icon" onclick="confirmDelete(event)"></i>';
 		                      <input type="submit" style="display: none;">
 	                      </form>

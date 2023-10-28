@@ -9,9 +9,11 @@ public class User {
     private String email;
     private String mobileNo;
     private Date dob;
+    private String isPremiumUser;
     private boolean premiumUser;
     private String password;
     private String createdAdminName;
+    private String isActiveStatus;
     private boolean isActive;
     private Date rowCreatedDatetime;
    
@@ -19,17 +21,19 @@ public class User {
     	
     }
     
-    public User(int userId, String name, String email, String mobileNo, Date dob,
-                boolean premiumUser, String password, String createdAdminName,
+    public User(int userId, String name, String email, String mobileNo, Date dob, String isPremiumUser,
+                boolean premiumUser, String password, String createdAdminName, String isActiveStatus,
                 boolean isActive, Date rowCreatedDatetime) {
         this.userId = userId;
         this.name = name;
         this.email = email;
         this.mobileNo = mobileNo;
         this.dob = dob;
+        this.isPremiumUser = isPremiumUser;
         this.premiumUser = premiumUser;
         this.password = password;
         this.createdAdminName = createdAdminName;
+        this.isActiveStatus = isActiveStatus;
         this.isActive = isActive;
         this.rowCreatedDatetime = rowCreatedDatetime;
     }
@@ -53,8 +57,12 @@ public class User {
     public Date getDob() {
         return dob;
     }
+    
+    public String isPremiumUser() {
+        return isPremiumUser;
+    }
 
-    public boolean isPremiumUser() {
+    public boolean premiumUser() {
         return premiumUser;
     }
 
@@ -66,6 +74,10 @@ public class User {
         return createdAdminName;
     }
 
+    public String getIsActiveStatus() {
+        return isActiveStatus;
+    }
+    
     public boolean getIsActive() {
         return isActive;
     }
@@ -93,6 +105,10 @@ public class User {
 	public void setDob(Date dob) {
 		this.dob = dob;
 	}
+	
+	public void setIsPremiumUser(String isPremiumUser) {
+		this.isPremiumUser = isPremiumUser;
+	}
 
 	public void setPremiumUser(boolean premiumUser) {
 		this.premiumUser = premiumUser;
@@ -105,8 +121,12 @@ public class User {
 	public void setCreatedAdminName(String createdAdminName) {
 		this.createdAdminName = createdAdminName;
 	}
+	
+	public void setIsActiveStatus(String isActiveStatus) {
+		this.isActiveStatus = isActiveStatus;
+	}
 
-	public void setActive(boolean isActive) {
+	public void setIsActive(boolean isActive) {
 		this.isActive = isActive;
 	}
 
