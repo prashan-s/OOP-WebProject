@@ -66,7 +66,7 @@ public class User {
         return createdAdminName;
     }
 
-    public boolean isActive() {
+    public boolean getIsActive() {
         return isActive;
     }
 

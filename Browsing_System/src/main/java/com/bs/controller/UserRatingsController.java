@@ -40,14 +40,13 @@ public class UserRatingsController {
                 showAddForm = false;
                 showInsertStatus = false;
                 showDeleteStatus = false;
-                
-                jspPage = "UserRatings.jsp";
+
                 rateId = Integer.parseInt(request.getParameter("rateId"));
                 this.selectUserRatings(rateId);
                 break;
-                
+
             case "edit":
-                jspPage = "UserRatings.jsp";
+
                 showRateIdForm = false;
                 showDetails = false;
                 showEditForm = true;
@@ -55,13 +54,13 @@ public class UserRatingsController {
                 showAddForm = false;
                 showInsertStatus = false;
                 showDeleteStatus = false;
-                
+
                 rateId = getValueForId("rateId");
                 this.selectUserRatings(rateId);
                 break;
-                
+
             case "delete":
-                jspPage = "UserRatings.jsp";
+
                 showRateIdForm = false;
                 showDetails = false;
                 showEditForm = false;
@@ -69,21 +68,21 @@ public class UserRatingsController {
                 showAddForm = false;
                 showInsertStatus = false;
                 showDeleteStatus = true;
-                
+
                 rateId = getValueForId("rateId");
                 boolean deleteStatus = deleteRating(rateId);
-                
+
                 if (deleteStatus) {
                     message = "Deleted Successfully!";
                 } else {
                     message = "Delete Failed!";
                 }
-                
+
                 request.setAttribute("xmessage", message);
                 break;
-                
+
             case "add":
-                jspPage = "UserRatings.jsp";
+
                 showRateIdForm = false;
                 showDetails = false;
                 showEditForm = false;
@@ -91,13 +90,13 @@ public class UserRatingsController {
                 showAddForm = true;
                 showInsertStatus = false;
                 showDeleteStatus = false;
-                
+
                 rateId = getValueForId("rateId");
                 this.selectUserRatings(rateId);
                 break;
-                
+
             case "insert":
-                jspPage = "UserRatings.jsp";
+
                 showRateIdForm = false;
                 showDetails = false;
                 showEditForm = false;
@@ -105,9 +104,9 @@ public class UserRatingsController {
                 showAddForm = false;
                 showInsertStatus = true;
                 showDeleteStatus = false;
-                
+
                 rateId = getValueForId("rateId");
-                
+
                 UserRatings r1 = new UserRatings();
 
                 r1.setUserId(Integer.parseInt(request.getParameter("userId")));
@@ -115,24 +114,23 @@ public class UserRatingsController {
                 r1.setTvsId(Integer.parseInt(request.getParameter("tvsId")));
                 r1.setMovieId(Integer.parseInt(request.getParameter("movieId")));
                 r1.setRating(Integer.parseInt(request.getParameter("ratings")));
-                
+
                 boolean insertStatus = insertRating(r1);
-				System.out.println(insertStatus);
-				message = "Inserted Successfully!";
-				System.out.println(message);
+                System.out.println(insertStatus);
+                message = "Inserted Successfully!";
+                System.out.println(message);
 
-				if (insertStatus == false) {
-					message = "Insert Failed!, Retry....";
-					System.out.println("Edit Form Show:" + showAddForm);
-				}
+                if (insertStatus == false) {
+                    message = "Insert Failed!, Retry....";
+                    System.out.println("Edit Form Show:" + showAddForm);
+                }
 
-				request.setAttribute("xmessage", message);
-				System.out.println("Inserted   " + insertStatus);
+                request.setAttribute("xmessage", message);
+                System.out.println("Inserted   " + insertStatus);
                 break;
-                
-            
+
         }
-        
+
         try {
             request.setAttribute("showRateIdForm", showRateIdForm);
             request.setAttribute("showDetails", showDetails);
@@ -167,16 +165,16 @@ public class UserRatingsController {
         }
     }
 
-//    public boolean updateRating(UserRatings rating) {
-//        boolean updateStatus = true;
-//        try {
-//            updateStatus = new UserRatingsDAO().updateUserRating(rating);
-//            request.setAttribute("isSuccessUpdate", updateStatus);
-//        } catch (Exception e1) {
-//            e1.printStackTrace();
-//        }
-//        return updateStatus;
-//    }
+    // public boolean updateRating(UserRatings rating) {
+    // boolean updateStatus = true;
+    // try {
+    // updateStatus = new UserRatingsDAO().updateUserRating(rating);
+    // request.setAttribute("isSuccessUpdate", updateStatus);
+    // } catch (Exception e1) {
+    // e1.printStackTrace();
+    // }
+    // return updateStatus;
+    // }
 
     public boolean insertRating(UserRatings rating) {
         boolean insertStatus = false;

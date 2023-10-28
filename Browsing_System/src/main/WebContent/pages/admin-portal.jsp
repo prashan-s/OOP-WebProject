@@ -19,8 +19,8 @@
   <!-- 
     - custom css link
   -->
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/WebApp/assets/css/style.css" />
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/WebApp/assets/css/admin-portal.css" />
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/style.css" />
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/admin-portal.css" />
 
   <!-- 
     - google font link
@@ -32,10 +32,10 @@
     integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/WebApp/assets/packages/materialize/css/materialize.css" />
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/packages/materialize/css/materialize.css" />
 
   <!-- Materialize Compiled and minified JavaScript -->
-  <script src="${pageContext.request.contextPath}/WebApp/assets/packages/materialize/js/materialize.min.js"></script>
+  <script src="${pageContext.request.contextPath}/assets/packages/materialize/js/materialize.min.js"></script>
 </head>
 
 <body id="#top">
@@ -401,33 +401,23 @@
               <p>Update Customer</p>
             </div>
             <form action="../php/admin_portal_customer_update_process.php" method="post">
-              <label for="txtCustomerUpdateFirstname">First Name</label> <br />
-              <input type="text" name="firstname" id="txtCustomerUpdateFirstname" required />
-              <br />
-              <label for="txtCustomerUpdateLastname">Last Name</label> <br />
-              <input type="text" name="lastname" id="txtCustomerUpdateLastname" required />
+              <label for="txtCustomerUpdateFirstname">Name</label> <br />
+              <input type="text" name="name" id="txtCustomerUpdateFirstname" required />
               <br />
               <label for="txtCustomerUpdateEmail">Email</label> <br />
               <input type="text" name="email" id="txtCustomerUpdateEmail" required />
               <br />
-              <label for="txtCustomerUpdateGender">Gender</label> <br />
-              <select name="gender" id="txtCustomerUpdateGender" required>
-                <option value="M">Male</option>
-                <br />
-                <option value="F">Female</option>
-                <br />
-                <option value="O">Other</option>
-                <br />
-              </select>
-              <label for="txtCustomerUpdateUsername">User Name</label> <br />
-              <input type="text" name="username" id="txtCustomerUpdateUsername" required />
-              <br />
-              <label for="txtCustomerUpdatePassword">Password</label> <br />
-              <input type="password" name="password" id="txtCustomerUpdatePassword" required />
-              <br />
               <label for="txtCustomerUpdateMobileNo">Mobile Number</label>
               <br />
               <input type="text" name="mobileno" id="txtCustomerUpdateMobileNo" required />
+              <br />
+              <label for="txtCustomerUpdateDateofBirth">Date of Birth</label>
+              <br />
+              <input type="text" name="dob" id="txtCustomerUpdateDateofBirth" required />
+              <br />
+              <label for="txtCustomerUpdatePremiumUser">Premium User</label>
+              <br />
+              <input type="text" name="premiumUser" id="txtCustomerUpdatePremiumUser" required />
               <br />
               <label for="txtCustomerUpdateStatus">Active / InActive</label>
               <br />
@@ -461,15 +451,26 @@
             </thead>
             <tbody>
 	            <c:forEach items="${users}" var="user">
-		            <tr>
+		            <tr id="user_${user.userId}">
 		              <td class="hide">${user.userId}</td>
 	                  <td>${user.name}</td>
 	                  <td>${user.email}</td>
 	                  <td>${user.mobileNo}</td>
 	                  <td>${user.dob}</td>
 	                  <td>${user.premiumUser}</td>
+	                  <td>${user.isActive}</td>
 	                  <td class="tbl-edit"></td>
 	                  <td class="tbl-delete"></td>
+	                  <td>
+	                  	<i class="fa-solid fa-pen-to-square update-icon" onclick="editUpdateCustomerRow('user_${user.userId}')"></i>
+	                  </td>
+                      <td>
+	                      <form action="../php/admin_portal_customer_delete_process.php" method="post">
+		                      <input type="hidden" name="userId_id" value="${user.userId}">
+		                      <i class="fa-solid fa-trash-can delete-icon" onclick="confirmDelete(event)"></i>';
+		                      <input type="submit" style="display: none;">
+	                      </form>
+                      </td>
 		          	</tr>
 		        </c:forEach>
             </tbody>
@@ -982,7 +983,11 @@
   <script>
 	//Construct the path dynamically by appending the context path
 	  var contextPath = "${pageContext.request.contextPath}";
+<<<<<<< HEAD
 	  var footerPath = contextPath + "/WebApp../components/footer.html";
+=======
+	  var footerPath = contextPath + "/components/footer.html";
+>>>>>>> 8947eb3343506385e01b66d8ccc313ab8a113cd5
 	  
     // Fetch the HTML content of your component
     fetch(footerPath)
@@ -1004,8 +1009,8 @@
   <!-- 
     - custom js link
   -->
-  <script src="${pageContext.request.contextPath}/WebApp/assets/js/admin-portal.js"></script>
-  <script src="${pageContext.request.contextPath}/WebApp/assets/js/script.js"></script>
+  <script src="${pageContext.request.contextPath}/assets/js/admin-portal.js"></script>
+  <script src="${pageContext.request.contextPath}/assets/js/script.js"></script>
   <!-- 
     - ionicon link
   -->

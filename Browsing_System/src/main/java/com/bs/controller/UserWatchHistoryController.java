@@ -39,40 +39,39 @@ public class UserWatchHistoryController {
 
 		switch (action) {
 
-		case "WatchHistory":
+			case "WatchHistory":
 
-			jspPage = "UserWatchHistory.jsp";
-			showUserIdForm = false;
-			showUserHistory = true;
-			showDeleteStatus = false;
-			// System.out.println("in action tag" + showUserHistory);
+				showUserIdForm = false;
+				showUserHistory = true;
+				showDeleteStatus = false;
+				// System.out.println("in action tag" + showUserHistory);
 
-			userId = Integer.parseInt(this.request.getParameter("userId"));
-			request.setAttribute("user", this.selectHistory(userId));
+				userId = Integer.parseInt(this.request.getParameter("userId"));
+				request.setAttribute("user", this.selectHistory(userId));
 
-			Cookie cookie = new Cookie("history", Integer.toString(userId));
-			this.response.addCookie(cookie);
-			break;
+				Cookie cookie = new Cookie("history", Integer.toString(userId));
+				this.response.addCookie(cookie);
+				break;
 
-		case "remove":
-			jspPage = "UserWatchHistory.jsp";
-			showUserIdForm = false;
-			showUserHistory = false;
-			showDeleteStatus = true;
-			// System.out.println("came to remove tag");
+			case "remove":
 
-			String deleteMessage = null;
-			int watchId = Integer.parseInt(this.request.getParameter("watchId"));
-			boolean deleteStatus = this.deleteHistory(watchId);
+				showUserIdForm = false;
+				showUserHistory = false;
+				showDeleteStatus = true;
+				// System.out.println("came to remove tag");
 
-			if (deleteStatus == false) {
-				deleteMessage = "failed to remove";
-			} else {
-				deleteMessage = "removed from history";
-			}
-			System.out.println(deleteMessage);
-			request.setAttribute("deleteMessage", deleteMessage);
-			break;
+				String deleteMessage = null;
+				int watchId = Integer.parseInt(this.request.getParameter("watchId"));
+				boolean deleteStatus = this.deleteHistory(watchId);
+
+				if (deleteStatus == false) {
+					deleteMessage = "failed to remove";
+				} else {
+					deleteMessage = "removed from history";
+				}
+				System.out.println(deleteMessage);
+				request.setAttribute("deleteMessage", deleteMessage);
+				break;
 
 		}
 
