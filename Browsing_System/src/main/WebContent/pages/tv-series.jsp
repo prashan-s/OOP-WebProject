@@ -330,89 +330,89 @@
         </div>
       </section>
 
-      <section class="movie-detail recently-updated">
-        <div class="movie-heading">
-          <p class="detail-subtitle">Recently Updated</p>
-        </div>
-        <div class="movie-container">
-          <div class="movie-detail-container">
-            <figure class="movie-detail-banner">
-              <img src="../assets/images/movie-4.png" alt="Free guy movie poster" />
-              <button class="play-btn" onclick="openTvSeriesPage()">
-                <ion-icon name="play-circle-outline"></ion-icon>
-              </button>
-            </figure>
+<%--      <section class="movie-detail recently-updated">--%>
+<%--        <div class="movie-heading">--%>
+<%--          <p class="detail-subtitle">Recently Updated</p>--%>
+<%--        </div>--%>
+<%--        <div class="movie-container">--%>
+<%--          <div class="movie-detail-container">--%>
+<%--            <figure class="movie-detail-banner">--%>
+<%--              <img src="../assets/images/movie-4.png" alt="Free guy movie poster" />--%>
+<%--              <button class="play-btn" onclick="openTvSeriesPage()">--%>
+<%--                <ion-icon name="play-circle-outline"></ion-icon>--%>
+<%--              </button>--%>
+<%--            </figure>--%>
 
-            <div class="date-time">
-              <div>
-                <ion-icon name="calendar-outline"></ion-icon>
-                <time datetime="2021">2021</time>
-              </div>
-              <div>
-                <ion-icon name="time-outline"></ion-icon>
-                <time datetime="PT115M">115 min</time>
-              </div>
-            </div>
-          </div>
-          <div class="movie-detail-container">
-            <figure class="movie-detail-banner">
-              <img src="../assets/images/movie-4.png" alt="Free guy movie poster" />
-              <button class="play-btn" onclick="openTvSeriesPage()">
-                <ion-icon name="play-circle-outline"></ion-icon>
-              </button>
-            </figure>
+<%--            <div class="date-time">--%>
+<%--              <div>--%>
+<%--                <ion-icon name="calendar-outline"></ion-icon>--%>
+<%--                <time datetime="2021">2021</time>--%>
+<%--              </div>--%>
+<%--              <div>--%>
+<%--                <ion-icon name="time-outline"></ion-icon>--%>
+<%--                <time datetime="PT115M">115 min</time>--%>
+<%--              </div>--%>
+<%--            </div>--%>
+<%--          </div>--%>
+<%--          <div class="movie-detail-container">--%>
+<%--            <figure class="movie-detail-banner">--%>
+<%--              <img src="../assets/images/movie-4.png" alt="Free guy movie poster" />--%>
+<%--              <button class="play-btn" onclick="openTvSeriesPage()">--%>
+<%--                <ion-icon name="play-circle-outline"></ion-icon>--%>
+<%--              </button>--%>
+<%--            </figure>--%>
 
-            <div class="date-time">
-              <div>
-                <ion-icon name="calendar-outline"></ion-icon>
-                <time datetime="2021">2021</time>
-              </div>
-              <div>
-                <ion-icon name="time-outline"></ion-icon>
-                <time datetime="PT115M">115 min</time>
-              </div>
-            </div>
-          </div>
-          <div class="movie-detail-container">
-            <figure class="movie-detail-banner">
-              <img src="../assets/images/movie-4.png" alt="Free guy movie poster" />
-              <button class="play-btn" onclick="openTvSeriesPage()">
-                <ion-icon name="play-circle-outline"></ion-icon>
-              </button>
-            </figure>
+<%--            <div class="date-time">--%>
+<%--              <div>--%>
+<%--                <ion-icon name="calendar-outline"></ion-icon>--%>
+<%--                <time datetime="2021">2021</time>--%>
+<%--              </div>--%>
+<%--              <div>--%>
+<%--                <ion-icon name="time-outline"></ion-icon>--%>
+<%--                <time datetime="PT115M">115 min</time>--%>
+<%--              </div>--%>
+<%--            </div>--%>
+<%--          </div>--%>
+<%--          <div class="movie-detail-container">--%>
+<%--            <figure class="movie-detail-banner">--%>
+<%--              <img src="../assets/images/movie-4.png" alt="Free guy movie poster" />--%>
+<%--              <button class="play-btn" onclick="openTvSeriesPage()">--%>
+<%--                <ion-icon name="play-circle-outline"></ion-icon>--%>
+<%--              </button>--%>
+<%--            </figure>--%>
 
-            <div class="date-time">
-              <div>
-                <ion-icon name="calendar-outline"></ion-icon>
-                <time datetime="2021">2021</time>
-              </div>
-              <div>
-                <ion-icon name="time-outline"></ion-icon>
-                <time datetime="PT115M">115 min</time>
-              </div>
-            </div>
-          </div>
-          <div class="movie-detail-container">
-            <figure class="movie-detail-banner">
-              <img src="../assets/images/movie-4.png" alt="Free guy movie poster" />
-              <button class="play-btn" onclick="openTvSeriesPage()">
-                <ion-icon name="play-circle-outline"></ion-icon>
-              </button>
-            </figure>
+<%--            <div class="date-time">--%>
+<%--              <div>--%>
+<%--                <ion-icon name="calendar-outline"></ion-icon>--%>
+<%--                <time datetime="2021">2021</time>--%>
+<%--              </div>--%>
+<%--              <div>--%>
+<%--                <ion-icon name="time-outline"></ion-icon>--%>
+<%--                <time datetime="PT115M">115 min</time>--%>
+<%--              </div>--%>
+<%--            </div>--%>
+<%--          </div>--%>
+<%--          <div class="movie-detail-container">--%>
+<%--            <figure class="movie-detail-banner">--%>
+<%--              <img src="../assets/images/movie-4.png" alt="Free guy movie poster" />--%>
+<%--              <button class="play-btn" onclick="openTvSeriesPage()">--%>
+<%--                <ion-icon name="play-circle-outline"></ion-icon>--%>
+<%--              </button>--%>
+<%--            </figure>--%>
 
-            <div class="date-time">
-              <div>
-                <ion-icon name="calendar-outline"></ion-icon>
-                <time datetime="2021">2021</time>
-              </div>
-              <div>
-                <ion-icon name="time-outline"></ion-icon>
-                <time datetime="PT115M">115 min</time>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+<%--            <div class="date-time">--%>
+<%--              <div>--%>
+<%--                <ion-icon name="calendar-outline"></ion-icon>--%>
+<%--                <time datetime="2021">2021</time>--%>
+<%--              </div>--%>
+<%--              <div>--%>
+<%--                <ion-icon name="time-outline"></ion-icon>--%>
+<%--                <time datetime="PT115M">115 min</time>--%>
+<%--              </div>--%>
+<%--            </div>--%>
+<%--          </div>--%>
+<%--        </div>--%>
+<%--      </section>--%>
 
       <!-- 
         - #TV SERIES
