@@ -42,168 +42,160 @@ public class TVSeriesDetailsController {
 
 		switch (action) {
 
-		case "submit":
-			showTVSeriesDetailsIdForm = false;
-			showDetails = true;
-			showEditForm = false;
-			showUpdateStatus = false;
-			showAddForm = false;
-			showInsertStatus = false;
-			showDeleteStatus = false;
-			
+			case "submit":
+				showTVSeriesDetailsIdForm = false;
+				showDetails = true;
+				showEditForm = false;
+				showUpdateStatus = false;
+				showAddForm = false;
+				showInsertStatus = false;
+				showDeleteStatus = false;
 
-			jspPage = "TVSeriesDetails.jsp";
-			tvSeriesDetailsId = Integer.parseInt(this.request.getParameter("tvSeriesDetailsId"));
-			this.selectTVSeriesDetails(tvSeriesDetailsId);
+				tvSeriesDetailsId = Integer.parseInt(this.request.getParameter("tvSeriesDetailsId"));
+				this.selectTVSeriesDetails(tvSeriesDetailsId);
 
-			Cookie cookie = new Cookie("tvSeriesDetailsId", Integer.toString(tvSeriesDetailsId));
-			this.response.addCookie(cookie);
-			break;
+				Cookie cookie = new Cookie("tvSeriesDetailsId", Integer.toString(tvSeriesDetailsId));
+				this.response.addCookie(cookie);
+				break;
 
-		case "edit":
+			case "edit":
 
-			jspPage = "TVSeriesDetails.jsp";
-			showTVSeriesDetailsIdForm = false;
-			showDetails = false;
-			showEditForm = true;
-			showUpdateStatus = false;
-			showAddForm = false;
-			showInsertStatus = false;
-			showDeleteStatus = false;
+				showTVSeriesDetailsIdForm = false;
+				showDetails = false;
+				showEditForm = true;
+				showUpdateStatus = false;
+				showAddForm = false;
+				showInsertStatus = false;
+				showDeleteStatus = false;
 
-			tvSeriesDetailsId = getValueForId("tvSeriesDetailsId");
+				tvSeriesDetailsId = getValueForId("tvSeriesDetailsId");
 
-			this.selectTVSeriesDetails(tvSeriesDetailsId);
+				this.selectTVSeriesDetails(tvSeriesDetailsId);
 
-			break;
-			
-		case "delete":
-		    jspPage = "TVSeriesDetails.jsp";
-		    showTVSeriesDetailsIdForm = false;
-		    showDetails = false;
-		    showEditForm = false;
-		    showUpdateStatus = false;
-		    showAddForm = false;
-		    showInsertStatus = false;
-		    showDeleteStatus = true;
+				break;
 
-		    tvSeriesDetailsId = getValueForId("tvSeriesDetailsId");
+			case "delete":
 
-		    boolean deleteStatus = deleteTVSeriesDetailsByAdmin(tvSeriesDetailsId);
+				showTVSeriesDetailsIdForm = false;
+				showDetails = false;
+				showEditForm = false;
+				showUpdateStatus = false;
+				showAddForm = false;
+				showInsertStatus = false;
+				showDeleteStatus = true;
 
-		    if (deleteStatus) {
-		        message = "Deleted Successfully!";
-		    } else {
-		        message = "Delete Failed!";
-		    }
+				tvSeriesDetailsId = getValueForId("tvSeriesDetailsId");
 
-		    request.setAttribute("xmessage", message);
-		    break;
+				boolean deleteStatus = deleteTVSeriesDetailsByAdmin(tvSeriesDetailsId);
 
+				if (deleteStatus) {
+					message = "Deleted Successfully!";
+				} else {
+					message = "Delete Failed!";
+				}
 
-		case "add":
+				request.setAttribute("xmessage", message);
+				break;
 
-			jspPage = "TVSeriesDetails.jsp";
-			showTVSeriesDetailsIdForm = false;
-			showDetails = false;
-			showEditForm = false;
-			showUpdateStatus = false;
-			showAddForm = true;
-			showInsertStatus = false;
-			showDeleteStatus = false;
+			case "add":
 
-			tvSeriesDetailsId = getValueForId("tvSeriesDetailsId");
+				showTVSeriesDetailsIdForm = false;
+				showDetails = false;
+				showEditForm = false;
+				showUpdateStatus = false;
+				showAddForm = true;
+				showInsertStatus = false;
+				showDeleteStatus = false;
 
-			this.selectTVSeriesDetails(tvSeriesDetailsId);
+				tvSeriesDetailsId = getValueForId("tvSeriesDetailsId");
 
-			break;
+				this.selectTVSeriesDetails(tvSeriesDetailsId);
 
-		case "insert":
+				break;
 
-			jspPage = "TVSeriesDetails.jsp";
-			showTVSeriesDetailsIdForm = false;
-			showDetails = false;
-			showEditForm = false;
-			showUpdateStatus = false;
-			showAddForm = false;
-			showInsertStatus = true;
-			showDeleteStatus = false;
+			case "insert":
 
-			tvSeriesDetailsId = getValueForId("tvSeriesDetailsId");
+				showTVSeriesDetailsIdForm = false;
+				showDetails = false;
+				showEditForm = false;
+				showUpdateStatus = false;
+				showAddForm = false;
+				showInsertStatus = true;
+				showDeleteStatus = false;
 
-			TVSeriesDetails tvSD2 = new TVSeriesDetails();
+				tvSeriesDetailsId = getValueForId("tvSeriesDetailsId");
 
-			tvSD2.setTvsDetailId(tvSeriesDetailsId);
-			tvSD2.setTvsId(Integer.parseInt(request.getParameter("tvSid_i")));
-			tvSD2.setSeason(Integer.parseInt(request.getParameter("season_i")));
-			tvSD2.setEpisode(Integer.parseInt(request.getParameter("episode_i")));
-			tvSD2.setDescription(request.getParameter("description_i"));
-			tvSD2.setYear(Integer.parseInt(request.getParameter("year_i")));
-			tvSD2.setDuration(Integer.parseInt(request.getParameter("duration_i")));
-			tvSD2.setQuality(request.getParameter("quality_i"));
-			tvSD2.setWatchCount(Integer.parseInt(request.getParameter("watchCount_i")));
-			tvSD2.setTvsStreamUrl(request.getParameter("streamUrl_i"));
-			tvSD2.setCreatedAdminName(request.getParameter("adminName_i"));
+				TVSeriesDetails tvSD2 = new TVSeriesDetails();
 
-			boolean insertStatus = insertTVSeriesDetailsByAdmin(tvSD2);
+				tvSD2.setTvsDetailId(tvSeriesDetailsId);
+				tvSD2.setTvsId(Integer.parseInt(request.getParameter("tvSid_i")));
+				tvSD2.setSeason(Integer.parseInt(request.getParameter("season_i")));
+				tvSD2.setEpisode(Integer.parseInt(request.getParameter("episode_i")));
+				tvSD2.setDescription(request.getParameter("description_i"));
+				tvSD2.setYear(Integer.parseInt(request.getParameter("year_i")));
+				tvSD2.setDuration(Integer.parseInt(request.getParameter("duration_i")));
+				tvSD2.setQuality(request.getParameter("quality_i"));
+				tvSD2.setWatchCount(Integer.parseInt(request.getParameter("watchCount_i")));
+				tvSD2.setTvsStreamUrl(request.getParameter("streamUrl_i"));
+				tvSD2.setCreatedAdminName(request.getParameter("adminName_i"));
 
-			System.out.println(insertStatus);
-			message = "Inserted Successfully!";
-			System.out.println(message);
+				boolean insertStatus = insertTVSeriesDetailsByAdmin(tvSD2);
 
-			if (insertStatus == false) {
-				message = "Insert Failed!, Retry....";
-				System.out.println("Edit Form Show:" + showAddForm);
-			}
+				System.out.println(insertStatus);
+				message = "Inserted Successfully!";
+				System.out.println(message);
 
-			request.setAttribute("xmessage", message);
-			System.out.println("Inserted   " + insertStatus);
+				if (insertStatus == false) {
+					message = "Insert Failed!, Retry....";
+					System.out.println("Edit Form Show:" + showAddForm);
+				}
 
-			break;
+				request.setAttribute("xmessage", message);
+				System.out.println("Inserted   " + insertStatus);
 
-		case "update":
+				break;
 
-			jspPage = "TVSeriesDetails.jsp";
-			showTVSeriesDetailsIdForm = false;
-			showDetails = false;
-			showEditForm = false;
-			showUpdateStatus = true;
-			showDeleteStatus = false;
+			case "update":
 
-			TVSeriesDetails tvSD = new TVSeriesDetails();
+				showTVSeriesDetailsIdForm = false;
+				showDetails = false;
+				showEditForm = false;
+				showUpdateStatus = true;
+				showDeleteStatus = false;
 
-			tvSeriesDetailsId = getValueForId("tvSeriesDetailsId");
+				TVSeriesDetails tvSD = new TVSeriesDetails();
 
-			tvSD.setTvsDetailId(tvSeriesDetailsId);
-			tvSD.setTvsId(Integer.parseInt(request.getParameter("tvSid")));
-			tvSD.setSeason(Integer.parseInt(request.getParameter("season")));
-			tvSD.setEpisode(Integer.parseInt(request.getParameter("episode")));
-			tvSD.setDescription(request.getParameter("description"));
-			tvSD.setYear(Integer.parseInt(request.getParameter("year")));
-			tvSD.setDuration(Integer.parseInt(request.getParameter("duration")));
-			tvSD.setQuality(request.getParameter("quality"));
-			tvSD.setWatchCount(Integer.parseInt(request.getParameter("watchCount")));
-			tvSD.setTvsStreamUrl(request.getParameter("streamUrl"));
-			tvSD.setCreatedAdminName(request.getParameter("adminName"));
+				tvSeriesDetailsId = getValueForId("tvSeriesDetailsId");
 
-			boolean updateStatus = updateTVSeriesDetailsByAdmin(tvSD);
+				tvSD.setTvsDetailId(tvSeriesDetailsId);
+				tvSD.setTvsId(Integer.parseInt(request.getParameter("tvSid")));
+				tvSD.setSeason(Integer.parseInt(request.getParameter("season")));
+				tvSD.setEpisode(Integer.parseInt(request.getParameter("episode")));
+				tvSD.setDescription(request.getParameter("description"));
+				tvSD.setYear(Integer.parseInt(request.getParameter("year")));
+				tvSD.setDuration(Integer.parseInt(request.getParameter("duration")));
+				tvSD.setQuality(request.getParameter("quality"));
+				tvSD.setWatchCount(Integer.parseInt(request.getParameter("watchCount")));
+				tvSD.setTvsStreamUrl(request.getParameter("streamUrl"));
+				tvSD.setCreatedAdminName(request.getParameter("adminName"));
 
-			System.out.println(updateStatus);
-			message = "Updated Successfully!";
-			System.out.println(message);
+				boolean updateStatus = updateTVSeriesDetailsByAdmin(tvSD);
 
-			if (updateStatus == false) {
-				message = "Update Failed!, Retry....";
-				System.out.println("Edit Form Show:" + showEditForm);
-			}
+				System.out.println(updateStatus);
+				message = "Updated Successfully!";
+				System.out.println(message);
 
-			request.setAttribute("xmessage", message);
-			System.out.println("Updated   " + updateStatus);
-			
-			break;
+				if (updateStatus == false) {
+					message = "Update Failed!, Retry....";
+					System.out.println("Edit Form Show:" + showEditForm);
+				}
+
+				request.setAttribute("xmessage", message);
+				System.out.println("Updated   " + updateStatus);
+
+				break;
 		}
-	
-	
+
 		System.out.println("Watiting to Dispatch");
 		try {
 
@@ -251,7 +243,7 @@ public class TVSeriesDetailsController {
 		}
 		return tvSeriesDetailsId;
 	}
-	
+
 	public void selectAllTVSeriesEpisodesDetails() {
 
 		try {
@@ -260,9 +252,9 @@ public class TVSeriesDetailsController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		try {
-			this.dispatcher =  request.getRequestDispatcher("./WebApp/pages/admin-portal.jsp");
+			this.dispatcher = request.getRequestDispatcher("./WebApp/pages/admin-portal.jsp");
 			this.dispatcher.forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -25,135 +25,134 @@ public class UserFavouritesController {
         this.response = response;
         this.dispatcher = request.getRequestDispatcher("UserFavourites.jsp");
     }
-    
-	public void doAction(String action) {
-		String jspPage = "UserFavourites.jsp";
-		Integer favId = -1;
-		boolean showUserFavIdForm = true;
-		boolean showDetails = false;
-		boolean showEditForm = false;
-		boolean showUpdateStatus = false;
-		boolean showAddForm = false;
-		boolean showInsertStatus = false;
-		boolean showDeleteStatus = false;
-		String message;
-		
-		switch(action) {
-		
-		case "submit":
-			showUserFavIdForm = false;
-			showDetails = true;
-			showEditForm = false;
-			showUpdateStatus = false;
-			showAddForm = false;
-			showInsertStatus = false;
-			showDeleteStatus = false;
-			
-			jspPage = "UserFavourites.jsp";
-			favId = Integer.parseInt(this.request.getParameter("favId"));
-			this.selectUserFavourites(favId);
 
-			Cookie cookie = new Cookie("favId", Integer.toString(favId));
-			this.response.addCookie(cookie);
-			break;
-			
-		case "edit":
-			jspPage = "UserFavourites.jsp";
-			showUserFavIdForm = false;
-			showDetails = false;
-			showEditForm = true;
-			showUpdateStatus = false;
-			showAddForm = false;
-			showInsertStatus = false;
-			showDeleteStatus = false;
-			
-			favId = getValueForId("favId");
+    public void doAction(String action) {
+        String jspPage = "UserFavourites.jsp";
+        Integer favId = -1;
+        boolean showUserFavIdForm = true;
+        boolean showDetails = false;
+        boolean showEditForm = false;
+        boolean showUpdateStatus = false;
+        boolean showAddForm = false;
+        boolean showInsertStatus = false;
+        boolean showDeleteStatus = false;
+        String message;
 
-			this.selectUserFavourites(favId);
-			break;
-			
-		case "delete":
-			jspPage = "UserFavourites.jsp";
-			showUserFavIdForm = false;
-			showDetails = false;
-			showEditForm = false;
-			showUpdateStatus = false;
-			showAddForm = false;
-			showInsertStatus = false;
-			showDeleteStatus = true;
+        switch (action) {
 
-			favId = getValueForId("favId");
+            case "submit":
+                showUserFavIdForm = false;
+                showDetails = true;
+                showEditForm = false;
+                showUpdateStatus = false;
+                showAddForm = false;
+                showInsertStatus = false;
+                showDeleteStatus = false;
 
-			boolean deleteStatus = deleteFavouritesByUser(favId);
+                favId = Integer.parseInt(this.request.getParameter("favId"));
+                this.selectUserFavourites(favId);
 
-			if (deleteStatus) {
-				message = "Deleted Successfully!";
-			} else {
-				message = "Delete Failed!";
-			}
+                Cookie cookie = new Cookie("favId", Integer.toString(favId));
+                this.response.addCookie(cookie);
+                break;
 
-			request.setAttribute("xmessage", message);
-			break;
-			
-		case "add":
-            jspPage = "UserFavourites.jsp";
-            showUserFavIdForm = false;
-            showDetails = false;
-            showEditForm = false;
-            showUpdateStatus = false;
-            showAddForm = true;
-            showInsertStatus = false;
-            showDeleteStatus = false;
-            break;
+            case "edit":
 
-        case "insert":
-            jspPage = "UserFavourites.jsp";
-            showUserFavIdForm = false;
-            showDetails = false;
-            showEditForm = false;
-            showUpdateStatus = false;
-            showAddForm = true; // Keep the "Add User Favourite" form visible
-            showInsertStatus = true;
-            showDeleteStatus = false;
+                showUserFavIdForm = false;
+                showDetails = false;
+                showEditForm = true;
+                showUpdateStatus = false;
+                showAddForm = false;
+                showInsertStatus = false;
+                showDeleteStatus = false;
 
-            // Retrieve the data from the request
-            int userId = Integer.parseInt(this.request.getParameter("userId"));
-            String type = this.request.getParameter("type");
-            int tvsId = Integer.parseInt(this.request.getParameter("tvsId"));
-            int movieId = Integer.parseInt(this.request.getParameter("movieId"));
+                favId = getValueForId("favId");
 
-            // Create a UserFavourites object
-            UserFavourites userFavourite = new UserFavourites(-1, userId, type, tvsId, movieId, null);
+                this.selectUserFavourites(favId);
+                break;
 
-            // Insert the new UserFavourite
-            boolean insertStatus = insertUserFavourite(userFavourite);
+            case "delete":
 
-            if (insertStatus) {
-                message = "User Favourite added successfully!";
-            } else {
-                message = "Failed to add User Favourite!";
-            }
+                showUserFavIdForm = false;
+                showDetails = false;
+                showEditForm = false;
+                showUpdateStatus = false;
+                showAddForm = false;
+                showInsertStatus = false;
+                showDeleteStatus = true;
 
-            request.setAttribute("xmessage", message);
-            break;
-    
-		}		
-		
-		System.out.println("Waiting to Dispatch");
-		try {
-			request.setAttribute("showUserFavIdForm", showUserFavIdForm);
-			request.setAttribute("showDetails", showDetails);
-			request.setAttribute("showEditForm", showEditForm);
-			request.setAttribute("showUpdateStatus", showUpdateStatus);
-			request.setAttribute("showAddForm", showAddForm);
-			request.setAttribute("showInsertStatus", showInsertStatus);
-			request.setAttribute("showDeleteStatus", showDeleteStatus);
-			this.dispatcher = request.getRequestDispatcher(jspPage);
-			dispatcher.forward(request, response);
-		} catch (Exception e2) {
-			e2.printStackTrace();
-		}
-	}
+                favId = getValueForId("favId");
+
+                boolean deleteStatus = deleteFavouritesByUser(favId);
+
+                if (deleteStatus) {
+                    message = "Deleted Successfully!";
+                } else {
+                    message = "Delete Failed!";
+                }
+
+                request.setAttribute("xmessage", message);
+                break;
+
+            case "add":
+
+                showUserFavIdForm = false;
+                showDetails = false;
+                showEditForm = false;
+                showUpdateStatus = false;
+                showAddForm = true;
+                showInsertStatus = false;
+                showDeleteStatus = false;
+                break;
+
+            case "insert":
+
+                showUserFavIdForm = false;
+                showDetails = false;
+                showEditForm = false;
+                showUpdateStatus = false;
+                showAddForm = true; // Keep the "Add User Favourite" form visible
+                showInsertStatus = true;
+                showDeleteStatus = false;
+
+                // Retrieve the data from the request
+                int userId = Integer.parseInt(this.request.getParameter("userId"));
+                String type = this.request.getParameter("type");
+                int tvsId = Integer.parseInt(this.request.getParameter("tvsId"));
+                int movieId = Integer.parseInt(this.request.getParameter("movieId"));
+
+                // Create a UserFavourites object
+                UserFavourites userFavourite = new UserFavourites(-1, userId, type, tvsId, movieId, null);
+
+                // Insert the new UserFavourite
+                boolean insertStatus = insertUserFavourite(userFavourite);
+
+                if (insertStatus) {
+                    message = "User Favourite added successfully!";
+                } else {
+                    message = "Failed to add User Favourite!";
+                }
+
+                request.setAttribute("xmessage", message);
+                break;
+
+        }
+
+        System.out.println("Waiting to Dispatch");
+        try {
+            request.setAttribute("showUserFavIdForm", showUserFavIdForm);
+            request.setAttribute("showDetails", showDetails);
+            request.setAttribute("showEditForm", showEditForm);
+            request.setAttribute("showUpdateStatus", showUpdateStatus);
+            request.setAttribute("showAddForm", showAddForm);
+            request.setAttribute("showInsertStatus", showInsertStatus);
+            request.setAttribute("showDeleteStatus", showDeleteStatus);
+            this.dispatcher = request.getRequestDispatcher(jspPage);
+            dispatcher.forward(request, response);
+        } catch (Exception e2) {
+            e2.printStackTrace();
+        }
+    }
 
     public void selectUserFavourites(int favId) {
         try {
@@ -199,7 +198,7 @@ public class UserFavouritesController {
         }
         return deleteStatus;
     }
-    
+
     public boolean insertUserFavourite(UserFavourites userFavourite) {
         boolean insertStatus = false;
         try {
