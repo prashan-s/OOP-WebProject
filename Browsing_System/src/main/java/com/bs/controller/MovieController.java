@@ -30,7 +30,7 @@ public class MovieController {
 	}
 
 	public void doAction(String action) {
-		String jspPage = "TVSeriesDetails.jsp";
+		String jspPage = "./pages/movie-details.jsp";
 		Integer movieId = -1;
 		boolean showMovieIdForm = true;
 		boolean showDetails = false;
@@ -44,6 +44,7 @@ public class MovieController {
 		switch (action) {
 
 			case "submit":
+				jspPage = "./pages/movie-details.jsp";
 				showMovieIdForm = false;
 				showDetails = true;
 				showEditForm = false;
