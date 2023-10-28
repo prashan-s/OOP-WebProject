@@ -75,7 +75,7 @@ public class SubscriptionPlanDAO implements ISubscriptionPlanDAO {
 				float amount = rs.getFloat("amount");
 				boolean isActive = rs.getBoolean("is_active");
 				Date rowCreatedDatetime = rs.getDate("row_created_datetime");
-				String strIsActive = (is_active) ? "Active" : "InActive";
+				String strIsActive = (isActive) ? "Active" : "InActive";
 				SubscriptionPlan subscriptionPlan = new SubscriptionPlan(PlanId, description, duration, amount,
 						isActive, rowCreatedDatetime);
 				subscriptionPlan.setActiveStatus(strIsActive);

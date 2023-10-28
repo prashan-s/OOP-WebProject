@@ -1,5 +1,6 @@
 package com.bs.model;
 
+import java.lang.String;
 import java.util.Date;
 
 import com.oracle.wls.shaded.org.apache.xpath.operations.String;
@@ -23,6 +24,7 @@ public class SubscriptionPlan {
         this.duration = duration;
         this.amount = amount;
         this.isActive = isActive;
+        this.activeStatus = "InActive";
         this.rowCreatedDatetime = rowCreatedDatetime;
     }
 

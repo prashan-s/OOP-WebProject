@@ -1,8 +1,7 @@
 package com.bs.model;
 
 import java.util.Date;
-
-import com.oracle.wls.shaded.org.apache.xpath.operations.String;
+import java.lang.String;
 
 public class TVSeries {
 
@@ -43,6 +42,7 @@ public class TVSeries {
 		this.thriller_category = thriller_category;
 		this.active = active;
 		this.row_created_datetime = row_created_datetime;
+		this.isActiveStatus = "InActive";
 	}
 
 
