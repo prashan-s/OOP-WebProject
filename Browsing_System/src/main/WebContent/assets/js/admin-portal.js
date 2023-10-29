@@ -431,17 +431,9 @@ function editUpdateCustomerRow(rowId) {
   var email = row.querySelector("td:nth-child(3)").textContent;
   var mobileNumber = row.querySelector("td:nth-child(4)").textContent;
   var dob = row.querySelector("td:nth-child(5)").textContent;
-  var premiumUser = row.querySelector("td:nth-child(7)").textContent;
   var status = row.querySelector("td:nth-child(9)").textContent;
-  
-  var isPremiumUser;
+  debugger;
   var isActive;
-  
-	if (premiumUser == 'true') {
-		isPremiumUser = 1;
-	} else {
-		isPremiumUser = 0;
-	}
 	
 	if (status == 'true') {
 		isActive = 1;
@@ -455,14 +447,9 @@ function editUpdateCustomerRow(rowId) {
   document.getElementById("txtCustomerUpdateEmail").value = email;
   document.getElementById("txtCustomerUpdateMobileNo").value = mobileNumber;
   document.getElementById("txtCustomerUpdateDateofBirth").value = dob;
-  document.getElementById("txtCustomerUpdatePremiumUser").value = isPremiumUser;
   document.getElementById("txtCustomerUpdateStatus").value = isActive;
   
   // Trigger the 'change' event to update the select element
-  	var selectElement = document.getElementById("txtCustomerUpdatePremiumUser");
-	var event = new Event("change", { bubbles: true });
-	selectElement.dispatchEvent(event);
-	
 	var selectElement = document.getElementById("txtCustomerUpdateStatus");
 	var event = new Event("change", { bubbles: true });
 	selectElement.dispatchEvent(event);
@@ -479,23 +466,35 @@ function editUpdateMovieRow(rowId) {
   var id = row.querySelector("td:nth-child(1)").textContent;
   var MovieName = row.querySelector("td:nth-child(2)").textContent;
   var MovieDescription = row.querySelector("td:nth-child(3)").textContent;
-  var MovieRoute = row.querySelector("td:nth-child(4)").textContent;
+  var MovieYear = row.querySelector("td:nth-child(4)").textContent;
   var MovieDuration = row.querySelector("td:nth-child(5)").textContent;
   var MovieQuality = row.querySelector("td:nth-child(6)").textContent;
-  var MovieUrl = row.querySelector("td:nth-child(7)").textContent;
-  var MovieCategory = row.querySelector("td:nth-child(8)").textContent;
-  var MovieStatus = row.querySelector("td:nth-child(10)").textContent;
-
+  var MovieImgUrl = row.querySelector("td:nth-child(7)").textContent;
+  var MovieUrl = row.querySelector("td:nth-child(8)").textContent;
+  var status = row.querySelector("td:nth-child(10)").textContent;
+debugger;
+	var isActive;
+	
+	if (status == 'true') {
+		isActive = 1;
+	} else {
+		isActive = 0;
+	}
+	
   // Set the row data in the form fields
   document.getElementById("editMovieRowId").value = id;
   document.getElementById("txtUpdateMovieName").value = MovieName;
   document.getElementById("txtUpdateMovieDescription").value = MovieDescription;
-  document.getElementById("txtUpdateMovieYear").value = MovieRoute;
+  document.getElementById("txtUpdateMovieYear").value = MovieYear;
   document.getElementById("txtUpdateMovieDuration").value = MovieDuration;
   document.getElementById("txtUpdateMovieQuality").value = MovieQuality;
   document.getElementById("txtUpdateMovieUrl").value = MovieUrl;
-  document.getElementById("txtUpdateMovieCategory").value = MovieCategory;
-  document.getElementById("txtUpdateMovieStatus").value = MovieStatus;
+  document.getElementById("txtUpdateMovieStatus").value = isActive;
+  
+  var selectElement = document.getElementById("txtUpdateMovieStatus");
+	var event = new Event("change", { bubbles: true });
+	selectElement.dispatchEvent(event);
+	
   // Populate other form fields as needed
 
   // Show the Movie form
@@ -507,21 +506,27 @@ function editUpdateTvSeriesRow(rowId) {
   var row = document.getElementById(rowId);
   var id = row.querySelector("td:nth-child(1)").textContent;
   var TvSeriesName = row.querySelector("td:nth-child(2)").textContent;
-  var TvSeriesDescription = row.querySelector("td:nth-child(3)").textContent;
-  var TvSeriesStartingDate = row.querySelector("td:nth-child(4)").textContent;
-  var TvSeriesEndingDate = row.querySelector("td:nth-child(5)").textContent;
-  var TvSeriesPercentage = row.querySelector("td:nth-child(6)").textContent;
-  var Status = row.querySelector("td:nth-child(7)").textContent;
+  var TvSeriesImageUrl = row.querySelector("td:nth-child(3)").textContent;
+  var status = row.querySelector("td:nth-child(4)").textContent;
+
+	var isActive;
+	
+	if (status == 'true') {
+		isActive = 1;
+	} else {
+		isActive = 0;
+	}
 
   // Set the row data in the form fields
   document.getElementById("editTvSeriesRowId").value = id;
   document.getElementById("txtUpdateTvSeriesName").value = TvSeriesName;
-  document.getElementById("txtUpdateTvSeriesDescription").value = TvSeriesDescription;
-  document.getElementById("txtUpdateTvSeriesStartingDate").value =
-    TvSeriesStartingDate;
-  document.getElementById("txtUpdateTvSeriesEndingDate").value = TvSeriesEndingDate;
-  document.getElementById("txtUpdateTvSeriesPercentage").value = TvSeriesPercentage;
-  document.getElementById("txtUpdateTvSeriesStatus").value = Status;
+  document.getElementById("txtUpdateTvSeriesImageUrl").value = TvSeriesImageUrl;
+  document.getElementById("txtUpdateTvSeriesStatus").value = isActive;
+
+	var selectElement = document.getElementById("txtUpdateTvSeriesStatus");
+	var event = new Event("change", { bubbles: true });
+	selectElement.dispatchEvent(event);
+	
   // Populate other form fields as needed
 
   // Show the TvSeries form
@@ -530,24 +535,40 @@ function editUpdateTvSeriesRow(rowId) {
 
 function editUpdateTvSeriesEpisodesRow(rowId) {
   // Get the row data
+  debugger;
   var row = document.getElementById(rowId);
   var id = row.querySelector("td:nth-child(1)").textContent;
-  var TvSeriesEpisodesName = row.querySelector("td:nth-child(2)").textContent;
-  var TvSeriesEpisodesDescription = row.querySelector("td:nth-child(3)").textContent;
-  var TvSeriesEpisodesStartingDate = row.querySelector("td:nth-child(4)").textContent;
-  var TvSeriesEpisodesEndingDate = row.querySelector("td:nth-child(5)").textContent;
-  var TvSeriesEpisodesPercentage = row.querySelector("td:nth-child(6)").textContent;
-  var Status = row.querySelector("td:nth-child(7)").textContent;
+  var TvSeriesSeason = row.querySelector("td:nth-child(3)").textContent;
+  var TvSeriesEpisode = row.querySelector("td:nth-child(4)").textContent;
+  var TvSeriesEpisodeDescription = row.querySelector("td:nth-child(5)").textContent;
+  var TvSeriesEpisodeYear = row.querySelector("td:nth-child(6)").textContent;
+  var TvSeriesEpisodesDuration = row.querySelector("td:nth-child(7)").textContent;
+  var TvSeriesEpisodesQuality = row.querySelector("td:nth-child(8)").textContent;
+  var TvSeriesEpisodesUrl = row.querySelector("td:nth-child(9)").textContent;
+  var status = row.querySelector("td:nth-child(10)").textContent;
+  
+  var isActive;
+	
+	if (status == 'Active') {
+		isActive = 1;
+	} else {
+		isActive = 0;
+	}
 
   // Set the row data in the form fields
-  document.getElementById("editTvSeriesEpisodesRowId").value = id;
-  document.getElementById("txtUpdateTvSeriesEpisodesName").value = TvSeriesEpisodesName;
-  document.getElementById("txtUpdateTvSeriesEpisodesDescription").value = TvSeriesEpisodesDescription;
-  document.getElementById("txtUpdateTvSeriesEpisodesStartingDate").value =
-    TvSeriesEpisodesStartingDate;
-  document.getElementById("txtUpdateTvSeriesEpisodesEndingDate").value = TvSeriesEpisodesEndingDate;
-  document.getElementById("txtUpdateTvSeriesEpisodesPercentage").value = TvSeriesEpisodesPercentage;
-  document.getElementById("txtUpdateTvSeriesEpisodesStatus").value = Status;
+  document.getElementById("editTvSeriesEpisodeRowId").value = id;
+  document.getElementById("txtUpdateTvSeriesSeason").value = TvSeriesSeason;
+  document.getElementById("txtUpdateTvSeriesEpisode").value = TvSeriesEpisode;
+  document.getElementById("txtUpdateTvSeriesEpisodeDescription").value = TvSeriesEpisodeDescription;
+  document.getElementById("txtUpdateTvSeriesEpisodeYear").value = TvSeriesEpisodeYear;
+  document.getElementById("txtUpdateTvSeriesEpisodeDuration").value = TvSeriesEpisodesDuration;
+  document.getElementById("txtUpdateTvSeriesEpisodeQuality").value = TvSeriesEpisodesQuality;
+  document.getElementById("txtUpdateTvSeriesEpisodeUrl").value = TvSeriesEpisodesUrl;
+  document.getElementById("txtUpdateTvSeriesEpisodeStatus").value = isActive;
+  
+  var selectElement = document.getElementById("txtUpdateTvSeriesEpisodeStatus");
+	var event = new Event("change", { bubbles: true });
+	selectElement.dispatchEvent(event);
   // Populate other form fields as needed
 
   // Show the TvSeries form

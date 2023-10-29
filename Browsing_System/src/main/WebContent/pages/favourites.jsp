@@ -39,7 +39,7 @@
 
   <script>
     // Fetch the HTML content of your component
-    fetch("../components/header.html")
+    fetch("../components/header.jsp")
       .then((response) => response.text())
       .then((html) => {
         // Inject the HTML content into your container
@@ -470,7 +470,7 @@
 
   <script>
     // Fetch the HTML content of your component
-    fetch("../components/footer.html")
+    fetch("../components/footer.jsp")
       .then((response) => response.text())
       .then((html) => {
         // Inject the HTML content into your container

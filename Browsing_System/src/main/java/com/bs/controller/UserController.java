@@ -193,6 +193,8 @@ public class UserController {
 			}
 			request.setAttribute("signInStatus", signInStatus);
 			request.setAttribute("loginMessage", loginMessage);
+			
+			System.out.println("Login Status: " + signInStatus);
 			break;
 		
 		case "Sign Up":

@@ -16,14 +16,14 @@
   </component>
   <component name="NewModuleRootManager">
     <output url="file://$MODULE_DIR$/build/classes" />
-    <output-test url="file://$MODULE_DIR$/classes/test/Browsing_System" />
     <exclude-output />
     <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/src/main/WebContent" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
     </content>
     <orderEntry type="jdk" jdkName="21" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module-library">
+    <orderEntry type="module-library" exported="">
       <library name="jakarta.servlet.jsp.tag.jar">
         <CLASSES>
           <root url="jar://$MODULE_DIR$/src/main/WebContent/WEB-INF/lib/jakarta.servlet.jsp.tag.jar!/" />
@@ -32,7 +32,7 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="module-library">
+    <orderEntry type="module-library" exported="">
       <library name="jakarta.servlet-api.jar">
         <CLASSES>
           <root url="jar://$MODULE_DIR$/src/main/WebContent/WEB-INF/lib/jakarta.servlet-api.jar!/" />
@@ -41,7 +41,7 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="module-library">
+    <orderEntry type="module-library" exported="">
       <library name="mysql-connector.jar">
         <CLASSES>
           <root url="jar://$MODULE_DIR$/src/main/WebContent/WEB-INF/lib/mysql-connector.jar!/" />
@@ -50,7 +50,7 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="module-library">
+    <orderEntry type="module-library" exported="">
       <library name="mssql-jdbc.jar">
         <CLASSES>
           <root url="jar://$MODULE_DIR$/src/main/WebContent/WEB-INF/lib/mssql-jdbc.jar!/" />
@@ -59,7 +59,7 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="module-library">
+    <orderEntry type="module-library" exported="">
       <library name="jstl-2.0.0.jar">
         <CLASSES>
           <root url="jar://$MODULE_DIR$/src/main/WebContent/WEB-INF/lib/jstl-2.0.0.jar!/" />
@@ -68,7 +68,7 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="module-library">
+    <orderEntry type="module-library" exported="">
       <library name="jstl-api-2.0.0.jar">
         <CLASSES>
           <root url="jar://$MODULE_DIR$/src/main/WebContent/WEB-INF/lib/jstl-api-2.0.0.jar!/" />

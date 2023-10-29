@@ -1,4 +1,5 @@
-<!-- 
+
+<!--
 - #FOOTER COMPONENT
 -->
 
@@ -9,14 +10,14 @@
 
       <div class="footer-brand-wrapper">
 
-        <a href="./index.jsp" class="logo">
-          <img src="/assets/images/logo.svg" alt="Filmlane logo">
+        <a href="${pageContext.request.contextPath}/index.jsp" class="logo">
+          <img src="${pageContext.request.contextPath}/assets/images/logo.svg" alt="Filmlane logo">
         </a>
 
         <ul class="footer-list">
 
           <li>
-            <a href="./index.jsp" class="footer-link">Home</a>
+            <a href="${pageContext.request.contextPath}/index.jsp" class="footer-link">Home</a>
           </li>
 
           <li>
@@ -106,7 +107,7 @@
     </div>
     <div class="property-details">
       <div class="copyright">
-        Â© 2023 Movies and TV Series browsing system. All rights reserved.
+        © 2023 Movies and TV Series browsing system. All rights reserved.
       </div>
       <div class="owner">
         Design and Developed by Group SE/OOP/2023/S2/MLB/WE/G19

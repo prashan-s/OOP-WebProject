@@ -1,4 +1,5 @@
-<!-- 
+
+<!--
 - #FOOTER COMPONENT
 -->
 
@@ -106,7 +107,7 @@
     </div>
     <div class="property-details">
       <div class="copyright">
-        Â© 2023 Movies and TV Series browsing system. All rights reserved.
+        © 2023 Movies and TV Series browsing system. All rights reserved.
       </div>
       <div class="owner">
         Design and Developed by Group SE/OOP/2023/S2/MLB/WE/G19

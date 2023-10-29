@@ -9,14 +9,4 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
-  <servlet>
-    <description></description>
-    <display-name>UserSubscriptionServlet</display-name>
-    <servlet-name>UserSubscriptionServlet</servlet-name>
-    <servlet-class>com.bs.servlet.UserSubscriptionServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>UserSubscriptionServlet</servlet-name>
-    <url-pattern>/UserSubscriptionServlet</url-pattern>
-  </servlet-mapping>
 </web-app>

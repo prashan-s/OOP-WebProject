@@ -47,7 +47,7 @@
 
     <script>
         // Fetch the HTML content of your component
-        fetch("../components/header.html")
+        fetch("../components/header.jsp")
             .then((response) => response.text())
             .then((html) => {
                 // Inject the HTML content into your container
@@ -385,7 +385,7 @@
   <script>
 	//Construct the path dynamically by appending the context path
 	  var contextPath = "${pageContext.request.contextPath}";
-	  var footerPath = contextPath + "/WebApp../components/footer.html";
+	  var footerPath = contextPath + "/WebApp../components/footer.jsp";
 	  
     // Fetch the HTML content of your component
     fetch(footerPath)

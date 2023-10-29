@@ -19,8 +19,8 @@
   <!-- 
     - custom css link
   -->
-  <link rel="stylesheet" href="../assets/css/style.css" />
-  <link rel="stylesheet" href="../assets/css/movies.css" />
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/style.css" />
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/movies.css" />
 
   <!-- 
     - google font link
@@ -29,6 +29,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
 </head>
+
 
 <body id="#top">
   <!-- 
@@ -39,7 +40,7 @@
 
   <script>
     // Fetch the HTML content of your component
-    fetch("../components/header.html")
+    fetch("${pageContext.request.contextPath}/components/header.jsp")
       .then((response) => response.text())
       .then((html) => {
         // Inject the HTML content into your container
@@ -48,371 +49,137 @@
   </script>
 
   <main>
+    <div>
+
+
+
+    </div>>
     <div class="movie-compartment">
       <!-- 
         - #MOVIE DETAIL
       -->
 
+
       <section class="movie-detail">
         <div class="movie-heading">
           <p class="detail-subtitle">Recommended</p>
         </div>
+
+        <%--@Teran Refer this--%>
+        <form action="${pageContext.request.contextPath}/MovieServlet" method="post" style="display:none">
+          <input type="submit" name="action" value="submit-getMovies" id="getMovieBtn">
+        </form>
+
         <div class="movie-container">
-          <div class="movie-detail-container">
-            <figure class="movie-detail-banner">
-              <img src="../assets/images/movie-4.png" alt="Free guy movie poster" />
-              <button class="play-btn" onclick="openMoviePage()">
-                <ion-icon name="play-circle-outline"></ion-icon>
-              </button>
-            </figure>
-
-            <div class="date-time">
-              <div>
-                <ion-icon name="calendar-outline"></ion-icon>
-                <time datetime="2021">2021</time>
-              </div>
-              <div>
-                <ion-icon name="time-outline"></ion-icon>
-                <time datetime="PT115M">115 min</time>
-              </div>
-            </div>
-          </div>
-          <div class="movie-detail-container">
-            <figure class="movie-detail-banner">
-              <img src="../assets/images/movie-4.png" alt="Free guy movie poster" />
-              <button class="play-btn">
-                <ion-icon name="play-circle-outline"></ion-icon>
-              </button>
-            </figure>
-
-            <div class="date-time">
-              <div>
-                <ion-icon name="calendar-outline"></ion-icon>
-                <time datetime="2021">2021</time>
-              </div>
-              <div>
-                <ion-icon name="time-outline"></ion-icon>
-                <time datetime="PT115M">115 min</time>
-              </div>
-            </div>
-          </div>
-          <div class="movie-detail-container">
-            <figure class="movie-detail-banner">
-              <img src="../assets/images/movie-4.png" alt="Free guy movie poster" />
-              <button class="play-btn">
-                <ion-icon name="play-circle-outline"></ion-icon>
-              </button>
-            </figure>
-
-            <div class="date-time">
-              <div>
-                <ion-icon name="calendar-outline"></ion-icon>
-                <time datetime="2021">2021</time>
-              </div>
-              <div>
-                <ion-icon name="time-outline"></ion-icon>
-                <time datetime="PT115M">115 min</time>
-              </div>
-            </div>
-          </div>
-          <div class="movie-detail-container">
-            <figure class="movie-detail-banner">
-              <img src="../assets/images/movie-4.png" alt="Free guy movie poster" />
-              <button class="play-btn">
-                <ion-icon name="play-circle-outline"></ion-icon>
-              </button>
-            </figure>
-
-            <div class="date-time">
-              <div>
-                <ion-icon name="calendar-outline"></ion-icon>
-                <time datetime="2021">2021</time>
-              </div>
-              <div>
-                <ion-icon name="time-outline"></ion-icon>
-                <time datetime="PT115M">115 min</time>
-              </div>
-            </div>
-          </div>
-          <div class="movie-detail-container">
-            <figure class="movie-detail-banner">
-              <img src="../assets/images/movie-4.png" alt="Free guy movie poster" />
-              <button class="play-btn">
-                <ion-icon name="play-circle-outline"></ion-icon>
-              </button>
-            </figure>
-
-            <div class="date-time">
-              <div>
-                <ion-icon name="calendar-outline"></ion-icon>
-                <time datetime="2021">2021</time>
-              </div>
-              <div>
-                <ion-icon name="time-outline"></ion-icon>
-                <time datetime="PT115M">115 min</time>
-              </div>
-            </div>
-          </div>
-          <div class="movie-detail-container">
-            <figure class="movie-detail-banner">
-              <img src="../assets/images/movie-4.png" alt="Free guy movie poster" />
-              <button class="play-btn">
-                <ion-icon name="play-circle-outline"></ion-icon>
-              </button>
-            </figure>
-
-            <div class="date-time">
-              <div>
-                <ion-icon name="calendar-outline"></ion-icon>
-                <time datetime="2021">2021</time>
-              </div>
-              <div>
-                <ion-icon name="time-outline"></ion-icon>
-                <time datetime="PT115M">115 min</time>
-              </div>
-            </div>
-          </div>
-          <div class="movie-detail-container">
-            <figure class="movie-detail-banner">
-              <img src="../assets/images/movie-4.png" alt="Free guy movie poster" />
-              <button class="play-btn">
-                <ion-icon name="play-circle-outline"></ion-icon>
-              </button>
-            </figure>
-
-            <div class="date-time">
-              <div>
-                <ion-icon name="calendar-outline"></ion-icon>
-                <time datetime="2021">2021</time>
-              </div>
-              <div>
-                <ion-icon name="time-outline"></ion-icon>
-                <time datetime="PT115M">115 min</time>
-              </div>
-            </div>
-          </div>
-          <div class="movie-detail-container">
-            <figure class="movie-detail-banner">
-              <img src="../assets/images/movie-4.png" alt="Free guy movie poster" />
-              <button class="play-btn">
-                <ion-icon name="play-circle-outline"></ion-icon>
-              </button>
-            </figure>
-
-            <div class="date-time">
-              <div>
-                <ion-icon name="calendar-outline"></ion-icon>
-                <time datetime="2021">2021</time>
-              </div>
-              <div>
-                <ion-icon name="time-outline"></ion-icon>
-                <time datetime="PT115M">115 min</time>
-              </div>
-            </div>
-          </div>
-          <div class="movie-detail-container">
-            <figure class="movie-detail-banner">
-              <img src="../assets/images/movie-4.png" alt="Free guy movie poster" />
-              <button class="play-btn">
-                <ion-icon name="play-circle-outline"></ion-icon>
-              </button>
-            </figure>
-
-            <div class="date-time">
-              <div>
-                <ion-icon name="calendar-outline"></ion-icon>
-                <time datetime="2021">2021</time>
-              </div>
-              <div>
-                <ion-icon name="time-outline"></ion-icon>
-                <time datetime="PT115M">115 min</time>
-              </div>
-            </div>
-          </div>
-          <div class="movie-detail-container">
-            <figure class="movie-detail-banner">
-              <img src="../assets/images/movie-4.png" alt="Free guy movie poster" />
-              <button class="play-btn">
-                <ion-icon name="play-circle-outline"></ion-icon>
-              </button>
-            </figure>
-
-            <div class="date-time">
-              <div>
-                <ion-icon name="calendar-outline"></ion-icon>
-                <time datetime="2021">2021</time>
-              </div>
-              <div>
-                <ion-icon name="time-outline"></ion-icon>
-                <time datetime="PT115M">115 min</time>
-              </div>
-            </div>
-          </div>
-          <!-- <div class="movie-detail-content">
-
-            <p class="detail-subtitle">New Episodes</p>
-
-            <h1 class="h1 detail-title">
-              Free <strong>Guy</strong>
-            </h1>
-
-            <div class="meta-wrapper">
-
-              <div class="badge-wrapper">
-                <div class="badge badge-fill">PG 13</div>
-
-                <div class="badge badge-outline">HD</div>
-              </div>
-
-              <div class="ganre-wrapper">
-                <a href="#">Comedy,</a>
-
-                <a href="#">Action,</a>
-
-                <a href="#">Adventure,</a>
-
-                <a href="#">Science Fiction</a>
-              </div>
+          <c:forEach items="${movieData}" var="movie">
+            <div class="movie-detail-container">
+              <figure class="movie-detail-banner">
+                <img src="${movie.movie_img_url}" alt="${movie.title}" />
+                <button class="play-btn" onclick="openMoviePage()">
+                  <ion-icon name="play-circle-outline"></ion-icon>
+                </button>
+              </figure>
 
               <div class="date-time">
-
                 <div>
                   <ion-icon name="calendar-outline"></ion-icon>
-
-                  <time datetime="2021">2021</time>
+                  <time datetime="${movie.year}">${movie.year}</time>
                 </div>
-
                 <div>
                   <ion-icon name="time-outline"></ion-icon>
-
-                  <time datetime="PT115M">115 min</time>
+                  <time datetime="PT${movie.duration}M">${movie.duration} min</time>
                 </div>
-
               </div>
-
             </div>
+          </c:forEach>
 
-            <p class="storyline">
-              A bank teller called Guy realizes he is a background character in an open world video game called Free
-              City that will
-              soon go offline.
-            </p>
 
-            <div class="details-actions">
-
-              <button class="share">
-                <ion-icon name="share-social"></ion-icon>
-
-                <span>Share</span>
-              </button>
-
-              <div class="title-wrapper">
-                <p class="title">Prime Video</p>
-
-                <p class="text">Streaming Channels</p>
-              </div>
-
-              <button class="btn btn-primary">
-                <ion-icon name="play"></ion-icon>
-
-                <span>Watch Now</span>
-              </button>
-
-            </div>
-
-            <a href="../assets/images/movie-4.png" download class="download-btn">
-              <span>Download</span>
-
-              <ion-icon name="download-outline"></ion-icon>
-            </a>
-
-          </div> -->
         </div>
       </section>
 
-      <section class="movie-detail recently-updated">
-        <div class="movie-heading">
-          <p class="detail-subtitle">Recently Updated</p>
-        </div>
-        <div class="movie-container">
-          <div class="movie-detail-container">
-            <figure class="movie-detail-banner">
-              <img src="../assets/images/movie-4.png" alt="Free guy movie poster" />
-              <button class="play-btn" onclick="openMoviePage()">
-                <ion-icon name="play-circle-outline"></ion-icon>
-              </button>
-            </figure>
+<%--      <section class="movie-detail recently-updated">--%>
+<%--        <div class="movie-heading">--%>
+<%--          <p class="detail-subtitle">Recently Updated</p>--%>
+<%--        </div>--%>
+<%--        <div class="movie-container">--%>
+<%--          <div class="movie-detail-container">--%>
+<%--            <figure class="movie-detail-banner">--%>
+<%--              <img src="${pageContext.request.contextPath}/assets/images/movie-4.png" alt="Free guy movie poster" />--%>
+<%--              <button class="play-btn" onclick="openMoviePage()">--%>
+<%--                <ion-icon name="play-circle-outline"></ion-icon>--%>
+<%--              </button>--%>
+<%--            </figure>--%>
 
-            <div class="date-time">
-              <div>
-                <ion-icon name="calendar-outline"></ion-icon>
-                <time datetime="2021">2021</time>
-              </div>
-              <div>
-                <ion-icon name="time-outline"></ion-icon>
-                <time datetime="PT115M">115 min</time>
-              </div>
-            </div>
-          </div>
-          <div class="movie-detail-container">
-            <figure class="movie-detail-banner">
-              <img src="../assets/images/movie-4.png" alt="Free guy movie poster" />
-              <button class="play-btn" onclick="openMoviePage()">
-                <ion-icon name="play-circle-outline"></ion-icon>
-              </button>
-            </figure>
+<%--            <div class="date-time">--%>
+<%--              <div>--%>
+<%--                <ion-icon name="calendar-outline"></ion-icon>--%>
+<%--                <time datetime="2021">2021</time>--%>
+<%--              </div>--%>
+<%--              <div>--%>
+<%--                <ion-icon name="time-outline"></ion-icon>--%>
+<%--                <time datetime="PT115M">115 min</time>--%>
+<%--              </div>--%>
+<%--            </div>--%>
+<%--          </div>--%>
+<%--          <div class="movie-detail-container">--%>
+<%--            <figure class="movie-detail-banner">--%>
+<%--              <img src="${pageContext.request.contextPath}/assets/images/movie-4.png" alt="Free guy movie poster" />--%>
+<%--              <button class="play-btn" onclick="openMoviePage()">--%>
+<%--                <ion-icon name="play-circle-outline"></ion-icon>--%>
+<%--              </button>--%>
+<%--            </figure>--%>
 
-            <div class="date-time">
-              <div>
-                <ion-icon name="calendar-outline"></ion-icon>
-                <time datetime="2021">2021</time>
-              </div>
-              <div>
-                <ion-icon name="time-outline"></ion-icon>
-                <time datetime="PT115M">115 min</time>
-              </div>
-            </div>
-          </div>
-          <div class="movie-detail-container">
-            <figure class="movie-detail-banner">
-              <img src="../assets/images/movie-4.png" alt="Free guy movie poster" />
-              <button class="play-btn" onclick="openMoviePage()">
-                <ion-icon name="play-circle-outline"></ion-icon>
-              </button>
-            </figure>
+<%--            <div class="date-time">--%>
+<%--              <div>--%>
+<%--                <ion-icon name="calendar-outline"></ion-icon>--%>
+<%--                <time datetime="2021">2021</time>--%>
+<%--              </div>--%>
+<%--              <div>--%>
+<%--                <ion-icon name="time-outline"></ion-icon>--%>
+<%--                <time datetime="PT115M">115 min</time>--%>
+<%--              </div>--%>
+<%--            </div>--%>
+<%--          </div>--%>
+<%--          <div class="movie-detail-container">--%>
+<%--            <figure class="movie-detail-banner">--%>
+<%--              <img src="${pageContext.request.contextPath}/assets/images/movie-4.png" alt="Free guy movie poster" />--%>
+<%--              <button class="play-btn" onclick="openMoviePage()">--%>
+<%--                <ion-icon name="play-circle-outline"></ion-icon>--%>
+<%--              </button>--%>
+<%--            </figure>--%>
 
-            <div class="date-time">
-              <div>
-                <ion-icon name="calendar-outline"></ion-icon>
-                <time datetime="2021">2021</time>
-              </div>
-              <div>
-                <ion-icon name="time-outline"></ion-icon>
-                <time datetime="PT115M">115 min</time>
-              </div>
-            </div>
-          </div>
-          <div class="movie-detail-container">
-            <figure class="movie-detail-banner">
-              <img src="../assets/images/movie-4.png" alt="Free guy movie poster" />
-              <button class="play-btn" onclick="openMoviePage()">
-                <ion-icon name="play-circle-outline"></ion-icon>
-              </button>
-            </figure>
+<%--            <div class="date-time">--%>
+<%--              <div>--%>
+<%--                <ion-icon name="calendar-outline"></ion-icon>--%>
+<%--                <time datetime="2021">2021</time>--%>
+<%--              </div>--%>
+<%--              <div>--%>
+<%--                <ion-icon name="time-outline"></ion-icon>--%>
+<%--                <time datetime="PT115M">115 min</time>--%>
+<%--              </div>--%>
+<%--            </div>--%>
+<%--          </div>--%>
+<%--          <div class="movie-detail-container">--%>
+<%--            <figure class="movie-detail-banner">--%>
+<%--              <img src="${pageContext.request.contextPath}/assets/images/movie-4.png" alt="Free guy movie poster" />--%>
+<%--              <button class="play-btn" onclick="openMoviePage()">--%>
+<%--                <ion-icon name="play-circle-outline"></ion-icon>--%>
+<%--              </button>--%>
+<%--            </figure>--%>
 
-            <div class="date-time">
-              <div>
-                <ion-icon name="calendar-outline"></ion-icon>
-                <time datetime="2021">2021</time>
-              </div>
-              <div>
-                <ion-icon name="time-outline"></ion-icon>
-                <time datetime="PT115M">115 min</time>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+<%--            <div class="date-time">--%>
+<%--              <div>--%>
+<%--                <ion-icon name="calendar-outline"></ion-icon>--%>
+<%--                <time datetime="2021">2021</time>--%>
+<%--              </div>--%>
+<%--              <div>--%>
+<%--                <ion-icon name="time-outline"></ion-icon>--%>
+<%--                <time datetime="PT115M">115 min</time>--%>
+<%--              </div>--%>
+<%--            </div>--%>
+<%--          </div>--%>
+<%--        </div>--%>
+<%--      </section>--%>
 
       <!-- 
         - #TV SERIES
@@ -432,7 +199,7 @@
 
                 <a href="./movie-details.html">
                   <figure class="card-banner">
-                    <img src="../assets/images/series-1.png" alt="Moon Knight movie poster">
+                    <img src="${pageContext.request.contextPath}/assets/images/series-1.png" alt="Moon Knight movie poster">
                   </figure>
                 </a>
 
@@ -468,7 +235,7 @@
 
                 <a href="./movie-details.html">
                   <figure class="card-banner">
-                    <img src="../assets/images/series-2.png" alt="Halo movie poster">
+                    <img src="${pageContext.request.contextPath}/assets/images/series-2.png" alt="Halo movie poster">
                   </figure>
                 </a>
 
@@ -504,7 +271,7 @@
 
                 <a href="./movie-details.html">
                   <figure class="card-banner">
-                    <img src="../assets/images/series-3.png" alt="Vikings: Valhalla movie poster">
+                    <img src="${pageContext.request.contextPath}/assets/images/series-3.png" alt="Vikings: Valhalla movie poster">
                   </figure>
                 </a>
 
@@ -540,7 +307,7 @@
 
                 <a href="./movie-details.html">
                   <figure class="card-banner">
-                    <img src="../assets/images/series-4.png" alt="Money Heist movie poster">
+                    <img src="${pageContext.request.contextPath}/assets/images/series-4.png" alt="Money Heist movie poster">
                   </figure>
                 </a>
 
@@ -586,7 +353,7 @@
 
   <script>
     // Fetch the HTML content of your component
-    fetch("../components/footer.html")
+    fetch("${pageContext.request.contextPath}/components/footer.jsp")
       .then((response) => response.text())
       .then((html) => {
         // Inject the HTML content into your container
@@ -605,8 +372,8 @@
   <!-- 
     - custom js link
   -->
-  <script src="../assets/js/script.js"></script>
-  <script src="../assets/js/movies.js"></script>
+  <script src="${pageContext.request.contextPath}/assets/js/script.js"></script>
+  <script src="${pageContext.request.contextPath}/assets/js/movies.js"></script>
   <!-- 
     - ionicon link
   -->

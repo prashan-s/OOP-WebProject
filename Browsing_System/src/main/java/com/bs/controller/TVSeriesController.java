@@ -61,7 +61,10 @@ public class TVSeriesController {
 				Cookie cookie = new Cookie("tvsId", Integer.toString(tvssId));
 				this.response.addCookie(cookie);
 				break;
+			case "submit-getallseries":
 
+				this.setAllTvSeries();
+				break;
 			case "edit":
 
 				jspPage = "./pages/admin-portal.jsp";
@@ -285,6 +288,24 @@ public class TVSeriesController {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		try {
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void setAllTvSeries() {
+
+		try {
+			List<TVSeries> seriesList = new TVSeriesDAO().selectAllTVSeries();
+			System.out.println("TV Series: " + seriesList.getFirst().getTitle());
+			request.setAttribute("seriesList", seriesList);
 
 		} catch (Exception e) {
 			e.printStackTrace();
