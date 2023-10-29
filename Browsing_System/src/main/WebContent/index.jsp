@@ -83,7 +83,7 @@
   <script>
 
     // Fetch the HTML content of your component
-    fetch('./components/headerIndex.jsp')
+    fetch('${pageContext.request.contextPath}/components/headerIndex.jsp')
       .then(response => response.text())
       .then(html => {
         // Inject the HTML content into your container
@@ -346,7 +346,29 @@
 	        <button type="submit">Search</button>
 	    </form>
           <ul class="movies-list  has-scrollbar">
+              <c:forEach items="${seriesList}" var="item">
+                  <div class="movie-card">
+                      <figure class="card-banner">
+                          <img src="${movie.image}" alt="${movie.title} movie poster"/>
+                          <button class="play-btn" onclick="openMoviePage()">
+                              <ion-icon name="play-circle-outline"></ion-icon>
+                          </button>
+                      </figure>
+
+                      <div class="date-time">
+                          <div>
+                              <ion-icon name="calendar-outline"></ion-icon>
+                              <time datetime="${item.row_created_datetime}">${item.row_created_datetime}</time>
+                          </div>
+                      </div>
+                  </div>
+              </c:forEach>
+              <%--@Teran Refer this--%>
+              <form action="${pageContext.request.contextPath}/MovieServlet" method="post">
+                  <input type="submit" name="action" value="submit-getMovies-dashboard">
+              </form>
             <c:forEach items="${movies}" var="movie">
+
 	            <li>
 	                <div class="movie-card">
 	                    <a href="./pages/movie-details.jsp">
@@ -358,13 +380,13 @@
 	                        <a href="./pages/movie-details.jsp">
 	                            <h3 class="card-title">${movie.title}</h3>
 	                        </a>
-	                        <time datetime="${movie.year}">${movie.year}</time>
+	                        <time datetime="${movie.row_created_datetime}">${movie.row_created_datetime}</time>
 	                    </div>
 	                    <div class="card-meta">
-	                        <div class="badge badge-outline">${movie.badge}</div>
+<%--	                        <div class="badge badge-outline">${movie.badge}</div>--%>
 	                        <div class="duration">
 	                            <ion-icon name="time-outline"></ion-icon>
-	                            <time datetime="${movie.duration}">${movie.duration}</time>
+	                            <time datetime="${movie.row_created_datetime}">${movie.row_created_datetime}</time>
 	                        </div>
 	                        <div class="rating">
 	                            <ion-icon name="star"></ion-icon>
@@ -462,7 +484,7 @@
   <script>
 
     // Fetch the HTML content of your component
-    fetch('./components/footerIndex.jsp')
+    fetch('${pageContext.request.contextPath}/components/footerIndex.jsp')
       .then(response => response.text())
       .then(html => {
         // Inject the HTML content into your container

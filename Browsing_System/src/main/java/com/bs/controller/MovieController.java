@@ -59,6 +59,18 @@ public class MovieController {
 				Cookie cookie = new Cookie("movieId", Integer.toString(movieId));
 				this.response.addCookie(cookie);
 				break;
+			case "submit-getMovies-dashboard":
+				jspPage = "./index.jsp";
+				showMovieIdForm = false;
+				showDetails = true;
+				showEditForm = false;
+				showUpdateStatus = false;
+				showAddForm = false;
+				showInsertStatus = false;
+				showDeleteStatus = false;
+
+				this.setAllMovies();
+				break;
 			case "submit-getMovies":
 				jspPage = "./pages/movies.jsp";
 				showMovieIdForm = false;
