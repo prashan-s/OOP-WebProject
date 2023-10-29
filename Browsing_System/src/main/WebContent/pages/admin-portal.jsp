@@ -52,7 +52,7 @@
         </ul>
 
         <a href="${pageContext.request.contextPath}/index.jsp" class="logo">
-            <img src="../assets/images/logo.svg" alt="Filmlane logo"/>
+            <img src="${pageContext.request.contextPath}/assets/images/logo.svg" alt="Filmlane logo"/>
         </a>
 
         <div class="header-actions">
@@ -85,7 +85,7 @@
 
         <nav class="navbar" data-navbar>
             <div class="navbar-top">
-                <a href="../index.jsp" class="logo">
+                <a href="${pageContext.request.contextPath}/index.jsp" class="logo">
                     <img src="../assets/images/logo.svg" alt="Filmlane logo"/>
                 </a>
 
@@ -96,23 +96,23 @@
 
             <ul class="navbar-list">
                 <li>
-                    <a href="../index.jsp" class="navbar-link">Home</a>
+                    <a href="${pageContext.request.contextPath}/index.jsp" class="navbar-link">Home</a>
                 </li>
 
                 <li>
-                    <a href="./movies.jsp" class="navbar-link">Movies</a>
+                    <a href="${pageContext.request.contextPath}/pages/movies.jsp" class="navbar-link">Movies</a>
                 </li>
 
                 <li>
-                    <a href="./tv-series.jsp" class="navbar-link">Tv Series</a>
+                    <a href="${pageContext.request.contextPath}/pages/tv-series.jsp" class="navbar-link">Tv Series</a>
                 </li>
 
                 <li>
-                    <a href="./favourites.jsp" class="navbar-link">Favourites</a>
+                    <a href="${pageContext.request.contextPath}/pages/favourites.jsp" class="navbar-link">Favourites</a>
                 </li>
 
                 <li>
-                    <a href="./about.jsp" class="navbar-link">About</a>
+                    <a href="${pageContext.request.contextPath}/pages/about.jsp" class="navbar-link">About</a>
                 </li>
             </ul>
 
@@ -927,7 +927,7 @@
 <script>
     //Construct the path dynamically by appending the context path
     var contextPath = "${pageContext.request.contextPath}";
-    var footerPath = contextPath + "${pageContext.request.contextPath}/components/footer.jsp";
+    var footerPath = contextPath + "/components/footer.jsp";
 
     // Fetch the HTML content of your component
     fetch(footerPath)
