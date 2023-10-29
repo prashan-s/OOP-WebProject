@@ -214,45 +214,70 @@ public class MovieController {
 				showMovieIdForm = false;
 				showDetails = false;
 				showEditForm = false;
-				showUpdateStatus = true;
+				showUpdateStatus = false;
+				showAddForm = false;
+				showInsertStatus = true;
 				showDeleteStatus = false;
 
-				Movie m2 = new Movie();
 
-				movieId = getValueForId("movieId");
+				if (movieId == null){
+					movieId = 1;
+				}else{
+					try {
+						movieId = Integer.parseInt(request.getParameter("movieId"));
+					}catch(Exception e){
 
-				m2.setTitle(request.getParameter("title"));
-				m2.setDescription(request.getParameter("description"));
-				m2.setYear(Integer.parseInt(request.getParameter("year")));
-				m2.setDuration(Integer.parseInt(request.getParameter("duration")));
-				m2.setQuality(request.getParameter("quality"));
-				m2.setWatch_count(Integer.parseInt(request.getParameter("watch_count")));
-				m2.setMovie_img_url(request.getParameter("movie_img_url"));
-				m2.setMovie_stream_url(request.getParameter("movie_stream_url"));
-				m2.setAction_category(Boolean.parseBoolean(request.getParameter("action_category")));
-				m2.setAdventure_category(Boolean.parseBoolean(request.getParameter("adventure_category")));
-				m2.setComedy_category(Boolean.parseBoolean(request.getParameter("comedy_category")));
-				m2.setScify_category(Boolean.parseBoolean(request.getParameter("scify_category")));
-				m2.setHorror_category(Boolean.parseBoolean(request.getParameter("horror_category")));
-				m2.setRomance_category(Boolean.parseBoolean(request.getParameter("romance_category")));
-				m2.setScience_category(Boolean.parseBoolean(request.getParameter("science_category")));
-				m2.setCrime_category(Boolean.parseBoolean(request.getParameter("crime_category")));
-				m2.setThriller_category(Boolean.parseBoolean(request.getParameter("thriller_category")));
-				m2.setCreated_admin_name(request.getParameter("created_admin_name"));
+					}
+				}
+				Movie m1 = new Movie();
 
-				boolean updateStatus = updateMovieByAdmin(m2);
+				m1.setTitle(request.getParameter("title"));
+				m1.setDescription(request.getParameter("description"));
+				m1.setYear(Integer.parseInt(request.getParameter("year")));
+				m1.setDuration(Integer.parseInt(request.getParameter("duration")));
+				m1.setQuality(request.getParameter("quality"));
+				m1.setWatch_count(0);
+				m1.setMovie_stream_url(request.getParameter("movie_stream_url"));
 
-				System.out.println(updateStatus);
-				message = "Updated Successfully!";
+				m1.setMovie_img_url("");
+				m1.setAction_category(true);
+				m1.setAdventure_category(false);
+				m1.setComedy_category(false);
+				m1.setScify_category(false);
+				m1.setHorror_category(false);
+				m1.setRomance_category(false);
+				m1.setScience_category(false);
+				m1.setCrime_category(false);
+				m1.setThriller_category(false);
+
+				try {
+//					m1.setAction_category(Boolean.parseBoolean(request.getParameter("action_category")));
+//					m1.setAdventure_category(Boolean.parseBoolean(request.getParameter("adventure_category")));
+//					m1.setComedy_category(Boolean.parseBoolean(request.getParameter("comedy_category")));
+//					m1.setScify_category(Boolean.parseBoolean(request.getParameter("scify_category")));
+//					m1.setHorror_category(Boolean.parseBoolean(request.getParameter("horror_category")));
+//					m1.setRomance_category(Boolean.parseBoolean(request.getParameter("romance_category")));
+//					m1.setScience_category(Boolean.parseBoolean(request.getParameter("science_category")));
+//					m1.setCrime_category(Boolean.parseBoolean(request.getParameter("crime_category")));
+//					m1.setThriller_category(Boolean.parseBoolean(request.getParameter("thriller_category")));
+				}catch (Exception ex){
+
+				}
+				m1.setCreated_admin_name(request.getParameter("created_admin_name"));
+
+				boolean insertStatus = updateMovieByAdmin(m1);
+
+				System.out.println(insertStatus);
+				message = "Inserted Successfully!";
 				System.out.println(message);
 
-				if (updateStatus == false) {
-					message = "Update Failed!, Retry....";
-					System.out.println("Edit Form Show:" + showEditForm);
+				if (insertStatus == false) {
+					message = "Insert Failed!, Retry....";
+					System.out.println("Edit Form Show:" + showAddForm);
 				}
 
 				request.setAttribute("xmessage", message);
-				System.out.println("Updated   " + updateStatus);
+				System.out.println("Updated   " + insertStatus);
 
 				break;
 
