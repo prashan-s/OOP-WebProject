@@ -510,7 +510,7 @@
                         <label for="lblMovieCategory">Category</label> <br/>
                         <input type="text" name="txtMovieCategory" id="txtMovieCategory" required/>
                         <br/>
-                        <input type="submit" class="submit-btn" value="Add"/>
+                        <input type="submit" class="submit-btn" value="insert" name="action"/>
                     </form>
                 </div>
             </div>
@@ -536,11 +536,6 @@
                         <label for="lblUpdateMovieQuality">Quality</label>
                         <br/>
                         <input type="text" name="txtUpdateMovieQuality" id="txtUpdateMovieQuality" required/>
-                        <br/>
-                        <label for="lblUpdateMovieImage">Image</label>
-                        <br/>
-                        <input type="file" name="fileUpdateMovieimage" id="fileUpdateMovieimage" accept="image/*"
-                               required/>
                         <br/>
                         <label for="lblUpdateMovieUrl">Stream URL</label> <br/>
                         <input type="text" name="txtUpdateMovieUrl" id="txtUpdateMovieUrl" required/>
