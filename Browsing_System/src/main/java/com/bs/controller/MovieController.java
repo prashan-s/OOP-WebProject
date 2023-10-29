@@ -86,23 +86,8 @@ public class MovieController {
 //				Cookie cookie = new Cookie("movieId", Integer.toString(movieId));
 //				this.response.addCookie(cookie);
 				break;
-			case "edit":
-				jspPage = "./pages/admin-portal.jsp";
-				showMovieIdForm = false;
-				showDetails = false;
-				showEditForm = true;
-				showUpdateStatus = false;
-				showAddForm = false;
-				showInsertStatus = false;
-				showDeleteStatus = false;
 
-				movieId = getValueForId("movieId");
-
-				this.selectMovie(movieId);
-
-				break;
-
-			case "delete":
+			case "Delete":
 				jspPage = "./pages/admin-portal.jsp";
 				showMovieIdForm = false;
 				showDetails = false;
@@ -112,16 +97,18 @@ public class MovieController {
 				showInsertStatus = true;
 				showDeleteStatus = false;
 
-
+				movieId = Integer.parseInt(request.getParameter("movieId"));
 				try {
-					movieId = Integer.parseInt(request.getParameter("movieId"));
+
 				}catch(Exception e) {
 					movieId = 1;
 				}
+				
 				if (movieId == null){
 					movieId = 1;
 				}
 
+				System.out.println("Movie ID" + movieId);
 				boolean deleteStatus = deleteMovieByAdmin(movieId);
 
 				if (deleteStatus) {
@@ -133,7 +120,7 @@ public class MovieController {
 				request.setAttribute("xmessage", message);
 				break;
 
-			case "add":
+			case "Add":
 
 				jspPage = "./pages/admin-portal.jsp";
 				showMovieIdForm = false;
@@ -161,7 +148,6 @@ public class MovieController {
 				showInsertStatus = true;
 				showDeleteStatus = false;
 
-				movieId = getValueForId("movieId");
 
 				Movie m1 = new Movie();
 
@@ -215,7 +201,7 @@ public class MovieController {
 
 				break;
 
-			case "update":
+			case "Update":
 
 				jspPage = "./pages/admin-portal.jsp";
 				showMovieIdForm = false;
@@ -283,7 +269,6 @@ public class MovieController {
 				request.setAttribute("xmessage", message);
 				System.out.println("Updated   " + insertStatusx);
 
-				break;
 
 		}
 
@@ -299,6 +284,7 @@ public class MovieController {
 			request.setAttribute("showAddForm", showAddForm);
 			request.setAttribute("showInsertStatus", showInsertStatus);
 			request.setAttribute("showDeleteStatus", showDeleteStatus);
+			
 			this.dispatcher = request.getRequestDispatcher(jspPage);
 			dispatcher.forward(request, response);
 
