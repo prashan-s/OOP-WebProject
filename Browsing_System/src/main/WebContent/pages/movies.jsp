@@ -66,8 +66,8 @@
         </div>
 
         <%--@Teran Refer this--%>
-        <form action="${pageContext.request.contextPath}/MovieServlet" method="post">
-          <input type="submit" name="action" value="submit-getMovies">
+        <form action="${pageContext.request.contextPath}/MovieServlet" method="post" style="display:none">
+          <input type="submit" name="action" value="submit-getMovies" id="getMovieBtn">
         </form>
 
         <div class="movie-container">
