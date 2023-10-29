@@ -87,7 +87,7 @@ public class MovieController {
 //				this.response.addCookie(cookie);
 				break;
 
-			case "delete":
+			case "Delete":
 				jspPage = "./pages/admin-portal.jsp";
 				showMovieIdForm = false;
 				showDetails = false;
@@ -120,7 +120,7 @@ public class MovieController {
 				request.setAttribute("xmessage", message);
 				break;
 
-			case "add":
+			case "Add":
 
 				jspPage = "./pages/admin-portal.jsp";
 				showMovieIdForm = false;
@@ -201,7 +201,7 @@ public class MovieController {
 
 				break;
 
-			case "update":
+			case "Update":
 
 				jspPage = "./pages/admin-portal.jsp";
 				showMovieIdForm = false;
