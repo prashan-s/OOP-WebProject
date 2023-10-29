@@ -238,7 +238,7 @@ public class UserDAO implements IUserDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println("user dao 119 " + rowUpdated);
+
 		return rowUpdated;
 	}
 

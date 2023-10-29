@@ -106,6 +106,7 @@ public class UserController {
 			showSignInStatus = false;
 
 			userSignUp.setUserId(Integer.parseInt(request.getParameter("userId")));
+			System.out.println("User ID User Con" + userSignUp.getUserId());
 			userSignUp.setName(request.getParameter("userName"));
 			userSignUp.setEmail(request.getParameter("email"));
 			userSignUp.setMobileNo(request.getParameter("mobile"));
@@ -124,12 +125,10 @@ public class UserController {
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
-
-			userSignUp.setUserId(userId);
 			userSignUp.setPassword("Test123");
 			userSignUp.setPremiumUser(false);
 			userSignUp.setCreatedAdminName("Admin");
-			insertStatus = insertUser(userSignUp);
+			insertStatus = updateUserByAdmin(userSignUp);
 			
 			System.out.println("insert sts " + insertStatus);
 
