@@ -88,6 +88,7 @@ public class MovieController {
 				break;
 
 			case "Delete":
+
 				jspPage = "./pages/admin-portal.jsp";
 				showMovieIdForm = false;
 				showDetails = false;
@@ -99,7 +100,7 @@ public class MovieController {
 
 				movieId = Integer.parseInt(request.getParameter("movieId"));
 
-				
+				System.out.println("Movie ID" + movieId);
 				if (movieId == null){
 					movieId = 1;
 				}
@@ -223,7 +224,7 @@ public class MovieController {
 				m1x.setWatch_count(0);
 				m1x.setMovie_stream_url(request.getParameter("movie_stream_url"));
 
-				m1x.setMovie_img_url("");
+				m1x.setMovie_img_url("Test Image");
 				m1x.setAdventure_category(false);
 				m1x.setComedy_category(false);
 				m1x.setScify_category(false);

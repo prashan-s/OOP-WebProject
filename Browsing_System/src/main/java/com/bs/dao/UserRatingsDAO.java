@@ -14,7 +14,7 @@ import java.sql.Date;
 public class UserRatingsDAO implements IUserRatingsDAO {
 
 	private static final String SELECT_USER_RATINGS_BY_RATE_ID = "SELECT rate_id, user_id, type, tvs_id, movie_Id, rating, row_created_datetime "
-			+ "FROM user_rating " + "WHERE user_id = ?";
+			+ "FROM user_rating " + "WHERE user_id = ?" + "ORDER BY rate_id DESC";
 
 	private static final String INSERT_USER_RATING = "INSERT INTO user_rating (user_id, type, tvs_id, movie_Id, rating) "
 			+ "VALUES (?, ?, ?, ?, ?)";

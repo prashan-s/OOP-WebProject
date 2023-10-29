@@ -14,7 +14,7 @@ import java.sql.Date;
 public class UserFavouritesDAO implements IUserFavouriteDAO {
 
 	private static final String SELECT_USER_FAVOURITES_BY_USER_ID = "SELECT fav_id, user_id, type, tvs_id, movie_Id, row_created_datetime "
-			+ "FROM user_favourite " + "WHERE user_id = ?";
+			+ "FROM user_favourite " + "WHERE user_id = ?"+ "ORDER BY fav_id DESC";
 
 	private static final String INSERT_USER_FAVOURITE = "INSERT INTO user_favourite (user_id, type, tvs_id, movie_Id) "
 			+ "VALUES (?, ?, ?, ?";
