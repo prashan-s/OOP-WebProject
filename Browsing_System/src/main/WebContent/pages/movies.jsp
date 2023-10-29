@@ -40,7 +40,7 @@
 
   <script>
     // Fetch the HTML content of your component
-    fetch("../components/header.html")
+    fetch("${pageContext.request.contextPath}/components/header.html")
       .then((response) => response.text())
       .then((html) => {
         // Inject the HTML content into your container
@@ -64,6 +64,10 @@
         <div class="movie-heading">
           <p class="detail-subtitle">Recommended</p>
         </div>
+
+        <form action="${pageContext.request.contextPath}/MovieServlet" method="post">
+          <input type="submit" name="action" value="submit-getMovies">
+        </form>
 
         <div class="movie-container">
           <c:forEach items="${movieData}" var="movie">

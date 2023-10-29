@@ -39,15 +39,16 @@ public class MovieServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	
 		this.controller = new MovieController(request, response);
-		
+
 		//Handling the null Exception
 		try {
-			
+			String a = request.getParameter("action");
+			System.out.println("Movie Controller Action" + a);
+			controller.doAction(a);
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-    	String a = request.getParameter("action");
-        controller.doAction(a);
+
 	}
 	
 	//Handles HTTP PUT requests. 

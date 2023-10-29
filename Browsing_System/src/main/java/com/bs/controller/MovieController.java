@@ -40,7 +40,7 @@ public class MovieController {
 		boolean showInsertStatus = false;
 		boolean showDeleteStatus = false;
 		String message;
-
+		System.out.println("Movie Controller Action" + action);
 		switch (action) {
 
 			case "submit":
@@ -54,12 +54,25 @@ public class MovieController {
 				showDeleteStatus = false;
 
 				movieId = Integer.parseInt(this.request.getParameter("movieId"));
-				this.selectAllMovies();
+				this.selectMovie(movieId);
 
 				Cookie cookie = new Cookie("movieId", Integer.toString(movieId));
 				this.response.addCookie(cookie);
 				break;
+			case "submit-getMovies":
+				jspPage = "./pages/movie.jsp";
+				showMovieIdForm = false;
+				showDetails = true;
+				showEditForm = false;
+				showUpdateStatus = false;
+				showAddForm = false;
+				showInsertStatus = false;
+				showDeleteStatus = false;
 
+				this.setAllMovies();
+//
+//				Cookie cookie = new Cookie("movieId", Integer.toString(movieId));
+//				this.response.addCookie(cookie);
 			case "edit":
 				jspPage = "./pages/admin-portal.jsp";
 				showMovieIdForm = false;
@@ -291,6 +304,17 @@ public class MovieController {
 		try {
 			this.dispatcher = request.getRequestDispatcher("./pages/admin-portal.jsp");
 			this.dispatcher.forward(request, response);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void setAllMovies() {
+
+		try {
+			List<Movie> movies = new MovieDAO().selectAllMovies();
+			System.out.println("movies : " + movies.getFirst().getTitle());
+			request.setAttribute("movieData", movies);// attribute name, objectName
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
