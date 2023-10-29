@@ -1,4 +1,7 @@
-<!-- 
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+         pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<!--
     - #HEADER
 -->
 
@@ -7,8 +10,8 @@
 
     <div class="overlay" data-overlay></div>
 
-    <a href="../index.jsp" class="logo">
-      <img src="/assets/images/logo.svg" alt="Filmlane logo">
+    <a href="${pageContext.request.contextPath}/index.jsp" class="logo">
+      <img src="${pageContext.request.contextPath}/assets/images/logo.svg" alt="Filmlane logo">
     </a>
 
     <div class="header-actions">
@@ -43,8 +46,8 @@
 
       <div class="navbar-top">
 
-        <a href="../index.jsp" class="logo">
-          <img src="/assets/images/logo.svg" alt="Filmlane logo">
+        <a href="${pageContext.request.contextPath}/index.jsp" class="logo">
+          <img src="${pageContext.request.contextPath}/assets/images/logo.svg" alt="Filmlane logo">
         </a>
 
         <button class="menu-close-btn" data-menu-close-btn>
@@ -56,23 +59,23 @@
       <ul class="navbar-list">
 
         <li>
-          <a href="../index.jsp" class="navbar-link">Home</a>
+          <a href="${pageContext.request.contextPath}/index.jsp" class="navbar-link">Home</a>
         </li>
 
         <li>
-          <a href="./movies.jsp" class="navbar-link">Movies</a>
+          <a href="${pageContext.request.contextPath}/pages/movies.jsp" class="navbar-link">Movies</a>
         </li>
 
         <li>
-          <a href="./tv-series.jsp" class="navbar-link">Tv Series</a>
+          <a href="${pageContext.request.contextPath}/pages/tv-series.jsp" class="navbar-link">Tv Series</a>
         </li>
 
         <li>
-          <a href="./favourites.jsp" class="navbar-link">Favourites</a>
+          <a href="${pageContext.request.contextPath}/pages/favourites.jsp" class="navbar-link">Favourites</a>
         </li>
 
         <li>
-          <a href="./about.jsp" class="navbar-link">About</a>
+          <a href="${pageContext.request.contextPath}/pages/about.jsp" class="navbar-link">About</a>
         </li>
 
       </ul>

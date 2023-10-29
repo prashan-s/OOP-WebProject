@@ -40,7 +40,7 @@
 
   <script>
     // Fetch the HTML content of your component
-    fetch("${pageContext.request.contextPath}/components/header.html")
+    fetch("${pageContext.request.contextPath}/components/header.jsp")
       .then((response) => response.text())
       .then((html) => {
         // Inject the HTML content into your container
