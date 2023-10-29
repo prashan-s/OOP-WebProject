@@ -273,7 +273,6 @@ public class TVSeriesController {
 
 		try {
 			List<TVSeries> seriesList = new TVSeriesDAO().selectAllTVSeries();
-			System.out.println("TV Series: " + seriesList.getFirst().getTitle());
 			request.setAttribute("seriesList", seriesList);
 
 			try {
