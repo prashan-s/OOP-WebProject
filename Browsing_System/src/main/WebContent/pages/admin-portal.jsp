@@ -398,11 +398,9 @@
                         <label for="txtCustomerUpdateDateofBirth">Date of Birth</label>
                         <input type="date" name="dob" id="txtCustomerUpdateDateofBirth" required/>
                         <input type="hidden" name="premiumuser" id="txtCustomerUpdatePremiumUser" required/>
-                        <input type="hidden" name="updatestatus" id="txtCustomerUpdateStatus" required/>
                         <br/>
                         <label for="txtCustomerUpdateStatus">Active User</label>
                         <select name="status" id="txtCustomerUpdateStatus" required>
-                            <option value="" selected>-- Select User Status --</option>
                             <option value="1">Active</option>
                             <option value="0">InActive</option>
                         </select>
