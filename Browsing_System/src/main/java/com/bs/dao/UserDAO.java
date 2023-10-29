@@ -19,7 +19,7 @@ public class UserDAO implements IUserDAO {
 	private static final String SELECT_USER_LIST = "SELECT user_id, name, email, mobile_no, dob, "
 			+ "CASE WHEN premium_user = 1 THEN 'Yes' ELSE 'No' END AS is_premium_user, premium_user, password , "
 			+ "created_admin_name, CASE WHEN is_active = 1 THEN 'Active' ELSE 'InActive' END AS is_active_status, is_active, row_created_datetime "
-			+ "FROM users " + "ORDER BY row_created_datetime DESC ";
+			+ "FROM users " + "ORDER BY user_id DESC ";
 	// when login
 	private static final String SELECT_PASSWORD_BY_USERNAME = "SELECT password " + "FROM users " + "WHERE name = ?  ";
 

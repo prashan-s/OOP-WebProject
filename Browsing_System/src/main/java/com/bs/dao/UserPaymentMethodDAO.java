@@ -17,7 +17,7 @@ public class UserPaymentMethodDAO implements IUserPaymentMethodDAO{
 															+ "cvv , user_id , is_active , row_created_datetime "
 															+ "FROM user_payment_method "
 															+ "WHERE user_id = ? "
-															+ "ORDER BY row_created_datetime DESC ";
+															+ "ORDER BY payment_method_id DESC ";
 	
 	private static final String INSERT_USER_PAYMENT_METHOD = "INSERT INTO user_payment_method (card_number , card_expiry_date , cvv , user_id )"
 														   + "VALUES (? , ? , ? , ?)";

@@ -29,7 +29,7 @@ public class UserRatingsController {
         boolean showAddForm = false;
         boolean showInsertStatus = false;
         boolean showDeleteStatus = false;
-        String message;
+        String message = "";
 
         switch (action) {
             case "submit":

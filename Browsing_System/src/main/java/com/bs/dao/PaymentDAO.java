@@ -15,7 +15,8 @@ import com.bs.utility.DBConnectionMSSQL;
 public class PaymentDAO implements IPaymentDAO {
 
 	private static final String SELECT_PAYMENT_BY_ID = "SELECT payment_id, user_id, sub_id, amount, row_created_datetime "
-			+ "FROM payment " + "WHERE payment_id = ?";
+			+ "FROM payment " + "WHERE payment_id = ?"
+			+ "ORDER BY payment_id DESC";
 
 	private static final String INSERT_PAYMENT = "INSERT INTO payment (user_id, sub_id, amount) " + "VALUES (?, ?, ?);";
 
