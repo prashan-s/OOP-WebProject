@@ -505,29 +505,11 @@ function editUpdateTvSeriesRow(rowId) {
   var row = document.getElementById(rowId);
   var id = row.querySelector("td:nth-child(1)").textContent;
   var TvSeriesName = row.querySelector("td:nth-child(2)").textContent;
-  var TvSeriesImageUrl = row.querySelector("td:nth-child(3)").textContent;
-  var status = row.querySelector("td:nth-child(4)").textContent;
-
-	var isActive;
-	
-	if (status == 'true') {
-		isActive = 1;
-	} else {
-		isActive = 0;
-	}
 
   // Set the row data in the form fields
   document.getElementById("editTvSeriesRowId").value = id;
   document.getElementById("txtUpdateTvSeriesName").value = TvSeriesName;
-  document.getElementById("txtUpdateTvSeriesImageUrl").value = TvSeriesImageUrl;
-  document.getElementById("txtUpdateTvSeriesStatus").value = isActive;
-
-	var selectElement = document.getElementById("txtUpdateTvSeriesStatus");
-	var event = new Event("change", { bubbles: true });
-	selectElement.dispatchEvent(event);
-	
-  // Populate other form fields as needed
-
+  
   // Show the TvSeries form
   showUpdatedTvSeriesForm();
 }

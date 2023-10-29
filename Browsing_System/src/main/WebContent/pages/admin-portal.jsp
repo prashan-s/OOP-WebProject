@@ -578,10 +578,10 @@
                             </td>
                             <td>
                                 <form action="${pageContext.request.contextPath}/MovieServlet" method="post">
-                                    <input type="hidden" name="movie_id" value="${movie.movie_id}">
+                                    <input type="hidden" name="movieId" value="${movie.movie_id}">
                                     <i class="fa-solid fa-trash-can delete-icon"
                                        onclick="confirmDelete(event, 'btnmovieDelete')"></i>'
-                                    <input type="submit" id="btnmovieDelete" style="display: none;">
+                                    <input type="submit" name="action" value="delete" id="btnmovieDelete" style="display: none;">
                                 </form>
                             </td>
                         </tr>
@@ -615,10 +615,7 @@
                         <label for="txtTvSeriesName">TvSeries Name</label> <br/>
                         <input type="text" name="TvSeriesname" id="txtTvSeriesName" required/>
                         <br/>
-                        <label for="imgTvSeriesImage">TvSeries Image</label> <br/>
-                        <input type="file" name="TvSeriesimage" id="imgTvSeriesImage" accept="image/*" required/>
-                        <br/>
-                        <input type="submit" class="submit-btn" value="Add"/>
+                        <input type="submit" name="action" class="submit-btn" value="Add"/>
                     </form>
                 </div>
             </div>
@@ -633,18 +630,8 @@
                         <label for="txtUpdateTvSeriesName">TvSeries Name</label> <br/>
                         <input type="text" name="TvSeriesname" id="txtUpdateTvSeriesName" required/>
                         <br/>
-                        <label for="txtUpdateTvSeriesImageUrl">TvSeries Image</label>
-                        <br/>
-                        <input type="text" name="TvSeriesdescription" id="txtUpdateTvSeriesImageUrl" required/>
-                        <br/>
-                        <label for="txtUpdateTvSeriesStatus">Active / InActive</label> <br/>
-                        <select name="status" id="txtUpdateTvSeriesStatus" required>
-                            <option value=""></option>
-                            <option value="1">Active</option>
-                            <option value="0">InActive</option>
-                        </select>
                         <input type="hidden" name="rowid" id="editTvSeriesRowId"/>
-                        <input type="submit" class="submit-btn" value="Update"/>
+                        <input type="submit" name="action" class="submit-btn" value="Update"/>
                     </form>
                 </div>
             </div>
@@ -959,7 +946,7 @@
 <script>
     //Construct the path dynamically by appending the context path
     var contextPath = "${pageContext.request.contextPath}";
-    var footerPath = contextPath + "/components/footer.jsp";
+    var footerPath = contextPath + "${pageContext.request.contextPath}/components/footer.jsp";
 
     // Fetch the HTML content of your component
     fetch(footerPath)
