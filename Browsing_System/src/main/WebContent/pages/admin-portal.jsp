@@ -610,8 +610,7 @@
                         <p>Add a TvSeries</p>
                     </div>
                     <%--Add Tv Series--%>
-                    <form action="${pageContext.request.contextPath}/TVSeriesServlet" method="post"
-                          enctype="multipart/form-data">
+                    <form action="${pageContext.request.contextPath}/TVSeriesServlet" method="post">
                         <label for="txtTvSeriesName">TvSeries Name</label> <br/>
                         <input type="text" name="tvSeriesTitle" id="txtTvSeriesName" required/>
                         <br/>
@@ -695,8 +694,7 @@
                     <div class="card-heading">
                         <p>Add a TvSeriesEpisodes</p>
                     </div>
-                    <form action="${pageContext.request.contextPath}/TVSeriesDetailsServlet" method="post"
-                          enctype="multipart/form-data">
+                    <form action="${pageContext.request.contextPath}/TVSeriesDetailsServlet" method="post">
                         <label for="txtTvSeriesEpisodesName">Tv Series Episodes Name</label> <br/>
                         <input type="text" name="TvSeriesEpisodesname" id="txtTvSeriesEpisodesName" required/>
                         <br/>
@@ -834,8 +832,7 @@
                     <div class="card-heading">
                         <p>Add a SubscriptionPlans</p>
                     </div>
-                    <form action="../php/admin_portal_SubscriptionPlans_add_process.php" method="post"
-                          enctype="multipart/form-data">
+                    <form action="${pageContext.request.contextPath}/SubscriptionPlanServlet" method="post">
                         <label for="txtSubscriptionPlansName">Tv Series Episodes Name</label> <br/>
                         <input type="text" name="SubscriptionPlansname" id="txtSubscriptionPlansName" required/>
                         <br/>
@@ -856,7 +853,7 @@
                         <input type="file" name="SubscriptionPlansimage" id="imgSubscriptionPlansImage" accept="image/*"
                                required/>
                         <br/>
-                        <input type="submit" class="submit-btn" value="Add"/>
+                        <input type="submit" name="action" value="Add" class="submit-btn" />
                     </form>
                 </div>
             </div>
@@ -893,7 +890,7 @@
                             <option value="0">InActive</option>
                         </select>
                         <input type="hidden" name="rowid" id="editSubscriptionPlansRowId"/>
-                        <input type="submit" class="submit-btn" value="Update"/>
+                        <input type="submit" name="action" value="Update" class="submit-btn" />
                     </form>
                 </div>
             </div>
@@ -924,9 +921,18 @@
                             <td>${subscriptionPlan.duration}</td>
                             <td>${subscriptionPlan.amount}</td>
                             <td>${subscriptionPlan.isActive ? 'Active' : 'InActive'}</td>
-                            <td class="hide">${subscriptionPlan.isActive}</td>
-                            <td class="tbl-edit"></td>
-                            <td class="tbl-delete"></td>
+                            <td>
+                                <i class="fa-solid fa-pen-to-square update-icon"
+                                   onclick="editUpdateTvSeriesEpisodesRow('tvSeriesEpisode_${TvSeriesEpisode.tvsDetailId}')"></i>
+                            </td>
+                            <td>
+                                <form action="${pageContext.request.contextPath}/TVSeriesDetailsServlet" method="post">
+                                    <input type="hidden" name="tvSeriesEpisode" value="tvSeriesEpisode_${TvSeriesEpisode.tvsDetailId}">
+                                    <i class="fa-solid fa-trash-can delete-icon"
+                                       onclick="confirmDelete(event, 'btnTvSeriesDetailDelete')"></i>'
+                                    <input type="submit" id="btnTvSeriesDetailDelete" style="display: none;">
+                                </form>
+                            </td>
                         </tr>
                     </c:forEach>
                     </tbody>
