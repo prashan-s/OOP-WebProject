@@ -13,10 +13,10 @@ import java.sql.Date;
 public class SubscriptionPlanDAO implements ISubscriptionPlanDAO {
 
 	private static final String SELECT_ALL_SUBSCRIPTION_PLANS = "SELECT plan_id, description, duration_in_months, amount, is_active, row_created_datetime "
-			+ "FROM subscription_plan ORDER BY duration_in_months ASC ";
+			+ "FROM subscription_plan";
 
 	private static final String SELECT_ALL_ACTIVE_SUBSCRIPTION_PLANS = "SELECT plan_id, description, duration_in_months, amount, is_active, row_created_datetime "
-			+ "FROM subscription_plan WHERE is_active = 1 ORDER BY duration_in_months ASC ";
+			+ "FROM subscription_plan WHERE is_active = 1";
 
 	private static final String SELECT_SUBSCRIPTION_BY_ID = "SELECT plan_id, description, duration_in_months, amount, is_active, row_created_datetime "
 			+ "FROM subscription_plan WHERE plan_id = ? ";
