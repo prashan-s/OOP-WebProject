@@ -124,7 +124,8 @@ public class UserController {
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
-			
+
+			userSignUp.setUserId(userId);
 			userSignUp.setPassword("Test123");
 			userSignUp.setPremiumUser(false);
 			userSignUp.setCreatedAdminName("Admin");
