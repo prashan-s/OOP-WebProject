@@ -615,7 +615,7 @@
                         <label for="txtTvSeriesName">TvSeries Name</label> <br/>
                         <input type="text" name="tvSeriesTitle" id="txtTvSeriesName" required/>
                         <br/>
-                        <input type="submit" name="action" class="submit-btn" value="Add"/>
+                        <input type="submit" name="action" value="Add" class="submit-btn" />
                     </form>
                 </div>
             </div>
