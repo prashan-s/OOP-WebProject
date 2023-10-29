@@ -1,3 +1,3 @@
 function openMoviePage() {
-    window.location.href = "./pages/movie-details.html";
+    window.location.href = "./movie-details.jsp";
 }

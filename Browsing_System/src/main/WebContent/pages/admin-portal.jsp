@@ -100,19 +100,19 @@
                 </li>
 
                 <li>
-                    <a href="./movies.html" class="navbar-link">Movies</a>
+                    <a href="./movies.jsp" class="navbar-link">Movies</a>
                 </li>
 
                 <li>
-                    <a href="./tv-series.html" class="navbar-link">Tv Series</a>
+                    <a href="./tv-series.jsp" class="navbar-link">Tv Series</a>
                 </li>
 
                 <li>
-                    <a href="./favourites.html" class="navbar-link">Favourites</a>
+                    <a href="./favourites.jsp" class="navbar-link">Favourites</a>
                 </li>
 
                 <li>
-                    <a href="./about.html" class="navbar-link">About</a>
+                    <a href="./about.jsp" class="navbar-link">About</a>
                 </li>
             </ul>
 
@@ -980,7 +980,7 @@
 <script>
     //Construct the path dynamically by appending the context path
     var contextPath = "${pageContext.request.contextPath}";
-    var footerPath = contextPath + "/components/footer.html";
+    var footerPath = contextPath + "/components/footer.jsp";
 
     // Fetch the HTML content of your component
     fetch(footerPath)

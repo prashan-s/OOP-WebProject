@@ -54,7 +54,7 @@ public class MovieController {
 				showDeleteStatus = false;
 
 				movieId = Integer.parseInt(this.request.getParameter("movieId"));
-				this.selectMovie(movieId);
+				this.selectAllMovies();
 
 				Cookie cookie = new Cookie("movieId", Integer.toString(movieId));
 				this.response.addCookie(cookie);
