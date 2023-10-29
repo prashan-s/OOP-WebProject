@@ -513,34 +513,28 @@
                     </div>
                     <form action="${pageContext.request.contextPath}/MovieServlet" method="post">
                         <label for="lblUpdateMovieName">Title</label> <br/>
-                        <input type="text" name="txtUpdateMovieName" id="txtUpdateMovieName" required/>
+                        <input type="text" name="title" id="txtUpdateMovieName" required/>
                         <br/>
                         <label for="lblUpdateMovieDescription">Description</label>
                         <br/>
-                        <input type="text" name="txtUpdateMovieDescription" id="txtUpdateMovieDescription" required/>
+                        <input type="text" name="description" id="txtUpdateMovieDescription" required/>
                         <br/>
                         <label for="lblUpdateMovieYear">Year</label> <br/>
-                        <input type="text" name="txtUpdateMovieYear" id="txtUpdateMovieYear" required/>
+                        <input type="text" name="year" id="txtUpdateMovieYear" required/>
                         <br/>
                         <label for="lblUpdateMovieDuration">Duration (Mins)</label> <br/>
-                        <input type="text" name="txtUpdateMovieDuration" id="txtUpdateMovieDuration" required/>
+                        <input type="text" name="duration" id="txtUpdateMovieDuration" required/>
                         <br/>
                         <label for="lblUpdateMovieQuality">Quality</label>
                         <br/>
-                        <input type="text" name="txtUpdateMovieQuality" id="txtUpdateMovieQuality" required/>
+                        <input type="text" name="quality" id="txtUpdateMovieQuality" required/>
                         <br/>
                         <label for="lblUpdateMovieUrl">Stream URL</label> <br/>
-                        <input type="text" name="txtUpdateMovieUrl" id="txtUpdateMovieUrl" required/>
+                        <input type="text" name="movie_stream_url" id="txtUpdateMovieUrl" required/>
                         <br/>
-                        <label for="lblUpdateMovieStatus">Active / InActive</label> <br/>
-                        <select name="txtUpdateMovieStatus" id="txtUpdateMovieStatus" required>
-                            <option value=""></option>
-                            <option value="1">Active</option>
-                            <option value="0">InActive</option>
-                        </select>
-                        <input type="hidden" name="rowid" id="editMovieRowId"/>
+                        <input type="hidden" name="movieId" id="editMovieRowId"/>
                         <br/>
-                        <input type="submit" class="submit-btn" value="Update"/>
+                        <input type="submit" name="action" class="submit-btn" value="Update" />
                     </form>
                 </div>
             </div>
