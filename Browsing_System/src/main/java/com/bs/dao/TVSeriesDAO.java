@@ -30,7 +30,7 @@ public class TVSeriesDAO implements ITVSeriesDAO {
 			+ "adventure_category=?, comedy_category=?, scify_category=?, horror_category=?, romance_category=?, "
 			+ "science_category=?, crime_category=?, thriller_category=?" + "WHERE tvs_id = ?";
 
-	private static final String DELETE_SERIES = "UPDATE tv_series SET is_active=0 WHERE tvs_id = ?";
+	private static final String DELETE_SERIES = "DELETE FROM tv_series WHERE tvs_id = ?";
 
 	// Select all TV series 
 	public List<TVSeries> selectAllTVSeries() {
@@ -180,7 +180,7 @@ public class TVSeriesDAO implements ITVSeriesDAO {
 		try {
 			Connection con = DBConnectionMSSQL.getConnection();
 			PreparedStatement stmt = con.prepareStatement(DELETE_SERIES);
-
+			System.out.println("DELETE TV" + seriesId);
 			stmt.setInt(1, seriesId);
 			rowDelete = stmt.executeUpdate() > 0;
 

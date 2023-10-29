@@ -349,7 +349,7 @@ public class TVSeriesController {
 	public boolean deleteTVSeriesByAdmin(int tvSeiesId) {
 		boolean deleteStatus = false;
 		try {
-
+			System.out.println("TVS ID TvCon" + tvSeiesId);
 			deleteStatus = dao.deleteTVSeries(tvSeiesId);
 			request.setAttribute("isSuccessDelete", deleteStatus);
 		} catch (Exception e1) {
