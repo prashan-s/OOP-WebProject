@@ -98,7 +98,7 @@ public class MovieController {
 				showDeleteStatus = false;
 
 				movieId = Integer.parseInt(request.getParameter("movieId"));
-				
+
 				
 				if (movieId == null){
 					movieId = 1;
