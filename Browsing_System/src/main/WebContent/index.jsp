@@ -14,12 +14,12 @@
   <!-- 
     - favicon
   -->
-  <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="shortcut icon" href="${pageContext.request.contextPath}/favicon.svg" type="image/svg+xml">
 
   <!-- 
     - custom css link
   -->
-  <link rel="stylesheet" href="./assets/css/style.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/style.css">
 
   <!-- 
     - google font link
@@ -32,10 +32,10 @@
     - slick carousel
   -->
   <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
-  <link rel="stylesheet" type="text/css" href="./assets/css/slick-theme.css" />
+  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/slick-theme.css" />
 
   <!-- Sementic Compiled and minified CSS -->
-  <link rel="stylesheet" href="./assets/packages/sementic/semantic.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/packages/sementic/semantic.css">
 
 </head>
 
@@ -100,9 +100,9 @@
       -->
 
       <div class="carousel fade">
-        <div><img src="./assets/images/hero-bg.jpg"></div>
-        <div><img src="./assets/images/hero-bg1.jpg"></div>
-        <div><img src="./assets/images/hero-bg2.jpg"></div>
+        <div><img src="${pageContext.request.contextPath}/assets/images/hero-bg.jpg"></div>
+        <div><img src="${pageContext.request.contextPath}/assets/images/hero-bg1.jpg"></div>
+        <div><img src="${pageContext.request.contextPath}/assets/images/hero-bg2.jpg"></div>
       </div>
 
       <!-- 
@@ -277,13 +277,13 @@
 			<c:forEach items="${movies}" var="movie">
 	            <li>
 	                <div class="movie-card">
-	                    <a href="./pages/movie-details.jsp">
+	                    <a href="${pageContext.request.contextPath}/pages/movie-details.jsp">
 	                        <figure class="card-banner">
 	                            <img src="${movie.image}" alt="${movie.title} movie poster">
 	                        </figure>
 	                    </a>
 	                    <div class="title-wrapper">
-	                        <a href="./pages/movie-details.jsp">
+	                        <a href="${pageContext.request.contextPath}/pages/movie-details.jsp">
 	                            <h3 class="card-title">${movie.title}</h3>
 	                        </a>
 	                        <time datetime="${movie.year}">${movie.year}</time>
@@ -346,38 +346,38 @@
 	        <button type="submit">Search</button>
 	    </form>
           <ul class="movies-list  has-scrollbar">
-              <c:forEach items="${seriesList}" var="item">
-                  <div class="movie-card">
-                      <figure class="card-banner">
-                          <img src="${movie.image}" alt="${movie.title} movie poster"/>
-                          <button class="play-btn" onclick="openMoviePage()">
-                              <ion-icon name="play-circle-outline"></ion-icon>
-                          </button>
-                      </figure>
+<%--              <c:forEach items="${seriesList}" var="item">--%>
+<%--                  <div class="movie-card">--%>
+<%--                      <figure class="card-banner">--%>
+<%--                          <img src="${movie.image}" alt="${movie.title} movie poster"/>--%>
+<%--                          <button class="play-btn" onclick="openMoviePage()">--%>
+<%--                              <ion-icon name="play-circle-outline"></ion-icon>--%>
+<%--                          </button>--%>
+<%--                      </figure>--%>
 
-                      <div class="date-time">
-                          <div>
-                              <ion-icon name="calendar-outline"></ion-icon>
-                              <time datetime="${item.row_created_datetime}">${item.row_created_datetime}</time>
-                          </div>
-                      </div>
-                  </div>
-              </c:forEach>
+<%--                      <div class="date-time">--%>
+<%--                          <div>--%>
+<%--                              <ion-icon name="calendar-outline"></ion-icon>--%>
+<%--                              <time datetime="${item.row_created_datetime}">${item.row_created_datetime}</time>--%>
+<%--                          </div>--%>
+<%--                      </div>--%>
+<%--                  </div>--%>
+<%--              </c:forEach>--%>
               <%--@Teran Refer this--%>
               <form action="${pageContext.request.contextPath}/MovieServlet" method="post">
                   <input type="submit" name="action" value="submit-getMovies-dashboard">
               </form>
-            <c:forEach items="${movies}" var="movie">
+            <c:forEach items="${movieData}" var="movie">
 
 	            <li>
 	                <div class="movie-card">
-	                    <a href="./pages/movie-details.jsp">
+	                    <a href="${pageContext.request.contextPath}/pages/movie-details.jsp">
 	                        <figure class="card-banner">
 	                            <img src="${movie.image}" alt="${movie.title} movie poster">
 	                        </figure>
 	                    </a>
 	                    <div class="title-wrapper">
-	                        <a href="./pages/movie-details.jsp">
+	                        <a href="${pageContext.request.contextPath}/pages/movie-details.jsp">
 	                            <h3 class="card-title">${movie.title}</h3>
 	                        </a>
 	                        <time datetime="${movie.row_created_datetime}">${movie.row_created_datetime}</time>
@@ -443,13 +443,13 @@
 			<c:forEach items="${movies}" var="movie">
 	            <li>
 	                <div class="movie-card">
-	                    <a href="./pages/movie-details.jsp">
+	                    <a href="${pageContext.request.contextPath}/pages/movie-details.jsp">
 	                        <figure class="card-banner">
 	                            <img src="${movie.image}" alt="${movie.title} movie poster">
 	                        </figure>
 	                    </a>
 	                    <div class="title-wrapper">
-	                        <a href="./pages/movie-details.jsp">
+	                        <a href="${pageContext.request.contextPath}/pages/movie-details.jsp">
 	                            <h3 class="card-title">${movie.title}</h3>
 	                        </a>
 	                        <time datetime="${movie.year}">${movie.year}</time>
@@ -521,12 +521,12 @@
   <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
   <!-- Semantic Compiled and minified JavaScript -->
-  <script src="./assets/packages/sementic/semantic.min.js"></script>
+  <script src="${pageContext.request.contextPath}/assets/packages/sementic/semantic.min.js"></script>
 
   <!-- 
     - custom js link
   -->
-  <script src="./assets/js/script.js"></script>
+  <script src="${pageContext.request.contextPath}/assets/js/script.js"></script>
 </body>
 
 </html>

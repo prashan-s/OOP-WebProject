@@ -1,6 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-         pageEncoding="ISO-8859-1"%>
-<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+
 <!--
 - #HEADER
 -->
@@ -70,9 +68,9 @@
           <a href="${pageContext.request.contextPath}/pages/tv-series.jsp" class="navbar-link">Tv Series</a>
         </li>
 
-        <li>
-          <a href="${pageContext.request.contextPath}/pages/favourites.jsp" class="navbar-link">Favourites</a>
-        </li>
+<%--        <li>--%>
+<%--          <a href="${pageContext.request.contextPath}/pages/favourites.jsp" class="navbar-link">Favourites</a>--%>
+<%--        </li>--%>
 
         <li>
           <a href="${pageContext.request.contextPath}/pages/about.jsp" class="navbar-link">About</a>

@@ -58,27 +58,6 @@ function toggleSignInSignUpCardForm(formHide, formShow, method) {
   if (!signUpForm.classList.contains('hide')) {
     signUpForm.classList.add("hide");
   }
-  <div className="movie-detail-container">
-    <c:foreach items="your_collection_here" var="item">
-      <figure className="movie-detail-banner">
-        <img src="../assets/images/movie-4.png" alt="Free guy movie poster" />
-        <button className="play-btn" onClick="openTvSeriesPage()">
-          <ion-icon name="play-circle-outline"></ion-icon>
-        </button>
-      </figure>
-
-      <div className="date-time">
-        <div>
-          <ion-icon name="calendar-outline"></ion-icon>
-          <time dateTime="2021">2021</time>
-        </div>
-        <div>
-          <ion-icon name="time-outline"></ion-icon>
-          <time dateTime="PT115M">115 min</time>
-        </div>
-      </div>
-    </c:foreach>
-  </div>
 
   if (method === 'toggle') {
     const signInForm = document.getElementById(formShow);
@@ -452,17 +431,9 @@ function editUpdateCustomerRow(rowId) {
   var email = row.querySelector("td:nth-child(3)").textContent;
   var mobileNumber = row.querySelector("td:nth-child(4)").textContent;
   var dob = row.querySelector("td:nth-child(5)").textContent;
-  var premiumUser = row.querySelector("td:nth-child(7)").textContent;
   var status = row.querySelector("td:nth-child(9)").textContent;
   debugger;
-  var isPremiumUser;
   var isActive;
-  
-	if (premiumUser == 'true') {
-		isPremiumUser = 1;
-	} else {
-		isPremiumUser = 0;
-	}
 	
 	if (status == 'true') {
 		isActive = 1;
@@ -476,14 +447,9 @@ function editUpdateCustomerRow(rowId) {
   document.getElementById("txtCustomerUpdateEmail").value = email;
   document.getElementById("txtCustomerUpdateMobileNo").value = mobileNumber;
   document.getElementById("txtCustomerUpdateDateofBirth").value = dob;
-  document.getElementById("txtCustomerUpdatePremiumUser").value = isPremiumUser;
   document.getElementById("txtCustomerUpdateStatus").value = isActive;
   
   // Trigger the 'change' event to update the select element
-  	var selectElement = document.getElementById("txtCustomerUpdatePremiumUser");
-	var event = new Event("change", { bubbles: true });
-	selectElement.dispatchEvent(event);
-	
 	var selectElement = document.getElementById("txtCustomerUpdateStatus");
 	var event = new Event("change", { bubbles: true });
 	selectElement.dispatchEvent(event);

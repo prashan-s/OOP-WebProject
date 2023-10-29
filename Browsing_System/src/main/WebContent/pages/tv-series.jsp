@@ -57,15 +57,15 @@
             <div class="movie-heading">
                 <p class="detail-subtitle">Recommended</p>
             </div>
-            <form action="${pageContext.request.contextPath}/TVSeriesServlet" method="post">
-                <input type="submit" name="action" value="submit-getallseries">
+            <form action="${pageContext.request.contextPath}/TVSeriesServlet" method="post" style="display:none">
+                <input type="submit" name="action" value="submit-getallseries" id="getTvSeriesBtn">
             </form>
             <div class="movie-container">
                 <c:forEach items="${seriesList}" var="item">
                     <div class="movie-detail-container">
                         <figure class="movie-detail-banner">
                             <img src="${item.tvs_img_url}" alt="${item.title}"/>
-                            <button class="play-btn" onclick="openMoviePage()">
+                            <button class="play-btn" onclick="openTvSeriesPage()">
                                 <ion-icon name="play-circle-outline"></ion-icon>
                             </button>
                         </figure>

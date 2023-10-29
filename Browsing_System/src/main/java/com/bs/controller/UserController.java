@@ -105,7 +105,7 @@ public class UserController {
 			showSignUpStatus = true;
 			showSignInStatus = false;
 
-			userSignUp.setName(request.getParameter("userId"));
+			userSignUp.setUserId(Integer.parseInt(request.getParameter("userId")));
 			userSignUp.setName(request.getParameter("userName"));
 			userSignUp.setEmail(request.getParameter("email"));
 			userSignUp.setMobileNo(request.getParameter("mobile"));
