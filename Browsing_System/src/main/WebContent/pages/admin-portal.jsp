@@ -959,7 +959,7 @@
 <script>
     //Construct the path dynamically by appending the context path
     var contextPath = "${pageContext.request.contextPath}";
-    var footerPath = contextPath + "/components/footer.jsp";
+    var footerPath = contextPath + "${pageContext.request.contextPath}/components/footer.jsp";
 
     // Fetch the HTML content of your component
     fetch(footerPath)
