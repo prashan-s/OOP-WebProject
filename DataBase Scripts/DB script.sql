@@ -68,7 +68,7 @@ CREATE TABLE users (
 	user_id					INT					NOT NULL PRIMARY KEY IDENTITY(1, 1),
 	name					VARCHAR(200)		NULL,
 	email					VARCHAR(200)		NULL, 
-	mobile_no				CHAR(10)			NULL,
+	mobile_no				CHAR(100)			NULL,
 	dob						DATE				NULL,
 	premium_user			BIT					NULL DEFAULT(0),
 	password				VARCHAR(200)		NULL,

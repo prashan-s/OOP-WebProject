@@ -14,7 +14,8 @@ public class TVSeriesDetailsDAO implements ITVSeriesDetailsDAO {
 
 	private static final String SELECT_ALL_TV_SERIES = "SELECT tvs_detail_id, tvs_id, season, episode, description, year, duration, quality, "
 			+ "watch_count, tvs_stream_url, created_admin_name, CASE WHEN is_active = 1 THEN 'Active' ELSE 'InActive' END AS is_active_status, is_active, row_created_datetime "
-			+ "FROM tv_series_details";
+			+ "FROM tv_series_details"
+			+ "ORDER BY tvs_detail_id DESC";
 
 	private static final String SELECT_TV_SERIES_BY_ID = "SELECT tvs_detail_id, tvs_id, season, episode, description, year, duration, quality, "
 			+ "watch_count, tvs_stream_url, created_admin_name, CASE WHEN is_active = 1 THEN 'Active' ELSE 'InActive' END AS is_active_status, is_active, row_created_datetime "

@@ -15,7 +15,7 @@ import com.bs.utility.DBConnectionMSSQL;
 public class UserSubscriptionDAO implements IUserSubscriptionDAO {
 
 	private static final String SELECT_SUBSCRIPTION_BY_ID = "SELECT sub_id, user_id, plan_id, subscribe_date, next_renewal_date, is_active, "
-			+ "row_created_datetime " + "FROM user_subscription " + "WHERE sub_id = ?";
+			+ "row_created_datetime " + "FROM user_subscription " + "WHERE sub_id = ?" + "ORDER BY sub_id DESC";
 
 	private static final String INSERT_SUBSCRIPTION_RETURN_ID = " INSERT INTO user_subscription (user_id, plan_id  ) "
 			+ " VALUES (?, ?  ); " + "SELECT SCOPE_IDENTITY() AS AutoIncrementedID; ";

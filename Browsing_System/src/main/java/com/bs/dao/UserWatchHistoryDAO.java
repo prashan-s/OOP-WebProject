@@ -14,7 +14,7 @@ import com.bs.utility.DBConnectionMSSQL;
 public class UserWatchHistoryDAO implements IUserWatchHistoryDAO {
 
 	private static final String SELECT_HISTORY_BY_USER_ID = "SELECT watch_id, user_id, type, tvs_id, movie_Id, row_created_datetime "
-			+ "FROM user_watch_history " + "WHERE user_id = ? " + "ORDER BY row_created_datetime DESC ";
+			+ "FROM user_watch_history " + "WHERE user_id = ? " + "ORDER BY watch_id DESC ";
 
 	private static final String INSERT_HISTORY = "INSERT INTO user_watch_history (user_id, type, tvs_id, movie_Id) "
 			+ "VALUES (?, ?, ?, ?)";

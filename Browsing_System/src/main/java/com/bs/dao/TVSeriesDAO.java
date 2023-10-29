@@ -15,7 +15,8 @@ public class TVSeriesDAO implements ITVSeriesDAO {
 	private static final String SELECT_ALL_SERIES = "SELECT tvs_id, title, tvs_img_url, action_category, "
 			+ "adventure_category, comedy_category, scify_category, horror_category, romance_category, "
 			+ "science_category, crime_category, thriller_category, is_active, row_created_datetime "
-			+ "FROM tv_series";
+			+ "FROM tv_series"
+			+ "ORDER BY tvs_id DESC";
 
 	private static final String SELECT_SERIES_BY_ID = "SELECT tvs_id, title, tvs_img_url, action_category, "
 			+ "adventure_category, comedy_category, scify_category, horror_category, romance_category, "
