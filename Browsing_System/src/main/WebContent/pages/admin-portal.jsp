@@ -902,7 +902,7 @@
                             </td>
                             <td>
                                 <form action="${pageContext.request.contextPath}/SubscriptionPlanServlet" method="post">
-                                    <input type="hidden" name="subscriptionPlan" value="subscriptionPlan_${subscriptionPlan.planId}">
+                                    <input type="hidden" name="planId" value="${subscriptionPlan.planId}">
                                     <i class="fa-solid fa-trash-can delete-icon"
                                        onclick="confirmDelete(event, 'btnSubscriptionPlanDelete')"></i>
                                     <input type="submit" name="action" value="Delete" id="btnSubscriptionPlanDelete" style="display: none;">
