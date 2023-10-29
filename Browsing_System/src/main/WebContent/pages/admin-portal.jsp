@@ -502,7 +502,7 @@
                         <label for="lblMovieUrl">Stream URL</label> <br/>
                         <input type="text" name="movie_stream_url" id="txtMovieUrl" required/>
                         <br/>
-                        <input type="submit" name="action" class="submit-btn" value="insert" />
+                        <input type="submit" name="action" class="submit-btn" value="Add" />
                     </form>
                 </div>
             </div>
