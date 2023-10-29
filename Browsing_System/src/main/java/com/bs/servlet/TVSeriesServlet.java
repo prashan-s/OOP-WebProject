@@ -30,11 +30,13 @@ public class TVSeriesServlet extends HttpServlet {
 	//Initialize the MovieController, retrieve the action parameter, and performs the corresponding action.
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		this.controller = new TVSeriesController(request, response);
-		
+
+		String a = request.getParameter("action");
+		System.out.println("TV Series Action: " + a);
+		controller.doAction(a);
 		//Handling the null Exception
 		try {
-			String a = request.getParameter("action");
-			controller.doAction(a);
+
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
