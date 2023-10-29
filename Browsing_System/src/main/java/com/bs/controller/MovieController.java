@@ -218,7 +218,7 @@ public class MovieController {
 					movieId = 1;
 				}
 				Movie m1x = new Movie();
-
+				m1x.setMovie_id(movieId);
 				m1x.setTitle(request.getParameter("title"));
 				m1x.setDescription(request.getParameter("description"));
 				m1x.setYear(Integer.parseInt(request.getParameter("year")));
@@ -269,7 +269,7 @@ public class MovieController {
 
 		}
 
-		System.out.println("Watiting to Dispatch");
+		System.out.println("Watiting to Dispatch: " + jspPage);
 		try {
 
 			System.out.println("showUpdateStatus " + showUpdateStatus);
@@ -335,7 +335,6 @@ public class MovieController {
 
 		try {
 			List<Movie> movies = new MovieDAO().selectAllMovies();
-			System.out.println("movies : " + movies.getFirst().getTitle());
 			request.setAttribute("movieData", movies);// attribute name, objectName
 		} catch (Exception e) {
 			e.printStackTrace();
