@@ -581,7 +581,7 @@
                                     <input type="hidden" name="movieId" value="${movie.movie_id}">
                                     <i class="fa-solid fa-trash-can delete-icon"
                                        onclick="confirmDelete(event, 'btnmovieDelete')"></i>'
-                                    <input type="submit" name="action" value="delete" id="btnmovieDelete" style="display: none;">
+                                    <input type="submit" name="action" value="Delete" id="btnmovieDelete" style="display: none;">
                                 </form>
                             </td>
                         </tr>
