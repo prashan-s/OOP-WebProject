@@ -469,9 +469,8 @@ function editUpdateMovieRow(rowId) {
   var MovieYear = row.querySelector("td:nth-child(4)").textContent;
   var MovieDuration = row.querySelector("td:nth-child(5)").textContent;
   var MovieQuality = row.querySelector("td:nth-child(6)").textContent;
-  var MovieImgUrl = row.querySelector("td:nth-child(7)").textContent;
   var MovieUrl = row.querySelector("td:nth-child(8)").textContent;
-  var status = row.querySelector("td:nth-child(10)").textContent;
+  var status = row.querySelector("td:nth-child(9)").textContent;
 debugger;
 	var isActive;
 	
