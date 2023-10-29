@@ -269,6 +269,12 @@ public class MovieController {
 				request.setAttribute("xmessage", message);
 				System.out.println("Updated   " + insertStatusx);
 
+				try {
+					this.dispatcher = request.getRequestDispatcher(jspPage);
+					this.dispatcher.forward(request, response);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 				break;
 
 		}
