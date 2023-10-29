@@ -60,7 +60,7 @@ public class MovieController {
 				this.response.addCookie(cookie);
 				break;
 			case "submit-getMovies":
-				jspPage = "./pages/movie.jsp";
+				jspPage = "./pages/movies.jsp";
 				showMovieIdForm = false;
 				showDetails = true;
 				showEditForm = false;
@@ -73,6 +73,7 @@ public class MovieController {
 //
 //				Cookie cookie = new Cookie("movieId", Integer.toString(movieId));
 //				this.response.addCookie(cookie);
+				break;
 			case "edit":
 				jspPage = "./pages/admin-portal.jsp";
 				showMovieIdForm = false;

@@ -19,8 +19,8 @@
   <!-- 
     - custom css link
   -->
-  <link rel="stylesheet" href="../assets/css/style.css" />
-  <link rel="stylesheet" href="../assets/css/movies.css" />
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/style.css" />
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/movies.css" />
 
   <!-- 
     - google font link
@@ -103,7 +103,7 @@
 <%--        <div class="movie-container">--%>
 <%--          <div class="movie-detail-container">--%>
 <%--            <figure class="movie-detail-banner">--%>
-<%--              <img src="../assets/images/movie-4.png" alt="Free guy movie poster" />--%>
+<%--              <img src="${pageContext.request.contextPath}/assets/images/movie-4.png" alt="Free guy movie poster" />--%>
 <%--              <button class="play-btn" onclick="openMoviePage()">--%>
 <%--                <ion-icon name="play-circle-outline"></ion-icon>--%>
 <%--              </button>--%>
@@ -122,7 +122,7 @@
 <%--          </div>--%>
 <%--          <div class="movie-detail-container">--%>
 <%--            <figure class="movie-detail-banner">--%>
-<%--              <img src="../assets/images/movie-4.png" alt="Free guy movie poster" />--%>
+<%--              <img src="${pageContext.request.contextPath}/assets/images/movie-4.png" alt="Free guy movie poster" />--%>
 <%--              <button class="play-btn" onclick="openMoviePage()">--%>
 <%--                <ion-icon name="play-circle-outline"></ion-icon>--%>
 <%--              </button>--%>
@@ -141,7 +141,7 @@
 <%--          </div>--%>
 <%--          <div class="movie-detail-container">--%>
 <%--            <figure class="movie-detail-banner">--%>
-<%--              <img src="../assets/images/movie-4.png" alt="Free guy movie poster" />--%>
+<%--              <img src="${pageContext.request.contextPath}/assets/images/movie-4.png" alt="Free guy movie poster" />--%>
 <%--              <button class="play-btn" onclick="openMoviePage()">--%>
 <%--                <ion-icon name="play-circle-outline"></ion-icon>--%>
 <%--              </button>--%>
@@ -160,7 +160,7 @@
 <%--          </div>--%>
 <%--          <div class="movie-detail-container">--%>
 <%--            <figure class="movie-detail-banner">--%>
-<%--              <img src="../assets/images/movie-4.png" alt="Free guy movie poster" />--%>
+<%--              <img src="${pageContext.request.contextPath}/assets/images/movie-4.png" alt="Free guy movie poster" />--%>
 <%--              <button class="play-btn" onclick="openMoviePage()">--%>
 <%--                <ion-icon name="play-circle-outline"></ion-icon>--%>
 <%--              </button>--%>
@@ -198,7 +198,7 @@
 
                 <a href="./movie-details.html">
                   <figure class="card-banner">
-                    <img src="../assets/images/series-1.png" alt="Moon Knight movie poster">
+                    <img src="${pageContext.request.contextPath}/assets/images/series-1.png" alt="Moon Knight movie poster">
                   </figure>
                 </a>
 
@@ -234,7 +234,7 @@
 
                 <a href="./movie-details.html">
                   <figure class="card-banner">
-                    <img src="../assets/images/series-2.png" alt="Halo movie poster">
+                    <img src="${pageContext.request.contextPath}/assets/images/series-2.png" alt="Halo movie poster">
                   </figure>
                 </a>
 
@@ -270,7 +270,7 @@
 
                 <a href="./movie-details.html">
                   <figure class="card-banner">
-                    <img src="../assets/images/series-3.png" alt="Vikings: Valhalla movie poster">
+                    <img src="${pageContext.request.contextPath}/assets/images/series-3.png" alt="Vikings: Valhalla movie poster">
                   </figure>
                 </a>
 
@@ -306,7 +306,7 @@
 
                 <a href="./movie-details.html">
                   <figure class="card-banner">
-                    <img src="../assets/images/series-4.png" alt="Money Heist movie poster">
+                    <img src="${pageContext.request.contextPath}/assets/images/series-4.png" alt="Money Heist movie poster">
                   </figure>
                 </a>
 
@@ -352,7 +352,7 @@
 
   <script>
     // Fetch the HTML content of your component
-    fetch("../components/footer.html")
+    fetch("${pageContext.request.contextPath}/components/footer.jsp")
       .then((response) => response.text())
       .then((html) => {
         // Inject the HTML content into your container
@@ -371,8 +371,8 @@
   <!-- 
     - custom js link
   -->
-  <script src="../assets/js/script.js"></script>
-  <script src="../assets/js/movies.js"></script>
+  <script src="${pageContext.request.contextPath}/assets/js/script.js"></script>
+  <script src="${pageContext.request.contextPath}/assets/js/movies.js"></script>
   <!-- 
     - ionicon link
   -->
