@@ -113,14 +113,13 @@ public class MovieController {
 				showDeleteStatus = false;
 
 
+				try {
+					movieId = Integer.parseInt(request.getParameter("movieId"));
+				}catch(Exception e) {
+					movieId = 1;
+				}
 				if (movieId == null){
 					movieId = 1;
-				}else{
-					try {
-						movieId = Integer.parseInt(request.getParameter("movieId"));
-					}catch(Exception e){
-
-					}
 				}
 
 				boolean deleteStatus = deleteMovieByAdmin(movieId);
@@ -227,15 +226,13 @@ public class MovieController {
 				showInsertStatus = true;
 				showDeleteStatus = false;
 
-
+				try {
+					movieId = Integer.parseInt(request.getParameter("movieId"));
+				}catch(Exception e) {
+					movieId = 1;
+				}
 				if (movieId == null){
 					movieId = 1;
-				}else{
-					try {
-						movieId = Integer.parseInt(request.getParameter("movieId"));
-					}catch(Exception e){
-
-					}
 				}
 				Movie m1x = new Movie();
 
