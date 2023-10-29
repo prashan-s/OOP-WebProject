@@ -470,15 +470,15 @@ function editUpdateMovieRow(rowId) {
   var MovieDuration = row.querySelector("td:nth-child(5)").textContent;
   var MovieQuality = row.querySelector("td:nth-child(6)").textContent;
   var MovieUrl = row.querySelector("td:nth-child(8)").textContent;
-  var status = row.querySelector("td:nth-child(9)").textContent;
-debugger;
-	var isActive;
+  //var status = row.querySelector("td:nth-child(9)").textContent;
+//debugger;
+	//ar isActive;
 	
-	if (status == 'true') {
-		isActive = 1;
-	} else {
-		isActive = 0;
-	}
+	//if (status == 'true') {
+		//isActive = 1;
+	//} else {
+		//isActive = 0;
+	//}
 	
   // Set the row data in the form fields
   document.getElementById("editMovieRowId").value = id;
@@ -488,11 +488,11 @@ debugger;
   document.getElementById("txtUpdateMovieDuration").value = MovieDuration;
   document.getElementById("txtUpdateMovieQuality").value = MovieQuality;
   document.getElementById("txtUpdateMovieUrl").value = MovieUrl;
-  document.getElementById("txtUpdateMovieStatus").value = isActive;
+  //document.getElementById("txtUpdateMovieStatus").value = isActive;
   
-  var selectElement = document.getElementById("txtUpdateMovieStatus");
-	var event = new Event("change", { bubbles: true });
-	selectElement.dispatchEvent(event);
+  //var selectElement = document.getElementById("txtUpdateMovieStatus");
+	//var event = new Event("change", { bubbles: true });
+	//selectElement.dispatchEvent(event);
 	
   // Populate other form fields as needed
 
