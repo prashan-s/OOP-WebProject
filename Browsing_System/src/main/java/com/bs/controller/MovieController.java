@@ -166,15 +166,31 @@ public class MovieController {
 				m1.setWatch_count(Integer.parseInt(request.getParameter("watch_count")));
 				m1.setMovie_img_url(request.getParameter("movie_img_url"));
 				m1.setMovie_stream_url(request.getParameter("movie_stream_url"));
-				m1.setAction_category(Boolean.parseBoolean(request.getParameter("action_category")));
-				m1.setAdventure_category(Boolean.parseBoolean(request.getParameter("adventure_category")));
-				m1.setComedy_category(Boolean.parseBoolean(request.getParameter("comedy_category")));
-				m1.setScify_category(Boolean.parseBoolean(request.getParameter("scify_category")));
-				m1.setHorror_category(Boolean.parseBoolean(request.getParameter("horror_category")));
-				m1.setRomance_category(Boolean.parseBoolean(request.getParameter("romance_category")));
-				m1.setScience_category(Boolean.parseBoolean(request.getParameter("science_category")));
-				m1.setCrime_category(Boolean.parseBoolean(request.getParameter("crime_category")));
-				m1.setThriller_category(Boolean.parseBoolean(request.getParameter("thriller_category")));
+
+				m1.setMovie_img_url("");
+				m1.setAction_category(true);
+				m1.setAdventure_category(false);
+				m1.setComedy_category(false);
+				m1.setScify_category(false);
+				m1.setHorror_category(false);
+				m1.setRomance_category(false);
+				m1.setScience_category(false);
+				m1.setCrime_category(false);
+				m1.setThriller_category(false);
+
+				try {
+//					m1.setAction_category(Boolean.parseBoolean(request.getParameter("action_category")));
+//					m1.setAdventure_category(Boolean.parseBoolean(request.getParameter("adventure_category")));
+//					m1.setComedy_category(Boolean.parseBoolean(request.getParameter("comedy_category")));
+//					m1.setScify_category(Boolean.parseBoolean(request.getParameter("scify_category")));
+//					m1.setHorror_category(Boolean.parseBoolean(request.getParameter("horror_category")));
+//					m1.setRomance_category(Boolean.parseBoolean(request.getParameter("romance_category")));
+//					m1.setScience_category(Boolean.parseBoolean(request.getParameter("science_category")));
+//					m1.setCrime_category(Boolean.parseBoolean(request.getParameter("crime_category")));
+//					m1.setThriller_category(Boolean.parseBoolean(request.getParameter("thriller_category")));
+				}catch (Exception ex){
+
+				}
 				m1.setCreated_admin_name(request.getParameter("created_admin_name"));
 
 				boolean insertStatus = insertMovieByAdmin(m1);
