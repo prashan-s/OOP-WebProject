@@ -12,9 +12,12 @@ import java.sql.Date;
 
 public class TVSeriesDetailsDAO implements ITVSeriesDetailsDAO {
 
-	private static final String SELECT_ALL_TV_SERIES = "SELECT tvs_detail_id, tvs_id, season, episode, description, year, duration, quality, "
-			+ "watch_count, tvs_stream_url, created_admin_name, CASE WHEN is_active = 1 THEN 'Active' ELSE 'InActive' END AS is_active_status, is_active, row_created_datetime "
-			+ "FROM tv_series_details";
+	private static final String SELECT_ALL_TV_SERIES = "SELECT tv_series.title,tv_series_details.tvs_detail_id, tv_series_details.tvs_id,"
+		    + "tv_series_details.season, tv_series_details.episode, tv_series_details.description,tv_series_details.year,"
+			+ "tv_series_details.duration,tv_series_details.quality,tv_series_details.watch_count, tv_series_details.tvs_stream_url,"
+		    + "tv_series_details.created_admin_name, CASE WHEN tv_series_details.is_active = 1 THEN 'Active' ELSE 'Inactive' END AS is_active_status,tv_series_details.is_active,"
+		    + "tv_series_details.row_created_datetime FROM tv_series INNER JOIN  tv_series_details ON tv_series.tvs_id = tv_series_details.tvs_id";
+;
 
 	private static final String SELECT_TV_SERIES_BY_ID = "SELECT tvs_detail_id, tvs_id, season, episode, description, year, duration, quality, "
 			+ "watch_count, tvs_stream_url, created_admin_name, CASE WHEN is_active = 1 THEN 'Active' ELSE 'InActive' END AS is_active_status, is_active, row_created_datetime "
