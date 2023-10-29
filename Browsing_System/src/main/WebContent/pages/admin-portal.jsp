@@ -833,25 +833,14 @@
                         <p>Add a SubscriptionPlans</p>
                     </div>
                     <form action="${pageContext.request.contextPath}/SubscriptionPlanServlet" method="post">
-                        <label for="txtSubscriptionPlansName">Tv Series Episodes Name</label> <br/>
-                        <input type="text" name="SubscriptionPlansname" id="txtSubscriptionPlansName" required/>
+                        <label for="txtSubscriptionPlanName">Subscription Plan Name</label> <br/>
+                        <input type="text" name="description" id="txtSubscriptionPlanName" required/>
                         <br/>
-                        <label for="txtSubscriptionPlansDescription">Tv Series Episodes Description</label> <br/>
-                        <input type="text" name="SubscriptionPlansdescription" id="txtSubscriptionPlansDescription"
-                               required/>
+                        <label for="txtSubscriptionPlansDuration">Duration (Months)</label> <br/>
+                        <input type="text" name="duration" id="txtSubscriptionPlansDuration" required/>
                         <br/>
-                        <label for="txtSubscriptionPlansStartingDate">Starting Date</label> <br/>
-                        <input type="date" name="startingdate" id="txtSubscriptionPlansStartingDate" required/>
-                        <br/>
-                        <label for="txtSubscriptionPlansEndingDate">Ending Date</label> <br/>
-                        <input type="date" name="endingdate" id="txtSubscriptionPlansEndingDate" required/>
-                        <br/>
-                        <label for="txtSubscriptionPlansPercentage">SubscriptionPlans Percentage</label> <br/>
-                        <input type="text" name="percentage" id="txtSubscriptionPlansPercentage" required/>
-                        <br/>
-                        <label for="imgSubscriptionPlansImage">SubscriptionPlans Image</label> <br/>
-                        <input type="file" name="SubscriptionPlansimage" id="imgSubscriptionPlansImage" accept="image/*"
-                               required/>
+                        <label for="txtSubscriptionPlansAmount">Amount</label> <br/>
+                        <input type="text" name="amount" id="txtSubscriptionPlansAmount" required/>
                         <br/>
                         <input type="submit" name="action" value="Add" class="submit-btn" />
                     </form>
@@ -862,34 +851,20 @@
                     <div class="card-heading">
                         <p>Update Subscription Plans</p>
                     </div>
-                    <form action="../php/admin_portal_SubscriptionPlans_update_process.php" method="post">
-                        <label for="txtUpdateSubscriptionPlansName">SubscriptionPlans Name</label> <br/>
-                        <input type="text" name="SubscriptionPlansname" id="txtUpdateSubscriptionPlansName" required/>
+                    <form action="${pageContext.request.contextPath}/SubscriptionPlanServlet" method="post">
+                        <label for="txtUpdateSubscriptionPlanName">Subscription Plan Name</label> <br/>
                         <br/>
-                        <label for="txtUpdateSubscriptionPlansDescription">SubscriptionPlans Description</label>
+                        <input type="text" name="description" id="txtUpdateSubscriptionPlansName" required/>
                         <br/>
-                        <input type="text" name="SubscriptionPlansdescription"
-                               id="txtUpdateSubscriptionPlansDescription"
-                               required/>
+                        <label for="txtUpdateSubscriptionPlansDuration">Duration</label>
                         <br/>
-                        <label for="txtUpdateSubscriptionPlansStartingDate">Starting Date</label>
+                        <input type="text" name="duration" id="txtUpdateSubscriptionPlansDuration" required/>
                         <br/>
-                        <input type="date" name="startingdate" id="txtUpdateSubscriptionPlansStartingDate" required/>
+                        <label for="txtUpdateSubscriptionPlansAmount">Amount</label>
                         <br/>
-                        <label for="txtUpdateSubscriptionPlansEndingDate">Ending Date</label> <br/>
-                        <input type="date" name="endingdate" id="txtUpdateSubscriptionPlansEndingDate" required/>
+                        <input type="text" name="amount" id="txtUpdateSubscriptionPlansAmount" required/>
                         <br/>
-                        <label for="txtUpdateSubscriptionPlansPercentage">SubscriptionPlans Percentage</label>
-                        <br/>
-                        <input type="text" name="percentage" id="txtUpdateSubscriptionPlansPercentage" required/>
-                        <br/>
-                        <label for="txtUpdateSubscriptionPlansStatus">Active / InActive</label> <br/>
-                        <select name="status" id="txtUpdateSubscriptionPlansStatus" required>
-                            <option value=""></option>
-                            <option value="1">Active</option>
-                            <option value="0">InActive</option>
-                        </select>
-                        <input type="hidden" name="rowid" id="editSubscriptionPlansRowId"/>
+                        <input type="hidden" name="planId" id="editSubscriptionPlansRowId"/>
                         <input type="submit" name="action" value="Update" class="submit-btn" />
                     </form>
                 </div>
@@ -906,7 +881,7 @@
                         <th class="hide">ID</th>
                         <th>Subscription Plan Name</th>
                         <th>Duration (Months)</th>
-                        <th>Amount (LKR)</th>
+                        <th>Amount</th>
                         <th>Active / InActive</th>
                         <th class="hide">Status</th>
                         <th class="tbl-edit"></th>
@@ -915,7 +890,7 @@
                     </thead>
                     <tbody>
                     <c:forEach items="${subscriptionPlans}" var="subscriptionPlan">
-                        <tr>
+                        <tr id="subscriptionPlan_${subscriptionPlan.planId}">
                             <td class="hide">${subscriptionPlan.planId}</td>
                             <td>${subscriptionPlan.description}</td>
                             <td>${subscriptionPlan.duration}</td>
@@ -923,14 +898,14 @@
                             <td>${subscriptionPlan.isActive ? 'Active' : 'InActive'}</td>
                             <td>
                                 <i class="fa-solid fa-pen-to-square update-icon"
-                                   onclick="editUpdateTvSeriesEpisodesRow('tvSeriesEpisode_${TvSeriesEpisode.tvsDetailId}')"></i>
+                                   onclick="editUpdateSubscriptionPlanRow('subscriptionPlan_${subscriptionPlan.planId}')"></i>
                             </td>
                             <td>
-                                <form action="${pageContext.request.contextPath}/TVSeriesDetailsServlet" method="post">
-                                    <input type="hidden" name="tvSeriesEpisode" value="tvSeriesEpisode_${TvSeriesEpisode.tvsDetailId}">
+                                <form action="${pageContext.request.contextPath}/SubscriptionPlanServlet" method="post">
+                                    <input type="hidden" name="subscriptionPlan" value="subscriptionPlan_${subscriptionPlan.planId}">
                                     <i class="fa-solid fa-trash-can delete-icon"
-                                       onclick="confirmDelete(event, 'btnTvSeriesDetailDelete')"></i>'
-                                    <input type="submit" id="btnTvSeriesDetailDelete" style="display: none;">
+                                       onclick="confirmDelete(event, 'btnSubscriptionPlanDelete')"></i>
+                                    <input type="submit" name="action" value="Delete" id="btnSubscriptionPlanDelete" style="display: none;">
                                 </form>
                             </td>
                         </tr>

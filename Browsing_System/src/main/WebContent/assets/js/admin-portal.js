@@ -327,12 +327,12 @@ function showAddTvSeriesEpisodesForm() {
 }
 
 function showAddSubscriptionPlansForm() {
-  const updateSubscriptionPlanForm = document.getElementById("updateSubscriptionPlanForm");
+  const updateSubscriptionPlanForm = document.getElementById("updateSubscriptionPlansForm");
   if (updateSubscriptionPlanForm.classList.contains("show")) {
     updateSubscriptionPlanForm.classList.remove("show");
   }
 
-  const addSubscriptionPlanForm = document.getElementById("addSubscriptionPlanForm");
+  const addSubscriptionPlanForm = document.getElementById("addSubscriptionPlansForm");
   addSubscriptionPlanForm.classList.toggle("show");
 }
 
@@ -387,6 +387,17 @@ function showUpdatedTvSeriesEpisodesForm() {
   }
 
   const updateTvSeriesEpisodesForm = document.getElementById("updateTvSeriesEpisodesForm");
+  updateTvSeriesEpisodesForm.classList.remove("hide");
+  updateTvSeriesEpisodesForm.classList.add("show");
+}
+
+function showUpdatedSubscriptionPlanForm() {
+  const addTvSeriesEpisodesForm = document.getElementById("addSubscriptionPlansForm");
+  if (addTvSeriesEpisodesForm.classList.contains("show")) {
+    addTvSeriesEpisodesForm.classList.remove("show");
+  }
+
+  const updateTvSeriesEpisodesForm = document.getElementById("updateSubscriptionPlansForm");
   updateTvSeriesEpisodesForm.classList.remove("hide");
   updateTvSeriesEpisodesForm.classList.add("show");
 }
@@ -554,6 +565,25 @@ function editUpdateTvSeriesEpisodesRow(rowId) {
 
   // Show the TvSeries form
   showUpdatedTvSeriesEpisodesForm();
+}
+
+function editUpdateSubscriptionPlanRow(rowId) {
+  // Get the row data
+  debugger;
+  var row = document.getElementById(rowId);
+  var id = row.querySelector("td:nth-child(1)").textContent;
+  var SubscriptionPlanName = row.querySelector("td:nth-child(2)").textContent;
+  var SubscriptionPlanDuration = row.querySelector("td:nth-child(3)").textContent;
+  var SubscriptionPlanAmount = row.querySelector("td:nth-child(4)").textContent;
+
+  // Set the row data in the form fields
+  document.getElementById("editSubscriptionPlansRowId").value = id;
+  document.getElementById("txtUpdateSubscriptionPlansName").value = SubscriptionPlanName;
+  document.getElementById("txtUpdateSubscriptionPlansDuration").value = SubscriptionPlanDuration;
+  document.getElementById("txtUpdateSubscriptionPlansAmount").value = SubscriptionPlanAmount;
+  
+  // Show the TvSeries form
+  showUpdatedSubscriptionPlanForm();
 }
 
 // Attach event listeners to main items
