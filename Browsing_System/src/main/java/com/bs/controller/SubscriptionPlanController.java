@@ -103,24 +103,20 @@ public class SubscriptionPlanController {
 			this.response.addCookie(cookiePlan);
 			break;
 
-		case "update":
+		case "Update":
 
-			jspPage = "AdminSubscriptionPlans.jsp";
+			jspPage = "./pages/admin-portal.jsp";
 			showUpdateStatus = true;
 			
 			boolean isActive = false;
 			boolean updateStatus = false;
 			String UpdateMessage = "";
 			SubscriptionPlan plan = new SubscriptionPlan();
-			planId = getValueForPlanId("planId");
+			planId = Integer.parseInt(request.getParameter("planId"));
 			plan.setPlanId(planId);
-			
 
-			if( request.getParameter("active").equals("active")){
-				 isActive = true;
-			}else {
-				isActive= false;
-			}
+			isActive= true;
+
 			plan.setDescription(request.getParameter("description"));
 			plan.setDuration(Integer.parseInt(request.getParameter("duration")));
 			plan.setAmount(Float.parseFloat(request.getParameter("amount")));
@@ -138,12 +134,12 @@ public class SubscriptionPlanController {
 
 			break;
 
-		case "remove":
-			jspPage = "AdminSubscriptionPlans.jsp";
+		case "Delete":
+			jspPage = "./pages/admin-portal.jsp";
 			showDeleteStatus = true;
 			boolean deleteStatus = false;
 			String deleteMessage = null;
-			planId = getValueForPlanId("planId");
+			planId = Integer.parseInt(request.getParameter("planId"));
 
 			deleteStatus = this.deleteSubscriptionPlan(planId);
 			if (deleteStatus == false) {
@@ -159,21 +155,15 @@ public class SubscriptionPlanController {
 			insertPlansByAdmin = true;
 			break;
 		
-		case "insert":
-			jspPage = "AdminSubscriptionPlans.jsp";
+		case "Add":
+			jspPage = "./pages/admin-portal.jsp";
 			showInsertedStatus = true;
 
 			boolean insertStatus = false;
 			boolean Active = false;
 			String insertMessage = "";
 			SubscriptionPlan planNew = new SubscriptionPlan();
-			
-			if( request.getParameter("active").equals("active")){
-				 Active = true;
-			}else {
-				Active= false;
-			}
-			
+
 			planNew.setDescription(request.getParameter("description"));
 			planNew.setDuration(Integer.parseInt(request.getParameter("duration")));
 			planNew.setAmount(Float.parseFloat(request.getParameter("amount")));
@@ -191,6 +181,7 @@ public class SubscriptionPlanController {
 			break;
 		
 		}
+
 		try {
 			request.setAttribute("showUserIdForm", showUserIdForm);
 			request.setAttribute("showAdminIdForm", showAdminIdForm);
