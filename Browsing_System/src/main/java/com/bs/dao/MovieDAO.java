@@ -16,8 +16,7 @@ public class MovieDAO implements IMovieDAO {
 			+ "watch_count, movie_img_url, movie_stream_url, action_category, "
 			+ "adventure_category, comedy_category, scify_category, horror_category, "
 			+ "romance_category, science_category, crime_category, thriller_category, "
-			+ "is_active, created_admin_name, row_created_datetime " + "FROM movie"
-			+ "ORDER BY movie_id DESC";
+			+ "is_active, created_admin_name, row_created_datetime " + "FROM movie";
 
 	private static final String SELECT_MOVIE_BY_ID = "SELECT movie_id, title, description, year, duration, quality, "
 			+ "watch_count, movie_img_url, movie_stream_url, action_category, "
