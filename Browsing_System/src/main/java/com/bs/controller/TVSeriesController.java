@@ -82,7 +82,7 @@ public class TVSeriesController {
 
 				break;
 
-			case "delete":
+			case "Delete":
 
 				jspPage = "./pages/admin-portal.jsp";
 				showTVSeriesIdForm = false;
@@ -93,7 +93,7 @@ public class TVSeriesController {
 				showInsertStatus = false;
 				showDeleteStatus = true;
 
-				tvssId = getValueForId("tvsId");
+				tvssId  = Integer.parseInt(request.getParameter("tvsId"));
 
 				boolean deleteStatus = deleteTVSeriesByAdmin(tvssId);
 
@@ -123,7 +123,7 @@ public class TVSeriesController {
 
 				break;
 
-			case "insert":
+			case "Add":
 
 				jspPage = "./pages/admin-portal.jsp";
 				showTVSeriesIdForm = false;
@@ -134,23 +134,19 @@ public class TVSeriesController {
 				showInsertStatus = true;
 				showDeleteStatus = false;
 
-				tvssId = getValueForId("tvsId");
-
 				TVSeries tvS2 = new TVSeries();
 
-				tvS2.setTvs_id(tvssId);
-				tvS2.setTitle(request.getParameter("tvSeriesTitle_i"));
-				tvS2.setTvs_img_url(request.getParameter("tvSeriesUrl_i"));
-				tvS2.setAction_category(Boolean.parseBoolean("action_category_i"));
-				tvS2.setAdventure_category(Boolean.parseBoolean("adventure_category_i"));
-				tvS2.setComedy_category(Boolean.parseBoolean("comedy_category_i"));
-				;
-				tvS2.setScify_category(Boolean.parseBoolean("scify_category_i"));
-				tvS2.setHorror_category(Boolean.parseBoolean("horror_category_i"));
-				tvS2.setRomance_category(Boolean.parseBoolean("romance_category_i"));
-				tvS2.setScience_category(Boolean.parseBoolean("science_category_i"));
-				tvS2.setCrime_category(Boolean.parseBoolean("crime_category_i"));
-				tvS2.setThriller_category(Boolean.parseBoolean("thriller_category"));
+				tvS2.setTitle(request.getParameter("tvSeriesTitle"));
+				String imageUrl = "";
+				boolean actionC = true;
+				boolean adventure = false;
+				boolean comedy = false;
+				boolean scify = false;
+				boolean horror = false;
+				boolean romance = false;
+				boolean science = false;
+				boolean crime = false;
+				boolean thriller = false;
 
 				boolean insertStatus = insertTVSeriesByAdmin(tvS2);
 
@@ -168,7 +164,7 @@ public class TVSeriesController {
 
 				break;
 
-			case "update":
+			case "Update":
 
 				jspPage = "./pages/admin-portal.jsp";
 				showTVSeriesIdForm = false;
@@ -181,20 +177,19 @@ public class TVSeriesController {
 
 				TVSeries tvs = new TVSeries();
 
-				tvssId = getValueForId("tvsId");
+				tvs.setTvs_id(Integer.parseInt(request.getParameter("tvsId")));
 				String title = request.getParameter("tvSeriesTitle");
-				String imageUrl = request.getParameter("tvSeriesUrl");
-				boolean actionC = Boolean.parseBoolean(request.getParameter("action_category"));
-				boolean adventure = Boolean.parseBoolean(request.getParameter("adventure_category"));
-				boolean comedy = Boolean.parseBoolean(request.getParameter("action_category"));
-				boolean scify = Boolean.parseBoolean(request.getParameter("scify_category"));
-				boolean horror = Boolean.parseBoolean(request.getParameter("horror_category"));
-				boolean romance = Boolean.parseBoolean(request.getParameter("romance_category"));
-				boolean science = Boolean.parseBoolean(request.getParameter("science_category"));
-				boolean crime = Boolean.parseBoolean(request.getParameter("crime_category"));
-				boolean thriller = Boolean.parseBoolean(request.getParameter("thriller_category"));
+				imageUrl = "";
+				actionC = true;
+				adventure = false;
+				comedy = false;
+				scify = false;
+				horror = false;
+				romance = false;
+				science = false;
+				crime = false;
+				thriller = false;
 
-				tvs.setTvs_id(tvssId);
 				tvs.setTitle(title);
 				tvs.setTvs_img_url(imageUrl);
 				tvs.setAction_category(actionC);

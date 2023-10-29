@@ -124,7 +124,8 @@ public class UserController {
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
-			
+
+			userSignUp.setUserId(userId);
 			userSignUp.setPassword("Test123");
 			userSignUp.setPremiumUser(false);
 			userSignUp.setCreatedAdminName("Admin");
@@ -152,7 +153,7 @@ public class UserController {
 			showDeleteStatus = true;
 			deleteStatus = false;
 			deletionMessage = "";
-			userId = getValueForId("userId");
+			userId = Integer.parseInt(request.getParameter("userId"));
 
 			deleteStatus = deleteUser(userId);
 			if (deleteStatus == false) {

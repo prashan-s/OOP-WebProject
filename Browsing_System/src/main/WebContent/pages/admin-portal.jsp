@@ -502,7 +502,7 @@
                         <label for="lblMovieUrl">Stream URL</label> <br/>
                         <input type="text" name="movie_stream_url" id="txtMovieUrl" required/>
                         <br/>
-                        <input type="submit" name="action" class="submit-btn" value="insert" />
+                        <input type="submit" name="action" class="submit-btn" value="Add" />
                     </form>
                 </div>
             </div>
@@ -613,9 +613,9 @@
                     <form action="${pageContext.request.contextPath}/TVSeriesServlet" method="post"
                           enctype="multipart/form-data">
                         <label for="txtTvSeriesName">TvSeries Name</label> <br/>
-                        <input type="text" name="TvSeriesname" id="txtTvSeriesName" required/>
+                        <input type="text" name="tvSeriesTitle" id="txtTvSeriesName" required/>
                         <br/>
-                        <input type="submit" name="action" class="submit-btn" value="Add"/>
+                        <input type="submit" name="action" value="Add" class="submit-btn" />
                     </form>
                 </div>
             </div>
@@ -628,10 +628,10 @@
                     <%--Update Tv Series--%>
                     <form action="${pageContext.request.contextPath}/TVSeriesServlet" method="post">
                         <label for="txtUpdateTvSeriesName">TvSeries Name</label> <br/>
-                        <input type="text" name="TvSeriesname" id="txtUpdateTvSeriesName" required/>
+                        <input type="text" name="tvSeriesTitle" id="txtUpdateTvSeriesName" required/>
                         <br/>
-                        <input type="hidden" name="rowid" id="editTvSeriesRowId"/>
-                        <input type="submit" name="action" class="submit-btn" value="Update"/>
+                        <input type="hidden" name="tvsId" id="editTvSeriesRowId"/>
+                        <input type="submit" name="action" value="Update" class="submit-btn" />
                     </form>
                 </div>
             </div>
@@ -664,10 +664,10 @@
                             </td>
                             <td>
                                 <form action="${pageContext.request.contextPath}/TVSeriesServlet" method="post">
-                                    <input type="hidden" name="series_id" value="${series.tvs_id}">
+                                    <input type="hidden" name="tvsId" value="${series.tvs_id}">
                                     <i class="fa-solid fa-trash-can delete-icon"
                                        onclick="confirmDelete(event, 'btnTvSeriesDelete')"></i>'
-                                    <input type="submit" id="btnTvSeriesDelete" style="display: none;">
+                                    <input type="submit" name="action" value="Delete" id="btnTvSeriesDelete" style="display: none;">
                                 </form>
                             </td>
                         </tr>
