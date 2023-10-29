@@ -47,6 +47,7 @@ public class SubscriptionPlanController {
 		boolean showSubscriptionPayDetails = false;
 		boolean listPaymentMethod = true;
 		boolean addPaymentMethod = true;
+		System.out.println("SPlan" + action);
 		switch (action) {
 
 		case "submit user Id":
@@ -167,7 +168,7 @@ public class SubscriptionPlanController {
 			planNew.setDescription(request.getParameter("description"));
 			planNew.setDuration(Integer.parseInt(request.getParameter("duration")));
 			planNew.setAmount(Float.parseFloat(request.getParameter("amount")));
-			planNew.setActive(Active);
+			planNew.setActive(true);
 
 			insertStatus = insertSubscriptionPlan(planNew);
 
