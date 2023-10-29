@@ -152,7 +152,9 @@ public class UserController {
 			showDeleteStatus = true;
 			deleteStatus = false;
 			deletionMessage = "";
+
 			userId = Integer.parseInt(request.getParameter("userId"));
+			System.out.println("Delet UID" + userId);
 
 			deleteStatus = deleteUser(userId);
 			if (deleteStatus == false) {
