@@ -103,17 +103,25 @@ public class MovieController {
 				break;
 
 			case "delete":
-
 				jspPage = "./pages/admin-portal.jsp";
 				showMovieIdForm = false;
 				showDetails = false;
 				showEditForm = false;
 				showUpdateStatus = false;
 				showAddForm = false;
-				showInsertStatus = false;
-				showDeleteStatus = true;
+				showInsertStatus = true;
+				showDeleteStatus = false;
 
-				movieId = getValueForId("movieId");
+
+				if (movieId == null){
+					movieId = 1;
+				}else{
+					try {
+						movieId = Integer.parseInt(request.getParameter("movieId"));
+					}catch(Exception e){
+
+					}
+				}
 
 				boolean deleteStatus = deleteMovieByAdmin(movieId);
 
@@ -229,26 +237,25 @@ public class MovieController {
 
 					}
 				}
-				Movie m1 = new Movie();
+				Movie m1x = new Movie();
 
-				m1.setTitle(request.getParameter("title"));
-				m1.setDescription(request.getParameter("description"));
-				m1.setYear(Integer.parseInt(request.getParameter("year")));
-				m1.setDuration(Integer.parseInt(request.getParameter("duration")));
-				m1.setQuality(request.getParameter("quality"));
-				m1.setWatch_count(0);
-				m1.setMovie_stream_url(request.getParameter("movie_stream_url"));
+				m1x.setTitle(request.getParameter("title"));
+				m1x.setDescription(request.getParameter("description"));
+				m1x.setYear(Integer.parseInt(request.getParameter("year")));
+				m1x.setDuration(Integer.parseInt(request.getParameter("duration")));
+				m1x.setQuality(request.getParameter("quality"));
+				m1x.setWatch_count(0);
+				m1x.setMovie_stream_url(request.getParameter("movie_stream_url"));
 
-				m1.setMovie_img_url("");
-				m1.setAction_category(true);
-				m1.setAdventure_category(false);
-				m1.setComedy_category(false);
-				m1.setScify_category(false);
-				m1.setHorror_category(false);
-				m1.setRomance_category(false);
-				m1.setScience_category(false);
-				m1.setCrime_category(false);
-				m1.setThriller_category(false);
+				m1x.setMovie_img_url("");
+				m1x.setAdventure_category(false);
+				m1x.setComedy_category(false);
+				m1x.setScify_category(false);
+				m1x.setHorror_category(false);
+				m1x.setRomance_category(false);
+				m1x.setScience_category(false);
+				m1x.setCrime_category(false);
+				m1x.setThriller_category(false);
 
 				try {
 //					m1.setAction_category(Boolean.parseBoolean(request.getParameter("action_category")));
@@ -263,21 +270,21 @@ public class MovieController {
 				}catch (Exception ex){
 
 				}
-				m1.setCreated_admin_name(request.getParameter("created_admin_name"));
+				m1x.setCreated_admin_name(request.getParameter("created_admin_name"));
 
-				boolean insertStatus = updateMovieByAdmin(m1);
+				boolean insertStatusx = updateMovieByAdmin(m1x);
 
-				System.out.println(insertStatus);
+				System.out.println(insertStatusx);
 				message = "Inserted Successfully!";
 				System.out.println(message);
 
-				if (insertStatus == false) {
+				if (insertStatusx == false) {
 					message = "Insert Failed!, Retry....";
 					System.out.println("Edit Form Show:" + showAddForm);
 				}
 
 				request.setAttribute("xmessage", message);
-				System.out.println("Updated   " + insertStatus);
+				System.out.println("Updated   " + insertStatusx);
 
 				break;
 
