@@ -163,8 +163,7 @@ public class MovieController {
 				m1.setYear(Integer.parseInt(request.getParameter("year")));
 				m1.setDuration(Integer.parseInt(request.getParameter("duration")));
 				m1.setQuality(request.getParameter("quality"));
-				m1.setWatch_count(Integer.parseInt(request.getParameter("watch_count")));
-				m1.setMovie_img_url(request.getParameter("movie_img_url"));
+				m1.setWatch_count(0);
 				m1.setMovie_stream_url(request.getParameter("movie_stream_url"));
 
 				m1.setMovie_img_url("");
