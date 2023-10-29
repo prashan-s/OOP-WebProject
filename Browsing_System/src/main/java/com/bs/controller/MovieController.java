@@ -120,7 +120,7 @@ public class MovieController {
 				request.setAttribute("xmessage", message);
 				break;
 
-			case "Add":
+			case "xAdd":
 
 				jspPage = "./pages/admin-portal.jsp";
 				showMovieIdForm = false;
@@ -137,7 +137,7 @@ public class MovieController {
 
 				break;
 
-			case "insert":
+			case "Add":
 				
 				jspPage = "./pages/admin-portal.jsp";
 				showMovieIdForm = false;
@@ -212,11 +212,8 @@ public class MovieController {
 				showInsertStatus = true;
 				showDeleteStatus = false;
 
-				try {
-					movieId = Integer.parseInt(request.getParameter("movieId"));
-				}catch(Exception e) {
-					movieId = 1;
-				}
+				movieId = Integer.parseInt(request.getParameter("movieId"));
+
 				if (movieId == null){
 					movieId = 1;
 				}
@@ -284,7 +281,7 @@ public class MovieController {
 			request.setAttribute("showAddForm", showAddForm);
 			request.setAttribute("showInsertStatus", showInsertStatus);
 			request.setAttribute("showDeleteStatus", showDeleteStatus);
-			
+
 			this.dispatcher = request.getRequestDispatcher(jspPage);
 			dispatcher.forward(request, response);
 
