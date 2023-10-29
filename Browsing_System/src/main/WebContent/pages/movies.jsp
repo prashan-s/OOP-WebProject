@@ -65,6 +65,7 @@
           <p class="detail-subtitle">Recommended</p>
         </div>
 
+        <%--@Teran Refer this--%>
         <form action="${pageContext.request.contextPath}/MovieServlet" method="post">
           <input type="submit" name="action" value="submit-getMovies">
         </form>

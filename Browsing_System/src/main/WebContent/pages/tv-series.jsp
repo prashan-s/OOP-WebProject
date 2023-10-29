@@ -52,7 +52,7 @@
         <!--
           - #MOVIE DETAIL
         -->
-
+<%--@Teran Refer this--%>
         <section class="movie-detail">
             <div class="movie-heading">
                 <p class="detail-subtitle">Recommended</p>
