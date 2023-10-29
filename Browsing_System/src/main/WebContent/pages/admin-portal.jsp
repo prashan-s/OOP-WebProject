@@ -482,35 +482,27 @@
                     <div class="card-heading">
                         <p>Add a Movie</p>
                     </div>
-                    <form action="${pageContext.request.contextPath}/MovieServlet" method="post"
-                          enctype="multipart/form-data">
+                    <form action="${pageContext.request.contextPath}/MovieServlet" method="post">
                         <label for="lblMovieName">Title</label> <br/>
-                        <input type="text" name="txtMovieName" id="txtMovieName" required/>
+                        <input type="text" name="title" id="txtMovieName" required/>
                         <br/>
                         <label for="lblMovieDescription">Description</label> <br/>
-                        <input type="text" name="txtMovieDescription" id="txtMovieDescription" required/>
+                        <input type="text" name="description" id="txtMovieDescription" required/>
                         <br/>
                         <label for="lblMovieYear">Year</label> <br/>
-                        <input type="text" name="txtMovieYear" id="txtMovieYear" required/>
+                        <input type="text" name="year" id="txtMovieYear" required/>
                         <br/>
                         <label for="lblMovieDuration">Duration (Min)</label> <br/>
-                        <input type="text" name="txtMovieDuration" id="txtMovieDuration" required/>
+                        <input type="text" name="duration" id="txtMovieDuration" required/>
                         <br/>
                         <label for="lblMovieQuality">Quality</label>
                         <br/>
-                        <input type="text" name="txtMovieQuality" id="txtMovieQuality" required/>
-                        <br/>
-                        <label for="lblMovieImage">Image</label>
-                        <br/>
-                        <input type="file" name="fileMovieimage" id="fileMovieImage" accept="image/*" required/>
+                        <input type="text" name="quality" id="txtMovieQuality" required/>
                         <br/>
                         <label for="lblMovieUrl">Stream URL</label> <br/>
-                        <input type="text" name="txtMovieUrl" id="txtMovieUrl" required/>
+                        <input type="text" name="movie_stream_url" id="txtMovieUrl" required/>
                         <br/>
-                        <label for="lblMovieCategory">Category</label> <br/>
-                        <input type="text" name="txtMovieCategory" id="txtMovieCategory" required/>
-                        <br/>
-                        <input type="submit" class="submit-btn" value="insert" name="action"/>
+                        <input type="submit" name="action" class="submit-btn" value="insert" />
                     </form>
                 </div>
             </div>
@@ -521,34 +513,28 @@
                     </div>
                     <form action="${pageContext.request.contextPath}/MovieServlet" method="post">
                         <label for="lblUpdateMovieName">Title</label> <br/>
-                        <input type="text" name="txtUpdateMovieName" id="txtUpdateMovieName" required/>
+                        <input type="text" name="title" id="txtUpdateMovieName" required/>
                         <br/>
                         <label for="lblUpdateMovieDescription">Description</label>
                         <br/>
-                        <input type="text" name="txtUpdateMovieDescription" id="txtUpdateMovieDescription" required/>
+                        <input type="text" name="description" id="txtUpdateMovieDescription" required/>
                         <br/>
                         <label for="lblUpdateMovieYear">Year</label> <br/>
-                        <input type="text" name="txtUpdateMovieYear" id="txtUpdateMovieYear" required/>
+                        <input type="text" name="year" id="txtUpdateMovieYear" required/>
                         <br/>
                         <label for="lblUpdateMovieDuration">Duration (Mins)</label> <br/>
-                        <input type="text" name="txtUpdateMovieDuration" id="txtUpdateMovieDuration" required/>
+                        <input type="text" name="duration" id="txtUpdateMovieDuration" required/>
                         <br/>
                         <label for="lblUpdateMovieQuality">Quality</label>
                         <br/>
-                        <input type="text" name="txtUpdateMovieQuality" id="txtUpdateMovieQuality" required/>
+                        <input type="text" name="quality" id="txtUpdateMovieQuality" required/>
                         <br/>
                         <label for="lblUpdateMovieUrl">Stream URL</label> <br/>
-                        <input type="text" name="txtUpdateMovieUrl" id="txtUpdateMovieUrl" required/>
+                        <input type="text" name="movie_stream_url" id="txtUpdateMovieUrl" required/>
                         <br/>
-                        <label for="lblUpdateMovieStatus">Active / InActive</label> <br/>
-                        <select name="txtUpdateMovieStatus" id="txtUpdateMovieStatus" required>
-                            <option value=""></option>
-                            <option value="1">Active</option>
-                            <option value="0">InActive</option>
-                        </select>
-                        <input type="hidden" name="rowid" id="editMovieRowId"/>
+                        <input type="hidden" name="movieId" id="editMovieRowId"/>
                         <br/>
-                        <input type="submit" class="submit-btn" value="Update"/>
+                        <input type="submit" name="action" class="submit-btn" value="Update" />
                     </form>
                 </div>
             </div>
